@@ -1,0 +1,15 @@
+{
+  "name": "expressfirst",
+  "version": "1.0.0",
+  "description": "Organizador de ideas con estructura como proyecto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Linmake/LumiaPinaProyects.git"
+  },
+  "author": "Nicole",
+  "license": "ISC"
+}

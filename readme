@@ -1,0 +1,4 @@
+
+IDEA Y VALIDACIONES
+Cuando se crea una idea debe pasar por una validacion antes de subirse a la base de datos por lo cual ahi se necesitan dos schemas para ser recibida como valida.
+en el primero es como tal el schema de titulo, fecha, texto lo mas concreto de estructura y el segundo schema final para la base datos, es donde se incluyen propiedades como proyecto en el que se almacena o si es una idea independiente sin proyecto, el autor, etc.

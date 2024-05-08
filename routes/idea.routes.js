@@ -18,9 +18,13 @@ ideaRouter.post('/create', validateIdeaDTO, (req, res) => {
 })
 
 ideaRouter.put('/edit/:id', validatePutReq, (req, res) => {
+  const contenido = req.body
+  const propiedades = Object.keys(contenido)
+  if(propiedades.length === 0) res.send('la petición está vácia')
   let idea = ideasDb.find( idea => idea.Id == parseInt(req.params.id) )
   if(!idea) res.send('Idea no existente')
 
+  idea.Id = req.body.Id || idea.Id
   idea.Titulo = req.body.Titulo || idea.Titulo
   idea.Texto = req.body.Texto || idea.Texto
   idea.Fecha = req.body.Fecha || idea.Fecha

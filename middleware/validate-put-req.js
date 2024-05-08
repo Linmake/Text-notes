@@ -2,14 +2,14 @@ import { Type } from "@sinclair/typebox"
 import Ajv from "ajv"
 import addErrors from "ajv-errors"
 
-const ajv = new Ajv( {allErrors: true })
+const ajv = new Ajv({ allErrors: true })
 addErrors(ajv)
 
 
 const ideaEditSchema = Type.Object({
   Id: Type.Optional(Type.Number({
     errorMessage: {
-      Type: 'Id es de tipo numero'
+      Type: 'ID debe ser un número'
     }
   })),
   Titulo: Type.Optional(Type.String({
@@ -31,13 +31,9 @@ const ideaEditSchema = Type.Object({
 
 const valid = ajv.compile(ideaEditSchema)
 
-const validatePutReq = ( req, res, next ) => {
-  if(req.body == {}) {
-    res.status(400)
-  }
-
+const validatePutReq = (req, res, next) => {
   const isDTOValid = valid(req.body)
-  if (!isDTOValid) res.status(400).send(ajv.errorsText( valid.errors, {separator: '\n'} ))
+  if (!isDTOValid) res.status(400).send(ajv.errorsText(valid.errors, { separator: '\n' }))
 
   next()
 }

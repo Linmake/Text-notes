@@ -6,7 +6,7 @@ import ideaSchema from "../dto/ideaSchema.js"
 
 //Ajv
 const ajv = new Ajv( {allErrors: true })
-addFormats(ajv, ['date-time']).addKeyword('kind').addKeyword('modifier')
+addFormats(ajv, ['date']).addKeyword('kind').addKeyword('modifier')
 addErrors(ajv)
 
 const valid = ajv.compile(ideaSchema)

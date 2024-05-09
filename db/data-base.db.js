@@ -1,4 +1,8 @@
 
 const ideasDb = []
+const proyectosDb = []
 
-export default ideasDb
+export default {
+  ideasDb,
+  proyectosDb
+}

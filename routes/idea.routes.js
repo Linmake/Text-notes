@@ -1,5 +1,5 @@
 import Express from "express"
-import validateIdeaDTO from "../middleware/validate-idea-dto.js"
+import validateIdeaDTO from "../dto/validate-idea-dto.js"
 import ideasDb from "../db/data-base.db.js"
 import validatePutReq from "../middleware/validate-put-req.js"
 

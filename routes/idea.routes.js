@@ -5,7 +5,6 @@ import validatePutReq from "../middleware/validate-put-req.js"
 
 const ideaRouter = Express.Router()
 
-ideaRouter.use('edit/:id', validatePutReq)
 
 ideaRouter.get( '/', (req, res) => {
   res.status(200).send(ideasDb)

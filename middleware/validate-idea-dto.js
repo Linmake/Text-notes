@@ -4,6 +4,7 @@ import addFormats from "ajv-formats"
 import addErrors from "ajv-errors"
 import ideaSchema from "../dto/ideaSchema.js"
 
+
 //Ajv
 const ajv = new Ajv( {allErrors: true })
 addFormats(ajv, ['date']).addKeyword('kind').addKeyword('modifier')

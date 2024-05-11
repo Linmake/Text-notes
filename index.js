@@ -2,6 +2,7 @@
 import Express from 'express'
 const expressApp = Express()
 import ideaRouter from './routes/idea.routes.js'
+import proyectRouter from './routes/proyect.routes.js'
 import carpetaRouter from './routes/carpeta.routes.js'
 import dotenv from 'dotenv'
 

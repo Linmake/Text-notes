@@ -1,4 +1,4 @@
 
-const ideasDb = []
-
-export default ideasDb
+export const ideasDb = []
+export const proyectosDb = []
+export const carpetasDb = []

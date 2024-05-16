@@ -1,8 +1,4 @@
 
-const ideasDb = []
-const proyectosDb = []
-
-export default {
-  ideasDb,
-  proyectosDb
-}
+export const ideasDb = []
+export const proyectosDb = []
+export const carpetasDb = []

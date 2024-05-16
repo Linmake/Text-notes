@@ -1,33 +1,50 @@
-import express from 'express'
-import proyectosDb from '../db/data-base.db.js'
-import validateProyectDTO from '../dto/validate-proyect-dto.js'
 
+import express from 'express'
+import { proyectosDb } from '../db/data-base.db.js'
+import validateProyectDTO from '../dto/validate-proyect-dto.js'
+import validatePutReq from '../middleware/proyecto/validatePutReq.js'
+import idValidate from '../middleware/proyecto/idValidate.js'
+import {findProyect} from '../middleware/functions/findProyect.js'
 
 const proyectRouter = express.Router()
 
-ideaRouter.get( '/', (req, res) => {
+proyectRouter.get( '/', (req, res) => {
   res.status(200).send(proyectosDb)
 })
 
 proyectRouter.post('/create', validateProyectDTO, (req, res) => {
-  res.status(201).send(`Proyecto "${req.body.Titulo}" creado con exito`)
   const proyecto = req.body
-  proyectosDb.push(proyecto)
+  req.body.CarpetasAdd = []
+  req.body.IdeasAdd = [] 
+  req.body.Fecha = (getDate).toString()
+
+  const valide = idValidate(proyecto)
+  if(valide){
+    proyectosDb.push(proyecto) 
+    res.status(204).send()
+  }
+  res.status(400).send(`Existe un Proyecto con el mismo Id: ${proyecto.Id}`)
 })
 
-ideaRouter.put('/edit/:id', validatePutReq, (req, res) => {
-  const contenido = req.body
-  const propiedades = Object.keys(contenido)
-  if(propiedades.length === 0) res.send('la petición está vácia')
-  let idea = ideasDb.find( idea => idea.Id == parseInt(req.params.id) )
-  if(!idea) res.send('Idea no existente')
+proyectRouter.put('/edit/:idProyecto', validatePutReq, (req, res) => {
+  const {Id, Titulo} = req.body
+  let proyecto = findProyect(req.params.idProyecto)
+  if(!proyecto) res.send(`Proyecto con id: ${req.params.idProyecto} no existe`)
+  proyecto.Id = Id || proyecto.Id
+  proyecto.Titulo = Titulo || proyecto.Titulo
 
-  idea.Id = req.body.Id || idea.Id
-  idea.Titulo = req.body.Titulo || idea.Titulo
-  idea.Texto = req.body.Texto || idea.Texto
-  idea.Fecha = req.body.Fecha || idea.Fecha
+  res.status(200).send(`Proyecto con el Id: "${ proyecto.Id }" editado con exito`)
+})
 
-  res.status(204).send('Editado con exito')
+proyectRouter.delete( '/delete/:idProyecto', (req, res) => {
+  const { idProyecto } = req.params
+  const proyecto = findProyect(idProyecto)
+  if(!proyecto) res.status(400).send(`Proyecto con id: ${idProyecto} no existe`)
+
+  const index = (proyectosDb.indexOf(proyecto))
+  proyectosDb.splice(index, 1)
+
+  res.status(200).send('Proyecto eliminado con exito')
 })
 
 export default proyectRouter

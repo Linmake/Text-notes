@@ -1,6 +1,12 @@
+
 import { Type } from "@sinclair/typebox";
 
 const carpetaSchema = Type.Object({
+  Id: Type.Number({
+    errorMessage: {
+      type: 'Id debe ser un número'
+    }
+  }),
   Titulo: Type.String({
     errorMessage: {
       type: 'El Titulo debe ser de tipo String.'
@@ -35,12 +41,12 @@ const carpetaSchema = Type.Object({
   }),
   ProyectoAsignado: Type.Boolean({
     errorMessage: {
-      type: 'Si pertenece a un Proyecto es de tipo Booleano.'
+      type: 'Si pertenece a un Proyecto es de tipo Booleano'
     }
   }),
   NombreProyectoAsig: Type.String({
     errorMessage: {
-      type: 'El Titulo del Proyecto al que pertenece es de tipo String.'
+      type: 'El Titulo del Proyecto al que pertenece es de tipo String'
     }
   }),
   CantidadArchivos: Type.Number({

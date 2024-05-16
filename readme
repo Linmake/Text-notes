@@ -1,12 +1,35 @@
+ 
+### LISTA DE TODAS LAS RUTAS:
+ 
+## PROYECTO:
+/*
+Titulo: 
+*/
+proyecto/create
+proyecto/
+proyecto/edit/:idProyecto
+proyecto/delete/:idProyecto
 
-IDEA Y VALIDACIONES
-Cuando se crea una idea debe pasar por una validacion antes de subirse a la base de datos por lo cual ahi se necesitan dos schemas para ser recibida como valida.
-en el primero es como tal el schema de titulo, fecha, texto lo mas concreto de estructura y el segundo schema final para la base datos, es donde se incluyen propiedades como proyecto en el que se almacena o si es una idea independiente sin proyecto, el autor, etc.
+## CARPETA: 
+carpeta/create
+carpeta/edit/:idProyecto/:idCarpeta
+carpeta/edit/:idCarpeta
+carpeta/
+carpeta/:idProyecto
+carpeta/delete/:idCarpeta/
+carpeta/delete/:idProyecto/all
+carpeta/delete/:idProyecto/:idCarpeta
 
-
-PROYECTOS Y ESTRUCTURA
-Cuando se coloque una idea en un proyecto esta puede estar suelta en el o dentro de carpetas que tambien se creen y puedan añadirse mas carpetas dentro, las carpetas tendran las propiedades de schema como titulo, fecha de creacion, fecha de modificacion, cantidad de ideas, cantidad de carpetas dentro, 
-
-TIPS DE CONTRIBUCIONES Y AVANCES
--En una seccion de estructura (mas que nada interfaz) La estrura del proyecto se puede ir creando solo colocando las carpetas e ideas con solo titulo para haci generar solo la organizacion.
-
+## IDEA: 
+idea/create/
+idea/create/:idProyecto
+idea/create/:idProyecto/idCarpeta
+idea/:idIdea
+idea/:idProyecto/:idIdea
+idea/:idProyecto/:idCarpeta/:idIdea
+idea/:idIdea
+idea/edit/:idProyecto/:idCarpeta/:idIdea
+idea/edit/:idProyecto/:idIdea
+idea/delete/:idIdea
+idea/delete/:idProyecto/:idCarpeta/:idIdea
+idea/delete/:idProyecto/:idIdea

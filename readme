@@ -1,36 +1,165 @@
-
  
-### LISTA DE TODAS LAS RUTAS:
+#### LISTA DE TODAS LAS RUTAS:
  
-## PROYECTO:
-<hr>
-proyecto/create
-proyecto/
-proyecto/edit/:idProyecto
-proyecto/delete/:idProyecto
+### PROYECTO: --------!
 
-## CARPETA:
-<hr>
-carpeta/create
-carpeta/edit/:idProyecto/:idCarpeta
-carpeta/edit/:idCarpeta
-carpeta/
-carpeta/:idProyecto
-carpeta/delete/:idCarpeta/
-carpeta/delete/:idProyecto/all
-carpeta/delete/:idProyecto/:idCarpeta
+<br>
+/*** Crear proyecto
+ Props: { Id, Titulo } 
+*/
 
-## IDEA:
-<hr>
-idea/create/
-idea/create/:idProyecto
-idea/create/:idProyecto/idCarpeta
-idea/:idIdea
-idea/:idProyecto/:idIdea
-idea/:idProyecto/:idCarpeta/:idIdea
-idea/:idIdea
-idea/edit/:idProyecto/:idCarpeta/:idIdea
-idea/edit/:idProyecto/:idIdea
-idea/delete/:idIdea
-idea/delete/:idProyecto/:idCarpeta/:idIdea
-idea/delete/:idProyecto/:idIdea
+#  proyecto/create
+
+<br>
+/*** Ver proyectos
+ Props 0 
+*/
+
+#  proyecto/
+
+<br>
+/*** Editar proyecto
+ Props: Opt{ Id, Titulo } 
+*/
+
+#  proyecto/edit/:idProyecto
+
+<br>
+/*** Eliminar proyecto
+ Props: { Id } 
+*/
+
+#  proyecto/delete/:idProyecto
+
+
+###  CARPETA: --------!
+
+<br>
+/*** Crear carpeta
+ Props: {Id,Titulo} 
+*/
+
+# carpeta/create
+
+
+/*** Crear carpeta
+ Props: {Id,Titulo} 
+*/
+
+# carpeta/edit/:idProyecto/:idCarpeta
+
+/*** Crear carpeta
+ Props: {Id,Titulo} 
+*/
+
+# carpeta/edit/:idCarpeta
+
+/*** Crear carpeta
+ Props: {Id,Titulo} 
+*/
+
+# carpeta/
+
+/*** Crear carpeta
+ Props: {Id,Titulo} 
+*/
+
+# carpeta/:idProyecto
+
+/*** Crear carpeta
+ Props: {Id,Titulo} 
+*/
+
+# carpeta/delete/:idCarpeta/
+
+/*** Crear carpeta
+ Props: {Id,Titulo} 
+*/
+
+# carpeta/delete/:idProyecto/all
+
+/*** Crear carpeta
+ Props: {Id,Titulo} 
+*/
+
+# carpeta/delete/:idProyecto/:idCarpeta
+
+### IDEA: --------! 
+
+/*** Crear idea
+ Props: {Id, Titulo, Texto}, 
+ opt{ idCarpeta, idProyecto }
+*/
+
+#  idea/create/
+
+/*** Crear idea en proyecto
+ Props: {Id, Titulo, Texto}
+ params: { idProyecto } 
+*/
+
+#  idea/create/:idProyecto
+
+/*** Crear idea en carpeta dentro de proyecto
+ Props: {Id, Titulo, Texto},
+ params: { idProyecto, idCarpeta, idIdea }
+*/
+
+#  idea/create/:idProyecto/idCarpeta
+
+/*** Ver idea sin asignación
+ params: {idIdea} 
+*/
+
+#  idea/:idIdea
+
+/*** Crear idea
+ Props: {Id,Titulo} 
+*/
+
+#  idea/:idProyecto/:idIdea
+
+/*** Crear idea
+ Props: {Id,Titulo} 
+*/
+
+#  idea/:idProyecto/:idCarpeta/:idIdea
+
+/*** Crear idea
+ Props: {Id,Titulo} 
+*/
+
+#  idea/:idIdea
+
+/*** Crear idea
+ Props: {Id,Titulo} 
+*/
+
+#  idea/edit/:idProyecto/:idCarpeta/:idIdea
+
+/*** Crear idea
+ Props: {Id,Titulo} 
+*/
+
+#  idea/edit/:idProyecto/:idIdea
+
+
+/** Crear idea
+*Props: {Id,Titulo} 
+*/
+
+#  idea/delete/:idIdea
+
+<br>
+/*** Crear idea
+ Props: {Id,Titulo} 
+*/
+
+#  idea/delete/:idProyecto/:idCarpeta/:idIdea
+
+<br>
+/*** Crear idea
+ Props: {Id,Titulo} 
+*/
+
+#  idea/delete/:idProyecto/:idIdea

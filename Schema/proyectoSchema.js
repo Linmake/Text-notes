@@ -24,7 +24,7 @@ const proyectSchema = Type.Object({
       type: 'La lista de Carpetas dentro del Proyecto debe ser un Array'
     }
   }),
-  IdeasAdd: Type.Array({
+  ArchivosAdd: Type.Array({
     errorMessage: {
       type: 'La lista de Ideas dentro del Proyecto debe ser un Array'
     }

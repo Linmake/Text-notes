@@ -3,12 +3,14 @@
 ### LISTA DE TODAS LAS RUTAS:
  
 ## PROYECTO:
+<hr>
 proyecto/create
 proyecto/
 proyecto/edit/:idProyecto
 proyecto/delete/:idProyecto
 
-## CARPETA: 
+## CARPETA:
+<hr>
 carpeta/create
 carpeta/edit/:idProyecto/:idCarpeta
 carpeta/edit/:idCarpeta
@@ -18,7 +20,8 @@ carpeta/delete/:idCarpeta/
 carpeta/delete/:idProyecto/all
 carpeta/delete/:idProyecto/:idCarpeta
 
-## IDEA: 
+## IDEA:
+<hr>
 idea/create/
 idea/create/:idProyecto
 idea/create/:idProyecto/idCarpeta

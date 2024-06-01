@@ -1,5 +1,6 @@
 
 import { Type } from "@sinclair/typebox"
+import getDate from "../functions/date.js"
 import Ajv from "ajv"
 import addErrors from "ajv-errors"
 import addFormats from "ajv-formats"
@@ -29,10 +30,14 @@ const proyectEditSchema = Type.Object({
 const valid = ajv.compile(proyectEditSchema)
 
 const validatePutReq = (req, res, next) => {
+  req.body.CarpetasAdd = []
+  req.body.IdeasAdd = []
+  req.body.Fecha = (getDate).toString()
   const contenido = req.body
   const propiedades = Object.keys(contenido)
   if(propiedades.length === 0) res.send('Petición vácia')
   
+
   const isDTOValid = valid(req.body)
   if (isDTOValid) next()
 

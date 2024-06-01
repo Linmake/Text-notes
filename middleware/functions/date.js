@@ -5,5 +5,5 @@ import { format } from "date-fns";
  * yyyy-MM-dd
  */
 const getDate = format(new Date(), "yyyy-MM-dd")
-getDate
+
 export default getDate

@@ -6,6 +6,7 @@ import validatePutReq from '../middleware/proyecto/validatePutReq.js'
 import idValidate from '../middleware/proyecto/idValidate.js'
 import {findProyect} from '../middleware/functions/findProyect.js'
 
+
 const proyectRouter = express.Router()
 
 proyectRouter.get( '/', (req, res) => {
@@ -14,22 +15,17 @@ proyectRouter.get( '/', (req, res) => {
 
 proyectRouter.post('/create', validateProyectDTO, (req, res) => {
   const proyecto = req.body
-  req.body.CarpetasAdd = []
-  req.body.IdeasAdd = [] 
-  req.body.Fecha = (getDate).toString()
 
   const valide = idValidate(proyecto)
-  if(valide){
-    proyectosDb.push(proyecto) 
-    res.status(204).send()
-  }
-  res.status(400).send(`Existe un Proyecto con el mismo Id: ${proyecto.Id}`)
+  if(!valide) return res.status(400).send(`Existe un Proyecto con el mismo Id: ${proyecto.Id}`)
+  proyectosDb.push(proyecto)
+  res.status(201).send()
 })
 
 proyectRouter.put('/edit/:idProyecto', validatePutReq, (req, res) => {
   const {Id, Titulo} = req.body
   let proyecto = findProyect(req.params.idProyecto)
-  if(!proyecto) res.send(`Proyecto con id: ${req.params.idProyecto} no existe`)
+  if(!proyecto) return res.send(`Proyecto con id: ${req.params.idProyecto} no existe`)
   proyecto.Id = Id || proyecto.Id
   proyecto.Titulo = Titulo || proyecto.Titulo
 
@@ -39,11 +35,11 @@ proyectRouter.put('/edit/:idProyecto', validatePutReq, (req, res) => {
 proyectRouter.delete( '/delete/:idProyecto', (req, res) => {
   const { idProyecto } = req.params
   const proyecto = findProyect(idProyecto)
-  if(!proyecto) res.status(400).send(`Proyecto con id: ${idProyecto} no existe`)
-
+  if(!proyecto) return res.status(400).send(`Proyecto con id: ${idProyecto} no existe`)
+  
   const index = (proyectosDb.indexOf(proyecto))
   proyectosDb.splice(index, 1)
-
+    
   res.status(200).send('Proyecto eliminado con exito')
 })
 

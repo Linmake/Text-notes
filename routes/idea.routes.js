@@ -143,4 +143,25 @@ ideaRouter.delete('/delete/:idProyecto/:idIdea', (req, res) => {
   res.status(400).send(`Idea con el Id: ${idea.Id} eliminada con exito`)
 })
 
+ideaRouter.delete('/delete/:idProyecto/:idCarpeta/:idIdea', (req, res) => {
+  const { idProyecto, idCarpeta, idIdea } = req.params
+  const proyecto = findProyect(idProyecto)
+  const {ArchivosDentro} = carpeta
+  const carpeta = findCarpeta(proyecto, idCarpeta)
+  const idea = findIdea(idProyecto, idCarpeta, idIdea)
+  const index = (ArchivosDentro.indexOf(idea))
+  ArchivosDentro.splice(index, 1)
+  res.status(400).send(`Idea con el Id: ${idea.Id} eliminada con exito`)
+})
+
+ideaRouter.delete('/delete/:idProyecto/:idIdea', (req, res) => {
+  const { idProyecto, idIdea } = req.params
+  const proyecto = findProyect(idProyecto)
+  const {ArchivosAdd} = proyecto
+  const idea = findIdeaInProyect(proyecto, idIdea)
+  const index = (ArchivosAdd.indexOf(idea))
+  ArchivosAdd.splice(index, 1)
+  res.status(400).send(`Idea con el Id: ${idea.Id} eliminada con exito`)
+})
+
 export default ideaRouter

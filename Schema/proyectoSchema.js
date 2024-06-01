@@ -19,16 +19,16 @@ const proyectSchema = Type.Object({
       type: 'La Fecha del Proyecto debe ser un Strign'
     }
   })),
-  CarpetasAdd: Type.Array({
+  CarpetasAdd: Type.Optional(Type.Array({
     errorMessage: {
       type: 'La lista de Carpetas dentro del Proyecto debe ser un Array'
     }
-  }),
-  ArchivosAdd: Type.Array({
+  })),
+  ArchivosAdd: Type.Optional(Type.Array({
     errorMessage: {
       type: 'La lista de Ideas dentro del Proyecto debe ser un Array'
     }
-  }),
+  })),
 }, {
   additionalProperties: false,
   errorMessage: 'El formato del Proyecto debe ser válido'

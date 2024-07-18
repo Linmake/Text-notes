@@ -1,32 +1,33 @@
-import Express from "express";
-import ideaRouter from "./routes/idea.routes.js";
-import proyectRouter from "./routes/proyect.routes.js";
-import carpetaRouter from "./routes/carpeta.routes.js";
+import express from "express";
+import connectDB from "./db/data-base.db.js";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
-import path from "path";
-import { fileURLToPath } from "url";
-import indexRouter from "./routes/index.routes.js";
+import { createServer } from "http";
+import cors from 'cors';
+import FileRouter from "./routes/file.routes.js";
+import FolderRouter from "./routes/folder.routes.js";
+import ProyectRouter from "./routes/proyect.routes.js";
 
-const expressApp = Express();
-
-const _fileName = fileURLToPath(import.meta.url);
-const _dirname = path.dirname(_fileName);
-
-expressApp.use(bodyParser.json());
-expressApp.use(Express.urlencoded());
-expressApp.use(Express.static(path.join(_dirname, "/public")));
-
-expressApp.use("/", indexRouter);
-expressApp.use("/idea", ideaRouter);
-expressApp.use("/carpeta", carpetaRouter);
-expressApp.use("/proyecto", proyectRouter);
-
+// Configuración de dotenv
 dotenv.config();
 
-const port = process.env.PORT || 3000;
+const expressApp = express();
+connectDB();
 
-expressApp.listen(port, () => {
+const server = createServer(expressApp);
+
+// Middleware
+expressApp.use(cors());
+expressApp.use(express.json());
+
+// Rutas
+expressApp.use("/file", FileRouter);
+expressApp.use("/folder", FolderRouter);
+expressApp.use("/proyect", ProyectRouter);
+
+const port = process.env.PORT || 4000;
+
+server.listen(port, () => {
   console.log(`Servidor levantado en el puerto ${port}`);
 });
 

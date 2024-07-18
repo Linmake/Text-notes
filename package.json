@@ -8,8 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/Linmake/LumiaPinaProyects.git"
+    "type": "git"
   },
   "author": "Nicole",
   "license": "ISC",
@@ -19,11 +18,17 @@
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^3.0.1",
     "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.0",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.4"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.3"
   }
 }

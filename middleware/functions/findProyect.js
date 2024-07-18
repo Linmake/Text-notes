@@ -1,14 +1,14 @@
 
-import { proyectosDb } from "../../db/data-base.db.js"
+import { proyectsDb } from "../../db/data-base.db.js"
 
 /** //Doc
- * Retorna el proyecto donde se desea asignar la carpeta que no esta asiganada a ningún proyecto
- * @param {"Object"} carpeta Carpeta sin asignar que se ubicara en un proyecto 
- * @returns {"Object"} Proyecto donde se ubicara la carpeta
+ * Retorna el proyect donde se desea asignar la carpeta que no esta asiganada a ningún proyect
+ * @param {"Object"} carpeta Carpeta sin asignar que se ubicara en un proyect 
+ * @returns {"Object"} Proyect donde se ubicara la carpeta
  */
 export const findProyectNewUbi = (carpeta) => {
-  const proyectTitle = carpeta.NombreProyectoAsig
-  const proyect = proyectosDb.find( proyecto => proyecto.Title === proyectTitle )
+  const proyectTitle = carpeta.NombreProyectAsig
+  const proyect = proyectsDb.find( proyect => proyect.Title === proyectTitle )
   return proyect
 }
 
@@ -17,7 +17,7 @@ export const findProyectNewUbi = (carpeta) => {
  * @param {"String"} idProyecto Id del Proyecto indicado
  * @returns {"Object"} Retorna el Proyecto encontrado  
  */
-export const findProyect = (idProyecto) => {
-  const proyecto = proyectosDb.find( proyecto => proyecto.Id == idProyecto )
-  return proyecto
+export const findProyect = (idProyect) => {
+  const proyect = proyectsDb.find( proyect => proyect.Id == idProyect )
+  return proyect
 }

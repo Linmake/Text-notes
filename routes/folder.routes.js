@@ -2,7 +2,7 @@ import Folder from '../Schema/FolderSchema.js'
 import Proyect from '../Schema/ProyectSchema.js'
 import validateFolder from '../dto/validateFolder.js';
 import express from "express";
-import getDate from '../middleware/functions/date.js';
+import { getDate } from '../middleware/functions/date.js';
 const FolderRouter = express.Router();
 
 FolderRouter.get("/all", async (req, res) => {

@@ -20,6 +20,12 @@ const server = createServer(expressApp);
 expressApp.use(cors());
 expressApp.use(express.json());
 
+expressApp.use(cors({
+  origin: '*', // Permite solo solicitudes desde esta URL
+  methods: ['GET', 'POST'], // Permite solo estos métodos HTTP
+  allowedHeaders: ['Content-Type', 'Authorization'], // Permite solo estos encabezados
+}));
+
 // Rutas
 expressApp.use("/file", FileRouter);
 expressApp.use("/folder", FolderRouter);

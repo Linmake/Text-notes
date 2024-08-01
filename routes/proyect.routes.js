@@ -12,7 +12,7 @@ ProyectRouter.get('/all', async (req, res) => {
     const allProyects = await Proyect.find({})
     res.status(200).send(allProyects)
   } catch (error) {
-    res.status(500).send(err.message)
+    res.status(500).send(error.message)
   }
 })
 

@@ -60,7 +60,7 @@ ProyectRouter.delete('/all/delete/', async (req, res) => {
   await Proyect.deleteMany({})
   await Folder.deleteMany({})
   await File.deleteMany({})
-  res.status(200).send('Proyect eliminado con exito')
+  res.status(200).send('Todos los Proyects eliminados con exito')
 })
 
 ProyectRouter.delete('/delete/:idProyect', async (req, res) => {

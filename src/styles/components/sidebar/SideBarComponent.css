@@ -1,0 +1,96 @@
+html {
+  box-sizing: border-box;
+}
+
+*::after::before {
+  box-sizing: inherit;
+}
+
+@media (min-width: 570px) {
+  .d-sm-inline {
+    display: inline !important;
+  }
+}
+@media (min-width: 1024px) {
+  #containerSlider {
+    width: 81%;
+    height: 100%;
+  }
+}
+#containerSlider {
+  position: fixed;
+  grid-area: aside;
+  width: 17%;
+  height: 100%;
+  top: 6.8%;
+  display: grid;
+  grid-template-areas: "sideContent bttnHidde";
+  grid-template-columns: 83% 17%;
+}
+
+.nav-item {
+  width: 100%;
+  align-items: center;
+  margin-top: 0;
+}
+
+.nav-link {
+  gap: 0.7rem;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  word-wrap: break-word;
+  white-space: nowrap;
+  padding-left: 6px;
+  border-radius: 0 !important;
+}
+
+#liFolder {
+  width: 80%;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.hidden {
+  transform: translateX(-78%);
+}
+
+#buttonSide {
+  background-color: rgba(102, 102, 102, 0.5803921569);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  grid-area: "bttnHidde";
+  margin-top: 37vh;
+  height: 15%;
+  width: 1.8rem;
+}
+
+#containerButtonSide {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bttn-plus {
+  cursor: pointer;
+}
+
+#newFolderInp {
+  width: 100%;
+  background-color: #5e5e5f;
+  outline: none;
+  border: none;
+  color: azure;
+}
+
+.hiddens {
+  display: none;
+}
+
+.span-text {
+  display: inline-block;
+  max-width: 60%;
+  word-wrap: break-word;
+  white-space: nowrap;
+}/*# sourceMappingURL=SideBarComponent.css.map */

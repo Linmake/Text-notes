@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "rubik";
+  src: url("../../../../../public/fonts/Rubik/Rubik.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "rubikBold";
+  src: url("../../../../../public/fonts/Rubik/Rubik-Bold.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+  font-style: none;
+  color: inherit;
+} /*# sourceMappingURL=IndexMenu.css.map */
+
+.font {
+  font-size: 69px;
+  margin-top: 0;
+  font-family: "rubik";
+  font-weight: bold;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
+.subtitles {
+  font-size: 20px;
+  margin: 82px 0;
+  hyphens: auto;
+}
+
+.ul {
+  display: block;
+  list-style-type: disc;
+  margin-top: 22px;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  unicode-bidi: isolate;
+  font-weight: 400 !important;
+}
+
+.notepadImg {
+  width: 450px;
+  height: auto;
+  border-radius: 10px;
+  position: absolute;
+  top: 25%;
+  left: 60%;
+}

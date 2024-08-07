@@ -1,0 +1,16 @@
+@import "templatesSidebar";
+
+#newFolderInp {
+  width: 100%;
+  background-color: #5e5e5f;
+  outline: none;
+  border: none;
+  color: azure;
+}
+
+.nav-item {
+  @include nav-item();
+}
+.nav-link {
+  @include nav-link();
+}

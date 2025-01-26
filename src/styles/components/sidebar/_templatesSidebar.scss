@@ -1,0 +1,16 @@
+@mixin nav-item() {
+  width: 100%;
+  align-items: center;
+  margin-top: 0;
+}
+
+@mixin nav-link() {
+  gap: 0.7rem;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  word-wrap: break-word;
+  white-space: nowrap;
+  padding-left: 6px;
+  border-radius: 0 !important;
+}

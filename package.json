@@ -1,0 +1,37 @@
+{
+  "name": "expressfirst",
+  "version": "1.0.0",
+  "description": "Organizador de ideas con estructura como proyecto",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postbuild": "next-sitemap"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "Nicole",
+  "license": "ISC",
+  "dependencies": {
+    "@sinclair/typebox": "^0.32.28",
+    "ajv": "^8.13.0",
+    "ajv-errors": "^3.0.0",
+    "ajv-formats": "^3.0.1",
+    "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "http-proxy-middleware": "^3.0.0",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.0",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.4",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
+}

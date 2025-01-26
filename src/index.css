@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  display: flex;
+  background: url("./assets/paven_1.webp");
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}

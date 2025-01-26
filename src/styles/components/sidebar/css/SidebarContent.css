@@ -1,0 +1,10 @@
+#contenedorSidebar {
+  grid-area: "sideContent";
+  height: 10%;
+  position: relative !important;
+  top: 10px;
+  left: 10px;
+  color: #fff;
+  border: none;
+  background-color: #fff;
+}/*# sourceMappingURL=SidebarContent.css.map */

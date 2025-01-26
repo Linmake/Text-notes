@@ -1,0 +1,42 @@
+#folderVacioContenedor {
+  box-sizing: border-box;
+  margin-top: 25%;
+}
+#folderVacioContenedor .nav-link-carpetas-vacias {
+  box-sizing: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+#folderVacioContenedor .nav-link-carpetas-vacias p {
+  font-size: 1.2rem;
+  white-space: wrap;
+}
+#folderVacioContenedor .nav-link-carpetas-vacias #btnNuevaCarpeta {
+  background-color: #1d87f9;
+  color: #fff;
+  border: none;
+  width: 210px;
+  height: 45px;
+  font-size: 1.1rem;
+}
+#folderVacioContenedor .nav-link-carpetas-vacias #btnNuevaCarpeta:hover {
+  background-color: #3393f9;
+  color: #fff;
+  border: none;
+  width: 210px;
+  height: 45px;
+  font-size: 1.1rem;
+}
+
+.nav-item {
+  width: 100%;
+  align-items: center;
+  margin-top: 0;
+}
+
+.hidden {
+  transform: translateX(-78%);
+}/*# sourceMappingURL=SinFoldersContenedor.css.map */

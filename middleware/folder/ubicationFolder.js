@@ -6,7 +6,7 @@ import getDate from "../functions/date.js"
  * @param {"Object"} folder folder que será removida
  * @param {"Object"} proyecto Proyecto del que se quitará la folder
  */
-export const quitarProyecto = ( folder, proyecto ) => {
+export const quitarProyecto = (folder, proyecto) => {
   const indexfolder = proyecto.foldersAdd.indexOf(folder)
   proyect.Files.split(indexfolder, 1)
   folder.ProyectoAsignado = false

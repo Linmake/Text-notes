@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @media (min-width: 1024px) {
 }
 
@@ -30,3 +31,37 @@
 .header-editor {
   grid-area: header;
 }
+=======
+@media (min-width: 1024px) {
+}
+
+@mixin planEditorTexto {
+  margin: 0 auto;
+  width: 100%;
+  height: 97%;
+}
+
+.plantilla-editor {
+  @include planEditorTexto();
+}
+
+.plantilla-body-editor {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "aside main";
+  grid-template-rows: 7% 96.1%;
+  grid-template-columns: 20% 80%;
+  width: 100%;
+  height: 100%;
+}
+
+.container-fluid {
+  grid-area: aside;
+  transition: transform 0.3s ease;
+}
+
+.header-editor {
+  grid-area: header;
+}
+>>>>>>> 1223f99ee06a0a92a5bd8f2f92bd5b31e4eb6a13

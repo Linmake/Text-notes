@@ -6,7 +6,7 @@
  * @returns {"Object"} Retorna la folder encontrada  
  */
 const findFolder = (proyect, idFolder) => {
-  const folder = proyect.Folders.find( folder => folder.Id == idFolder )
+  const folder = proyect.Folders.find(folder => folder.Id == idFolder)
   return folder
 }
 

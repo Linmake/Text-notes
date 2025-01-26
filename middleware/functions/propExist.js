@@ -6,7 +6,7 @@
  * @returns {"Boolean"} Retorna true si existe y false si no
  */
 const propExist = (arr, propiety) => {
-  const valide = arr.some( prop => prop === propiety )
+  const valide = arr.some(prop => prop === propiety)
   return valide
 }
 

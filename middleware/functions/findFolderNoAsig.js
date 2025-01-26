@@ -6,9 +6,9 @@ import { foldersDb } from "../../db/data-base.db.js"
  * @param {"String"} idCarpeta Id de la carpeta 
  * @returns {"Object"} folder sin proyecto
  */
-const findfolderNoAsig = ( idfolder ) => {
+const findfolderNoAsig = (idfolder) => {
   const folder = foldersDb.find(folder => folder.Id == idfolder)
-  if(!folder) "folder no existe" //TODO implementar throw error con ajv
+  if (!folder) "folder no existe" //TODO implementar throw error con ajv
   return folder
 }
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 $CardBgColor: rgba(254, 243, 243, 0.848);
@@ -42,3 +43,49 @@ $CardBgColor: rgba(254, 243, 243, 0.848);
   font-size: 1.6rem;
   font-weight: 550;
 }
+=======
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+$CardBgColor: rgba(254, 243, 243, 0.848);
+
+.card {
+  width: 340px;
+  height: 400px;
+  box-shadow: 0px 0px 6px rgba(131, 131, 131, 0.822);
+  border: 2px solid rgb(255, 255, 255);
+  background-color: #f7fedde6;
+  padding: 1%;
+  border-radius: 0.4rem;
+}
+
+.card-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  text-align: center;
+  font-family: "Poppins";
+}
+
+.card:first-child {
+  margin-right: 15%;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 6px rgba(176, 176, 176, 0.783);
+}
+.card-body > img {
+  width: 30%;
+  margin-top: 14%;
+  margin-bottom: 14%;
+}
+
+.card-title {
+  font-size: 1.6rem;
+  font-weight: 550;
+}
+>>>>>>> 1223f99ee06a0a92a5bd8f2f92bd5b31e4eb6a13

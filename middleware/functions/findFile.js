@@ -12,9 +12,9 @@ import { findProyect } from "./findProyect.js"
 const findFile = (idProyect, idFolder, idFile) => {
   const proyect = findProyect(idProyect)
   const folder = findFolder(proyect, idFolder)
-  const {Files} = folder
-  const file = Files.find( file => file.Id == idFile )
-  if(!file) "File no existe" //TODO implemt with ajv
+  const { Files } = folder
+  const file = Files.find(file => file.Id == idFile)
+  if (!file) "File no existe" //TODO implemt with ajv
 
   return file
 }

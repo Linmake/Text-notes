@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { CardComponent, CardBody } from "@components-card/Card"
 import HeaderComponent from '@components-headers/Header';
 import { Link, useNavigate } from "react-router-dom"
@@ -96,7 +95,6 @@ const MenuInicioPage = () => {
     </>
   )
 }
-=======
 import { CardComponent, CardBody } from "@components-card/Card"
 import HeaderComponent from '@components-headers/Header';
 import { Link, useNavigate } from "react-router-dom"
@@ -194,5 +192,4 @@ const MenuInicioPage = () => {
     </>
   )
 }
->>>>>>> 1223f99ee06a0a92a5bd8f2f92bd5b31e4eb6a13
 export default MenuInicioPage

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { faFile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
@@ -97,7 +96,6 @@ const NewFileContent = () => {
 }
 
 export default NewFileContent;
-=======
 import { faFile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
@@ -196,4 +194,3 @@ const NewFileContent = () => {
 }
 
 export default NewFileContent;
->>>>>>> 1223f99ee06a0a92a5bd8f2f92bd5b31e4eb6a13

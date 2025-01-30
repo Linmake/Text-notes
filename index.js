@@ -16,7 +16,7 @@ connectDB();
 
 const server = createServer(expressApp);
 
-// Middleware
+// Middlewares
 expressApp.use(cors());
 expressApp.use(express.json());
 

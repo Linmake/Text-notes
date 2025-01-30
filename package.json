@@ -1,12 +1,14 @@
 {
-  "name": "expressfirst",
-  "version": "1.0.0",
-  "description": "Organizador de ideas con estructura como proyecto",
+  "name": "Text-Notes",
+  "version": "1.1.0",
+  "description": "Organizador de notas como proyectos",
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "start": "react scripts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "dev": "nodemon /index.js"
   },
   "repository": {
     "type": "git"

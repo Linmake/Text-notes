@@ -6,7 +6,7 @@ const idValidate = (proyecto) => {
   const id = proyecto.Id
   const idExist = Proyect.findById
   let valide = false
-  if(!idExist) valide = true
+  if (!idExist) valide = true
 
   return valide
 }

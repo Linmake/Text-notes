@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @font-face {
   font-family: "rubik";
   src: url("../../../../public/fonts/Rubik/Rubik.woff") format("woff");
@@ -9,3 +10,16 @@
   font-family: "rubik";
   font-size: 16px;
 }
+=======
+@font-face {
+  font-family: "rubik";
+  src: url("../../../../public/fonts/Rubik/Rubik.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.navbar {
+  font-family: "rubik";
+  font-size: 16px;
+}
+>>>>>>> 1223f99ee06a0a92a5bd8f2f92bd5b31e4eb6a13

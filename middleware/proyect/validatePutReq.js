@@ -35,8 +35,8 @@ const validatePutReq = (req, res, next) => {
   req.body.Fecha = (getDate).toString()
   const contenido = req.body
   const propiedades = Object.keys(contenido)
-  if(propiedades.length === 0) res.send('Petición vácia')
-  
+  if (propiedades.length === 0) res.send('Petición vácia')
+
 
   const isDTOValid = valid(req.body)
   if (isDTOValid) next()

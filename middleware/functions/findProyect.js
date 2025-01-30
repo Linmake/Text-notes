@@ -8,7 +8,7 @@ import { proyectsDb } from "../../db/data-base.db.js"
  */
 export const findProyectNewUbi = (carpeta) => {
   const proyectTitle = carpeta.NombreProyectAsig
-  const proyect = proyectsDb.find( proyect => proyect.Title === proyectTitle )
+  const proyect = proyectsDb.find(proyect => proyect.Title === proyectTitle)
   return proyect
 }
 
@@ -18,6 +18,6 @@ export const findProyectNewUbi = (carpeta) => {
  * @returns {"Object"} Retorna el Proyecto encontrado  
  */
 export const findProyect = (idProyect) => {
-  const proyect = proyectsDb.find( proyect => proyect.Id == idProyect )
+  const proyect = proyectsDb.find(proyect => proyect.Id == idProyect)
   return proyect
 }

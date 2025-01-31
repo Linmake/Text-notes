@@ -3,7 +3,7 @@ import { v4 as uuidV4 } from 'uuid';
 import { format } from "date-fns";
 import styled from 'styled-components';
 import axios from 'axios';
-import { positionSideContext } from '@context/SideProv';
+import { positionSideContext } from "../../context/SideProv";
 
 const Form = styled.div`
   width: 350px;

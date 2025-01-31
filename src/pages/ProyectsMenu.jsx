@@ -1,13 +1,13 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { NewProyectTab } from "../components/Proyect/NewProyectTab";
-import { PlantillaProyectComponent } from "@components-plantillas/PlantillaProyectComponent";
+import { NewProyectTab } from "../components/Proyect/NewProyectTab.jsx";
+import { PlantillaProyectComponent } from "../components/plantillas/PlantillaProyectComponent.jsx";
 import styled from "styled-components";
 import "../styles/pages/proyects/global.css";
 import axios from "axios";
-import { positionSideContext } from "@context/SideProv";
-import { UseData } from "@context/dataContext";
-import { PlantillaNoProyectsComponent } from "@components-plantillas/PlantillaNoProyectsComponent ";
+import { positionSideContext } from "../context/SideProv.jsx";
+import { UseData } from "../context/dataContext.jsx";
+import { PlantillaNoProyectsComponent } from "../components/plantillas/PlantillaNoProyectsComponent .jsx";
 
 const Container = styled.div`
   width: 920px;

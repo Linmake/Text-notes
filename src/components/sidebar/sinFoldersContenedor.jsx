@@ -1,5 +1,5 @@
-import useFolderManagement from '@hooks-sidebar/useFolderManagement';
-import useSidebarManagement from '@components-sidebar/Hooks/useSidebarManagement';
+import useFolderManagement from '../../components/sidebar/Hooks/useFolderManagement';
+import useSidebarManagement from '../../components/sidebar/Hooks/useSidebarManagement';
 import styled from 'styled-components';
 import { navItem } from './Hooks/themaStyled';
 

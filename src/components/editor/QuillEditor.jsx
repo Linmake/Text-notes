@@ -2,7 +2,7 @@ import { useState, useContext, useEffect, useRef } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import '../../styles/components/editor/css/Editor.css';
-import { positionSideContext } from '@context/SideProv';
+import { positionSideContext } from '../../context/SideProv';
 import QuillToolbar from './QuillToolbar';
 
 const QuillEditor = () => {

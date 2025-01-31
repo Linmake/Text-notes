@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { useContext, useEffect, useState } from 'react';
-import { positionSideContext } from '@context/SideProv';
+import { positionSideContext } from '../../context/SideProv';
 import axios from 'axios';
-import { UseData } from '@context/dataContext';
+import { UseData } from '../../context/dataContext';
 import newFile from '../../assets/newFile.svg'
 import newFolder from '../../assets/newFolder.svg'
 

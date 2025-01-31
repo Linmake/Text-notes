@@ -4,14 +4,14 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins/Poppins-Light.woff") format("woff");
+  src: url("../../fonts/Poppins/Poppins-Light.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "rubik";
-  src: url("../../../../../public/fonts/Rubik/Rubik.woff") format("woff");
+  src: url("../../fonts/Rubik/Rubik.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }

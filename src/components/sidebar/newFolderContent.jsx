@@ -1,11 +1,11 @@
 import { faFolderBlank } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useEffect, useRef } from 'react';
-import { positionSideContext } from '@context/SideProv';
+import { positionSideContext } from '../../context/SideProv';
 import styled from 'styled-components';
 import { navItem, navLink } from './Hooks/themaStyled';
-import { getDate } from '../../../../middleware/functions/date'
-import { UseData } from '@context/dataContext';
+import { getDate } from './Hooks/date'
+import { UseData } from '../../context/dataContext';
 import { v4 as uuidV4 } from 'uuid';
 import axios from 'axios';
 

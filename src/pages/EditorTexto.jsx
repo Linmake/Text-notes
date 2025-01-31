@@ -1,12 +1,12 @@
-import { positionSideContext, SideProv } from '@context/SideProv';
-import PlantillaEditorComponent from "@components-plantillas/PlantillaEditorComponent";
-import SideBar from "@components-sidebar/SideBar";
-import QuillEditor from "@components-editor/QuillEditor";
-import HeaderEditorComponent from "@components-headers/HeaderEditorComponent";
+import { positionSideContext, SideProv } from '../context/SideProv';
+import PlantillaEditorComponent from "../components/plantillas/PlantillaEditorComponent";
+import SideBar from "../components/sidebar/SideBar";
+import QuillEditor from "../components/editor/QuillEditor";
+import HeaderEditorComponent from "../components/headers/HeaderEditorComponent";
 import styled from 'styled-components';
 import { useContext, useEffect } from 'react';
 import axios from 'axios';
-import { UseData } from '@context/dataContext';
+import { UseData } from '../context/dataContext';
 import { useNavigate } from 'react-router-dom';
 
 const FilterSelectProyect = styled.div`

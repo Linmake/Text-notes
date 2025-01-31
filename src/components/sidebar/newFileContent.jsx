@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import { navItem, navLink } from './Hooks/themaStyled';
 import { useContext, useEffect, useRef } from 'react';
-import { positionSideContext } from '@context/SideProv';
+import { positionSideContext } from '../../context/SideProv';
 import folders from '../../data/folders';
 
 export const Li = styled.li`

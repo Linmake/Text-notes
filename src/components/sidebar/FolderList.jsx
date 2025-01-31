@@ -2,9 +2,9 @@ import { useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolderBlank, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import styled from "styled-components";
-import { positionSideContext } from '@context/SideProv';
+import { positionSideContext } from '../../context/SideProv';
 import axios from 'axios';
-import { UseData } from '@context/dataContext';
+import { UseData } from '../../context/dataContext';
 import { FileList } from './FileList';
 import { useNavigate } from 'react-router-dom';
 

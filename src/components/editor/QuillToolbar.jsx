@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { positionSideContext } from '@context/SideProv';
+import { positionSideContext } from '../../context/SideProv';
 
 const QuillToolbar = () => {
   const { sidebarVisible } = useContext(positionSideContext);

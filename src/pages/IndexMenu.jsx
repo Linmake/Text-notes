@@ -34,6 +34,8 @@ const ContainerTitle = styled.div`
   top: 23%;
   left: 17%;
   font-weight: bold;
+  cursor: default;
+  user-select: none;
 `
 
 const ButtonFirst = styled.button`

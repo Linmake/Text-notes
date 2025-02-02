@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import '../../styles/components/header/HeaderInicio.css'
-
+//Pantalla Laptop: 1080*1920
 const Header = styled.nav`
   height: 99px;
   display: flex;
@@ -9,6 +9,7 @@ const Header = styled.nav`
   padding: 0px;
   width: 100%;
   border-bottom: 2px solid white;
+  user-select: none;
 `
 
 const NavContainer = styled.nav`
@@ -40,6 +41,9 @@ const LogoFont = styled.a`
   font-size: 35px;
   color: #FFFF;
   margin-left: 70px;
+  &:hover{
+    color: #ECECEC;
+  }
 `
 
 
@@ -48,7 +52,7 @@ const HeaderComponent = () => {
     <>
       <Header className="navbar navbar-expand-lg bg-body-tertiary">
         <NavContainer className="container-fluid">
-          <LogoFont className="navbar-brand" href="#">Notas</LogoFont>
+          <LogoFont className="navbar-brand" href="/">Notas</LogoFont>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>

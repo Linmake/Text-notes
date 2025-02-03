@@ -3,7 +3,9 @@
 -Typescript
 
 #### LISTA DE TODAS LAS RUTAS {SOLO DE LA API} :
- 
+puerto back: 4000       npm run dev
+puerto front:4001       npm start
+
 ### PROYECTO: --------!
 
 <br>

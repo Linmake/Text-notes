@@ -68,7 +68,9 @@ const Subtitle = styled.h2`
   font-weight: bold;
   user-select: none;
 `
-
+/*
+*Trae los Proyectos desde la Base de datos
+*/
 const getProyects = async () => {
   try {
     const res = await axios.get(`http://localhost:4000/proyect/all`);
@@ -77,7 +79,9 @@ const getProyects = async () => {
     console.error(error);
   }
 };
-
+/*
+*@returns Lista de Proyectos 
+*/
 const ProyectsMenu = () => {
   const { proyects, setProyects } = useContext(positionSideContext);
   const { setData, setProyect } = UseData()
@@ -96,6 +100,9 @@ const ProyectsMenu = () => {
     fetchProyects();
   }, [setProyects, setData]);
 
+/*
+*Abre el Proyecto y envía a la URL 
+*/
   const handleClick = (id) => {
     navegacionFolders(`/proyecto/${id}`)
     setData({ key: id })

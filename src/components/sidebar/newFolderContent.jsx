@@ -40,6 +40,11 @@ const NewFolderContent = () => {
     }
   }, [addNewFolder]);
 
+  /**
+   * Guarda la creacion de un folder con la tecla Enter, una vez ingresado el nombre
+   * @param {*} event 
+   * @returns folder nuevo 
+   */
   const handlerNewFolders = async (event) => {
     if (event.keyCode !== 13) {
       return;
@@ -72,11 +77,11 @@ const NewFolderContent = () => {
     }
     // proyect.Folders.push(newFolder)
   };
+
+
   const inputFolderOnBlur = () => {
     const newFolder = inputRefNewFolder.current.value;
-    if (addNewFolder) {
-      return
-    }
+    if (addNewFolder) return
     if (newFolder === "") {
       setAddNewFolder(false);
       if (folders.length === 0) {

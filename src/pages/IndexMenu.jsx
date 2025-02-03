@@ -1,7 +1,7 @@
 import { CardComponent, CardBody } from "../components/card/Card"
 import HeaderComponent from '../components/headers/Header';
 import { Link, useNavigate } from "react-router-dom"
-import '../styles/pages/index/css/IndexMenu.css'
+import '../styles/pages/index/IndexMenu.css'
 import styled from "styled-components";
 import Waves from "../assets/Waves";
 import notepad from "../assets/notepad.webp"

@@ -1,4 +1,4 @@
-import "../../styles/components/sidebar/css/SideBarComponent.css";
+import "../../styles/components/sidebar/SideBarComponent.css";
 import ProyectoContenedor from "./ProyectContent";
 import SinFoldersContenedor from "./sinFoldersContenedor";
 import NewFolderContent from "./newFolderContent";

@@ -41,12 +41,12 @@ const ProyectoContenedor = () => {
 
   const { data } = UseData();
 
-  const urlBase = "http://localhost:4000/";
+  const DbUrl = "http://localhost:4000/";
 
   useEffect(() => {
     const fetch = async () => {
       try {
-        const res = await axios.get(`${urlBase}proyect/${data.key}`);
+        const res = await axios.get(`${DbUrl}proyect/${data.key}`);
         setProyect(res.data);
       } catch (error) {
         console.error('Error fetching project:', error.response ? error.response.data : error.message);
@@ -57,13 +57,21 @@ const ProyectoContenedor = () => {
     }
   }, [data]);
 
+  /**
+   * Activa la creacion de un nuevo Folder
+   */
   const handlerFolders = () => {
     setAddNewFolder(true);
   };
 
+  /**
+   * Activa la creacion de un nuevo File
+   */
   const handlerFiles = () => {
     if (statusSelectFolder) {
       setAddNewFile(true);
+    } else {
+      alert("false new file")
     }
   };
 

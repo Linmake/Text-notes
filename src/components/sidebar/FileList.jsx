@@ -64,7 +64,10 @@ export const InputFile = styled.input`
   font-size: 1.3rem;
 `;
 
-// FileList Component
+/**
+ * Componente que despliega la lista de los files visuales desde la bd 
+ * @returns Lista de Files 
+ */
 export const FileList = () => {
   const { files } = UseData();
 
@@ -74,18 +77,20 @@ export const FileList = () => {
 
   return (
     <UlFile className="nav nav-pills flex-column ul-liFile">
-      {files.map(file => (
-        <LiFile className="nav-item" key={file.Id}>
-          <File className="nav-link text-white file">
-            <FontAwesomeIcon id={`iconFile-${file.Id}`} icon={faFile} />
-            <InputFile
-              readOnly
-              value={file.Title}
-              id={`file-${file.Id}`} // IDs únicos
-            />
-          </File>
-        </LiFile>
-      ))}
-    </UlFile>
+      {
+        files.map(file => (
+          <LiFile className="nav-item" key={file.Id}>
+            <File className="nav-link text-white file">
+              <FontAwesomeIcon id={`iconFile-${file.Id}`} icon={faFile} />
+              <InputFile
+                readOnly
+                value={file.Title}
+                id={`file-${file.Id}`} // IDs únicos
+              />
+            </File>
+          </LiFile>
+        ))
+      }
+    </UlFile >
   );
 };

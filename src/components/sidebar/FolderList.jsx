@@ -7,6 +7,7 @@ import axios from 'axios';
 import { UseData } from '../../context/dataContext';
 import { FileList } from './FileList';
 import { useNavigate } from 'react-router-dom';
+import NewFileContent from './newFileContent';
 
 export const LiFolder = styled.li`
   width: 100%;
@@ -53,29 +54,62 @@ const InputFolder = styled.input`
   font-size: 1.5rem;
 `;
 
+/**
+ * Componente que despliega la lista de los Folders visuales desde la bd 
+ * @returns Lista de Folders 
+ */
 const FolderList = () => {
-  const { selectedFolderIndex, setSelectedFolderIndex, setStatusSelectFolder, setAddNewFile, statusSelectFolder } = useContext(positionSideContext);
-  const { data, setOpenFolder, setFiles, openFolder } = UseData();
-  const urlBase = "http://localhost:4000";
+
+  const {
+    selectedFolderIndex, setSelectedFolderIndex, setStatusSelectFolder,
+    setAddNewFile,
+    addNewFile,
+    statusSelectFolder
+  } = useContext(positionSideContext);
+
+  const {
+    data,
+    setOpenFolder,
+    setFiles,
+    openFolder
+  } = UseData();
+
+  const DbUrl = "http://localhost:4000";
+
   const { folders, setFolders } = UseData()
 
   useEffect(() => {
+
+    /**
+     * Trae la lista de Folders desde la DB
+     */
     const getFolder = async () => {
       if (!data || !data.key) {
         console.error('Data is not available');
         return;
       }
 
+      /**
+       * Consulta para obtener res de todos los Folders 
+       */
       try {
+        /**
+         * resultado de todos los folders en el proyecto seleccionado
+         */
         const res = await axios({
-          url: `${urlBase}/folder/${data.key}/all`,
+          url: `${DbUrl}/folder/${data.key}/all`,
           method: 'GET'
         });
         return res;
       } catch (error) {
         console.error(error);
       }
+
     };
+
+    /**
+     * Coloca los Folders obtenidos desde la BD a el contexto
+     */
     const fetchData = async () => {
       const res = await getFolder();
       if (res && res.status === 200) {
@@ -101,6 +135,8 @@ const FolderList = () => {
 
   const handlerBlur = () => {
     cleanPath();
+    setOpenFolder(false)
+    setStatusSelectFolder(true);
   }
 
 
@@ -109,10 +145,11 @@ const FolderList = () => {
     let currentPath = window.location.pathname;
     if (!folder) {
       return
+      alert("folder no existe")
     }
+
     setOpenFolder(true)
     setFiles(folder.Files)
-    console.log(currentPath)
     let urlFolder = [currentPath, id]
     navigateFolder(`${urlFolder[0]}/${urlFolder[1]}`)
     if (statusSelectFolder && selectedFolderIndex === index) {
@@ -151,7 +188,12 @@ const FolderList = () => {
               />
             </Folder>
             {openFolder && selectedFolderIndex === index && (
-              <FileList />
+              <>
+                <NewFileContent
+                  className="nav-item"
+                  key={"InputNewFile"} />
+                <FileList />
+              </>
             )}
           </DivSelect>
         </LiFolder>

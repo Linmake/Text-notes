@@ -31,7 +31,12 @@ export const InputFolder = styled.input`
 const NewFolderContent = () => {
   const { data, folders, setFolders } = UseData();
   const inputRefNewFolder = useRef(null);
-  const { addNewFolder, setAddNewFolder, setProyectoVacio } = useContext(positionSideContext);
+  const {
+    addNewFolder,
+    setAddNewFolder,
+    setProyectoVacio
+  } = useContext(positionSideContext);
+
   const { proyect } = UseData()
 
   useEffect(() => {
@@ -81,7 +86,7 @@ const NewFolderContent = () => {
 
   const inputFolderOnBlur = () => {
     const newFolder = inputRefNewFolder.current.value;
-    if (addNewFolder) return
+
     if (newFolder === "") {
       setAddNewFolder(false);
       if (folders.length === 0) {
@@ -89,6 +94,7 @@ const NewFolderContent = () => {
         return;
       }
       return;
+    } else {
     }
   };
   return (

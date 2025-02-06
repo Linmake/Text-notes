@@ -8,6 +8,7 @@ import { UseData } from '../../context/dataContext';
 import { FileList } from './FileList';
 import { useNavigate } from 'react-router-dom';
 import NewFileContent from './newFileContent';
+import styles from '../../styles/components//editor/FolderList.css'
 
 export const LiFolder = styled.li`
   width: 100%;
@@ -127,6 +128,7 @@ const FolderList = () => {
 
   const cleanPath = () => {
     let currentPath = window.location.pathname;
+
     let segments = currentPath.split('/').filter(Boolean)
     segments.pop()
     const newPath = `/${segments.join('/')}`;
@@ -134,6 +136,13 @@ const FolderList = () => {
   }
 
   const handlerBlur = () => {
+    if (addNewFile) {
+      return
+    }
+    if (statusSelectFolder) {
+      cleanPath();
+      return
+    }
     cleanPath();
     setOpenFolder(false)
     setStatusSelectFolder(true);
@@ -145,9 +154,8 @@ const FolderList = () => {
     let currentPath = window.location.pathname;
     if (!folder) {
       return
-      alert("folder no existe")
+      console.warn("folder no existe")
     }
-
     setOpenFolder(true)
     setFiles(folder.Files)
     let urlFolder = [currentPath, id]
@@ -172,7 +180,7 @@ const FolderList = () => {
         >
           <DivSelect className="text-white">
             <Folder
-              className={`${selectedFolderIndex === index ? 'selected' : 'noSelected'}`}
+              className={`${selectedFolderIndex == index ? 'selected' : 'noSelected'}`}
               onClick={() => handlerSelectFolder(index, folder.Files, folder.Id)} onBlur={handlerBlur}
             >
               <FontAwesomeIcon
@@ -190,7 +198,7 @@ const FolderList = () => {
             {openFolder && selectedFolderIndex === index && (
               <>
                 <NewFileContent
-                  className="nav-item"
+                  className={`nav-item ${(addNewFile) ? '' : 'hidde'}`}
                   key={"InputNewFile"} />
                 <FileList />
               </>

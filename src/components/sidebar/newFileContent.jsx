@@ -18,7 +18,7 @@ margin-left: 8%;
 & > .nav-item {
   ${navLink}
 }
-&.hidde{
+& > .hidde {
 display: none;
 }
 `
@@ -49,11 +49,11 @@ const NewFileContent = () => {
     if (addNewFile) {
       inputRefNewFile.current.focus();
     }
-    if (statusSelectFolder) {
-      inputRefNewFile.current.focus();
-      return
+    if (!statusSelectFolder) {
+      setAddNewFile(false)
     }
-  }, [addNewFile, inputRefNewFile]);
+
+  }, [addNewFile, inputRefNewFile, statusSelectFolder]);
 
   /**
    * Guarda la creacion de un file con la tecla Enter, una vez ingresado el nombre
@@ -86,23 +86,20 @@ const NewFileContent = () => {
     setAddNewFile(false);
   };
 
-  const inputFileOnBlur = () => {
+  const NewFileOnBlur = () => {
+    setAddNewFile(false)
     const newFileName = inputRefNewFile.current.value
-    if (addNewFile) {
+    if (newFileName === "" || newFileName.lentgh == 0) {
       setAddNewFile(false)
-      return
-    }
-
-    if (newFileName.length === 0) {
-      setAddNewFile(false)
-      return
     }
     return
   }
 
-
   return (
-    <Li className={`nav-item ${(addNewFile) ? '' : 'hidde'}`}>
+    <Li className={
+      `nav-item
+      ${(addNewFile) ? '' : 'hidde'}`}
+    >
       <div className="nav-link text-white">
         <FontAwesomeIcon id="iconFolder" icon={faFile} />
         <span className="fs-4 d-none d-sm-inline fa-table-list newFileInp">
@@ -110,8 +107,6 @@ const NewFileContent = () => {
             ref={inputRefNewFile} type="text"
             id="newFileInp"
             onKeyDown={e => handlerNewFiles(e)}
-            onblur={inputFileOnBlur}
-
           />
         </span>
       </div>

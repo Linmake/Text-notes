@@ -1,0 +1,4 @@
+/*evita que se vea el input-newfile cuando se abre un folder si la propiedad addnewfile esta en false*/
+.hidde {
+  display: none;
+}

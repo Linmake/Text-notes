@@ -3,6 +3,8 @@ import { faFile } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { navItem, navLink } from "./Hooks/themaStyled";
 import { UseData } from '../../context/dataContext';
+import { useContext } from 'react'
+import { positionSideContext } from '../../context/SideProv'
 
 // Styled components
 export const UlFile = styled.ul`
@@ -70,11 +72,11 @@ export const InputFile = styled.input`
  */
 export const FileList = () => {
   const { files } = UseData();
+  const { addNewFile } = useContext(positionSideContext)
 
-  if (!files || files.length === 0) {
+  if ((!files || files.length === 0) && !addNewFile) {
     return <p>No files available</p>; // Maneja el caso cuando no hay archivos
   }
-
   return (
     <UlFile className="nav nav-pills flex-column ul-liFile">
       {

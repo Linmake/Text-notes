@@ -38,7 +38,7 @@ const NewFileContent = () => {
   const {
     addNewFile,
     setAddNewFile,
-    selectedFolderIndex,
+    idFolderSelect,
     statusSelectFolder
   } = useContext(positionSideContext);
 
@@ -60,39 +60,44 @@ const NewFileContent = () => {
    * @param {*} e 
    * @returns file nuevo 
    */
-  const handlerNewFiles = (e) => {
-    if (e.keyCode !== 13) {
+  const handlerNewFiles = (event) => {
+    setAddNewFile(true);
+
+    if (event.keyCode !== 13) {
       return;
-    }
-    const newFile = {
-      id: uuidV4(),
-      titulo: inputRefNewFile.current.value,
-      texto: ""
+    } else {
+      const newFile = {
+        id: uuidV4(),
+        titulo: inputRefNewFile.current.value,
+        texto: ""
+      };
+
+      const idFolder = idFolderSelect;
+
+      const folder = folders.find(
+        folder => folder.Id === idFolder
+      )
+      console.log(folder.Id)
+
+      if (!folder) {
+        console.error(`Folder with id ${idFolder} not found.`);
+        return;
+      }
+      const filesList = folder.Files;
+      filesList.push(newFile);
+      inputRefNewFile.current.value = "";
+      console.log("file add", newFile.titulo)
+      setAddNewFile(false);
     };
 
-    const idFolderSelect = selectedFolderIndex;
-
-    const folder = folders.find(
-      folder => folder.id === idFolderSelect
-    )
-
-    if (!folder) {
-      console.error(`Folder with id ${idFolderSelect} not found.`);
-      return;
-    }
-    const filesList = folder.files;
-    filesList.push(newFile);
-    inputRefNewFile.current.value = "";
-    setAddNewFile(false);
-  };
-
-  const NewFileOnBlur = () => {
-    setAddNewFile(false)
-    const newFileName = inputRefNewFile.current.value
-    if (newFileName === "" || newFileName.lentgh == 0) {
+    const NewFileOnBlur = () => {
       setAddNewFile(false)
+      const newFileName = inputRefNewFile.current.value
+      if (newFileName === "" || newFileName.lentgh == 0) {
+        setAddNewFile(false)
+      }
+      return
     }
-    return
   }
 
   return (
@@ -106,7 +111,7 @@ const NewFileContent = () => {
           <InputFile
             ref={inputRefNewFile} type="text"
             id="newFileInp"
-            onKeyDown={e => handlerNewFiles(e)}
+            onKeyDown={event => handlerNewFiles(event)}
           />
         </span>
       </div>

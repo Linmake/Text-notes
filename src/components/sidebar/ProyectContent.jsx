@@ -70,8 +70,6 @@ const ProyectoContenedor = () => {
   const handlerFiles = () => {
     if (statusSelectFolder) {
       setAddNewFile(true);
-    } else {
-      alert("false new file")
     }
   };
 

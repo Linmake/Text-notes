@@ -61,42 +61,43 @@ const InputFolder = styled.input`
  */
 const FolderList = () => {
 
+  const DbUrl = "http://localhost:4000";
+
   const {
-    selectedFolderIndex, setSelectedFolderIndex, setStatusSelectFolder,
+    selectedFolderIndex,
+    setSelectedFolderIndex,
+    setStatusSelectFolder,
     setAddNewFile,
     addNewFile,
-    statusSelectFolder
+    statusSelectFolder,
+    idFolderSelect,
+    setIdFolderSelect
   } = useContext(positionSideContext);
 
   const {
     data,
     setOpenFolder,
     setFiles,
-    openFolder
+    openFolder,
+    folders,
+    setFolders,
   } = UseData();
 
-  const DbUrl = "http://localhost:4000";
-
-  const { folders, setFolders } = UseData()
-
   useEffect(() => {
-
-    /**
-     * Trae la lista de Folders desde la DB
-     */
     const getFolder = async () => {
-      if (!data || !data.key) {
+      /*if (!data || !data.key) {
         console.error('Data is not available');
         return;
       }
-
-      /**
-       * Consulta para obtener res de todos los Folders 
-       */
+      if (!data) {
+        console.warn("Data is not available");
+        return;
+      }
+      if (!data.key) {
+        console.warn("Data.key is missing");
+        return;
+      }*/
       try {
-        /**
-         * resultado de todos los folders en el proyecto seleccionado
-         */
         const res = await axios({
           url: `${DbUrl}/folder/${data.key}/all`,
           method: 'GET'
@@ -104,50 +105,44 @@ const FolderList = () => {
         return res;
       } catch (error) {
         console.error(error);
+        return
       }
-
     };
 
     /**
      * Coloca los Folders obtenidos desde la BD a el contexto
      */
     const fetchData = async () => {
-      const res = await getFolder();
-      if (res && res.status === 200) {
-        setFolders(res.data)
+
+      const resFetch = await getFolder()
+
+      if (resFetch && resFetch.status === 200) {
+        setFolders(resFetch.data)
+        console.log("Folders desde la API:", resFetch.data);
+
       } else {
         console.error(new Error("Error del servidor"))
       }
     };
 
     fetchData();
+
   }, [data, setFolders]);
 
   const navigateFolder = useNavigate();
 
-
   const cleanPath = () => {
     let currentPath = window.location.pathname;
+    let segments = currentPath.split('/').filter(Boolean); // Divide en segmentos
 
-    let segments = currentPath.split('/').filter(Boolean)
-    segments.pop()
-    const newPath = `/${segments.join('/')}`;
-    navigateFolder(newPath);
-  }
-
-  const handlerBlur = () => {
-    if (addNewFile) {
-      return
+    if (segments.length > 2) {
+      segments.pop(); // Elimina el último segmento
+      let newPath = `/${segments.join('/')}`; // Une de nuevo en formato de URL
+      navigateFolder(newPath, { replace: true }); // Reemplaza en la historia del navegador
+    } else {
+      navigateFolder(`/${segments.join('/')}`, { replace: true }); // Mantiene la URL base
     }
-    if (statusSelectFolder) {
-      cleanPath();
-      return
-    }
-    cleanPath();
-    setOpenFolder(false)
-    setStatusSelectFolder(true);
-  }
-
+  };
 
   const handlerSelectFolder = (index, id) => {
     const folder = folders.find(folder => folder.Id == id)
@@ -156,16 +151,23 @@ const FolderList = () => {
       return
       console.warn("folder no existe")
     }
+    setIdFolderSelect(folder.Id)
     setOpenFolder(true)
     setFiles(folder.Files)
+    console.log("idSelectFolder:", idFolderSelect)
+    console.log("idFolder", folder.Id)
+
     let urlFolder = [currentPath, id]
+
     navigateFolder(`${urlFolder[0]}/${urlFolder[1]}`)
+
     if (statusSelectFolder && selectedFolderIndex === index) {
       setStatusSelectFolder(false);
     } else {
       setStatusSelectFolder(true);
       setAddNewFile(false);
       setSelectedFolderIndex(index);
+      console.log(idFolderSelect)
     }
 
     return
@@ -181,8 +183,7 @@ const FolderList = () => {
           <DivSelect className="text-white">
             <Folder
               className={`${selectedFolderIndex == index ? 'selected' : 'noSelected'}`}
-              onClick={() => handlerSelectFolder(index, folder.Files, folder.Id)} onBlur={handlerBlur}
-            >
+              onClick={() => handlerSelectFolder(index, folder.Files, folder.Id)}>
               <FontAwesomeIcon
                 icon={(selectedFolderIndex === index && statusSelectFolder) ? faFolderOpen : faFolderBlank}
                 className={` ${selectedFolderIndex === index ? 'selected' : ''}`}

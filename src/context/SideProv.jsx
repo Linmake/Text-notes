@@ -12,6 +12,7 @@ export const SideProv = ({ children }) => {
   const [folders, setFolders] = useState([]);
   const [files, setFiles] = useState([]);
   const [selectedFolderIndex, setSelectedFolderIndex] = useState(null);
+  const [idFolderSelect, setIdFolderSelect] = useState(null);
   const [selectedFileIndex, setSelectedFileIndex] = useState(null);
   const [statusSelectFolder, setStatusSelectFolder] = useState(false);
   const [statusSelectFile, setStatusSelectFile] = useState(false);
@@ -29,6 +30,7 @@ export const SideProv = ({ children }) => {
       statusSelectFolder, setStatusSelectFolder,
       statusSelectFile, setStatusSelectFile,
       proyects, setProyects,
+      idFolderSelect, setIdFolderSelect,
     }}>
       {children}
     </positionSideContext.Provider>

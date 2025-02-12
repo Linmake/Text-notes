@@ -27,12 +27,12 @@ export const FolderSchema = new Schema({
     type: Boolean,
     required: [true, 'El campo Void es obligatorio.']
   },
-  Files: [FileSchema],
   IdProyect: {
     type: String,
     required: [true, 'El Id del Proyecto es obligatorio.'],
     trim: true
-  }
+  },
+  Files: [FileSchema],
 });
 
 const Folder = mongoose.model('Folder', FolderSchema);

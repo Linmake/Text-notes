@@ -67,8 +67,7 @@ const NewFolderContent = () => {
       IdProyect: data.key
     }
     try {
-      const resFolders =
-        await axios.post(`http://localhost:4000/folder/create/${proyect.Id}`, newFolder);
+      const resFolders = await axios.post(`http://localhost:4000/folder/create/${proyect.Id}`, newFolder);
       setFolders([...folders, newFolder])
       console.log("creados con exito!")
       console.log(folders)

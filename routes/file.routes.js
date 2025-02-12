@@ -25,6 +25,7 @@ FileRouter.get('/all/:idFolder/', async (req, res) => {
   try {
     const { idFolder } = req.params
     const folder = await Folder.findOne({ Id: idFolder })
+    if (!folder) return res.status(400).send(`Folder con el id: ${idFolder} no existe`)
     const allFiles = folder.Files
     res.status(200).send(allFiles)
   } catch (error) {

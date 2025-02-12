@@ -1,5 +1,4 @@
 import { faFile } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import { navItem, navLink } from './Hooks/themaStyled';
@@ -8,6 +7,7 @@ import { positionSideContext } from '../../context/SideProv';
 import { DataProvider } from '../../context/dataContext'
 import { UseData } from '../../context/dataContext';
 import { v4 as uuidV4 } from 'uuid';
+import axios from 'axios';
 
 export const Li = styled.li`
 list-style: none;
@@ -42,7 +42,7 @@ const NewFileContent = () => {
     statusSelectFolder
   } = useContext(positionSideContext);
 
-  const { folders, setFolders } = UseData()
+  const { folders, files, setFolders, setFiles } = UseData()
 
   useEffect(() => {
 
@@ -60,35 +60,49 @@ const NewFileContent = () => {
    * @param {*} e 
    * @returns file nuevo 
    */
-  const handlerNewFiles = (event) => {
+  const handlerNewFiles = async (event) => {
     setAddNewFile(true);
 
     if (event.keyCode !== 13) {
       return;
     } else {
-      const newFile = {
-        id: uuidV4(),
-        titulo: inputRefNewFile.current.value,
-        texto: ""
-      };
 
       const idFolder = idFolderSelect;
 
       const folder = folders.find(
         folder => folder.Id === idFolder
       )
+
       console.log(folder.Id)
 
       if (!folder) {
         console.error(`Folder with id ${idFolder} not found.`);
         return;
       }
+
+
+      const newFile = {
+        Id: uuidV4(),
+        IdFolder: folder.Id,
+        Title: inputRefNewFile.current.value,
+        Text: "text initial"
+      };
+
       const filesList = folder.Files;
       filesList.push(newFile);
-      inputRefNewFile.current.value = "";
-      console.log("file add", newFile.titulo)
-      setAddNewFile(false);
+
+      try {
+        const resFiles = await axios.post(`http://localhost:4000/file/create/${folder.Id}`, newFile)
+        setFiles([...filesList, newFile])
+        inputRefNewFile.current.value = "";
+        console.log("file add", newFile.titulo)
+        setAddNewFile(false);
+      } catch (error) {
+        console.error(error);
+      }
+
     };
+
 
     const NewFileOnBlur = () => {
       setAddNewFile(false)
@@ -98,6 +112,7 @@ const NewFileContent = () => {
       }
       return
     }
+
   }
 
   return (

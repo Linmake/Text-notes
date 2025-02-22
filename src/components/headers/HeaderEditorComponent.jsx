@@ -83,7 +83,7 @@ const HeaderEditorComponent = () => {
         <ListaInicio className="navbar-nav me-auto mb-2 mb-lg-0" id='navbarSection1'>
           <li className="nav-item">
             <ButtonInicio aria-expanded="false" role="menuitem">
-              <LinkInicio className="nav-link active" aria-current="page" href="http://localhost:5173/">
+              <LinkInicio className="nav-link active" aria-current="page" href="http://localhost:4001/">
                 Home
               </LinkInicio>
             </ButtonInicio>

@@ -17,7 +17,8 @@ const Article = styled.article`
   }
   &:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 6px rgba(176, 176, 176, 0.783);
+    box-shadow: 0px 0px 6px rgba(168, 168, 168, 0.78);
+    background-color: rgba(253, 253, 253);
   }
 `;
 const Section = styled.section`

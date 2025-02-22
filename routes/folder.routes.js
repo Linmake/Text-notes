@@ -72,6 +72,7 @@ FolderRouter.delete("/delete/:idProyect/:idFolder/", async (req, res) => {
 
 FolderRouter.delete("/all/delete/:idProyect", async (req, res) => {
   const { idProyect } = req.params;
+  if (!idProyect) res.status(401).send(`Proyect con Id: ${idProyect}no existe`)
   const proyect = await Proyect.findOne({ Id: idProyect })
   proyect.Folders = [];
   await proyect.save()

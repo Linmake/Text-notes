@@ -7,6 +7,7 @@ import { positionSideContext } from '../../context/SideProv';
 import { DataProvider } from '../../context/dataContext'
 import { UseData } from '../../context/dataContext';
 import { v4 as uuidV4 } from 'uuid';
+
 import axios from 'axios';
 
 export const Li = styled.li`
@@ -80,7 +81,6 @@ const NewFileContent = () => {
         return;
       }
 
-
       const newFile = {
         Id: uuidV4(),
         IdFolder: folder.Id,
@@ -100,9 +100,7 @@ const NewFileContent = () => {
       } catch (error) {
         console.error(error);
       }
-
     };
-
 
     const NewFileOnBlur = () => {
       setAddNewFile(false)
@@ -112,7 +110,6 @@ const NewFileContent = () => {
       }
       return
     }
-
   }
 
   return (

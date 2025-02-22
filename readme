@@ -13,28 +13,28 @@ puerto front:4001       npm start
  Props: { Id, Titulo } 
 */
 
-#  proyecto/create
+#  proyect/create
 
 <br>
 /*** Ver proyectos
  Props 0 
 */
 
-#  proyecto/
+#  proyect/
 
 <br>
 /*** Editar proyecto
  Props: Opt{ Id, Titulo } 
 */
 
-#  proyecto/edit/:idProyecto
+#  proyect/edit/:idProyecto
 
 <br>
 /*** Eliminar proyecto
  Props: { Id } 
 */
 
-#  proyecto/delete/:idProyecto
+#  proyect/delete/:idProyecto
 
 
 ###  CARPETA: --------!
@@ -44,50 +44,50 @@ puerto front:4001       npm start
  Props: {Id,Titulo} 
 */
 
-# carpeta/create
+# folder/create
 
 
 /*** Crear carpeta
  Props: {Id,Titulo} 
 */
 
-# carpeta/edit/:idProyecto/:idCarpeta
+# folder/edit/:idProyect/:idFolder
 
 /*** Crear carpeta
  Props: {Id,Titulo} 
 */
 
-# carpeta/edit/:idCarpeta
+# folder/edit/:idFolder
 
 /*** Crear carpeta
  Props: {Id,Titulo} 
 */
 
-# carpeta/
+# folder/
 
 /*** Crear carpeta
  Props: {Id,Titulo} 
 */
 
-# carpeta/:idProyecto
+# folder/:idProyect
 
 /*** Crear carpeta
  Props: {Id,Titulo} 
 */
 
-# carpeta/delete/:idCarpeta/
+# folder/delete/:idFolder/
 
 /*** Crear carpeta
  Props: {Id,Titulo} 
 */
 
-# carpeta/delete/:idProyecto/all
+# folder/delete/:idProyect/all
 
 /*** Crear carpeta
  Props: {Id,Titulo} 
 */
 
-# carpeta/delete/:idProyecto/:idCarpeta
+# folder/delete/:idProyect/:idFolder
 
 ### IDEA: --------! 
 
@@ -96,75 +96,75 @@ puerto front:4001       npm start
  opt{ idCarpeta, idProyecto }
 */
 
-#  idea/create/
+#  file/create/
 
 /*** Crear idea en proyecto
  Props: {Id, Titulo, Texto}
  params: { idProyecto } 
 */
 
-#  idea/create/:idProyecto
+#  file/create/:idProyect
 
 /*** Crear idea en carpeta dentro de proyecto
  Props: {Id, Titulo, Texto},
  params: { idProyecto, idCarpeta, idIdea }
 */
 
-#  idea/create/:idProyecto/idCarpeta
+#  file/create/:idProyect/idFolder 
 
 /*** Ver idea sin asignación
  params: {idIdea} 
 */
 
-#  idea/:idIdea
+#  file/:idFile
 
 /*** Crear idea
  Props: {Id,Titulo} 
 */
 
-#  idea/:idProyecto/:idIdea
+#  file/:idProyect/: idFile 
 
 /*** Crear idea
  Props: {Id,Titulo} 
 */
 
-#  idea/:idProyecto/:idCarpeta/:idIdea
+#  file/:idProyect/:idFolder/:idFile 
 
 /*** Crear idea
  Props: {Id,Titulo} 
 */
 
-#  idea/:idIdea
+#  file/:idFile
 
 /*** Crear idea
  Props: {Id,Titulo} 
 */
 
-#  idea/edit/:idProyecto/:idCarpeta/:idIdea
+#  file/edit/:idProyect/:idFolder/:idFile
 
 /*** Crear idea
  Props: {Id,Titulo} 
 */
 
-#  idea/edit/:idProyecto/:idIdea
+#  file/edit/:idProyect/:idFile
 
 
 /** Crear idea
 *Props: {Id,Titulo} 
 */
 
-#  idea/delete/:idIdea
+#  file/delete/:idFile
 
 <br>
 /*** Crear idea
  Props: {Id,Titulo} 
 */
 
-#  idea/delete/:idProyecto/:idCarpeta/:idIdea
+#  file/delete/:idProyect/:idFolder/:idFile
 
 <br>
 /*** Crear idea
  Props: {Id,Titulo} 
 */
 
-#  idea/delete/:idProyecto/:idIdea
+#  file/delete/:idProyect/:idFile

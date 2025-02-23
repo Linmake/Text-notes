@@ -74,8 +74,6 @@ const NewFileContent = () => {
         folder => folder.Id === idFolder
       )
 
-      console.log(folder.Id)
-
       if (!folder) {
         console.error(`Folder with id ${idFolder} not found.`);
         return;
@@ -89,13 +87,13 @@ const NewFileContent = () => {
       };
 
       const filesList = folder.Files;
-      filesList.push(newFile);
 
       try {
         const resFiles = await axios.post(`http://localhost:4000/file/create/${folder.Id}`, newFile)
         setFiles([...filesList, newFile])
         inputRefNewFile.current.value = "";
         console.log("file add", newFile.titulo)
+        filesList.push(newFile);
         setAddNewFile(false);
       } catch (error) {
         console.error(error);

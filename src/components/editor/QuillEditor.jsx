@@ -21,8 +21,8 @@ const QuillEditor = () => {
           },
         },
         formats: [
-          'header', 'font', 'size',
-          'bold', 'italic', 'underline', 'strike', 'blockquote',
+          'bold', 'italic', 'underline', 'strike', 'align',
+          'header', 'font', 'size', 'script',
           'list', 'bullet', 'indent',
           'link', 'image', 'video',
         ],
@@ -30,6 +30,7 @@ const QuillEditor = () => {
 
       quillRef.current.on('text-change', () => {
         setValue(quillRef.current.root.innerHTML);
+
       });
 
       // Set the initial value
@@ -39,6 +40,7 @@ const QuillEditor = () => {
     return () => {
       if (quillRef.current) {
         quillRef.current.off('text-change');
+
       }
     };
   }, [value, sidebarVisible]);

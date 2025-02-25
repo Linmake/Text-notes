@@ -191,6 +191,7 @@ const FolderList = () => {
               <InputFolder
                 className="input-folder"
                 value={folder.Title}
+                title={folder.Title}
                 readOnly
                 onClick={() => handlerSelectFolder(index, folder.Id)}
                 id={folder.id}

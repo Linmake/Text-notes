@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useState } from 'react'
 
 const Header = styled.nav`
   position: fixed;
@@ -73,6 +74,14 @@ const LinkInicio = styled.a`
 `
 
 const HeaderEditorComponent = () => {
+
+  const [value, setValue] = useState('')
+
+  const handlerSave = () => {
+    alert("save file!")
+  }
+
+
   return (
     <>
       <Header className="navbar navbar-expand-lg bg-body-tertiary" id='headerEditor'>
@@ -102,7 +111,7 @@ const HeaderEditorComponent = () => {
           </li>
         </ListaInicio>
         <ContainerSave>
-          <ButtonSave>
+          <ButtonSave onClick={handlerSave}>
             <span>Save</span>
           </ButtonSave>
         </ContainerSave>

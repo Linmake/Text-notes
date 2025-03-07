@@ -6,7 +6,7 @@ import { positionSideContext } from '../../context/SideProv';
 import QuillToolbar from './QuillToolbar';
 import { EditorFunctionsContext } from '../../context/editorFunctions';
 import styled from "styled-components"
-import "axios" from axios
+//import "axios" from axios
 
 const ButtonSend = styled.button`
 position: absolute;
@@ -105,8 +105,10 @@ const QuillEditor = () => {
       <QuillToolbar />
       <div
         ref={editorRef}
-        id='editor'
+        id={'editor'}
         className={sidebarVisible ? '' : 'expand-editor'}
+        spellCheck={"false"}
+        autoCorrect={"false"}
       />
       <ButtonSend onClick={handlerButton}>Save</ButtonSend>
     </>

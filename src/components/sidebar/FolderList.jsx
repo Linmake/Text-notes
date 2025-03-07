@@ -85,18 +85,6 @@ const FolderList = () => {
 
   useEffect(() => {
     const getFolder = async () => {
-      /*if (!data || !data.key) {
-        console.error('Data is not available');
-        return;
-      }
-      if (!data) {
-        console.warn("Data is not available");
-        return;
-      }
-      if (!data.key) {
-        console.warn("Data.key is missing");
-        return;
-      }*/
       try {
         const res = await axios({
           url: `${DbUrl}/folder/${data.key}/all`,
@@ -154,8 +142,6 @@ const FolderList = () => {
     setIdFolderSelect(folder.Id)
     setOpenFolder(true)
     setFiles(folder.Files)
-    console.log("idSelectFolder:", idFolderSelect)
-    console.log("idFolder", folder.Id)
 
     let urlFolder = [currentPath, id]
 

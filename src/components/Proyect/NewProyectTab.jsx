@@ -6,7 +6,7 @@ import axios from 'axios';
 import { positionSideContext } from "../../context/SideProv";
 
 const Form = styled.div`
-  width: 350px;
+  width: 24vw;
   background-color: white;
   display: flex;
   flex-direction: columns;
@@ -16,7 +16,7 @@ const Form = styled.div`
 `;
 
 const Input = styled.input`
-  width: 250px;
+  width: 18vw;
   font-size: 1.5rem;
 `;
 

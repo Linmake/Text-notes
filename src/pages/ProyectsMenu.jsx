@@ -10,7 +10,7 @@ import { UseData } from "../context/dataContext.jsx";
 import { PlantillaNoProyectsComponent } from "../components/plantillas/PlantillaNoProyectsComponent .jsx";
 
 const Container = styled.div`
-  width: 70%;
+  width: 52%;
   display: flex;
   box-shadow: 0px 0px 2px #c4c7cc;
   border-radius: 3px;
@@ -42,9 +42,10 @@ const ProyectElement = styled.li`
   font-size: 1.3rem;
   list-style: none;
   font-family: "Poppins", 'Lucida Sans', 'Lucida Sans Regular';
-  width: 888px;
+  width: 58vw;
   height: 80px;
-  padding-top: 16px;
+  padding-top: 0.625rem;
+  padding-left: 1.2rem;
   overflow-wrap: break-word;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -57,7 +58,7 @@ const ProyectElement = styled.li`
   border: none;
   }
   &:hover {
-    background-color: #F2F4F5;
+    background-color:rgba(242, 244, 245, 0.45);
   }
 `;
 const Ul = styled.ul`

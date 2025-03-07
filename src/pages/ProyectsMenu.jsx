@@ -10,7 +10,7 @@ import { UseData } from "../context/dataContext.jsx";
 import { PlantillaNoProyectsComponent } from "../components/plantillas/PlantillaNoProyectsComponent .jsx";
 
 const Container = styled.div`
-  width: 920px;
+  width: 70%;
   display: flex;
   box-shadow: 0px 0px 2px #c4c7cc;
   border-radius: 3px;
@@ -19,10 +19,12 @@ const Container = styled.div`
   align-items: center;
   height: fit-content;
   background-color: #FFF;
-  padding: 16px;
+  padding: 3%;
+  padding-top: 2%;
+  margin-top: 7%;
 `;
 const ContainerNoProyects = styled.div`
-  width: 40%;
+  width: 70%;
   height: 40%;
   display: flex;
   border: 1px solid #dee0e3;
@@ -33,7 +35,7 @@ const ContainerNoProyects = styled.div`
   align-items: center;
   background-color: rgba(255, 255, 255, 0.4);
   padding: 25px;
-  margin-top: 10%;
+  margin-top: 7%;
 `;
 const ProyectElement = styled.li`
   border-bottom: 1px solid #C4C7C5;
@@ -100,9 +102,9 @@ const ProyectsMenu = () => {
     fetchProyects();
   }, [setProyects, setData]);
 
-/*
-*Abre el Proyecto y envía a la URL 
-*/
+  /*
+  *Abre el Proyecto y envía a la URL 
+  */
   const handleClick = (id) => {
     navegacionFolders(`/proyecto/${id}`)
     setData({ key: id })

@@ -15,8 +15,8 @@
   grid-area: main;
   padding: 1%;
   -webkit-user-select: text;
-     -moz-user-select: text;
-          user-select: text;
+  -moz-user-select: text;
+  user-select: text;
   margin: 6% auto 0 10%;
   top: 5%;
   left: 25%;
@@ -62,4 +62,4 @@
 
 .expand-editor {
   left: 18% !important;
-}/*# sourceMappingURL=Editor.css.map */
+} /*# sourceMappingURL=Editor.css.map */

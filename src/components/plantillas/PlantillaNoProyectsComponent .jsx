@@ -7,7 +7,6 @@ const Plantilla = styled.div`
   height: 100%;
   display: flex;
   padding: 5rem;
-  overflow: hidden;
   position: relative;
   background-color: white;
 `

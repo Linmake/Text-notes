@@ -7,12 +7,15 @@ import App from './App.jsx'
 import './index.css'
 import { SideProv } from './context/SideProv.jsx';
 import { DataProvider } from './context/dataContext.jsx';
+import { EditorProvider } from './context/editorFunctions.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <SideProv>
       <DataProvider>
-        <App />
+        <EditorProvider>
+          <App />
+        </EditorProvider>
       </DataProvider>
     </SideProv>
   </React.StrictMode>,

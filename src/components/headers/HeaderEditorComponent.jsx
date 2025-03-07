@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { useState } from 'react'
 
 const Header = styled.nav`
   position: fixed;
@@ -10,21 +9,6 @@ const Header = styled.nav`
   background: linear-gradient(90deg, rgba(251,120,80,1) 0%, rgba(242,179,50,1) 100%);
   z-index: 3;
 `
-
-const ButtonSave = styled.button`
-  width: 126px;
-  height: 40px;
-  padding: 0px 16px;
-  background-color: #FDF5EA;
-  border-radius: 7px;
-  color: black;
-  border: none;
-  margin-right: 450px;
-  transition: background-color .1s linear, border-color .1s linear, color .1s linear;
-  &:hover{
-    background-color: #FFFF;
-  }
-`
 const ListaInicio = styled.ul`
   margin-left: 72px;
   display: column;
@@ -33,10 +17,6 @@ const ListaInicio = styled.ul`
   justify-content: center;
   align-items: center;
 `
-const ContainerSave = styled.div`
-
-`
-
 const ButtonInicio = styled.button`
 background: none;
 border-radius: 5px;
@@ -50,7 +30,6 @@ transition: background-color .1s linear, border-color .1s linear, color .1s line
 background-color: rgba(255, 255, 255, 0.1);
 }
 `
-
 const DropDown = styled.a`
   color: white !important;
   font-size: 1.3rem;
@@ -67,21 +46,12 @@ const DropDown = styled.a`
     background-color: rgba(255, 255, 255, 0.1);
   }
 `
-
 const LinkInicio = styled.a`
   color: white !important;
   font-size: 1.3rem;
 `
 
 const HeaderEditorComponent = () => {
-
-  const [value, setValue] = useState('')
-
-  const handlerSave = () => {
-    alert("save file!")
-  }
-
-
   return (
     <>
       <Header className="navbar navbar-expand-lg bg-body-tertiary" id='headerEditor'>
@@ -110,11 +80,6 @@ const HeaderEditorComponent = () => {
             </ul>
           </li>
         </ListaInicio>
-        <ContainerSave>
-          <ButtonSave onClick={handlerSave}>
-            <span>Save</span>
-          </ButtonSave>
-        </ContainerSave>
       </Header>
     </>
   )

@@ -1,4 +1,5 @@
-import { positionSideContext, SideProv } from '../context/SideProv';
+import { positionSideContext, SideProv } from '../context/SideProv'
+import { EditorProvider } from '../context/editorFunctions';
 import PlantillaEditorComponent from "../components/plantillas/PlantillaEditorComponent";
 import SideBar from "../components/sidebar/SideBar";
 import QuillEditor from "../components/editor/QuillEditor";
@@ -18,7 +19,6 @@ left: 0;
 width: 100vw;
 height: 100vh;
 padding: 5rem;
-overflow: hidden;
 `
 const ContainerFilter = styled.div`
 position: absolute;
@@ -122,34 +122,36 @@ const EditorTexto = () => {
   return (
     <PlantillaEditorComponent className="plantilla-body-editor">
       <SideProv>
-        {data == undefined ?
-          <>
-            <FilterSelectProyect>
-              <ContainerFilter>
-                <Contend>
-                  <h1>Abrir un proyecto</h1>
-                  <ContainerProyects>
-                    <ListProyects>
-                      {proyects.map((proyect, index) => (
-                        <ProyectElement key={index} onClick={() => handlerOpen(proyect.Id)} >
-                          {proyect.Title}
-                        </ProyectElement>
-                      ))}
-                    </ListProyects>
-                  </ContainerProyects>
-                </Contend>
-              </ContainerFilter>
-            </FilterSelectProyect>
-            <SideBar />
-            <HeaderEditorComponent />
-            <QuillEditor />
-          </>
-          : <>
-            <SideBar />
-            <HeaderEditorComponent />
-            <QuillEditor />
-          </>
-        }
+        <EditorProvider>
+          {data == undefined ?
+            <>
+              <FilterSelectProyect>
+                <ContainerFilter>
+                  <Contend>
+                    <h1>Abrir un proyecto</h1>
+                    <ContainerProyects>
+                      <ListProyects>
+                        {proyects.map((proyect, index) => (
+                          <ProyectElement key={index} onClick={() => handlerOpen(proyect.Id)} >
+                            {proyect.Title}
+                          </ProyectElement>
+                        ))}
+                      </ListProyects>
+                    </ContainerProyects>
+                  </Contend>
+                </ContainerFilter>
+              </FilterSelectProyect>
+              <SideBar />
+              <HeaderEditorComponent />
+              <QuillEditor />
+            </>
+            : <>
+              <SideBar />
+              <HeaderEditorComponent />
+              <QuillEditor />
+            </>
+          }
+        </EditorProvider>
       </SideProv>
     </PlantillaEditorComponent>
   );

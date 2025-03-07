@@ -1,23 +1,25 @@
 import { useState, createContext, useContext } from "react"
 import PropTypes from "prop-types"
 
-const EditorFunctions = createContext(true)
+export const EditorFunctionsContext = createContext(true)
 
-export function editorProvider = ({ children }){
+export function EditorProvider({ children }) {
 
   const [saveFile, setSaveFile] = useState(false)
+  const [textEditor, setTextEditor] = useState("")
+
   return (
-    <EditorFunctions.Provider value={{ saveFile, setSaveFile }}>
+    <EditorFunctionsContext.Provider value={{ saveFile, setSaveFile, textEditor, setTextEditor }}>
       {children}
-    </EditorFunctions.Provider>
+    </EditorFunctionsContext.Provider>
   )
 
 }
 
-EditorFunctions.PropTypes = {
+EditorFunctionsContext.PropTypes = {
   children: PropTypes.node.isRequired,
 }
 
 export function useEditor() {
-  return useContext(EditorFunctions)
+  return useContext(EditorFunctionsContext)
 }

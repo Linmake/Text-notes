@@ -14,23 +14,23 @@ const Div = styled.div`
   width: 89%;
   &.bttn-plus {
     cursor: pointer;
-    margin-bottom: 3%;
+    margin-bottom: 5%;
   }
   & > span {
-    margin-right: 20%;
-    margin-bottom: 2%;
+    margin-right: 15%;
+    margin-bottom: 3%;
   }
 `;
 
 const Btn = styled.button`
 width: 100%;
-height: 35px;
-background-color: RGBA(33,37,41, 0.7);
+height: 25%;
 border: none;
-padding-bottom: 5px;
+padding-bottom: 2%;
+background-color: RGBA(33,37,41, 0.7);
 `
 const Icon = styled.img`
-  width: 2rem;
+  width: 3rem;
   height: auto;
   line-height: ;
 `

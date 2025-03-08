@@ -24,8 +24,8 @@ const Container = styled.div`
   margin-top: 7%;
 `;
 const ContainerNoProyects = styled.div`
-  width: 70%;
-  height: 40%;
+  width: 52%;
+  height: 45%;
   display: flex;
   border: 1px solid #dee0e3;
   box-shadow: 0px 0px 4px #cccc;
@@ -34,7 +34,7 @@ const ContainerNoProyects = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.4);
-  padding: 25px;
+  padding-top: 2%;
   margin-top: 7%;
 `;
 const ProyectElement = styled.li`

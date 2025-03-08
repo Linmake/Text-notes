@@ -47,7 +47,7 @@ const Folder = styled.div`
 const InputFolder = styled.input`
   outline: none;
   border: none;
-  width: 40%;
+  width: 55%;
   background-color: transparent;
   color: #fff;
   cursor: pointer;
@@ -119,11 +119,12 @@ const FolderList = () => {
 
   const navigateFolder = useNavigate();
 
-  const cleanPath = () => {
+  
+  const cleanSamePath = () => {
     let currentPath = window.location.pathname;
     let segments = currentPath.split('/').filter(Boolean); // Divide en segmentos
-
     if (segments.length > 2) {
+      segments.pop(); // Elimina el penúltimo segmento
       segments.pop(); // Elimina el último segmento
       let newPath = `/${segments.join('/')}`; // Une de nuevo en formato de URL
       navigateFolder(newPath, { replace: true }); // Reemplaza en la historia del navegador
@@ -131,29 +132,38 @@ const FolderList = () => {
       navigateFolder(`/${segments.join('/')}`, { replace: true }); // Mantiene la URL base
     }
   };
-
+  
+  const changePath = (currentPath) => {
+    let segments = currentPath.split('/').filter(Boolean); // Divide en segmentos
+    if(segments.length <= 2 ){ 
+      return currentPath
+    }
+      segments.pop(); // Elimina el último segmento
+      let newPath = `/${segments.join('/')}`; // Une de nuevo en formato de URL
+      return newPath
+  };
+  
   const handlerSelectFolder = (index, id) => {
     const folder = folders.find(folder => folder.Id == id)
-    let currentPath = window.location.pathname;
+    let currentPath = changePath(window.location.pathname);
     if (!folder) {
       return
-      console.warn("folder no existe")
     }
     setIdFolderSelect(folder.Id)
     setOpenFolder(true)
     setFiles(folder.Files)
 
     let urlFolder = [currentPath, id]
-
+    
     navigateFolder(`${urlFolder[0]}/${urlFolder[1]}`)
-
+    
     if (statusSelectFolder && selectedFolderIndex === index) {
       setStatusSelectFolder(false);
+      setSelectedFolderIndex(""); //al volver a hacer click en el mismo folder se cierra y elimina el index del contexto
     } else {
       setStatusSelectFolder(true);
       setAddNewFile(false);
       setSelectedFolderIndex(index);
-      console.log(idFolderSelect)
     }
 
     return

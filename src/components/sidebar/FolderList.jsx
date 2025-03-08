@@ -106,7 +106,6 @@ const FolderList = () => {
 
       if (resFetch && resFetch.status === 200) {
         setFolders(resFetch.data)
-        console.log("Folders desde la API:", resFetch.data);
 
       } else {
         console.error(new Error("Error del servidor"))

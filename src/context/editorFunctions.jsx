@@ -7,9 +7,10 @@ export function EditorProvider({ children }) {
 
   const [saveFile, setSaveFile] = useState(false)
   const [textEditor, setTextEditor] = useState("")
+  const [fileCurrent, setFileCurrent] = useState("")
 
   return (
-    <EditorFunctionsContext.Provider value={{ saveFile, setSaveFile, textEditor, setTextEditor }}>
+    <EditorFunctionsContext.Provider value={{ saveFile, setSaveFile, textEditor, setTextEditor, fileCurrent, setFileCurrent }}>
       {children}
     </EditorFunctionsContext.Provider>
   )

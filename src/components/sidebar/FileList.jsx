@@ -5,6 +5,7 @@ import { navItem, navLink } from "./Hooks/themaStyled";
 import { UseData } from '../../context/dataContext';
 import { useContext } from 'react'
 import { positionSideContext } from '../../context/SideProv'
+import { EditorFunctionsContext } from "../../context/editorFunctions";
 
 // Styled components
 export const UlFile = styled.ul`
@@ -75,16 +76,22 @@ export const InputFile = styled.input`
 export const FileList = () => {
   const { files } = UseData();
   const { addNewFile } = useContext(positionSideContext)
+  const { setFileCurrent } = useContext(EditorFunctionsContext);
 
   if ((!files || files.length === 0) && !addNewFile) {
     return <p>No files available</p>; // Maneja el caso cuando no hay archivos
   }
+
+  const handlerFile = (file) => {
+    setFileCurrent(file) //actualiza el file seleccionado en el context de fileCurrent de EditorFunctionsContext 
+  }
+
   return (
     <UlFile className="nav nav-pills flex-column ul-liFile">
       {
         files.map(file => (
           <LiFile className="nav-item" key={file.Id}>
-            <File className="nav-link text-white file">
+            <File className="nav-link text-white file" onClick={event => handlerFile(file)}>
               <FontAwesomeIcon id={`iconFile-${file.Id}`} icon={faFile} />
               <InputFile
                 readOnly

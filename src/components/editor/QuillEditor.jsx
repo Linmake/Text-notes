@@ -23,12 +23,13 @@ background-color: white;
 
 const QuillEditor = () => {
   const { sidebarVisible } = useContext(positionSideContext);
-  const { textEditor, setTextEditor, setSaveFile } = useContext(EditorFunctionsContext);
+  const { textEditor, setTextEditor, setSaveFile, fileCurrent, setFileCurrent } = useContext(EditorFunctionsContext);
   const editorRef = useRef(null);
   const quillRef = useRef(null);
 
   useEffect(() => {
     if (!editorRef.current || quillRef.current) return;
+    console.log("useEffect Ran")
 
     quillRef.current = new Quill(editorRef.current, {
       theme: 'snow',
@@ -43,7 +44,7 @@ const QuillEditor = () => {
         'list', 'bullet', 'indent',
         'link', 'image', 'video',
       ],
-    });
+    }); //crear Editor NTP
 
     // Listener para actualizar el estado y el contexto
     quillRef.current.on('text-change', () => {
@@ -60,6 +61,11 @@ const QuillEditor = () => {
       quillRef.current?.off('text-change');
     };
   }, []);
+
+  useEffect(() => {
+    if(!fileCurrent) return 
+    quillRef.current.setText(fileCurrent.Text) //cambia el texto del editor por el texto del file seleccionado
+  }, [fileCurrent])
 
   //guardar el file en la bd
   /*useEffect(() => {

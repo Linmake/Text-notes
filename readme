@@ -130,7 +130,7 @@ puerto front:4001       npm start
 
 #  file/:idProyect/:idFolder/:idFile 
 
-/*** Crear idea
+/*** Obtener idea de un folder dentro de un proyect
  Props: {Id,Titulo} 
 */
 
@@ -142,14 +142,14 @@ puerto front:4001       npm start
 
 #  file/edit/:idProyect/:idFolder/:idFile
 
-/*** Crear idea
+/*** Editar idea de un folder dentro de un proyect
  Props: {Id,Titulo} 
 */
 
 #  file/edit/:idProyect/:idFile
 
 
-/** Crear idea
+/** Crear idea dentro de un proyect
 *Props: {Id,Titulo} 
 */
 

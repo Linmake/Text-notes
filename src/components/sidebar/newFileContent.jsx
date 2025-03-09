@@ -10,7 +10,7 @@ import { v4 as uuidV4 } from 'uuid';
 
 import axios from 'axios';
 
-export const Li = styled.li`
+export const Ul = styled.ul`
 list-style: none;
 margin-left: 8%;
 & > .nav-link {
@@ -33,8 +33,8 @@ export const InputFile = styled.input`
 `
 
 const NewFileContent = () => {
-  const inputRefNewFile = useRef(null);
-  const inputRefNewFolder = useRef(null);
+  const inputRefNewFile = useRef("");
+  const inputRefNewFolder = useRef("");
 
   const {
     addNewFile,
@@ -111,7 +111,7 @@ const NewFileContent = () => {
   }
 
   return (
-    <Li className={
+    <Ul className={
       `nav-item
       ${(addNewFile) ? '' : 'hidde'}`}
     >
@@ -125,7 +125,7 @@ const NewFileContent = () => {
           />
         </span>
       </div>
-    </Li >
+    </Ul >
   );
 }
 

@@ -78,6 +78,39 @@ export const FileList = () => {
   const { addNewFile } = useContext(positionSideContext)
   const { fileCurrent, setFileCurrent } = useContext(EditorFunctionsContext);
 
+  useEffect(() => {
+      const getFiles = async () => {
+        try {
+          const res = await axios({
+            url: `${DbUrl}/folder/${data.key}/all`,
+            method: 'GET'
+          });
+          return res;
+        } catch (error) {
+          console.error(error);
+          return
+        }
+      };
+  
+      /**
+       * Coloca los Folders obtenidos desde la BD a el contexto
+       */
+      const fetchData = async () => {
+  
+        const resFetch = await getFolder()
+  
+        if (resFetch && resFetch.status === 200) {
+          setFolders(resFetch.data)
+  
+        } else {
+          console.error(new Error("Error del servidor"))
+        }
+      };
+  
+      fetchData();
+  
+    }, [data, setFolders]);
+
   if ((!files || files.length === 0) && !addNewFile) {
     return <p>No files available</p>; // Maneja el caso cuando no hay archivos
   }

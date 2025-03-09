@@ -15,6 +15,9 @@ const WavesContainer = styled.div`
   top: 88%;
   right: 0;
   width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 `
 
 const Waves = () => (

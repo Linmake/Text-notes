@@ -26,6 +26,7 @@ const QuillEditor = () => {
   const { textEditor, setTextEditor, setSaveFile, fileCurrent, setFileCurrent } = useContext(EditorFunctionsContext);
   const editorRef = useRef(null);
   const quillRef = useRef(null);
+  const DbUrl = "http://localhost:4000";
 
   useEffect(() => {
     if (!editorRef.current || quillRef.current) return;
@@ -58,6 +59,8 @@ const QuillEditor = () => {
       quillRef.current?.off('text-change')
     }
   }, [])
+
+  
 
   useEffect(() => {
     if(!fileCurrent || fileCurrent === "" ) return 
@@ -109,9 +112,7 @@ const QuillEditor = () => {
         const segments = currentPath.split('/').filter(Boolean)
         const idFolder = segments[2]
         const resFile = await axios.put(`http://localhost:4000/file/edit/${idFolder}/${fileCurrent.Id}`, newFile)
-        alert(newFile.Text)
         setFileCurrent(newFile)
-        alert(fileCurrent.Text)
 
       }catch (error) {
         console.error("Error en la solicitud PATCH:", error);

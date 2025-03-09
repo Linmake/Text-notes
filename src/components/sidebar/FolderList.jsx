@@ -9,6 +9,7 @@ import { FileList } from './FileList';
 import { useNavigate } from 'react-router-dom';
 import NewFileContent from './newFileContent';
 import styles from '../../styles/components//editor/FolderList.css'
+import { EditorFunctionsContext } from '../../context/editorFunctions';
 
 export const LiFolder = styled.li`
   width: 100%;
@@ -74,6 +75,11 @@ const FolderList = () => {
     setIdFolderSelect
   } = useContext(positionSideContext);
 
+  const { 
+    setFileCurrent,
+    fileCurrent
+   } = useContext(EditorFunctionsContext);
+
   const {
     data,
     setOpenFolder,
@@ -84,7 +90,7 @@ const FolderList = () => {
   } = UseData();
 
   useEffect(() => {
-    const getFolder = async () => {
+    const getFolders = async () => {
       try {
         const res = await axios({
           url: `${DbUrl}/folder/${data.key}/all`,
@@ -102,7 +108,7 @@ const FolderList = () => {
      */
     const fetchData = async () => {
 
-      const resFetch = await getFolder()
+      const resFetch = await getFolders()
 
       if (resFetch && resFetch.status === 200) {
         setFolders(resFetch.data)
@@ -114,7 +120,39 @@ const FolderList = () => {
 
     fetchData();
 
-  }, [data, setFolders]);
+  }, [data, setFolders, fileCurrent]);
+
+  /*useEffect(() => {
+    const getFiles = async () => {
+      try {
+        const res = await axios({
+          url: `${DbUrl}/files/${data.key}/all`,
+          method: 'GET'
+        });
+        return res;
+      } catch (error) {
+        console.error(error);
+        return
+      }
+    };
+    /**
+     * Coloca los Files obtenidos desde la BD a el contexto
+     
+    const fetchData = async () => {
+
+      const resFetch = await getFiles()
+
+      if (resFetch && resFetch.status === 200) {
+        setFiles(resFetch.data)
+
+      } else {
+        console.error(new Error("Error del servidor"))
+      }
+    };
+
+    fetchData();
+
+  }, [data, setFiles]);*/
 
   const navigateFolder = useNavigate();
 
@@ -150,7 +188,7 @@ const FolderList = () => {
     }
     setIdFolderSelect(folder.Id)
     setOpenFolder(true)
-    setFiles(folder.Files)
+    setFiles(folder.Files) //!!todo meter los files de ese folder pero ahora traerlo desde la bd
 
     let urlFolder = [currentPath, id]
     

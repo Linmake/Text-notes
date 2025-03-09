@@ -78,7 +78,7 @@ export const FileList = () => {
   const { addNewFile } = useContext(positionSideContext)
   const { fileCurrent, setFileCurrent } = useContext(EditorFunctionsContext);
 
-  useEffect(() => {
+  /*useEffect(() => {
       const getFiles = async () => {
         try {
           const res = await axios({
@@ -92,9 +92,7 @@ export const FileList = () => {
         }
       };
   
-      /**
-       * Coloca los Folders obtenidos desde la BD a el contexto
-       */
+     
       const fetchData = async () => {
   
         const resFetch = await getFolder()
@@ -109,7 +107,7 @@ export const FileList = () => {
   
       fetchData();
   
-    }, [data, setFolders]);
+    }, [data, setFolders]);*/
 
   if ((!files || files.length === 0) && !addNewFile) {
     return <p>No files available</p>; // Maneja el caso cuando no hay archivos

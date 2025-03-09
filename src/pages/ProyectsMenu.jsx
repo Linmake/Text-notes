@@ -107,7 +107,7 @@ const ProyectsMenu = () => {
   *Abre el Proyecto y envía a la URL 
   */
   const handleClick = (id) => {
-    navegacionFolders(`/proyecto/${id}`)
+    navegacionFolders(`/Proyect/${id}`)
     setData({ key: id })
     const findProyect = proyects.find(proyect => proyect.Id == id)
     setProyect(findProyect)
@@ -115,7 +115,7 @@ const ProyectsMenu = () => {
 
   return (
     <>
-      {proyects.length === 0 ? (
+      {proyects.length == 0 ? (
         <PlantillaNoProyectsComponent>
           <ContainerNoProyects>
             <div>  </div>

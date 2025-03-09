@@ -52,6 +52,7 @@ const LinkInicio = styled.a`
 `
 
 const HeaderEditorComponent = () => {
+  const RutaPrincipal = "http://localhost:4001"
   return (
     <>
       <Header className="navbar navbar-expand-lg bg-body-tertiary" id='headerEditor'>
@@ -73,10 +74,10 @@ const HeaderEditorComponent = () => {
               Mis notas
             </DropDown>
             <ul className="dropdown-menu">
-              <li><a className="dropdown-item" href="#">Proyectos</a></li>
-              <li><a className="dropdown-item" href="#">Carpetas</a></li>
+              <li><a className="dropdown-item" href={`${RutaPrincipal}/Proyects-menu/`}>Proyects</a></li>
+              <li><a className="dropdown-item" href={`${RutaPrincipal}/Folders/`}>Folders</a></li>
               <li><hr className="dropdown-divider" /></li>
-              <li><a className="dropdown-item" href="#">Ideas</a></li>
+              <li><a className="dropdown-item" href={`${RutaPrincipal}/Notes/`}>Notes</a></li>
             </ul>
           </li>
         </ListaInicio>

@@ -48,6 +48,7 @@ const LogoFont = styled.a`
 
 
 const HeaderComponent = () => {
+  const RutaPrincipal = "http://localhost:4001"
   return (
     <>
       <Header className="navbar navbar-expand-lg bg-body-tertiary">
@@ -58,21 +59,19 @@ const HeaderComponent = () => {
           </button>
           <SectionNotas className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Links className="nav-link active" aria-current="page" href="#">Modelo</Links>
+              <Links className="nav-link active" aria-current="page" href={`${RutaPrincipal}/#Crear`}>Modelo</Links>
             </li>
             <li className="nav-item dropdown">
-              <Links className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <Links className="nav-link dropdown-toggle" href={`${RutaPrincipal}/Notes/`} role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Mis notas
               </Links>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Proyectos</a></li>
-                <li><a className="dropdown-item" href="#">Carpetas</a></li>
-                <li><hr className="dropdown-divider" /></li>
-                <li><a className="dropdown-item" href="#">Ideas</a></li>
+                <li><a className="dropdown-item" href={`${RutaPrincipal}/Proyects-menu/`}>Proyectos</a></li>
+                <li><a className="dropdown-item" href={`${RutaPrincipal}/Folders/`}>Carpetas</a></li>
               </ul>
-            </li>
+            </li> 
             <li className="nav-item">
-              <Links className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <Links className="nav-link dropdown-toggle" href={`${RutaPrincipal}/cuenta/`}>
                 Cuenta
               </Links>
             </li>

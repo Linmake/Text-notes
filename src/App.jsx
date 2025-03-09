@@ -14,9 +14,9 @@ function App() {
       <Router>
         <Routes>
           <Route exact path='/' element={<MenuInicioPage />} />
-          <Route exact path='/proyectos-menu/' element={<ProyectsMenu />} />
-          <Route path='/proyecto/*' element={<EditorTexto />} />
-          <Route exact path='/carpeta/' element={<a />} />
+          <Route exact path='/Proyects-menu/' element={<ProyectsMenu />} />
+          <Route path='/Proyect/*' element={<EditorTexto />} />
+          <Route exact path='/Folders/' element={<a />} />
         </Routes>
       </Router>
     </>

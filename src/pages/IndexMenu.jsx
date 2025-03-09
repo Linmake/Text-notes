@@ -66,10 +66,13 @@ const ButtonFirst = styled.button`
 `
 
 const MenuInicioPage = () => {
+  
   const navigate = useNavigate()
+  
   const handlerNavigate = () => {
-    navigate("proyectos-menu")
+    navigate("Proyects-menu")
   }
+
   return (
     <>
       <HeaderComponent />
@@ -89,13 +92,13 @@ const MenuInicioPage = () => {
         <img src={notepad} className="notepadImg" />
         <Waves />
       </ContainerInicio>
-      <ContainerCards>
-        <Link to={'/proyectos-menu/'} className="link-card" style={{ "marginRight": '13rem' }}>
+      <ContainerCards id="Crear">
+        <Link to={'/Proyects-menu/'} className="link-card" style={{ "marginRight": '13rem' }}>
           <CardComponent>
             <CardBody title="Crear proyecto" icon="proyectosMenuIcon"></CardBody>
           </CardComponent>
         </Link>
-        <Link to={'proyecto/'} className="link-card">
+        <Link to={'Proyect/'} className="link-card">
           <CardComponent>
             <CardBody title="Crear idea" icon="proyectoIcon"></CardBody>
           </CardComponent>

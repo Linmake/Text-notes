@@ -67,7 +67,7 @@ export const CardComponent = ({ children }) => {
   }, [ruta, navigate]);
 
   const handleClick = (ruta) => {
-    if (ruta === "proyectos-menu" || ruta === "proyecto") {
+    if (ruta === "Proyects-menu" || ruta === "Proyect") {
       setRuta(`/${ruta}`);
     } else {
       console.error("especifica una ruta correcta");

@@ -188,7 +188,7 @@ const FolderList = () => {
     }
     setIdFolderSelect(folder.Id)
     setOpenFolder(true)
-    setFiles(folder.Files) //!!todo meter los files de ese folder pero ahora traerlo desde la bd
+    setFiles(folder.Files) //!!todo
 
     let urlFolder = [currentPath, id]
     

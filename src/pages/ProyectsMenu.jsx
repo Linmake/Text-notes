@@ -89,7 +89,7 @@ const ProyectsMenu = () => {
   const { proyects, setProyects } = useContext(positionSideContext);
   const { setData, setProyect } = UseData()
 
-  const navegacionFolders = useNavigate()
+  const navigateFolder = useNavigate()
 
   useEffect(() => {
     const fetchProyects = async () => {
@@ -107,23 +107,26 @@ const ProyectsMenu = () => {
   *Abre el Proyecto y envía a la URL 
   */
   const handleClick = (id) => {
-    navegacionFolders(`/Proyect/${id}`)
+    navigateFolder(`/Proyect/${id}`)
     setData({ key: id })
     const findProyect = proyects.find(proyect => proyect.Id == id)
     setProyect(findProyect)
   };
+  
+  const noProyects = () => {
+    return (
+    <PlantillaNoProyectsComponent>
+      <ContainerNoProyects>
+        <div>  </div>
+        <NewProyectTab />
+        <Subtitle className="subtitle-noproyects">Sin proyectos</Subtitle>
+      </ContainerNoProyects>
+    </PlantillaNoProyectsComponent>
+  )}
 
   return (
     <>
-      {proyects.length == 0 ? (
-        <PlantillaNoProyectsComponent>
-          <ContainerNoProyects>
-            <div>  </div>
-            <NewProyectTab />
-            <Subtitle className="subtitle-noproyects">Sin proyectos</Subtitle>
-          </ContainerNoProyects>
-        </PlantillaNoProyectsComponent>
-      )
+      {proyects.length == 0 ? noProyects(event => event)
         : (
           <PlantillaProyectComponent>
             <Container>

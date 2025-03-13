@@ -50,7 +50,6 @@ background-color: white;
 border: 1px solid #dee0e3;
 box-shadow: 0px 0px 2px #c4c7cc;
 width: 500px;
-min-height: 200px;
 max-height: 400px;
 top: 30%;
 left: 40px;
@@ -82,6 +81,7 @@ const ProyectElement = styled.li`
 
   &:last-child {
   border: none;
+  padding-bottom: 0;
   }
   &:hover {
     background-color: #F2F4F5;
@@ -113,38 +113,57 @@ const EditorTexto = () => {
     fetchProyects();
   }, [setProyects, setData]);
 
-  const handlerOpen = (id) => {
-    navigate(id)
-    setData({ key: id })
-    const findProyect = proyects.find(proyect => proyect.Id == id)
-    setProyect(findProyect)
-  }
+  
+  const noProyectsOpen = () => {
+    /*const navigateUrl = useNavigate()
+    let currentPath = window.location.pathname
+    let segments = currentPath.split('/').filter(Boolean)
+    if(segments.length > 1 ){  
+        segments.pop()
+        let newPath = `/${segments.join('/')}`
+        navigateUrl(newPath, {replace: true})
+  */    
+ return (
+          <>
+            <FilterSelectProyect>
+              <ContainerFilter>
+                <Contend>
+                  <h1>Abrir un proyecto</h1>
+                  <ContainerProyects>
+                  <ListProyects>
+                    {proyects.map((proyect, index) => (
+                      <ProyectElement key={index} onClick={() => handlerOpen(proyect.Id)} >
+                        {proyect.Title}
+                      </ProyectElement>
+                  ))}
+                  </ListProyects>
+                  </ContainerProyects>
+                </Contend>
+              </ContainerFilter>
+            </FilterSelectProyect>
+            <SideBar />
+            <HeaderEditorComponent />
+            <QuillEditor />
+          </>
+        )
+      /*}catch(error){
+        console.error(`Error compiling: ${error}`)
+      }
+      }*/
+}
+
+const handlerOpen = (id) => {
+  navigate(id)
+  setData({ key: id })
+  const findProyect = proyects.find(proyect => proyect.Id == id)
+  setProyect(findProyect)
+}
+
   return (
     <PlantillaEditorComponent className="plantilla-body-editor">
       <SideProv>
         <EditorProvider>
-          {data == undefined ?
-            <>
-              <FilterSelectProyect>
-                <ContainerFilter>
-                  <Contend>
-                    <h1>Abrir un proyecto</h1>
-                    <ContainerProyects>
-                      <ListProyects>
-                        {proyects.map((proyect, index) => (
-                          <ProyectElement key={index} onClick={() => handlerOpen(proyect.Id)} >
-                            {proyect.Title}
-                          </ProyectElement>
-                        ))}
-                      </ListProyects>
-                    </ContainerProyects>
-                  </Contend>
-                </ContainerFilter>
-              </FilterSelectProyect>
-              <SideBar />
-              <HeaderEditorComponent />
-              <QuillEditor />
-            </>
+          {data == undefined ? noProyectsOpen()
             : <>
               <SideBar />
               <HeaderEditorComponent />

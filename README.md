@@ -1,3 +1,5 @@
+
+
 Español - Spanish 
 ## Implementaciones futuras:
 -Typescript
@@ -8,28 +10,25 @@ puerto front:4001       npm start
 
 ### PROYECTO: --------!
 
-<br>
+
 /*** Crear proyecto
  Props: { Id, Titulo } 
 */
 
 #  proyect/create
 
-<br>
 /*** Ver proyectos
  Props 0 
 */
 
 #  proyect/
 
-<br>
 /*** Editar proyecto
  Props: Opt{ Id, Titulo } 
 */
 
 #  proyect/edit/:idProyecto
 
-<br>
 /*** Eliminar proyecto
  Props: { Id } 
 */
@@ -37,10 +36,9 @@ puerto front:4001       npm start
 #  proyect/delete/:idProyecto
 
 
-###  CARPETA: --------!
+###  CARPETA:
 
-<br>
-/*** Crear carpeta
+Crear carpeta
  Props: {Id,Titulo} 
 */
 

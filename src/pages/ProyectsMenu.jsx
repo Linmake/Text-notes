@@ -117,7 +117,7 @@ const ProyectsMenu = () => {
     return (
     <PlantillaNoProyectsComponent>
       <ContainerNoProyects>
-        <div>  </div>
+        <div></div>
         <NewProyectTab />
         <Subtitle className="subtitle-noproyects">Sin proyectos</Subtitle>
       </ContainerNoProyects>

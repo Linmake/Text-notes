@@ -9,6 +9,7 @@ import { useContext, useEffect } from 'react';
 import axios from 'axios';
 import { UseData } from '../context/dataContext';
 import { useNavigate } from 'react-router-dom';
+import EditorComponent from '../components/editor/EditorComponent';
 
 const FilterSelectProyect = styled.div`
 z-index: 100;
@@ -99,7 +100,7 @@ const getProyects = async () => {
 
 const EditorTexto = () => {
   const { proyects, setProyects } = useContext(positionSideContext);
-  const { setData, data, setProyect } = UseData()
+  const { setData, data, setProyect/**k */ } = UseData()
   const navigate = useNavigate();
   useEffect(() => {
     const fetchProyects = async () => {
@@ -121,7 +122,7 @@ const EditorTexto = () => {
     if(segments.length > 1 ){  
         segments.pop()
         let newPath = `/${segments.join('/')}`
-        navigateUrl(newPath, {replace: true})
+        navigateUrl(/newPath, {replace: true})
   */    
  return (
           <>
@@ -163,13 +164,9 @@ const handlerOpen = (id) => {
     <PlantillaEditorComponent className="plantilla-body-editor">
       <SideProv>
         <EditorProvider>
-          {data == undefined ? noProyectsOpen()
-            : <>
-              <SideBar />
-              <HeaderEditorComponent />
-              <QuillEditor />
-            </>
-          }
+          <SideBar />
+          <HeaderEditorComponent />
+          <QuillEditor />
         </EditorProvider>
       </SideProv>
     </PlantillaEditorComponent>

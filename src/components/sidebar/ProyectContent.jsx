@@ -53,10 +53,9 @@ const ProyectoContenedor = () => {
           url: `http://localhost:4000/proyect/${idProyect}`,
           method: "GET",
         })
-        return res
+        return res.data
       } catch (error) {
-        console.error('Error fetching project:', error.response ? error.response.data : error.message);
-        console.log(`${DbUrl}proyect/${idProyect}`)
+        console.error('Error fetching project');
       }
     };
     
@@ -64,26 +63,20 @@ const ProyectoContenedor = () => {
       const resFetch = await getProyect()
       if(resFetch && resFetch.status === 200){
         setProyect(resFetch.data)
-        console.log(proyect)
+        console.log(resFetch.data)
       }else{
-        console.error(new Error("Error del servidor"))
-        console.log(proyect)
+        console.error("Error del servidor")
       }
     }
     
     fetchProyects()
     
-  }, [setProyect])
-  /**
-   * Activa la creacion de un nuevo Folder
-   */
+  }, [])
+
   const handlerFolders = () => {
     setAddNewFolder(true);
   };
 
-  /**
-   * Activa la creacion de un nuevo File
-   */
   const handlerFiles = () => {
     if (statusSelectFolder) {
       setAddNewFile(true);

@@ -4,17 +4,18 @@ import { Link, useNavigate } from "react-router-dom"
 import '../styles/pages/index/IndexMenu.css'
 import styled from "styled-components";
 import Waves from "../assets/Waves";
-import notepad from "../assets/notepad.webp"
+import notepad from "../assets/notepad.webp";
 
-const sizes = {
+
+const sizes: any = {
   laptop: 1920,
 }
 
-const media = {
+const media: any = {
   laptop: `(min-width: ${sizes.laptop})`,
 }
 
-const ContainerInicio = styled.div`
+const ContainerInicio: any = styled.div`
 width: 100%;
 height: 85%;
 background: linear-gradient(90deg, rgba(251,120,80,1) 0%, rgba(242,179,50,1) 100%);
@@ -22,7 +23,7 @@ max-width: 100%;
 padding-top: 8% !important;   
 `
 
-const ContainerCards = styled.div`
+const ContainerCards:any = styled.div`
   width: 100vw;
   height: 100%;
   position: absolute;
@@ -32,7 +33,7 @@ const ContainerCards = styled.div`
   align-items: center;
 `
 
-const ContainerTitle = styled.div`
+const ContainerTitle: any = styled.div`
   width: 42%;
   height: 550px;
   font-family: "rubik";
@@ -45,7 +46,7 @@ const ContainerTitle = styled.div`
   user-select: none;
 `
 
-const ButtonFirst = styled.button`
+const ButtonFirst: any = styled.button`
   width: 30%;
   height: fit-content;
   background-color: white;
@@ -65,7 +66,7 @@ const ButtonFirst = styled.button`
   }
 `
 
-const MenuInicioPage = () => {
+const MenuInicioPage: any = () => {
   
   const navigate = useNavigate()
   

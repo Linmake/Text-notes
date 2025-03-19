@@ -13,8 +13,8 @@ const QuillToolbar = () => {
         <option value="large"></option>
         <option value="huge"></option>
       </select>
-      <span class="ql-formats">
-        <select class="ql-color">
+      <span className="ql-formats">
+        <select className="ql-color">
           <option selected="selected"></option>
           <option value="#e60000"></option>
           <option value="#ff9900"></option>
@@ -51,19 +51,19 @@ const QuillToolbar = () => {
           <option value="#002966"></option>
           <option value="#3d1466"></option>
         </select>
-        <select class="ql-background"></select>
+        <select className="ql-background"></select>
       </span>
       <button className="ql-bold"></button>
       <button className="ql-italic"></button>
       <button className="ql-underline"></button>
       <button className="ql-strike"></button>
-      <span class="ql-formats">
-        <button class="ql-script" value="sub"></button>
-        <button class="ql-script" value="super"></button>
+      <span className="ql-formats">
+        <button className="ql-script" value="sub"></button>
+        <button className="ql-script" value="super"></button>
       </span>
-      <span class="ql-formats">
-        <button class="ql-direction" value="rtl"></button>
-        <select class="ql-align"></select>
+      <span className="ql-formats">
+        <button className="ql-direction" value="rtl"></button>
+        <select className="ql-align"></select>
       </span>
       <button className="ql-list" value="ordered"></button>
       <button className="ql-list" value="bullet"></button>

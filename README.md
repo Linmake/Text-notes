@@ -1,37 +1,25 @@
 
 
-Español - Spanish 
-## Implementaciones futuras:
--Typescript
-
-#### LISTA DE TODAS LAS RUTAS {SOLO DE LA API} :
+#### LISTA DE TODAS LAS RUTAS:
 puerto back: 4000       npm run dev
 puerto front:4001       npm start
 
-### PROYECTO: --------!
-
-
-/*** Crear proyecto
- Props: { Id, Titulo } 
-*/
+### PROYECT:
 
 #  proyect/create
-
-/*** Ver proyectos
- Props 0 
-*/
+Create
+Props: { Id, Titulo } 
 
 #  proyect/
 
-/*** Editar proyecto
  Props: Opt{ Id, Titulo } 
-*/
 
 #  proyect/edit/:idProyecto
+ Edit 
+  Props: Opt{ Id, Titulo } 
 
-/*** Eliminar proyecto
+Eliminar proyecto
  Props: { Id } 
-*/
 
 #  proyect/delete/:idProyecto
 
@@ -40,129 +28,88 @@ puerto front:4001       npm start
 
 Crear carpeta
  Props: {Id,Titulo} 
-*/
 
 # folder/create
 
-
-/*** Crear carpeta
+Crear carpeta
  Props: {Id,Titulo} 
-*/
 
 # folder/edit/:idProyect/:idFolder
-
-/*** Crear carpeta
+Crear carpeta
  Props: {Id,Titulo} 
-*/
 
 # folder/edit/:idFolder
-
-/*** Crear carpeta
+Crear carpeta
  Props: {Id,Titulo} 
-*/
 
 # folder/
-
-/*** Crear carpeta
+Crear carpeta
  Props: {Id,Titulo} 
-*/
 
 # folder/:idProyect
-
-/*** Crear carpeta
+Crear carpeta
  Props: {Id,Titulo} 
-*/
 
 # folder/delete/:idFolder/
-
-/*** Crear carpeta
+Crear carpeta
  Props: {Id,Titulo} 
-*/
 
 # folder/delete/:idProyect/all
-
-/*** Crear carpeta
+Crear carpeta
  Props: {Id,Titulo} 
-*/
 
 # folder/delete/:idProyect/:idFolder
 
-### IDEA: --------! 
-
-/*** Crear idea
+### FILE:
+Crear file
  Props: {Id, Titulo, Texto}, 
  opt{ idCarpeta, idProyecto }
-*/
 
 #  file/create/
-
-/*** Crear idea en proyecto
+Crear file en proyect
  Props: {Id, Titulo, Texto}
  params: { idProyecto } 
-*/
 
 #  file/create/:idProyect
-
-/*** Crear idea en carpeta dentro de proyecto
+Crear file en folder dentro de proyect
  Props: {Id, Titulo, Texto},
  params: { idProyecto, idCarpeta, idIdea }
-*/
 
 #  file/create/:idProyect/idFolder 
-
-/*** Ver idea sin asignación
+crear file sin asignación
  params: {idIdea} 
-*/
 
 #  file/:idFile
-
-/*** Crear idea
+Crear file
  Props: {Id,Titulo} 
-*/
 
 #  file/:idProyect/: idFile 
-
-/*** Crear idea
+Crear file
  Props: {Id,Titulo} 
-*/
 
 #  file/:idProyect/:idFolder/:idFile 
-
-/*** Obtener idea de un folder dentro de un proyect
+Obtener file de un folder dentro de un proyect
  Props: {Id,Titulo} 
-*/
 
 #  file/:idFile
-
-/*** Crear idea
+Crear file
  Props: {Id,Titulo} 
-*/
 
 #  file/edit/:idProyect/:idFolder/:idFile
-
-/*** Editar idea de un folder dentro de un proyect
+Editar file de un folder dentro de un proyect
  Props: {Id,Titulo} 
-*/
 
 #  file/edit/:idProyect/:idFile
 
-
-/** Crear idea dentro de un proyect
-*Props: {Id,Titulo} 
-*/
+Crear file dentro de un proyect
+Props: {Id,Titulo} 
 
 #  file/delete/:idFile
-
-<br>
-/*** Crear idea
+Eliminar File
  Props: {Id,Titulo} 
-*/
 
 #  file/delete/:idProyect/:idFolder/:idFile
-
-<br>
-/*** Crear idea
+delete file
  Props: {Id,Titulo} 
-*/
 
 #  file/delete/:idProyect/:idFile

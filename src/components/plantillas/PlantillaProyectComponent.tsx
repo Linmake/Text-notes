@@ -6,9 +6,8 @@ const Plantilla = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  padding: 5rem;
-  position: relative;
-  background-color: white;
+  background-color: #FFFFFF;
+  padding: 3rem;
 `
 
 const PlantillaBody = styled.div`
@@ -19,7 +18,7 @@ const PlantillaBody = styled.div`
   align-items: center;
 `
 
-export const PlantillaNoProyectsComponent = ({ children }) => {
+export const PlantillaProyectComponent = ({ children: any }) => {
   return (
     <Plantilla>
       <PlantillaBody>{children}</PlantillaBody>
@@ -27,6 +26,6 @@ export const PlantillaNoProyectsComponent = ({ children }) => {
   )
 }
 
-PlantillaNoProyectsComponent.propTypes = {
+PlantillaProyectComponent.propTypes = {
   children: PropTypes.node.isRequired,
 }

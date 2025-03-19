@@ -16,7 +16,7 @@ const PlantillaBody = styled.div`
   height: 100%;
 `
 
-const PlantillaEditorComponent = ({ children }) => {
+const PlantillaEditorComponent = ({ children: any }) => {
   return (
     <>
       <Plantilla>

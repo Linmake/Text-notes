@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { FolderSchema } from "./FolderSchema.js";
 const { Schema } = mongoose;
 
-const ProyectSchema = new Schema({
+const ProyectSchema: any = new Schema({
   Id: {
     type: String,
     required: [true, 'UId es obligatorio.'],
@@ -33,5 +33,5 @@ const ProyectSchema = new Schema({
   strictQuery: 'throw'
 });
 
-const Proyect = mongoose.model('Proyect', ProyectSchema);
+const Proyect: function = mongoose.model('Proyect', ProyectSchema);
 export default Proyect 

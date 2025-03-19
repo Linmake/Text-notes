@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-export const FileSchema = new Schema({
+export const FileSchema: any = new Schema({
   Id: {
     type: String,
     required: [true, 'El campo Id es obligatorio.']

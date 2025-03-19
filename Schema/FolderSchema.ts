@@ -3,7 +3,7 @@ import { FileSchema } from './FileSchema.js'; // Asegúrate de que la extensión
 
 const { Schema } = mongoose;
 
-export const FolderSchema = new Schema({
+export const FolderSchema: any = new Schema({
   Id: {
     type: String,
     required: [true, 'Id es obligatorio.']
@@ -35,6 +35,6 @@ export const FolderSchema = new Schema({
   Files: [FileSchema],
 });
 
-const Folder = mongoose.model('Folder', FolderSchema);
+const Folder: function = mongoose.model('Folder', FolderSchema);
 
 export default Folder;

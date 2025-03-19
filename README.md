@@ -1,13 +1,16 @@
 
 
-#### LISTA DE TODAS LAS RUTAS:
+# LISTA DE TODAS LAS RUTAS:
+<br>
 puerto back: 4000       npm run dev
+<br>
 puerto front:4001       npm start
 
-### PROYECT:
+## Proyect:
 
-#  proyect/create
+###  proyect/create
 Create
+<br>
 Props: { Id, Titulo } 
 
 #  proyect/

@@ -11,9 +11,9 @@ const fileJsonSchema = {
     Id: { type: 'string', minLength: 1 },
     Title: { type: 'string', minLength: 1 },
     Text: { type: 'string' },
-    IdFolder: { type: 'string' },
+    FolderId: { type: 'string' },
   },
-  required: ['Id', 'Title', 'IdFolder'],
+  required: ['Id', 'Title', 'FolderId'],
   additionalProperties: false
 };
 

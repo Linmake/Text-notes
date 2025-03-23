@@ -28,7 +28,7 @@ const validateFolder = (req, res, next) => {
   const valid = validate(folder);
   if (!valid) {
     const errorMessages = validate.errors.map(err => `${err.instancePath.slice(1)}: ${err.message}`).join(', ');
-    return res.status(400).send(`Validation error: ${errorMessages}`);
+    return res.status(400).send(`Error validation: ${errorMessages}`);
   }
   next()
 };

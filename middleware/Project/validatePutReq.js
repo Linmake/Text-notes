@@ -8,36 +8,22 @@ const ajv = new Ajv({ allErrors: true })
 addFormats(ajv, ['date']).addKeyword('kind').addKeyword('modifier')
 addErrors(ajv)
 
-const proyectEditSchema = Type.Object({
-  Id: Type.Optional(Type.Number({
+const ProjectEditSchema = Type.Object({
+  Title: Type.Optional(Type.String({
     errorMessage: {
-      Type: 'ID debe ser un número'
+      Type: 'Title most be of type string'
     }
   })),
-  Titulo: Type.Optional(Type.String({
-    errorMessage: {
-      Type: 'Titulo es de tipo String'
-    }
-  })),
-  Fecha: Type.Optional(Type.String({
+  Date: Type.Optional(Type.String({
     format: 'date',
     errorMessage: {
-      Type: 'Fecha es de tipo String'
+      Type: 'Date most be of type date'
     }
   }))
 })
 
-const valid = ajv.compile(proyectEditSchema)
-
+const valid = ajv.compile(ProjectEditSchema)
 const validatePutReq = (req, res, next) => {
-  req.body.CarpetasAdd = []
-  req.body.IdeasAdd = []
-  req.body.Fecha = (getDate).toString()
-  const contenido = req.body
-  const propiedades = Object.keys(contenido)
-  if (propiedades.length === 0) res.send('Petición vácia')
-
-
   const isDTOValid = valid(req.body)
   if (isDTOValid) next()
 

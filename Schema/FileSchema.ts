@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
+
 const { Schema } = mongoose;
 
-export const FileSchema = new Schema({
+export const FileSchema: any = new Schema({
   Id: {
     type: String,
     required: [true, 'El campo Id es obligatorio.']
@@ -20,5 +21,5 @@ export const FileSchema = new Schema({
   },
 });
 
-const File = mongoose.model('File', FileSchema)
+const File: function = mongoose.model('File', FileSchema)
 export default File;

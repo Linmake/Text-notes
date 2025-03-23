@@ -3,4 +3,4 @@
       "jsx": "react-jsx"
     },
     "include": ["src", "global.declare.ts"]
-  }
+}

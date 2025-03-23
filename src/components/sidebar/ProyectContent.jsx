@@ -1,102 +1,210 @@
-import styled from 'styled-components';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFolderBlank, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import styled from "styled-components";
 import { positionSideContext } from '../../context/SideProv';
 import axios from 'axios';
 import { UseData } from '../../context/dataContext';
-import newFile from '../../assets/newFile.svg'
-import newFolder from '../../assets/newFolder.svg'
-import { get } from 'mongoose';
+import { FileList } from './FileList';
+import { useNavigate } from 'react-router-dom';
+import NewFileContent from './newFileContent';
+import styles from '../../styles/components//editor/FolderList.css'
 
-const Div = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-bottom: 1px solid #66666694;
-  width: 89%;
-  &.bttn-plus {
-    cursor: pointer;
-    margin-bottom: 5%;
+export const LiFolder = styled.li`
+  width: 100%;
+  margin-top: 0;
+  &.selected {
+    background-color: #5a5a5a8a;
   }
-  & > span {
-    margin-right: 45%;
-    margin-bottom: 3%;
+  &.noSelected{
+   background-color: transparent;
   }
 `;
 
-const Btn = styled.button`
-width: 3rem;
-height: 3rem;
-border: none;
-padding-bottom: 0.2rem;
-background-color: RGBA(33,37,41, 0.7);
-`
-const Icon = styled.img`
-  width: 2rem;
-  height: auto;
-`
+const DivSelect = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-const ProyectoContenedor = () => {
-  const { setAddNewFile, setAddNewFolder, statusSelectFolder } = useContext(positionSideContext);
-  const [proyect, setProyect] = useState(null);
-  const { setProyects } = useContext(positionSideContext);
+const Folder = styled.div`
+  gap: 0.7rem;
+  display: flex;
+  align-items: baseline;
+  padding: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  word-wrap: break-word;
+  white-space: nowrap;
+  border-radius: 0 !important;
+  width: 100%;
+  margin-left: 7px;
+  cursor: pointer;
+  &:hover {
+    background-color: #5a5a5a2b;
+  }
+`;
 
-  const DbUrl = "http://localhost:4000/";
+const InputFolder = styled.input`
+  outline: none;
+  border: none;
+  width: 55%;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  height: 5%;
+  font-size: 1.5rem;
+`;
 
-  const currentPath = window.location.pathname
-  const segmentsPath = currentPath.split("/").filter(Boolean)
-  const idProyect = segmentsPath[1]
+/**
+ * Componente que despliega la lista de los Folders visuales desde la bd 
+ * @returns Lista de Folders 
+ */
+const FolderList = () => {
 
-  useEffect( () => {
-    const getProyect = async () => {
-      try {    
+  const DbUrl = "http://localhost:4000";
+
+  const {
+    selectedFolderIndex,
+    setSelectedFolderIndex,
+    setStatusSelectFolder,
+    setAddNewFile,
+    addNewFile,
+    statusSelectFolder,
+    idFolderSelect,
+    setIdFolderSelect
+  } = useContext(positionSideContext);
+
+  const {
+    data,
+    setOpenFolder,
+    setFiles,
+    openFolder,
+    folders,
+    setFolders,
+  } = UseData();
+
+  useEffect(() => {
+    const getFolder = async () => {
+      try {
         const res = await axios({
-          url: `http://localhost:4000/proyect/${idProyect}`,
-          method: "GET",
-        })
-        return res.data
+          url: `${DbUrl}/folder/${data.key}/all`,
+          method: 'GET'
+        });
+        return res;
       } catch (error) {
-        console.error('Error fetching project');
+        console.error(error);
+        return
       }
     };
-    
-    const fetchProyects = async() => {
-      const resFetch = await getProyect()
-      if(resFetch && resFetch.status === 200){
-        setProyect(resFetch.data)
-        console.log(resFetch.data)
-      }else{
-        console.error("Error del servidor")
+
+    /**
+     * Coloca los Folders obtenidos desde la BD a el contexto
+     */
+    const fetchData = async () => {
+
+      const resFetch = await getFolder()
+
+      if (resFetch && resFetch.status === 200) {
+        setFolders(resFetch.data)
+        console.log("Folders desde la API:", resFetch.data);
+
+      } else {
+        console.error(new Error("Error del servidor"))
       }
-    }
-    
-    fetchProyects()
-    
-  }, [])
+    };
 
-  const handlerFolders = () => {
-    setAddNewFolder(true);
+    fetchData();
+
+  }, [data, setFolders]);
+
+  const navigateFolder = useNavigate();
+
+  
+  const cleanSamePath = () => {
+    let currentPath = window.location.pathname;
+    let segments = currentPath.split('/').filter(Boolean); // Divide en segmentos
+    if (segments.length > 2) {
+      segments.pop(); // Elimina el penúltimo segmento
+      segments.pop(); // Elimina el último segmento
+      let newPath = `/${segments.join('/')}`; // Une de nuevo en formato de URL
+      navigateFolder(newPath, { replace: true }); // Reemplaza en la historia del navegador
+    } else {
+      navigateFolder(`/${segments.join('/')}`, { replace: true }); // Mantiene la URL base
+    }
   };
-
-  const handlerFiles = () => {
-    if (statusSelectFolder) {
-      setAddNewFile(true);
+  
+  const changePath = (currentPath) => {
+    let segments = currentPath.split('/').filter(Boolean); // Divide en segmentos
+    if(segments.length <= 2 ){ 
+      return currentPath
     }
+      segments.pop(); // Elimina el último segmento
+      let newPath = `/${segments.join('/')}`; // Une de nuevo en formato de URL
+      return newPath
+  };
+  
+  const handlerSelectFolder = (index, id) => {
+    const folder = folders.find(folder => folder.Id == id)
+    let currentPath = changePath(window.location.pathname);
+    if (!folder) {
+      return
+    }
+    setIdFolderSelect(folder.Id)
+    setOpenFolder(true)
+    setFiles(folder.Files)
+
+    let urlFolder = [currentPath, id]
+    
+    navigateFolder(`${urlFolder[0]}/${urlFolder[1]}`)
+    
+    if (statusSelectFolder && selectedFolderIndex === index) {
+      setStatusSelectFolder(false);
+      setSelectedFolderIndex(""); //al volver a hacer click en el mismo folder se cierra y elimina el index del contexto
+    } else {
+      setStatusSelectFolder(true);
+      setAddNewFile(false);
+      setSelectedFolderIndex(index);
+    }
+
+    return
   };
 
   return (
-    <Div className="proyecto-contenedor d-flex text-decoration-none mt-1 align-items-center text-white">
-      <span className="fs-4 d-none d-sm-inline">{proyect.Title}</span>
-      <Btn>
-        <Icon src={newFile} alt="" className="bttn-plus" id="filePlusI"
-          onClick={handlerFiles} />
-      </Btn>
-      <Btn>
-        <Icon src={newFolder} alt="" className="bttn-plus"
-          id="folderPlusI"
-          onClick={handlerFolders} />
-      </Btn>
-    </Div>
+    <ul className="nav">
+      {folders.map((folder, index) => (
+        <LiFolder
+          className="nav-item liFolder"
+          key={index}
+        >
+          <DivSelect className="text-white">
+            <Folder
+              className={`${selectedFolderIndex == index ? 'selected' : 'noSelected'}`}
+              onClick={() => handlerSelectFolder(index, folder.Files, folder.Id)}>
+              <FontAwesomeIcon
+                icon={(selectedFolderIndex === index && statusSelectFolder) ? faFolderOpen : faFolderBlank}
+                className={` ${selectedFolderIndex === index ? 'selected' : ''}`}
+              />
+              <InputFolder
+                className="input-folder"
+                value={folder.Title}
+                title={folder.Title}
+                readOnly
+                onClick={() => handlerSelectFolder(index, folder.Id)}
+                id={folder.id}
+              />
+            </Folder>
+            {openFolder && selectedFolderIndex === index && (
+              <>
+                <NewFileContent
+                  className={`nav-item ${(addNewFile) ? '' : 'hidde'}`}
+                  key={"InputNewFile"} />
+                <FileList />
+              </>
+            )}
+          </DivSelect>
+        </LiFolder>
+      ))}
+    </ul>
   );
 };
-
-export default ProyectoContenedor;
+export default FolderList;

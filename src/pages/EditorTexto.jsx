@@ -100,7 +100,7 @@ const getProyects = async () => {
 
 const EditorTexto = () => {
   const { proyects, setProyects } = useContext(positionSideContext);
-  const { setData, data, setProyect/**k */ } = UseData()
+  const { setData, setProyect/**k */ } = UseData()
   const navigate = useNavigate();
   useEffect(() => {
     const fetchProyects = async () => {
@@ -115,51 +115,37 @@ const EditorTexto = () => {
   }, [setProyects, setData]);
 
   
-  const noProyectsOpen = () => {
-    /*const navigateUrl = useNavigate()
-    let currentPath = window.location.pathname
-    let segments = currentPath.split('/').filter(Boolean)
-    if(segments.length > 1 ){  
-        segments.pop()
-        let newPath = `/${segments.join('/')}`
-        navigateUrl(/newPath, {replace: true})
-  */    
- return (
-          <>
-            <FilterSelectProyect>
-              <ContainerFilter>
-                <Contend>
-                  <h1>Abrir un proyecto</h1>
-                  <ContainerProyects>
-                  <ListProyects>
-                    {proyects.map((proyect, index) => (
-                      <ProyectElement key={index} onClick={() => handlerOpen(proyect.Id)} >
-                        {proyect.Title}
-                      </ProyectElement>
-                  ))}
-                  </ListProyects>
-                  </ContainerProyects>
-                </Contend>
-              </ContainerFilter>
-            </FilterSelectProyect>
-            <SideBar />
-            <HeaderEditorComponent />
-            <QuillEditor />
-          </>
-        )
-      /*}catch(error){
-        console.error(`Error compiling: ${error}`)
-      }
-      }*/
+const noProyectsOpen = () => {  
+  return (
+    <>
+      <FilterSelectProyect>
+        <ContainerFilter>
+          <Contend>
+            <h1>Abrir un proyecto</h1>
+            <ContainerProyects>
+            <ListProyects>
+              {proyects.map((proyect, index) => (
+                <ProyectElement key={index} onClick={() => handlerOpen(proyect.Id)} >
+                  {proyect.Title} //!MARCA DE ERROR
+                </ProyectElement>
+              ))}
+            </ListProyects>
+            </ContainerProyects>
+          </Contend>
+        </ContainerFilter>
+      </FilterSelectProyect>
+      <SideBar />
+      <HeaderEditorComponent />
+      <QuillEditor />
+    </>
+  )
 }
-
 const handlerOpen = (id) => {
   navigate(id)
   setData({ key: id })
   const findProyect = proyects.find(proyect => proyect.Id == id)
   setProyect(findProyect)
 }
-
   return (
     <PlantillaEditorComponent className="plantilla-body-editor">
       <SideProv>

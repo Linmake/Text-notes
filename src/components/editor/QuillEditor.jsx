@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { UseData } from '../../context/dataContext';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
@@ -28,9 +28,7 @@ const QuillEditor = () => {
     sidebarVisible 
   } = useContext(positionSideContext);
 
-  const { 
-    textEditor, 
-    setTextEditor, 
+  const {  
     setSaveFile, 
     fileCurrent, 
     setFileCurrent 

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 
 const DataContext = createContext(true);
 
@@ -11,7 +11,7 @@ export function DataProvider({ children }) {
   const [folders, setFolders] = useState([])
 
   return (
-    <DataContext.Provider value={{ data, setData, openFolder, setOpenFolder, files, setFiles, proyect, setProyect, folders, setFolders }}>
+    <DataContext.Provider value = {{ data, setData, openFolder, setOpenFolder, files, setFiles, proyect, setProyect, folders, setFolders }}>
       {children}
     </DataContext.Provider>
   );

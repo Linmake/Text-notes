@@ -2,7 +2,7 @@ import HeaderEditorComponent from "../headers/HeaderEditorComponent"
 import SideBar from "../sidebar/SideBar"
 import QuillEditor from "./QuillEditor"
 
-const EditorComponent: function = () => {
+const EditorComponent = () => {
     return(
     <>
         <SideBar />
@@ -10,7 +10,8 @@ const EditorComponent: function = () => {
         <QuillEditor />
     </>
     )
-}
+} 
+
 
 
 export default EditorComponent

@@ -12,6 +12,7 @@ import UsersLayout from './Layout/UsersLayout';
 import Users from './components/Users/Users';
 import LogInUsers from './components/Users/LogInUsers';
 import SignInUsers from './components/Users/SignInUsers';
+import AccountPage from './pages/Account';
 
 
 function App() {
@@ -25,9 +26,9 @@ function App() {
       <Route path='/Project' element={<ProjectsMenu />}>
         <Route path='/Project/:id' element={<TextEditor />} />
       </Route>
-      <Route path='Users' element={<UsersLayout />}>
+      <Route path='Account' element={<UsersLayout />}>
         <Route index path='Auth' element={<Users />} />
-        <Route path='LogIn' element={<LogInUsers />} />
+        <Route path='LogIn' element={<AccountPage />} />
         <Route path='SignIn' element={<SignInUsers />} />
       </Route>
     </Route>

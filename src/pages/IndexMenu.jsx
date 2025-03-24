@@ -80,29 +80,29 @@ const IndexMenuPage = () => {
       <HeaderComponent />
       <ContainerInicio className="container-title">
         <ContainerTitle>
-          <h1 className="font">Practicas Notas sencillas</h1>
+          <h1 className="font">Efficient Notes</h1>
           <h2 className="subtitles">
-            Crea tus ideas, obten rendimiento potente al organizarte
+          Boost ideas, get powerful performance by getting organized
             <ul className="ul">
-              <li>Una nota dentro de una carpeta en un project</li>
-              <li>Ilimitadas y ordenadas por prioridad</li>
-              <li>Retroalimentación visual máxima gracias a la estructura</li>
+              <li>A note inside a folder in a project</li>
+              <li>Unlimited and sorted by priority</li>
+              <li>maximum visual feedback thanks to the structure</li>
             </ul>
-            <ButtonFirst type="button" onClick={handlerNavigate}>Crear project</ButtonFirst>
+            <ButtonFirst type="button" onClick={handlerNavigate}>Create a project</ButtonFirst>
           </h2>
         </ContainerTitle>
         <img src={notepad} className="notepadImg" />
         <Waves />
       </ContainerInicio>
-      <ContainerCards id="Crear">
+      <ContainerCards id="Create">
         <Link to={'/Projects-menu/'} className="link-card" style={{ "marginRight": '13rem' }}>
           <CardComponent>
-            <CardBody title="Crear project" icon="proyectosMenuIcon"></CardBody>
+            <CardBody title="Create a folder" icon="proyectosMenuIcon"></CardBody>
           </CardComponent>
         </Link>
         <Link to={'Project/'} className="link-card">
           <CardComponent>
-            <CardBody title="Crear idea" icon="proyectoIcon"></CardBody>
+            <CardBody title="Create a note" icon="proyectoIcon"></CardBody>
           </CardComponent>
         </Link>
       </ContainerCards>

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import '../../styles/components/header/HeaderInicio.css'
+import { Link } from 'react-router-dom'
 //Pantalla Laptop: 1080*1920
 const Header = styled.nav`
   height: 99px;
@@ -45,6 +46,11 @@ const LogoFont = styled.a`
     color: #ECECEC;
   }
 `
+const DropDownMenu = styled.ul`
+  min-width: 8rem;
+  position: absolute; 
+  top: 3.2vh !important;
+`
 
 
 const HeaderComponent = () => {
@@ -53,27 +59,27 @@ const HeaderComponent = () => {
     <>
       <Header className="navbar navbar-expand-lg bg-body-tertiary">
         <NavContainer className="container-fluid">
-          <LogoFont className="navbar-brand" href="/">Notas</LogoFont>
+          <LogoFont className="navbar-brand" href="/">
+            Notes
+          </LogoFont>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <SectionNotas className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Links className="nav-link active" aria-current="page" href={`${RutaPrincipal}/#Crear`}>Modelo</Links>
+              <Links className="nav-link active" aria-current="page" href={`${RutaPrincipal}/#Create`}>Model</Links>
             </li>
             <li className="nav-item dropdown">
               <Links className="nav-link dropdown-toggle" href={`${RutaPrincipal}/Notes/`} role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Mis notas
+                My Notes
               </Links>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href={`${RutaPrincipal}/Projects-menu/`}>Proyectos</a></li>
-                <li><a className="dropdown-item" href={`${RutaPrincipal}/Folders/`}>Carpetas</a></li>
-              </ul>
+              <DropDownMenu className="dropdown-menu">
+                <li><a className="dropdown-item" href={`${RutaPrincipal}/Projects-menu/`}>Projects</a></li>
+                <li><a className="dropdown-item" href={`${RutaPrincipal}/Folders/`}>Folders</a></li>
+              </DropDownMenu>
             </li> 
             <li className="nav-item">
-              <Links className="nav-link dropdown-toggle" href={`${RutaPrincipal}/cuenta/`}>
-                Cuenta
-              </Links>
+              <Link className="nav-link" to={`${RutaPrincipal}/Account/`}>Account</Link>
             </li>
           </SectionNotas>
         </NavContainer>

@@ -9,3 +9,15 @@
   font-family: "rubik";
   font-size: 16px;
 }
+
+.nav-link{
+  display: block;
+  box-sizing: border-box;
+  color: #FFFF !important;
+  font-weight: 400;
+  width: fit-content;
+  height: 20px;
+  &:hover{
+    color: rgb(248, 249, 170);
+  }
+}

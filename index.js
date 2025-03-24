@@ -1,16 +1,14 @@
 import express from "express";
-import connectDB from "./db/data-base.db.js";
+import connectDB from "./DB/data-base.db.js";
 import dotenv from "dotenv";
-import bodyParser from "body-parser";
 import { createServer } from "http";
 import cors from 'cors';
-import FileRouter from "./routes/file.routes.js";
-import FolderRouter from "./routes/folder.routes.js";
-import ProyectRouter from "./routes/proyect.routes.js";
+import FileRouter from "./Routes/file.routes.js";
+import FolderRouter from "./Routes/folder.routes.js";
+import ProjectRouter from "./Routes/project.routes.js";
 
 // Configuración de dotenv
 dotenv.config();
-
 const expressApp = express();
 connectDB();
 
@@ -29,7 +27,7 @@ expressApp.use(cors({
 // Rutas
 expressApp.use("/file", FileRouter);
 expressApp.use("/folder", FolderRouter);
-expressApp.use("/proyect", ProyectRouter);
+expressApp.use("/project", ProjectRouter);
 
 const port = process.env.PORT || 4000;
 

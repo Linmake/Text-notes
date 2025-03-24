@@ -5,7 +5,7 @@ const useFolderManagement = () => {
 
   const [folders, setFolders] = useState(["folder 1", "folder 2"]);
   const [selectedFolderIndex, setSelectedFolderIndex] = useState(null);
-  const [proyectoVacio, setProyectoVacio] = useState(false);
+  const [projectVoid, setProjectVoid] = useState(false);
   const [addNewFolder, setAddNewFolder] = useState(false);
 
   const inputRefNewFolder = useRef(null);
@@ -16,10 +16,10 @@ const useFolderManagement = () => {
 
   useEffect(() => {
     if (folders.length === 0) {
-      setProyectoVacio(true);
+      setProjectVoid(true);
       return;
     }
-    setProyectoVacio(false);
+    setProjectVoid(false);
   }, [folders]);
 
   const handlerNewFolders = (event) => {
@@ -35,7 +35,7 @@ const useFolderManagement = () => {
     setFolders(foldersOrdened);
     inputRefNewFolder.current.value = "";
     setAddNewFolder(false);
-    setProyectoVacio(false);
+    setProjectVoid(false);
   };
 
 
@@ -50,7 +50,7 @@ const useFolderManagement = () => {
     if (newFolder === "") {
       setAddNewFolder(false);
       if (folders.length === 0) {
-        setProyectoVacio(true);
+        setProjectVoid(true);
         return;
       }
       return;
@@ -59,7 +59,7 @@ const useFolderManagement = () => {
     setFolders(foldersOrdened);
     inputRefNewFolder.current.value = "";
     setAddNewFolder(false);
-    setProyectoVacio(false);
+    setProjectVoid(false);
   };
 
   const handlerSelectFolder = (index) => {

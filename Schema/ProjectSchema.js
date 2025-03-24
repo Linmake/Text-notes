@@ -33,5 +33,5 @@ const ProjectSchema = new Schema({
   strictQuery: 'throw'
 });
 
-const Project = mongoose.model('Proyect', ProjectSchema);
+const Project = mongoose.model('Project', ProjectSchema);
 export default Project 

@@ -1,7 +1,7 @@
 {
-  "name": "Text-Notes",
+  "name": "textnotes",
   "version": "1.1.0",
-  "description": "Organizador de notas como proyectos",
+  "description": "Organizador de notas como projectos",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.4.7",
     "express": "^4.19.2",
     "http-proxy-middleware": "^3.0.0",
     "mongodb": "^6.8.0",
@@ -43,6 +43,9 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__generator": "^7.6.8",
+    "@types/babel__template": "^7.4.4",
     "nodemon": "^3.1.3"
   },
   "browserslist": {

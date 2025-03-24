@@ -9,7 +9,6 @@ import { FileList } from './FileList';
 import { useNavigate } from 'react-router-dom';
 import NewFileContent from './ContainerNewFiles';
 import styles from '../../styles/components//editor/FolderList.css'
-import { EditorFunctionsContext } from '../../context/editorFunctions';
 
 export const LiFolder = styled.li`
   width: 100%;
@@ -71,14 +70,8 @@ const FolderList = () => {
     setAddNewFile,
     addNewFile,
     statusSelectFolder,
-    idFolderSelect,
     setIdFolderSelect
   } = useContext(positionSideContext);
-
-  const { 
-    setFileCurrent,
-    fileCurrent
-   } = useContext(EditorFunctionsContext);
 
   const {
     data,
@@ -90,7 +83,7 @@ const FolderList = () => {
   } = UseData();
 
   useEffect(() => {
-    const getFolders = async () => {
+    const getFolder = async () => {
       try {
         const res = await axios({
           url: `${DbUrl}/folder/${data.key}/all`,
@@ -108,10 +101,11 @@ const FolderList = () => {
      */
     const fetchData = async () => {
 
-      const resFetch = await getFolders()
+      const resFetch = await getFolder()
 
       if (resFetch && resFetch.status === 200) {
         setFolders(resFetch.data)
+        console.log("Folders desde la API:", resFetch.data);
 
       } else {
         console.error(new Error("Error del servidor"))
@@ -120,39 +114,7 @@ const FolderList = () => {
 
     fetchData();
 
-  }, [data, setFolders, fileCurrent]);
-
-  /*useEffect(() => {
-    const getFiles = async () => {
-      try {
-        const res = await axios({
-          url: `${DbUrl}/files/${data.key}/all`,
-          method: 'GET'
-        });
-        return res;
-      } catch (error) {
-        console.error(error);
-        return
-      }
-    };
-    /**
-     * Coloca los Files obtenidos desde la BD a el contexto
-     
-    const fetchData = async () => {
-
-      const resFetch = await getFiles()
-
-      if (resFetch && resFetch.status === 200) {
-        setFiles(resFetch.data)
-
-      } else {
-        console.error(new Error("Error del servidor"))
-      }
-    };
-
-    fetchData();
-
-  }, [data, setFiles]);*/
+  }, [data, setFolders]);
 
   const navigateFolder = useNavigate();
 
@@ -188,7 +150,7 @@ const FolderList = () => {
     }
     setIdFolderSelect(folder.Id)
     setOpenFolder(true)
-    setFiles(folder.Files) //!!todo
+    setFiles(folder.Files)
 
     let urlFolder = [currentPath, id]
     

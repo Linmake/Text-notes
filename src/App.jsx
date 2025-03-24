@@ -1,25 +1,31 @@
 
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Route, BrowserRouter as Router, RouterProvider, Routes } from 'react-router-dom';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import MenuInicioPage from './pages/IndexMenu';
-import EditorTexto from './pages/EditorTexto';
-import ProyectsMenu from './pages/ProyectsMenu';
+import IndexMenuPage from './pages/IndexMenu';
+import TextEditor from './pages/TextEditor';
+import ProjectsMenu, { ProjectsLoader } from './pages/ProjectsMenu';
+import RootLayout from './Layout/RootLayout';
+import NotFound from './pages/NotFound';
 
 
 function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path='/' element={<RootLayout/>}>
+        <Route index element={<IndexMenuPage/>} />
+        <Route exact path='/Projects-menu/' element={<ProjectsMenu />} /*loader={ProjectsLoader}*/ />
+        <Route exact path='/Folders/' element={<a />} />
+        <Route exact path='/*' element={<NotFound/>} />
+      <Route path='/Project' element={<ProjectsMenu />}>
+        <Route path='/Project/:id' element={<TextEditor />} />
+      </Route>
+    </Route>
+    )
+  )
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route exact path='/' element={<MenuInicioPage />} />
-          <Route exact path='/Proyects-menu/' element={<ProyectsMenu />} />
-          <Route path='/Proyect/*' element={<EditorTexto />} />
-          <Route exact path='/Folders/' element={<a />} />
-        </Routes>
-      </Router>
-    </>
+    <RouterProvider router={router}/>
   )
 }
 

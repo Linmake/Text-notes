@@ -7,11 +7,11 @@ export function DataProvider({ children }) {
   const [data, setData] = useState(null);
   const [openFolder, setOpenFolder] = useState(false)
   const [files, setFiles] = useState([])
-  const [proyect, setProyect] = useState([])
+  const [project, setProject] = useState([])
   const [folders, setFolders] = useState([])
 
   return (
-    <DataContext.Provider value = {{ data, setData, openFolder, setOpenFolder, files, setFiles, proyect, setProyect, folders, setFolders }}>
+    <DataContext.Provider value = {{ data, setData, openFolder, setOpenFolder, files, setFiles, project, setProject: setProject, folders, setFolders }}>
       {children}
     </DataContext.Provider>
   );

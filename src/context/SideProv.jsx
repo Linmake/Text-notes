@@ -8,7 +8,7 @@ export const SideProv = ({ children }) => {
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [addNewFolder, setAddNewFolder] = useState(false);
   const [addNewFile, setAddNewFile] = useState(false);
-  const [proyectoVacio, setProyectoVacio] = useState(false);
+  const [projectVoid, setProjectVoid] = useState(false);
   const [folders, setFolders] = useState([]);
   const [files, setFiles] = useState([]);
   const [selectedFolderIndex, setSelectedFolderIndex] = useState(null);
@@ -16,20 +16,20 @@ export const SideProv = ({ children }) => {
   const [selectedFileIndex, setSelectedFileIndex] = useState(null);
   const [statusSelectFolder, setStatusSelectFolder] = useState(false);
   const [statusSelectFile, setStatusSelectFile] = useState(false);
-  const [proyects, setProyects] = useState([]);
+  const [projects, setProjects] = useState([]);
   return (
     <positionSideContext.Provider value={{
       sidebarVisible, setSidebarVisible,
       addNewFolder, setAddNewFolder,
       addNewFile, setAddNewFile,
-      proyectoVacio, setProyectoVacio,
+      projectVoid, setProjectVoid,
       folders, setFolders,
       files, setFiles,
       selectedFolderIndex, setSelectedFolderIndex,
       selectedFileIndex, setSelectedFileIndex,
       statusSelectFolder, setStatusSelectFolder,
       statusSelectFile, setStatusSelectFile,
-      proyects, setProyects,
+      projects, setProjects,
       idFolderSelect, setIdFolderSelect,
     }}>
       {children}

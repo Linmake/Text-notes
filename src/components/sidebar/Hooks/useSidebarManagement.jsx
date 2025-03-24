@@ -2,12 +2,12 @@ import { positionSideContext } from '../../../context/SideProv'
 import { useState, useContext } from "react";
 
 const useSidebarManagement = () => {
-  const [proyectoVacio, setProyectoVacio] = useState(false);
+  const [projectVoid, setProjectVoid] = useState(false);
   const { sidebarVisible, setSidebarVisible } = useContext(positionSideContext);
 
   return (
-    proyectoVacio,
-    setProyectoVacio,
+    projectVoid,
+    setProjectVoid,
     sidebarVisible,
     setSidebarVisible
   )

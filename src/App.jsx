@@ -8,6 +8,10 @@ import TextEditor from './pages/TextEditor';
 import ProjectsMenu, { ProjectsLoader } from './pages/ProjectsMenu';
 import RootLayout from './Layout/RootLayout';
 import NotFound from './pages/NotFound';
+import UsersLayout from './Layout/UsersLayout';
+import Users from './components/Users/Users';
+import LogInUsers from './components/Users/LogInUsers';
+import SignInUsers from './components/Users/SignInUsers';
 
 
 function App() {
@@ -20,6 +24,11 @@ function App() {
         <Route exact path='/*' element={<NotFound/>} />
       <Route path='/Project' element={<ProjectsMenu />}>
         <Route path='/Project/:id' element={<TextEditor />} />
+      </Route>
+      <Route path='Users' element={<UsersLayout />}>
+        <Route index path='Auth' element={<Users />} />
+        <Route path='LogIn' element={<LogInUsers />} />
+        <Route path='SignIn' element={<SignInUsers />} />
       </Route>
     </Route>
     )

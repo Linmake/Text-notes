@@ -13,8 +13,6 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-
-
 `
 const Register = styled.form`
 display: flex;
@@ -32,18 +30,15 @@ const GoogleGrid = styled.div`
 
 `
 
-
 export default function LogInUsers() {
   return (
     <Container>
       <ContainerDesc>
-        <img src='' alt='efficent notes logo' ></img>
-        <br/>
+        <img src='' alt='efficent notes logo'/>
         <h1>
           Log in to efficient notes
         </h1>
       </ContainerDesc>
-      <br />
       <Register>
         <label htmlFor="email">Email</label>
         <input id='email' type='email' placeholder='Your email address'/>

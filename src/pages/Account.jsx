@@ -5,7 +5,7 @@ import LogInUsers from '../components/Users/LogInUsers'
 const Container = styled.div`
   display: flex;
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   background-color: #fcfcfc;
   justify-content: center;
   align-items: center;

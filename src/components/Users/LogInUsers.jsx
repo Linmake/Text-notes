@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import NotepadImageRemoveBg from "../../assets/notepad-removebg.png"
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  :center ;
+  position: absolute;
+  left: 70vh;
+  top: 9%;
   align-items: center;
-  font-family: ;
+  
 `;
 const ContainerDesc = styled.div`
   display: flex;
@@ -27,7 +30,7 @@ const RegisterForm = styled.form`
 `;
 
 const BttContinue = styled.button`
-  width: 22.5rem;
+  width: 22rem;
   height: 2.25rem;
   background-color: #000;
   border-style: none;
@@ -49,11 +52,24 @@ const InputEmail = styled.input`
 `;
 
 const Spaced = styled.div`
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  flex-direction: row;
   width: 22rem;
+  gap: 10px;
   height: 1rem;
   text-align: center;
   color: #838383;
 `;
+
+const Separator = styled.span`
+width: 100%;
+height: 1px;
+border: 1px solid gray;
+`;
+
 const GoogleGrid = styled.button`
   width: 22rem;
   height: 2.25rem;
@@ -63,19 +79,14 @@ const GoogleGrid = styled.button`
 
 const TitleH1 = styled.h1`
   color: #202020;
-`;
-
-const Separator = styled.span`
-  width: 100%;
-  height: 1px;
-  border: 1px solid gray;
+  font-size: 1.8rem;
 `;
 
 export default function LogInUsers() {
   return (
     <Container>
       <ContainerDesc>
-        <img src="" alt="efficent notes logo"></img>
+        <img srcSet={NotepadImageRemoveBg} width={80} alt="efficent notes logo"></img>
         <br />
         <TitleH1>Log in to efficient notes</TitleH1>
       </ContainerDesc>

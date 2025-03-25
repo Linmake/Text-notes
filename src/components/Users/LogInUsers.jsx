@@ -17,11 +17,12 @@ const GlobalStyle = createGlobalStyle`
   flex-direction: column;
   position: absolute;
   left: 35%;
-  top: 9%;
+  top: 10%;
   align-items: center;
   ::selection{
   background-color: #d7dbfe;
   }
+  gap: 0.5rem;
 `;
 const ContainerDesc = styled.div`
   display: flex;
@@ -52,6 +53,10 @@ const BttContinue = styled.button`
   color: #fff;
   font-size: 1rem;
   margin-top: 1rem;
+  box-shadow: inset 0 0 0 1px transparent;
+  &:hover {
+    background-color: #2e2e2e;
+  }
 `;
 
 const LabelEmail = styled.label`
@@ -65,19 +70,22 @@ const InputEmail = styled.input`
   margin-top: 0.87rem;
   white-space: pre-wrap;
   cursor: text;
+  color: #202020;
   border: 1px solid #cdcdcd;
   text-indent: calc(calc(12px * 1) - 1px);
-  border-radius: max(calc(6px * 1 * 0.75), 0px);
+  border-radius: max(calc(6px * 1 * 0.75));
   font-size: 1rem;
-  &:active{
-  border: 1px solid #d7dbfe;
+  &:focus{
+  border: 1px solid #979ef7;
   }
+  box-shadow: inset 0 0 0 #202020;
+  outline-color: #979ef7;
 `;
 
 const Spaced = styled.div`
   display: flex;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   align-items: center;
   flex-direction: row;
   width: 22rem;
@@ -85,6 +93,8 @@ const Spaced = styled.div`
   height: 1rem;
   text-align: center;
   color: #838383;
+  font-size: 0.75rem;
+  user-select: none;
 `;
 
 const Separator = styled.span`
@@ -98,9 +108,11 @@ const GoogleGrid = styled.button`
   height: 2.25rem;
   cursor: pointer;
   font-size: 1rem;
+  color: #202020;
   border: 1px solid #cdcdcd;
   background-color: white;
   border-radius: max(calc(6px * 1 * 0.75), 0px);
+  user-select: none;
 `;
 
 const TitleH1 = styled.h1`

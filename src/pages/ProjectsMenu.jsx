@@ -72,10 +72,10 @@ const Subtitle = styled.h2`
   user-select: none;
 `
 /*
-*Trae los Proyectos desde la Base de datos
+*Get Projects from de DB 
 */
 /*
-*@returns Lista de Proyectos 
+*@returns List Projects
 */
 const ProjectsMenu = () => {
   //const InitialData = useLoaderData()
@@ -86,7 +86,7 @@ const ProjectsMenu = () => {
   const navProject = useNavigate()
 
   useEffect(() => {
-    const fetchProyects = async () => {
+    const fetchProjects = async () => {
       try {
         const res = await axios.get(`http://localhost:4000/project/all`);
         setProjects(res.data);
@@ -94,11 +94,11 @@ const ProjectsMenu = () => {
         console.error('Error fetching projects:', error);
       }
     };
-    fetchProyects();
+    fetchProjects();
   }, [setProjects, setProject, setData]);
 
   /*
-  *Abre el Proyecto y envía a la URL 
+  *Open Project and open the URL 
   */
   const handleClick = (id) => {
     navProject(`/Project/${id}`)
@@ -107,20 +107,20 @@ const ProjectsMenu = () => {
     setProject(findProject)
   };
   
-  const noProyects = () => {
+  const noProjects = () => {
     return (
     <NoProjectCompTemplate>
       <NoProjectsContainer>
         <div></div>
         <NewProyectTab />
-        <Subtitle className="subtitle-noproyects">Sin proyectos</Subtitle>
+        <Subtitle className="subtitle-noproyects">Without projects</Subtitle>
       </NoProjectsContainer>
     </NoProjectCompTemplate>
   )}
 
   return (
     <>
-      {projects.length == 0 ? noProyects(event => event)  
+      {projects.length == 0 ? noProjects(event => event)  
         : (
           <ProjectCompTemplate>
             <Container>

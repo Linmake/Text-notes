@@ -64,7 +64,7 @@ const NewFolderContent = () => {
       Void: true,
       Date: getDate,
       Files: [],
-      IdProyect: data.key
+      IdProject: data.key
     }
     try {
       const resFolders = await axios.post(`http://localhost:4000/folder/create/${project.Id}`, newFolder);

@@ -25,7 +25,7 @@ const Button = styled.button`
   height: 50px;
 `;
 
-export const NewProyectTab = () => {
+export const NewProjectTab = () => {
   const refName = useRef(null);
   const { setProjects } = useContext(positionSideContext);
   
@@ -48,7 +48,7 @@ export const NewProyectTab = () => {
     };
     try {
       const res = await axios.post("http://localhost:4000/project/create", data);
-      setProjects(prevProyects => [...prevProyects, data]);
+      setProjects(prevProjects => [...prevProjects, data]);
       refName.current.value = ""
       return res;
     } catch (error) {
@@ -59,7 +59,7 @@ export const NewProyectTab = () => {
   return (
     <Form>
       <Input ref={refName} autoFocus type="text" className="form-control me-2" onKeyDown={handlerEnt} />
-      <Button type='Submit' onClick={handleSubmit} className="btn btn-outline-success">Crear</Button>
+      <Button type='Submit' onClick={handleSubmit} className="btn btn-outline-success">Create</Button>
     </Form>
   );
 };

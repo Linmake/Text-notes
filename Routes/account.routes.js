@@ -22,7 +22,7 @@ AccountRouter.post("/create", validateAccount,async(req, res) => {
             return res.status(400).send("An account with the ID: ${valideId} already exists")
         } 
         const newAccount = await Account.create(req.body)
-        return.status(201).send(newAccount)
+        return res.status(201).send(newAccount)
     }catch(err){
         res.status(500).send(err.message)
     }
@@ -64,4 +64,3 @@ AccountRouter.delete('delete/:idAccount', async(req, res)=>{
 })
 
 export default AccountRouter
-

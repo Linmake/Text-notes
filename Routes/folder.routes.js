@@ -7,86 +7,86 @@ const FolderRouter = express.Router();
 
 FolderRouter.get("/all", async (req, res) => {
   const allFolders = await Folder.find({})
-  res.status(200).send(allFolders);
+  return res.status(200).send(allFolders);
 });
 
-FolderRouter.get("/:idProyect/all", async (req, res) => {
-  const { idProyect } = req.params
-  const project = await Project.findOne({ Id: idProyect })
-  if (!project) return res.status(400).send(`Project con el id: ${idProyect} no existe`)
+FolderRouter.get("/:ProjectId/all", async (req, res) => {
+  const { ProjectId } = req.params
+  const project = await Project.findOne({ Id: ProjectId })
+  if (!project) return res.status(400).send(`Project with Id: ${ProjectId} don't exist`)
   const allFolders = project.Folders
-  res.status(200).send(allFolders);
+  return res.status(200).send(allFolders);
 });
 
-FolderRouter.post("/create/:idProyect", validateFolder, async (req, res) => {
+FolderRouter.post("/create/:ProjectId", validateFolder, async (req, res) => {
   try {
-    const { idProyect } = req.params
+    const { ProjectId } = req.params
     const folder = req.body;
-    if (!folder) return res.status(400).send("Folder no existe");
-    const project = await Project.findOne({ Id: idProyect })
-    if (!project) return res.status(400).send("Project no existe");
+    if (!folder) return res.status(400).send("Folder don't exist");
+    const project = await Project.findOne({ Id: ProjectId })
+    if (!project) return res.status(400).send("Project don't exist");
     await Folder.create(folder)
     project.Folders.push(folder)
     await project.save()
-    res.status(201).send(`Folder con Id: "${folder.Id}" creado con exito en Project: "${project.Title}"`)
+    res.status(201).send(`Folder with Id: "${folder.Id}" succesfully created in Project: "${project.Title}"`)
   } catch (error) {
-    res.status(500).send(`Error del servidor: ${error.message}`);
+    res.status(500).send(`Server Error: ${error.message}`);
   }
 });
 
-FolderRouter.put("/edit/:idProyect/:idFolder", async (req, res) => {
+FolderRouter.put("/edit/:ProjectId/:FolderId", async (req, res) => {
   try {
-    const { idProyect, idFolder } = req.params;
+    const { ProjectId, FolderId } = req.params;
     const { Title } = req.body
     if (!Title) return
-    const project = await Project.findOne({ Id: idProyect })
+    const project = await Project.findOne({ Id: ProjectId })
     if (!project) {
-      return res.status(404).send(`Project con Id: ${idProyect} no existe `);
+      return res.status(404).send(`Project with Id: ${ProjectId} don't exist`);
     }
-    const folderRef = project.Folders.find(folder => folder.Id == idFolder)
+    const folderRef = project.Folders.find(folder => folder.Id == FolderId)
     if (!folderRef) {
-      return res.status(404).send(`Folder con Id: ${idFolder} no existe `);
+      return res.status(404).send(`Folder with Id: ${FolderId} don't exist`);
     }
-    await Folder.findOneAndUpdate({ Id: idFolder }, { Title: Title, ModifyDate: getDate })
+    await Folder.findOneAndUpdate({ Id: FolderId }, { Title: Title, ModifyDate: getDate })
     folderRef.Title = Title;
     folderRef.ModifyDate = getDate;
     await project.save()
-    res.status(200).send("Editado con exito");
+    res.status(200).send("Edited with succesfully");
   } catch (error) {
-    res.status(500).send(`Error del servidor: ${error.message}`);
+    res.status(500).send(`Server Error: ${error.message}`);
   }
 });
 
-FolderRouter.delete("/delete/:idProyect/:idFolder/", async (req, res) => {
-  const { idProyect, idFolder } = req.params;
-  const project = await Project.findOne({ Id: idProyect })
-  if (!project) res.status(401).send(`Project con Id: ${idProyect} no existe `);
-  const folderRef = project.Folders.find(folder => folder.Id == idFolder)
-  if (!folderRef) res.status(401).send(`Folder con Id: ${idFolder} no existe `);
-  await Folder.findOneAndDelete({ Id: idFolder })
-  const index = project.Folders.indexOf(folderRef);
-  project.Folders.splice(index, 1);
+FolderRouter.delete("/delete/:ProjectId/:FolderId/", async (req, res) => {
+  const { ProjectId, FolderId } = req.params;
+  const project = await Project.findOne({ Id: ProjectId })
+  if (!project) return res.status(401).send(`Project with Id: ${ProjectId} don't exist`);
+  const folderRef = project.Folders.find(folder => folder.Id == FolderId)
+  if (!folderRef) return res.status(401).send(`Folder with Id: ${FolderId} don't exist`);
+  await Folder.findOneAndDelete({ Id: FolderId })
+  const index = project.Folders.indexOf(folderRef)
+  project.Folders.splice(index, 1)
   await project.save()
-  res.status(400).send(`Carpeta con Id: ${folderRef.Id} eliminada con exito`);
+  return res.status(200).send(`Folder with Id: ${folderRef.Id} deleted with succesfully`);
 });
 
-FolderRouter.delete("/all/delete/:idProyect", async (req, res) => {
-  const { idProyect } = req.params;
-  if (!idProyect) res.status(401).send(`Project con Id: ${idProyect}no existe`)
-  const project = await Project.findOne({ Id: idProyect })
+FolderRouter.delete("/delete/all/:ProjectId", async (req, res) => {
+  const { ProjectId } = req.params;
+  if (!ProjectId) res.status(401).send(`Project with Id: ${ProjectId} don't exist`)
+  const project = await Project.findOne({ Id: ProjectId })
   project.Folders = [];
   await project.save()
-  res.status(400).send("Todas las carpetas eliminadas con exito");
+  res.status(400).send("All folders in the project succesfully deleted");
 });
 
-FolderRouter.delete("all/delete/", async (req, res) => {
+FolderRouter.delete("delete/all", async (req, res) => {
   try {
     await Folder.deleteMany({})
     await Project.updateMany({ Folders: [] })
-    res.status(400).send("Todas los folders eliminados con exito");
+    res.status(400).send("All folders succesfully deleted");
   } catch (error) {
-    res.status(500).send(`Error del servidor: ${error.message}`);
+    res.status(500).send(`Server Error: ${error.message}`);
   }
-});
+})
 
 export default FolderRouter;

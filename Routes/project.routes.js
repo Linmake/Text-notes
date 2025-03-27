@@ -9,22 +9,22 @@ const ProjectRouter = express.Router()
 ProjectRouter.get('/all', async (req, res) => {
   try {
     const allProjects = await Project.find({})
-    res.status(200).send(allProjects)
+    return res.status(200).send(allProjects)
   } catch (error) {
-    res.status(500).send(error.message)
+    return res.status(500).send(error.message)
   }
 })
 
-ProjectRouter.get('/:idProject', async (req, res) => {
+ProjectRouter.get('/:ProjectId', async (req, res) => {
   try {
-    const { idProject: idProject } = req.params
-    const project = await Project.findOne({ Id: idProject })
+    const { ProjectId } = req.params
+    const project = await Project.findOne({ Id: ProjectId })
     if (project) {
       return res.status(200).send(project)
     }
-    return res.status(404).send(`Project no existe`)
+    return res.status(404).send(`Project with Id: ${ProjectId} don't exist`)
   } catch (error) {
-    res.status(500).send(err.message)
+      return res.status(500).send(err.message)
   }
 })
 
@@ -32,42 +32,48 @@ ProjectRouter.post('/create', validateProject, async (req, res) => {
   try {
     const valideId = await Project.exists({ Id: req.body.Id })
     if (valideId) {
-      return res.status(400).send("Existe un Proyecto con el mismo Id o titulo")
+      return res.status(400).send(`Project with Id: ${req.body.Id}`)
     }
-    const newProyect = await Project.create(req.body)
-    res.status(201).send(newProyect)
+    const newProject = await Project.create(req.body)
+    
+    return res.status(201).send(newProject)
   } catch (err) {
-    res.status(500).send(err.message)
+    return res.status(500).send(err.message)
   }
 })
 
-ProjectRouter.put('/edit/:idProject', async (req, res) => {
+ProjectRouter.put('/edit/:ProjectId', async (req, res) => {
   const { Title } = req.body
+  const { ProjectId } = req.params
   const project = await Project.findOne({
-    Id: req.params.idProject
-
+    Id: ProjectId
   })
   const titleExist = await Project.exists({ Title: Title })
-  if (!project) return res.send(`Proyecto con id: "${req.params.idProject}" no existe`)
-  if (titleExist) return res.send(`Proyecto con titulo: "${Title}" ya existe`)
-  const query = { Id: req.params.idProject }
-  await Project.findOneAndUpdate(query, { Title: Title })
-  res.status(200).send(`Proyecto con el Id: "${req.params.idProject}" editado con exito`)
+  if (!project) return res.status(400).send(`Project with Id: ${ProjectId} don't exist`)
+  if (titleExist) return res.status(400).send(`Project with Title: ${Title} already exist`)
+  const query = { Id: ProjectId }
+  const projectEdit = { Title: Title }
+  await Project.findOneAndUpdate(query, projectEdit)
+  return res.status(200).send(`Project with Id: ${ProjectId} succesfully edited`)
 })
 
-ProjectRouter.delete('/all/delete/', async (req, res) => {
+ProjectRouter.delete('/delete/:ProjectId', async (req, res) => {
+  const { ProjectId } = req.params
+  const project = await Project.findOne({ Id: ProjectId })
+  if (!project) return res.status(400).send(`Project with Id: ${ProjectId} don't exist`)
+  await Project.findOneAndDelete({ Id: ProjectId })
+  if(project.Folders.length !== 0){
+    await Folder.deleteMany({IdProject: ProjectId})
+    return res.status(200).send('Project succesfully deleted')
+  }
+  return res.status(200).send('Project succesfully deleted')
+})
+
+ProjectRouter.delete('/delete/all', async (req, res) => {
   await Project.deleteMany({})
   await Folder.deleteMany({})
   await File.deleteMany({})
-  res.status(200).send('Todos los Projects eliminados con exito')
-})
-
-ProjectRouter.delete('/delete/:idProject', async (req, res) => {
-  const { idProyect: idProject } = req.params
-  const project = await Project.findOne({ Id: idProject })
-  if (!project) return res.status(400).send(`Proyecto con id: ${idProject} no existe`)
-  await Project.findOneAndDelete({ Id: req.params.idProject })
-  res.status(200).send('Project eliminado con exito')
+  return res.status(200).send('All projects succesfully deleted')
 })
 
 export default ProjectRouter

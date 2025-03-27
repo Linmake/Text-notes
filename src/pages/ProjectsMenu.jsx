@@ -88,7 +88,7 @@ const ProjectsMenu = () => {
   useEffect(() => {
     const fetchProyects = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/proyect/all`);
+        const res = await axios.get(`http://localhost:4000/project/all`);
         setProjects(res.data);
       } catch (error) {
         console.error('Error fetching projects:', error);

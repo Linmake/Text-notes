@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import { NewProyectTab } from "../components/Project/NewProyectTab.jsx";
+import { NewProjectTab } from "../components/Project/NewProjectTab.jsx";
 import { ProjectCompTemplate } from "../components/Templates/ProjectCompTemplate.jsx";
 import styled from "styled-components";
 import "../styles/pages/projects/global.css";
@@ -112,7 +112,7 @@ const ProjectsMenu = () => {
     <NoProjectCompTemplate>
       <NoProjectsContainer>
         <div></div>
-        <NewProyectTab />
+        <NewProjectTab />
         <Subtitle className="subtitle-noproyects">Without projects</Subtitle>
       </NoProjectsContainer>
     </NoProjectCompTemplate>
@@ -124,7 +124,7 @@ const ProjectsMenu = () => {
         : (
           <ProjectCompTemplate>
             <Container>
-              <NewProyectTab />
+              <NewProjectTab />
               <Ul>
                 {projects.map((project, index) => (
                   <ProjectElement key={index} onClick={() => handleClick(project.Id)} >

@@ -1,19 +1,15 @@
-import { useContext, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFolderBlank, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import { useEffect } from 'react';
 import styled from "styled-components";
-import { positionSideContext } from '../../context/SideProv';
 import axios from 'axios';
 import { UseData } from '../../context/dataContext';
-import { FileList } from './FileList';
-import { useNavigate, useParams } from 'react-router-dom';
-import NewFileContent from './ContainerNewFiles';
-import iconNewFile from '../../assets/addFileIconWhite.png'
+import { useParams } from 'react-router-dom';
+import IconNewFile from '../../assets/addFileIconWhite.png'
 import iconNewFolder from '../../assets/addFolderIconWhite.png'
+import FolderList from './FolderList';
 
 const ContainerProyect = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   box-sizing: content-box;
   width: 100%;
   `
@@ -24,6 +20,15 @@ const ContainerProyect = styled.div`
   margin-top: 4%;
   display: flex;
   flex-direction: row;
+  gap: 1rem;
+  `
+
+  const ContainerFolders = styled.div`
+  box-sizing: content-box;
+  margin-top: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
   `
   const IconButton = styled.button`
@@ -80,7 +85,7 @@ const ContainerProject = () => {
         });
         return res;
       } catch (error) {
-        console.error(new Error(`Server status code: (${resFetch.status}, ${resFetch.statusText}), ${resFetch.data}`))
+        console.error(new Error(`Server status code: (${res.status}, ${res.statusText}), ${res.data}`))
         return
       }
     };
@@ -98,11 +103,13 @@ const ContainerProject = () => {
       <Header>
         <ContainerTitleProject><h1>{project.Title}</h1></ContainerTitleProject>
         <ContainerButtons>
-          <IconButton id='newFileBttn' style={{backgroundImage: `url(${iconNewFile})`}}><iconNewFile/></IconButton>
+          <IconButton id='newFileBttn' style={{backgroundImage: `url(${IconNewFile})`}}><iconNewFile/></IconButton>
           <IconButton style={{backgroundImage: `url(${iconNewFolder})`}} id='newFolderBttn'><iconNewFolder/></IconButton>
         </ContainerButtons>
       </Header>
-
+      <ContainerFolders>
+        <FolderList/>
+      </ContainerFolders>
     </ContainerProyect>
   );
 };

@@ -97,12 +97,12 @@ const IndexMenuPage = () => {
       <ContainerCards id="Create">
         <Link to={'/Projects-menu/'} className="link-card" style={{ "marginRight": '13rem' }}>
           <CardComponent>
-            <CardBody title="Create a folder" icon="proyectosMenuIcon"></CardBody>
+            <CardBody title="Create a folder" icon="iconProjectsMenu"></CardBody>
           </CardComponent>
         </Link>
         <Link to={'Project/'} className="link-card">
           <CardComponent>
-            <CardBody title="Create a note" icon="proyectoIcon"></CardBody>
+            <CardBody title="Create a note" icon="iconProject"></CardBody>
           </CardComponent>
         </Link>
       </ContainerCards>

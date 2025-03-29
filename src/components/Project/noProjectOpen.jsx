@@ -1,15 +1,7 @@
-import { positionSideContext, SideProv } from '../context/SideProv'
-import { EditorProvider } from '../context/editorFunctions';
-import EditorCompTemplate from "../components/Templates/EditorCompTemplate";
-import SideBar from "../components/sidebar/SideBar";
-import QuillEditor from "../components/Editor/QuillEditor";
-import HeaderEditorComponent from "../components/Header/HeaderEditorComponent";
 import styled from 'styled-components';
-import { useContext, useEffect } from 'react';
-import axios from 'axios';
-import { UseData } from '../context/dataContext';
-import { useNavigate } from 'react-router-dom';
-import {useParams} from 'react-router-dom'
+import QuillEditor from "../Editor/QuillEditor"
+import HeaderEditorComponent from "../Header/HeaderEditorComponent"
+import SideBar from "../sidebar/SideBar"
 
 const FilterSelectProject = styled.div`
 z-index: 100;
@@ -21,6 +13,7 @@ width: 100vw;
 height: 100vh;
 padding: 5rem;
 `
+
 const ContainerFilter = styled.div`
 position: absolute;
 box-shadow: 0px 0px 5px #c4c7cc;
@@ -35,6 +28,8 @@ padding-left: 110px;
 padding-right: 110px;
 padding-bottom: 0px;
 `
+
+
 const Contend = styled.div`
 height: 90%;
 display: flex;
@@ -89,34 +84,6 @@ const ProjectElement = styled.li`
   }
 `;
 
-const getProjects = async () => {
-  try {
-    const res = await axios.get(`http://localhost:4000/project/all`);
-    return res;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const TextEditor = () => {
-  const { projects, setProjects } = useContext(positionSideContext);
-  const { setData, setProject } = UseData()
-  const { projectId } = useParams()
-  
-  const navigate = useNavigate();
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const res = await getProjects();
-        setProjects(res.data);
-      } catch (error) {
-        console.error('Error fetching projects:', error);
-      }
-    };
-    fetchProjects();
-  }, [setProjects, setData]);
-
-  
 const noProjectsOpen = () => {  
   return (
     <>
@@ -142,22 +109,3 @@ const noProjectsOpen = () => {
     </>
   )
 }
-const handlerOpen = (id) => {
-  navigate(id)
-  setData({ key: id })
-  const findProject = projects.find(project => project.Id == id)
-  setProject(findProject)
-}
-  return (
-    <EditorCompTemplate className="plantilla-body-editor">
-      <SideProv>
-        <EditorProvider>
-          <SideBar />
-          <HeaderEditorComponent />
-          <QuillEditor />
-        </EditorProvider>
-      </SideProv>
-    </EditorCompTemplate>
-  );
-};
-export default TextEditor

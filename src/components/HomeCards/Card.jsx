@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import project from '../../assets/projectIcon.webp';
-import proyectosMenu from '../../assets/projectMenuIcon.webp';
+import projectosMenu from '../../assets/projectMenuIcon.webp';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -42,16 +42,16 @@ const Img = styled.img`
 `;
 export const CardBody = ({ title, icon }) => {
   let imgSource;
-  if (icon === "proyectoIcon") {
+  if (icon === "projectIcon") {
     imgSource = project;
-  } else if (icon === "proyectosMenuIcon") {
-    imgSource = proyectosMenu;
+  } else if (icon === "iconProjectsMenu") {
+    imgSource = projectosMenu;
   }
   return (
     <>
       <Section>
         <H2>{title}</H2>
-        <Img src={imgSource} alt="project icono" />
+        <Img src={imgSource} alt="Icon Project" />
       </Section>
     </>
   );
@@ -70,7 +70,7 @@ export const CardComponent = ({ children }) => {
     if (ruta === "Projects-menu" || ruta === "Project") {
       setRuta(`/${ruta}`);
     } else {
-      console.error("especifica una ruta correcta");
+      console.error("Provide a valid url");
     }
   };
 
@@ -86,7 +86,7 @@ export const CardComponent = ({ children }) => {
 // Props
 CardBody.propTypes = {
   title: PropTypes.string.isRequired,
-  icon: PropTypes.oneOf(['proyectoIcon', 'proyectosMenuIcon']).isRequired,
+  icon: PropTypes.oneOf(['iconProject', 'iconProjectsMenu']).isRequired,
 };
 
 CardComponent.propTypes = {

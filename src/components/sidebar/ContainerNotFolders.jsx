@@ -43,7 +43,7 @@ const Li = styled.li`
   }
 `
 
-const SinFoldersContenedor = () => {
+const ContainerNotFolders = () => {
 
   const { addNewFolder, handlerFolders } = useFolderManagement([]);
   const { projectVoid } = useSidebarManagement([]);
@@ -52,13 +52,13 @@ const SinFoldersContenedor = () => {
     <Li className={`nav-item contenedor-folder-vacio ${(addNewFolder) ? 'hidden' : ''} ${(projectVoid) ? '' : 'hiddens'}`}>
       <div className="nav-link-carpetas-vacias text-white">
         <p className='texto'>
-          Todavía no ha agregado una carpeta al área de trabajo.
+          You have'nt yet added a folder
         </p>
         <br />
-        <button className="btn-nueva-carpeta" onClick={handlerFolders}>Nueva carpeta</button>
+        <button className="btn-nueva-carpeta" onClick={handlerFolders}>New folder</button>
       </div>
     </Li>
   )
 }
 
-export default SinFoldersContenedor
+export default ContainerNotFolders

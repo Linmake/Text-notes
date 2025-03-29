@@ -1,6 +1,6 @@
 import "../../styles/components/sidebar/SideBarComponent.css";
 import ContainerProject from "./ContainerProject";
-import SinFoldersContenedor from "./ContainerWoFolders";
+import ContainerNotFolders from "./ContainerNotFolders";
 import NewFolderContent from "./ContainerNewFolders";
 import { useContext } from "react";
 import { positionSideContext } from '../../context/SideProv';
@@ -48,7 +48,7 @@ const SideBar = () => {
     <DivSidebar className={`slider-contenedor bg-dark col-auto col-md-2 ${(sidebarVisible) ? '' : 'hidden'}`}>
       <SideContenedor >
         <ContainerProject />
-        <SinFoldersContenedor />
+        <ContainerNotFolders />
         <NewFolderContent />
         <FolderList />
       </SideContenedor>

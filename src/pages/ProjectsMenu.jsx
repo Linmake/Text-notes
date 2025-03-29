@@ -113,7 +113,7 @@ const ProjectsMenu = () => {
       <NoProjectsContainer>
         <div></div>
         <NewProjectTab />
-        <Subtitle className="subtitle-noproyects">Without projects</Subtitle>
+        <Subtitle className="subtitle-noprojects">Without projects</Subtitle>
       </NoProjectsContainer>
     </NoProjectCompTemplate>
   )}

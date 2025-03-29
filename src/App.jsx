@@ -23,8 +23,8 @@ function App() {
         <Route exact path='/Projects-menu/' element={<ProjectsMenu />} /*loader={ProjectsLoader}*/ />
         <Route exact path='/Folders/' element={<a />} />
         <Route exact path='/*' element={<NotFound/>} />
-      <Route path='/Project' element={<ProjectsMenu />}>
-        <Route path='/Project/:id' element={<TextEditor />} />
+      <Route path='/Project/:projectId' element={<TextEditor />}>
+        
       </Route>
       <Route path='Account' element={<UsersLayout />}>
         <Route index path='Auth' element={<Users />} />

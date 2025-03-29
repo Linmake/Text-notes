@@ -6,7 +6,6 @@ import { useContext } from "react";
 import { positionSideContext } from '../../context/SideProv';
 import SideContenedor from "./ContainerSideBar";
 import styled from "styled-components";
-import FolderList from "./FolderList";
 
 // Styled-components
 const DivSidebar = styled.div`
@@ -50,7 +49,6 @@ const SideBar = () => {
         <ContainerProject />
         <ContainerNotFolders />
         <NewFolderContent />
-        <FolderList />
       </SideContenedor>
       <DivButtonSidebar className="container-button-sidebar">
         <button className="button-side" onClick={toggleSidebar}></button>

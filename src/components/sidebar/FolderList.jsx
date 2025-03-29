@@ -6,7 +6,7 @@ import { positionSideContext } from '../../context/SideProv';
 import axios from 'axios';
 import { UseData } from '../../context/dataContext';
 import { FileList } from './FileList';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import NewFileContent from './ContainerNewFiles';
 import styles from '../../styles/components//editor/FolderList.css'
 import { EditorFunctionsContext } from '../../context/editorFunctions';
@@ -63,6 +63,7 @@ const InputFolder = styled.input`
 const FolderList = () => {
 
   const DbUrl = "http://localhost:4000";
+  const {projectId} = useParams()
 
   const {
     selectedFolderIndex,
@@ -74,11 +75,6 @@ const FolderList = () => {
     idFolderSelect,
     setIdFolderSelect
   } = useContext(positionSideContext);
-
-  const { 
-    setFileCurrent,
-    fileCurrent
-   } = useContext(EditorFunctionsContext);
 
   const {
     data,
@@ -93,70 +89,27 @@ const FolderList = () => {
     const getFolders = async () => {
       try {
         const res = await axios({
-          url: `${DbUrl}/folder/${data.key}/all`,
+          url: `${DbUrl}/folder/${projectId}/all`,
           method: 'GET'
         });
         return res;
       } catch (error) {
-        console.error(error);
+        console.error(new Error(`Server status code: (${res.status}, ${res.statusText}), ${res.data}`))
         return
       }
     };
-
-    /**
-     * Coloca los Folders obtenidos desde la BD a el contexto
-     */
     const fetchData = async () => {
-
       const resFetch = await getFolders()
-
-      if (resFetch && resFetch.status === 200) {
+      if (resFetch.status == '200') {
         setFolders(resFetch.data)
-
-      } else {
-        console.error(new Error("Error del servidor"))
+        console.info(folders)
       }
     };
 
     fetchData();
-
-  }, [data, setFolders, fileCurrent]);
-
-  /*useEffect(() => {
-    const getFiles = async () => {
-      try {
-        const res = await axios({
-          url: `${DbUrl}/files/${data.key}/all`,
-          method: 'GET'
-        });
-        return res;
-      } catch (error) {
-        console.error(error);
-        return
-      }
-    };
-    /**
-     * Coloca los Files obtenidos desde la BD a el contexto
-     
-    const fetchData = async () => {
-
-      const resFetch = await getFiles()
-
-      if (resFetch && resFetch.status === 200) {
-        setFiles(resFetch.data)
-
-      } else {
-        console.error(new Error("Error del servidor"))
-      }
-    };
-
-    fetchData();
-
-  }, [data, setFiles]);*/
+  }, [data, setFolders]);
 
   const navigateFolder = useNavigate();
-
-  
   const cleanSamePath = () => {
     let currentPath = window.location.pathname;
     let segments = currentPath.split('/').filter(Boolean); // Divide en segmentos
@@ -202,7 +155,6 @@ const FolderList = () => {
       setAddNewFile(false);
       setSelectedFolderIndex(index);
     }
-
     return
   };
 

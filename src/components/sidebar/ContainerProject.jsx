@@ -8,79 +8,65 @@ import { UseData } from '../../context/dataContext';
 import { FileList } from './FileList';
 import { useNavigate, useParams } from 'react-router-dom';
 import NewFileContent from './ContainerNewFiles';
-import styles from '../../styles/components//editor/FolderList.css'
+import iconNewFile from '../../assets/addFileIconWhite.png'
+import iconNewFolder from '../../assets/addFolderIconWhite.png'
 
-export const LiFolder = styled.li`
-  width: 100%;
-  margin-top: 0;
-  &.selected {
-    background-color: #5a5a5a8a;
-  }
-  &.noSelected{
-   background-color: transparent;
-  }
-`;
-
-const DivSelect = styled.div`
+const ContainerProyect = styled.div`
   display: flex;
-  flex-direction: column;
-`;
-
-const Folder = styled.div`
-  gap: 0.7rem;
-  display: flex;
-  align-items: baseline;
-  padding: 0;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  word-wrap: break-word;
-  white-space: nowrap;
-  border-radius: 0 !important;
+  flex-direction: row;
+  box-sizing: content-box;
   width: 100%;
-  margin-left: 7px;
+  `
+  const ContainerButtons = styled.div`
+  box-sizing: content-box;
+  width: 40%;
+  margin-left: 10%;
+  margin-top: 4%;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  `
+  const IconButton = styled.button`
+  align-items: center;
+  background-position: bottom;
   cursor: pointer;
-  &:hover {
-    background-color: #5a5a5a2b;
-  }
-`;
-
-const InputFolder = styled.input`
-  outline: none;
-  border: none;
-  width: 55%;
+  justify-content: center;
+  background-repeat: no-repeat;
+  display: flex;
   background-color: transparent;
-  color: #fff;
-  cursor: pointer;
-  height: 5%;
-  font-size: 1.5rem;
+  width: 1.5rem;
+  height: 30%;
+  border: none;
+  background-size: 100%;
+`
+const ContainerTitleProject = styled.div`
+width: 100%;
+text-align: center;
+margin-top: 5%;
+padding-left: 0;
+h1{
+    font-size: 1.2rem;
+    }
 `;
 
-/**
- * 
- * @returns 
- */
-const ContainerProject = () => {
+const Header = styled.header`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 14lvh;
+  box-sizinxg: content-box;
+  justify-content: space-between;
+  margin-top: 5%;
+  position: absolute;
+  left: -3%;
+  `
 
+
+const ContainerProject = () => {
   const DbUrl = "http://localhost:4000";
   const { projectId } = useParams()
-
-  const {
-    selectedFolderIndex,
-    setSelectedFolderIndex,
-    setStatusSelectFolder,
-    setAddNewFile,
-    addNewFile,
-    statusSelectFolder,
-    setIdFolderSelect,
-  } = useContext(positionSideContext);
   
   const {
-    data,
-    setOpenFolder,
-    setFiles,
-    openFolder,
-    folders,
-    setFolders,
     project,
     setProject
   } = UseData();
@@ -108,11 +94,16 @@ const ContainerProject = () => {
     fetchData();
   }, []);
   return (
-    <>
-      <h1>
-        {project.Title}
-      </h1>
-    </>
+    <ContainerProyect>
+      <Header>
+        <ContainerTitleProject><h1>{project.Title}</h1></ContainerTitleProject>
+        <ContainerButtons>
+          <IconButton id='newFileBttn' style={{backgroundImage: `url(${iconNewFile})`}}><iconNewFile/></IconButton>
+          <IconButton style={{backgroundImage: `url(${iconNewFolder})`}} id='newFolderBttn'><iconNewFolder/></IconButton>
+        </ContainerButtons>
+      </Header>
+
+    </ContainerProyect>
   );
 };
 export default ContainerProject;

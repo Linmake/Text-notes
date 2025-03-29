@@ -80,8 +80,8 @@ const QuillEditor = () => {
     }
   }, [])
 
-  
-
+  //!!todo descomentar solo comentado para el desarrollo!!
+/*
   useEffect(() => {
     if(!fileCurrent || fileCurrent === "" ) return 
     quillRef.current.setText(fileCurrent.Text) //cambia el texto del editor por el texto del file seleccionado
@@ -93,23 +93,15 @@ const QuillEditor = () => {
 
   useEffect(() => {
     const getFiles = async () => {
-      try {
         const res = await axios({
           url: `${DbUrl}/file/all/${idFolder}`,
           method: 'get'
         });
-        return res;
-      } catch (error) {
-        console.error(error);
-        return
-      }
-    };
-    //Coloca los Folders obtenidos desde la BD a el contexto
+        return res; 
+    }
     const fetchData = async () => {
-
       const resFetch = await getFiles()
-
-      if (resFetch && resFetch.status === 200) {
+      if (resFetch.status == '200') {
         setFiles(resFetch.data)
       } else {
         console.error(new Error("Error del servidor"))
@@ -119,10 +111,10 @@ const QuillEditor = () => {
     fetchData();
 
   }, [fileCurrent]);
-  
+  */
  
   const handlerSave = async() => {
-    if(fileCurrent && fileCurrent !== ""){ //**file seleccionado
+    if(fileCurrent && fileCurrent !== ""){
       
       const newFile = { //File actualizado 
         Id: fileCurrent.Id,

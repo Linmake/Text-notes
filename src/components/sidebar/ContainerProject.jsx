@@ -6,7 +6,7 @@ import { positionSideContext } from '../../context/SideProv';
 import axios from 'axios';
 import { UseData } from '../../context/dataContext';
 import { FileList } from './FileList';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import NewFileContent from './ContainerNewFiles';
 import styles from '../../styles/components//editor/FolderList.css'
 
@@ -56,12 +56,13 @@ const InputFolder = styled.input`
 `;
 
 /**
- * Componente que despliega la lista de los Folders visuales desde la bd 
- * @returns Lista de Folders 
+ * 
+ * @returns 
  */
-const FolderList = () => {
+const ContainerProject = () => {
 
   const DbUrl = "http://localhost:4000";
+  const { projectId } = useParams()
 
   const {
     selectedFolderIndex,
@@ -70,9 +71,9 @@ const FolderList = () => {
     setAddNewFile,
     addNewFile,
     statusSelectFolder,
-    setIdFolderSelect
+    setIdFolderSelect,
   } = useContext(positionSideContext);
-
+  
   const {
     data,
     setOpenFolder,
@@ -80,128 +81,38 @@ const FolderList = () => {
     openFolder,
     folders,
     setFolders,
+    project,
+    setProject
   } = UseData();
 
   useEffect(() => {
-    const getFolder = async () => {
+    const getProject = async () => {
       try {
         const res = await axios({
-          url: `${DbUrl}/folder/${data.key}/all`,
+          url: `${DbUrl}/project/${projectId}`,
           method: 'GET'
         });
         return res;
       } catch (error) {
-        console.error(error);
+        console.error(new Error(`Server status code: (${resFetch.status}, ${resFetch.statusText}), ${resFetch.data}`))
         return
       }
     };
 
-    /**
-     * Coloca los Folders obtenidos desde la BD a el contexto
-     */
     const fetchData = async () => {
-
-      const resFetch = await getFolder()
-
-      if (resFetch && resFetch.status === 200) {
-        setFolders(resFetch.data)
-      } else {
-        console.error(new Error("Server error"))
+      const resFetch = await getProject()
+      if (resFetch.status == '200'){
+          setProject(resFetch.data)
       }
-    };
-
+    }
     fetchData();
-
-  }, [data, setFolders]);
-
-  const navigateFolder = useNavigate();
-
-  
-  const cleanSamePath = () => {
-    let currentPath = window.location.pathname;
-    let segments = currentPath.split('/').filter(Boolean); // Divide en segmentos
-    if (segments.length > 2) {
-      segments.pop(); // Elimina el penúltimo segmento
-      segments.pop(); // Elimina el último segmento
-      let newPath = `/${segments.join('/')}`; // Une de nuevo en formato de URL
-      navigateFolder(newPath, { replace: true }); // Reemplaza en la historia del navegador
-    } else {
-      navigateFolder(`/${segments.join('/')}`, { replace: true }); // Mantiene la URL base
-    }
-  };
-  
-  const changePath = (currentPath) => {
-    let segments = currentPath.split('/').filter(Boolean); // Divide en segmentos
-    if(segments.length <= 2 ){ 
-      return currentPath
-    }
-      segments.pop(); // Elimina el último segmento
-      let newPath = `/${segments.join('/')}`; // Une de nuevo en formato de URL
-      return newPath
-  };
-  
-  const handlerSelectFolder = (index, id) => {
-    const folder = folders.find(folder => folder.Id == id)
-    let currentPath = changePath(window.location.pathname);
-    if (!folder) {
-      return
-    }
-    setIdFolderSelect(folder.Id)
-    setOpenFolder(true)
-    setFiles(folder.Files)
-
-    let urlFolder = [currentPath, id]
-    
-    navigateFolder(`${urlFolder[0]}/${urlFolder[1]}`)
-    
-    if (statusSelectFolder && selectedFolderIndex === index) {
-      setStatusSelectFolder(false);
-      setSelectedFolderIndex(""); //al volver a hacer click en el mismo folder se cierra y elimina el index del contexto
-    } else {
-      setStatusSelectFolder(true);
-      setAddNewFile(false);
-      setSelectedFolderIndex(index);
-    }
-
-    return
-  };
-
+  }, []);
   return (
-    <ul className="nav">
-      {folders.map((folder, index) => (
-        <LiFolder
-          className="nav-item liFolder"
-          key={index}
-        >
-          <DivSelect className="text-white">
-            <Folder
-              className={`${selectedFolderIndex == index ? 'selected' : 'noSelected'}`}
-              onClick={() => handlerSelectFolder(index, folder.Files, folder.Id)}>
-              <FontAwesomeIcon
-                icon={(selectedFolderIndex === index && statusSelectFolder) ? faFolderOpen : faFolderBlank}
-                className={` ${selectedFolderIndex === index ? 'selected' : ''}`}
-              />
-              <InputFolder
-                className="input-folder"
-                value={folder.Title}
-                title={folder.Title}
-                readOnly
-                onClick={() => handlerSelectFolder(index, folder.Id)}
-                id={folder.id}
-              />
-            </Folder>
-            {openFolder && selectedFolderIndex === index && (
-              <>
-                <NewFileContent
-                  className={`nav-item ${(addNewFile) ? '' : 'hidde'}`}
-                  key={"InputNewFile"} />
-                <FileList />
-              </>
-            )}
-          </DivSelect>
-        </LiFolder>
-      ))}
-    </ul>
+    <>
+      <h1>
+        {project.Title}
+      </h1>
+    </>
   );
 };
-export default FolderList;
+export default ContainerProject;

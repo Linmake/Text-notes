@@ -8,7 +8,7 @@ export const SideProv = ({ children }) => {
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [addNewFolder, setAddNewFolder] = useState(false);
   const [addNewFile, setAddNewFile] = useState(false);
-  const [projectVoid, setProjectVoid] = useState(false);
+  const [voidProject, setVoidProject] = useState(false);
   const [folders, setFolders] = useState([]);
   const [files, setFiles] = useState([]);
   const [selectedFolderIndex, setSelectedFolderIndex] = useState(null);
@@ -22,7 +22,7 @@ export const SideProv = ({ children }) => {
       sidebarVisible, setSidebarVisible,
       addNewFolder, setAddNewFolder,
       addNewFile, setAddNewFile,
-      projectVoid, setProjectVoid,
+      projectVoid: voidProject, setProjectVoid: setVoidProject,
       folders, setFolders,
       files, setFiles,
       selectedFolderIndex, setSelectedFolderIndex,

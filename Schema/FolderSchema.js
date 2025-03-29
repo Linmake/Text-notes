@@ -27,7 +27,7 @@ export const FolderSchema = new Schema({
     type: Boolean,
     required: [true, 'El campo Void es obligatorio.']
   },
-  IdProject: {
+  ProjectId: {
     type: String,
     required: [true, 'El Id del Proyecto es obligatorio.'],
     trim: true

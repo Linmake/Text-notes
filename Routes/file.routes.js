@@ -39,8 +39,8 @@ FileRouter.post('/create/:FolderId', validateFile, async (req, res) => {
     const { FolderId } = req.params;
     const folder = await Folder.findOne({ Id: FolderId });
     if (!folder) return res.status(400).send(`Folder con Id: "${FolderId}" no existe`);
-    const project = await Project.findOne({ Id: folder.IdProject });
-    if (!project) return res.status(400).send(`Project con Id: "${folder.IdProject}" no existe`);
+    const project = await Project.findOne({ Id: folder.ProjectId });
+    if (!project) return res.status(400).send(`Project con Id: "${folder.ProjectId}" no existe`);
 
     const folderRef = project.Folders.find(f => f.Id == FolderId);
     if (!folderRef) {

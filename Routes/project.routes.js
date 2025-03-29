@@ -63,7 +63,7 @@ ProjectRouter.delete('/delete/:ProjectId', async (req, res) => {
   if (!project) return res.status(400).send(`Project with Id: ${ProjectId} don't exist`)
   await Project.findOneAndDelete({ Id: ProjectId })
   if(project.Folders.length !== 0){
-    await Folder.deleteMany({IdProject: ProjectId})
+    await Folder.deleteMany({ProjectId: ProjectId})
     return res.status(200).send('Project succesfully deleted')
   }
   return res.status(200).send('Project succesfully deleted')

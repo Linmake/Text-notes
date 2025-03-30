@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import IconNewFile from '../../assets/addFileIconWhite.png'
 import iconNewFolder from '../../assets/addFolderIconWhite.png'
 import FolderList from './FolderList';
+import ContainerFolders from './containerProjects';
 
 const ContainerProyect = styled.div`
   display: flex;
@@ -20,15 +21,6 @@ const ContainerProyect = styled.div`
   margin-top: 4%;
   display: flex;
   flex-direction: row;
-  gap: 1rem;
-  `
-
-  const ContainerFolders = styled.div`
-  box-sizing: content-box;
-  margin-top: 20%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
   `
   const IconButton = styled.button`

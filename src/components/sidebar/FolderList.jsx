@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFolderBlank, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import { faFolderBlank, faFolderOpen, faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import styled from "styled-components";
 import { positionSideContext } from '../../context/SideProv';
 import axios from 'axios';
@@ -8,8 +8,7 @@ import { UseData } from '../../context/dataContext';
 import { FileList } from './FileList';
 import { useNavigate, useParams } from 'react-router-dom';
 import NewFileContent from './ContainerNewFiles';
-import styles from '../../styles/components//editor/FolderList.css'
-import { EditorFunctionsContext } from '../../context/editorFunctions';
+import styles from '../../styles/components/editor/FolderList.css'
 
 export const LiFolder = styled.li`
   width: 100%;
@@ -22,13 +21,13 @@ export const LiFolder = styled.li`
   }
 `;
 
-const DivSelect = styled.div`
+export const DivSelect = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
 const Folder = styled.div`
-  gap: 0.7rem;
+  gap: 0.5rem;
   display: flex;
   align-items: baseline;
   padding: 0;
@@ -40,11 +39,8 @@ const Folder = styled.div`
   width: 100%;
   margin-left: 7px;
   cursor: pointer;
-  &:hover {
-    background-color: #5a5a5a2b;
-  }
-`;
-
+  `;
+  
 const InputFolder = styled.input`
   outline: none;
   border: none;
@@ -53,7 +49,10 @@ const InputFolder = styled.input`
   color: #fff;
   cursor: pointer;
   height: 5%;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
+  &:hover {
+    background-color: #5a5a5a2b;
+  }
 `;
 
 /**
@@ -102,7 +101,6 @@ const FolderList = () => {
       const resFetch = await getFolders()
       if (resFetch.status == '200') {
         setFolders(resFetch.data)
-        console.info(folders)
       }
     };
 
@@ -132,7 +130,6 @@ const FolderList = () => {
       let newPath = `/${segments.join('/')}`; // Une de nuevo en formato de URL
       return newPath
   };
-  
   const handlerSelectFolder = (index, id) => {
     const folder = folders.find(folder => folder.Id == id)
     let currentPath = changePath(window.location.pathname);
@@ -170,11 +167,13 @@ const FolderList = () => {
               className={`${selectedFolderIndex == index ? 'selected' : 'noSelected'}`}
               onClick={() => handlerSelectFolder(index, folder.Files, folder.Id)}>
               <FontAwesomeIcon
-                icon={(selectedFolderIndex === index && statusSelectFolder) ? faFolderOpen : faFolderBlank}
+                icon={
+                  (selectedFolderIndex === index && statusSelectFolder)
+                   ?  faChevronDown 
+                   : faChevronRight}
                 className={` ${selectedFolderIndex === index ? 'selected' : ''}`}
               />
               <InputFolder
-                className="input-folder"
                 value={folder.Title}
                 title={folder.Title}
                 readOnly

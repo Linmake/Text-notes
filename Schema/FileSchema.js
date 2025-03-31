@@ -22,4 +22,4 @@ export const FileSchema = new Schema({
 });
 
 const File = mongoose.model('File', FileSchema)
-export default File;
+export default File

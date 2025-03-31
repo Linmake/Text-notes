@@ -6,6 +6,7 @@ import cors from 'cors';
 import FileRouter from "./Routes/file.routes.js";
 import FolderRouter from "./Routes/folder.routes.js";
 import ProjectRouter from "./Routes/project.routes.js";
+import AccountRouter from "./Routes/account.routes.js";
 
 // Configuración de dotenv
 dotenv.config();
@@ -28,11 +29,12 @@ expressApp.use(cors({
 expressApp.use("/file", FileRouter);
 expressApp.use("/folder", FolderRouter);
 expressApp.use("/project", ProjectRouter);
+expressApp.use("/account", AccountRouter);
 
 const port = process.env.PORT || 4000;
 
 server.listen(port, () => {
-  console.log(`Servidor levantado en el puerto ${port}`);
+  console.log(`Servidor levantado en el puerto ${port}`)
 });
 
 export default expressApp;

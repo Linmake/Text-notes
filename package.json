@@ -39,7 +39,9 @@
     "react-router-dom": "^7.4.0",
     "react-scripts": "^5.0.1",
     "sass": "^1.83.4",
-    "styled-components": "^6.1.14"
+    "styled-components": "^6.1.14",
+    "uuid": "^11.1.0",
+    "uuid-parse": "^1.1.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",

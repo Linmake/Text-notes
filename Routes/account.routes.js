@@ -31,7 +31,7 @@ AccountRouter.post("/create", validateAccount,async(req, res) => {
         return res.status(201).send(newAccount)
     }catch(err){
         return res.status(500).send(err.message)
-    } 
+    }
 })
 
 AccountRouter.put('/edit/:idAccount', async(req, res)=> {
@@ -40,17 +40,18 @@ AccountRouter.put('/edit/:idAccount', async(req, res)=> {
         Id: req.params.idAccount
     })
     if(!account) return res.send(`Name with Id: ${req.params.idAccount} don't exists`)
-    const NameExist = await Account.exists({ Name: Name })
     const passwordExist = await Account.exists({ Password: Password })
     const emailExist = await Account.exists({ Email: Email })
-    if( NameExist ) return res.status(400).send(`Name: ${Name} already exists`)
-    if( passwordExist ) return res.status(400).send(`Password: ${Password} already exists`)
+    if( passwordExist ) return res.status(400).send(`Password already exists`)
     if( emailExist ) return res.status(400).send(`Email: ${Email} already exists`)
     const query = { Id: req.params.idAccount }
+    if(Email){
+        if(!(Email.includes('@') || Email.includes('.')) || !(Email.includes('.'))) return res.status(400).send(`Email not valide`)
+    }
     const newAccount = {
-        Name: ( (!Name) ? account.Name : Name ),
-        Password: ( (Password) ? account.Password : Password ),
-        Email: ( (Email) ? account.Email : Email )
+        Name: ( !Name ? account.Name : Name ),
+        Password: ( !Password ? account.Password : Password ),
+        Email: ( !Email ? account.Email : Email )
     }
     await Account.findOneAndUpdate( query, newAccount )
     res.status(200).send(`Account with Id: "${req.params.idAccount}" editado con exito`)

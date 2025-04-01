@@ -4,19 +4,44 @@ const { Schema } = mongoose
 
 export const AccountSchema = new Schema({
     Id: {
-        Type: String,
+        type: String,
+        required: [true, 'Id is requied'],
+        validate: {
+            validator: String,
+            message: 'Id most be a string'
+        }
     },
     Name: {
-        Type: String,
+        type: String,
+        required: [true, 'Name is requied'],
+        validate: {
+            validator: String,
+            message: 'Name most be a string'
+        }
     },
     Password: {
-        Type: String,
+        type: String,
+        required: [true, 'Password is requied'],
+        validate: {
+            validator: String,
+            message: 'Password most be a string'
+        }
     },
     Email: {
-        Type: String,
+        type: String,
+        required: [true, 'Email is requied'],
+        validate: {
+            validator: String,
+            message: 'Email most be a string'
+        }  
     },
     Role: {
-        Type: String,
+        type: String,
+        required: [true, 'Role is requied'],
+        validate: {
+            validator: String,
+            message: 'Role most be a string'
+        }
     },
 })
 

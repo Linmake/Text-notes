@@ -1,9 +1,8 @@
 import Account from '../Schema/AccountSchema.js'
-import Express from "express"
-import { v4 as uuidv4 } from 'uuid';
-import accountValidation from '../DTO/AccountValidation.js';
+import express from "express"
+import validateAccount from '../DTO/AccountValidation.js';
 
-const AccountRouter = Express.Router()
+const AccountRouter = express.Router()
 
 AccountRouter.get("/all", async(req, res) => {
     const allAccounts = await Account.find({})
@@ -13,45 +12,40 @@ AccountRouter.get("/all", async(req, res) => {
 AccountRouter.get("/:idAccount", async(req, res) => {
     const { idAccount } = req.params
     const account = await Account.findOne({ Id: idAccount })
-    if(!account) return res.status(400).send(`Account with Id: ${idAccount} don't exist`)
+    if(!account) return res.status(400).send(`Account with Id: ${idAccount} don't exists`)
     return res.send(account).sendStatus(200)
 })
 
-AccountRouter.post("/create", accountValidation,async(req, res) => {
+AccountRouter.post("/create", validateAccount,async(req, res) => {
     try{
-        const { Id, Name, Password, Email, Role } = req.body
-        if( !Id || !Name || !Password || !Email || !Role) return res.sendStatus(401)
-        const valideEmail = await Account.exists({ Email: Email })
-        if( valideEmail ) return res.sendStatus(401)
+        const alreadyId = await Account.findOne({ Id: req.body.Id })
+        if (alreadyId) {
+            return res.status(400).send(`Account with Id: ${req.body.Id} already exists`);
+        }
+        const EmailValide = await Account.findOne({ Email: req.body.Email })
+        if( EmailValide ){
+            return res.status(401).send(`Account with Email: ${req.body.Email} already exists`);
+        }
+        const newAccount = await Account.create(req.body)
 
-        if(/[.,<>/?_'";:{}[\]\-=\+@!#$%^&*()`¿]/.test(Password)) return res.sendStatus(401)
-        const valideId = await Account.exists({ Id: Id })
-        if (valideId) return res.sendStatus(401)
-        const newAccount = new Account({
-            Id,
-            Name,
-            Password,
-            Email,
-            Role
-        })
-        await newAccount.save()
-        return res.send(newAccount).json()
+        return res.status(201).send(newAccount)
     }catch(err){
-        res.sendStatus(400)
-    }
+        return res.status(500).send(err.message)
+    } 
 })
+
 AccountRouter.put('/edit/:idAccount', async(req, res)=> {
     const { Name, Password, Email } = req.body
     const account = await Account.findOne({
         Id: req.params.idAccount
     })
-    if(!account) return res.send(`Name with Id: ${req.params.idAccount} don't exist`)
-    const NameExist = await Account.exist({ Name: Name })
-    const passwordExist = await Account.exist({ Password: Password })
-    const emailExist = await Account.exist({ Email: Email })
-    if( NameExist ) return res.status(400).send(`Name: ${Name} already exist`)
-    if( passwordExist ) return res.status(400).send(`Password: ${Password} already exist`)
-    if( emailExist ) return res.status(400).send(`Email: ${Email} already exist`)
+    if(!account) return res.send(`Name with Id: ${req.params.idAccount} don't exists`)
+    const NameExist = await Account.exists({ Name: Name })
+    const passwordExist = await Account.exists({ Password: Password })
+    const emailExist = await Account.exists({ Email: Email })
+    if( NameExist ) return res.status(400).send(`Name: ${Name} already exists`)
+    if( passwordExist ) return res.status(400).send(`Password: ${Password} already exists`)
+    if( emailExist ) return res.status(400).send(`Email: ${Email} already exists`)
     const query = { Id: req.params.idAccount }
     const newAccount = {
         Name: ( (!Name) ? account.Name : Name ),
@@ -62,15 +56,16 @@ AccountRouter.put('/edit/:idAccount', async(req, res)=> {
     res.status(200).send(`Account with Id: "${req.params.idAccount}" editado con exito`)
 })
 
-AccountRouter.delete('delete/all', async(req, res) => {
+AccountRouter.delete('/delete/all', async(req, res) => {
     await Account.deleteMany({})
-    res.status(200).send('All accounts successfully deleted')
+    const accounts = await Account.find({})
+    res.status(200).send(accounts)
 })
 
 AccountRouter.delete('delete/:idAccount', async(req, res)=>{
     const { idAccount } = req.params
     const account = await Account.findOne({ Id: idAccount })
-    if(!account) return res.status(400).send(`Account with Id:${idAccount} don't exist`)
+    if(!account) return res.status(400).send(`Account with Id:${idAccount} don't exists`)
     await Account.findOneAndDelete({ Id: idAccount })
     res.status(200).send(`Account with Id:${idAccount} succesfully deleted`)
 })

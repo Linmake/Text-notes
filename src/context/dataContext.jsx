@@ -10,17 +10,35 @@ export function DataProvider({ children }) {
   const [project, setProject] = useState([])
   const [folders, setFolders] = useState([])
 
+  //account
+  const [email, setEmail] = useState(null)
+  const [pwd, setPwd] = useState([])
+
   return (
-    <DataContext.Provider value = {{ data, setData, openFolder, setOpenFolder, files, setFiles, project, setProject: setProject, folders, setFolders }}>
+    <DataContext.Provider value = {{
+       data,
+       setData,
+       openFolder,
+       setOpenFolder,
+       files, 
+       setFiles, 
+       project, 
+       setProject,
+       folders, 
+       setFolders,
+       email,
+       setEmail,
+       pwd,
+       setPwd
+  }}>
       {children}
     </DataContext.Provider>
-  );
+  )
 }
 
 DataProvider.propTypes = {
   children: PropTypes.node.isRequired,
-};
-
+}
 
 export function UseData() {
   return useContext(DataContext);

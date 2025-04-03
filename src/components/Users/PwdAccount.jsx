@@ -1,7 +1,10 @@
-import React from "react";
 import styled from "styled-components";
 import {createGlobalStyle} from "styled-components"
 import NotepadImageRemoveBg from "../../assets/notepad-removebg.png"
+import { UseData } from '../../context/dataContext';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -59,10 +62,20 @@ const BttContinue = styled.button`
   }
 `;
 
-const LabelEmail = styled.label`
+const LabelPsw = styled.label`
   font-size: 0.875rem;
   align-self: start;
 `;
+const LabelEmail = styled.label`
+  font-size: 0.875rem;
+  align-self: start;
+  font-color: #686868 !important;
+`;
+
+const Email = styled.p`
+  font-size: 0.875rem;
+  align-self: start;
+`
 
 const InputEmail = styled.input`
   width: 22rem;
@@ -120,16 +133,59 @@ const TitleH1 = styled.h1`
   font-size: 1.5rem;
 `;
 
-export default function LogInUsers() {
+const PwdAccount = () => { //ponerle un load al componente para atrapar el err de que si no hya email previo redirigir a account/login/email
+
+  /*
+  const login = () => {
+    const DBUrl = "http://localhost:4000"
+    axios.post( `${DBUrl}/account/create` )
+  }
+  */
+
+ 
+ const { pwd, setPwd, email } = UseData()
+ const navigate = useNavigate()
+ 
+  const path = window.location.pathname
+  const segmentsPath = path.split('/').filter(Boolean)
+  segmentsPath.pop()
+  const newPath = "/" + segmentsPath.join('/')
+  console.log(newPath)
+
+ useEffect( () => {
+   if(email == null){
+   navigate(newPath, { replace: true })
+  }
+  return
+ }, [] )
+
+  const handlerSubmit = ( event ) => {
+    event.preventDefault()
+    navigate("name")
+  }
+
   return (
     <Container>
       <ContainerDesc>
-        <img srcSet={NotepadImageRemoveBg} width={80} alt="efficent notes logo"></img>
+        <img srcSet={NotepadImageRemoveBg} width={70} alt="efficent notes logo"></img>
         <TitleH1>Log in to Efficient Notes</TitleH1>
       </ContainerDesc>
-      <RegisterForm>
-        <LabelEmail htmlFor="email">Email</LabelEmail>
-        <InputEmail autocapitalize={false} spellcheck={false} id="email" type="email" placeholder="Your email address" required autofocus title data-invalid={true} />
+      <RegisterForm onSubmit={event => handlerSubmit( event )}>
+        <LabelEmail>Email</LabelEmail>
+        <Email>{ email }</Email>
+        <LabelPsw htmlFor="pwd">Password</LabelPsw>
+        <InputEmail 
+          autocapitalize={false} 
+          spellcheck={false}
+          id="pwd" 
+          type="pwd" 
+          placeholder="Your Password" 
+          required 
+          autofocus 
+          title 
+          data-invalid={true}
+          onChange={e => setPwd(e.target.value)}
+        />
         <BttContinue type="submit" id="submitButton">
           Continue
         </BttContinue>
@@ -145,3 +201,5 @@ export default function LogInUsers() {
     </Container>
   );
 }
+
+export default PwdAccount

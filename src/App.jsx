@@ -9,10 +9,11 @@ import ProjectsMenu, { ProjectsLoader } from './pages/ProjectsMenu';
 import RootLayout from './Layout/RootLayout';
 import NotFound from './pages/NotFound';
 import UsersLayout from './Layout/UsersLayout';
+import LoginLayout from './Layout/LoginLayout';
 import Users from './components/Users/Users';
-import LogInUsers from './components/Users/LogInUsers';
 import SignInUsers from './components/Users/SignInUsers';
-import AccountPage from './pages/Account';
+import PwdAccount from './components/Users/PwdAccount'
+import EmailLogin from './components/Users/EmailLogin'
 
 
 function App() {
@@ -28,7 +29,10 @@ function App() {
       </Route>
       <Route path='Account' element={<UsersLayout />}>
         <Route index path='Auth' element={<Users />} />
-        <Route path='LogIn' element={<AccountPage />} />
+        <Route path='login' element={<LoginLayout />}>
+          <Route path='email' element={<EmailLogin />}/>
+          <Route path='email/pwd' element={<PwdAccount />}/>
+        </Route>
         <Route path='SignIn' element={<SignInUsers />} />
       </Route>
     </Route>

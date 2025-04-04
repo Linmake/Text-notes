@@ -46,8 +46,6 @@ const QuillEditor = () => {
   const segments = currentPath.split('/').filter(Boolean)
   const idFolder = segments[2]
 
-
-
   useEffect(() => {
     if (!editorRef.current || quillRef.current) return;
     quillRef.current = new Quill(editorRef.current, {

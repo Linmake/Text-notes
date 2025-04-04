@@ -31,10 +31,10 @@ expressApp.use("/folder", FolderRouter);
 expressApp.use("/project", ProjectRouter);
 expressApp.use("/account", AccountRouter);
 
-const port = process.env.PORT || 4000;
+const portUrl = process.env.PORT;
 
-server.listen(port, () => {
-  console.log(`Servidor levantado en el puerto ${port}`)
+server.listen(portUrl, () => {
+  console.log(`Servidor levantado en el puerto ${portUrl}`)
 });
 
 export default expressApp;

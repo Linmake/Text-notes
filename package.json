@@ -30,6 +30,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.19.2",
     "http-proxy-middleware": "^3.0.0",
+    "jose": "^6.0.10",
     "mongodb": "^6.8.0",
     "mongoose": "^8.9.5",
     "quill": "^2.0.3",

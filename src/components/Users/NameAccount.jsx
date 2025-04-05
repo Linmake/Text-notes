@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {createGlobalStyle} from "styled-components"
 import NotepadImageRemoveBg from "../../assets/notepad-removebg.png"
 import { UseData } from '../../context/dataContext';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const GlobalStyle = createGlobalStyle`
@@ -11,8 +11,24 @@ const GlobalStyle = createGlobalStyle`
     src: url('../../../public/fonts/Inter/Inter_28pt-Regular.ttf') format('ttf'),
     font-weight: normal;
     font-style: normal;
-  }
+    }
+    .submit{
+    width: 22rem;
+    height: 2.25rem;
+    background-color: #000;
+    border-style: none;
+    border-radius: max(calc(6px * 1 * 0.75), 0px);
+    cursor: pointer;
+    color: #fff;
+    font-size: 1rem;
+    margin-top: 1rem;
+    box-shadow: inset 0 0 0 1px transparent;
+    }
+    .submit:hover {
+        background-color: #2e2e2e;
+    }
   `
+
   const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -64,16 +80,6 @@ const LabelPsw = styled.label`
   font-size: 0.875rem;
   align-self: start;
 `;
-const LabelEmail = styled.label`
-  font-size: 0.875rem;
-  align-self: start;
-  font-color: #686868 !important;
-`;
-
-const Email = styled.p`
-  font-size: 0.875rem;
-  align-self: start;
-`
 
 const InputEmail = styled.input`
   width: 22rem;
@@ -130,24 +136,20 @@ const TitleH1 = styled.h1`
   color: #202020;
   font-size: 1.5rem;
 `;
-const PwdAccount = () => { //ponerle un load al componente para atrapar el err de que si no hya email previo redirigir a account/login/email
 
-  /*
-  const login = () => {
-    const DBUrl = "http://localhost:4001"
-    axios.post( `${DBUrl}/account/create` )
-  }
-  */
+const NameAccount = () => { //ponerle un load al componente para atrapar el err de que si no hya email previo redirigir a account/login/email
+
  const { pwd, setPwd, email } = UseData()
  const navigate = useNavigate()
  
   const path = window.location.pathname
   const segmentsPath = path.split('/').filter(Boolean)
   segmentsPath.pop()
+  segmentsPath.pop()
   const newPath = "/" + segmentsPath.join('/')
   console.log(newPath)
 
- useEffect( () => {
+  useEffect( () => {
    if(email == null){
    navigate(newPath, { replace: true })
   }
@@ -156,7 +158,7 @@ const PwdAccount = () => { //ponerle un load al componente para atrapar el err d
 
   const handlerSubmit = ( event ) => {
     event.preventDefault()
-    navigate("name")
+
   }
 
   return (
@@ -166,34 +168,26 @@ const PwdAccount = () => { //ponerle un load al componente para atrapar el err d
         <TitleH1>Log in to Efficient Notes</TitleH1>
       </ContainerDesc>
       <RegisterForm onSubmit={event => handlerSubmit( event )}>
-        <LabelEmail>Email</LabelEmail>
-        <Email>{ email }</Email>
-        <LabelPsw htmlFor="pwd">Password</LabelPsw>
+        <LabelPsw htmlFor="pwd">Name:</LabelPsw>
         <InputEmail 
-          autocapitalize={false} 
+          autocapitalize={false}
           spellcheck={false}
           id="pwd"
-          type="password"
-          placeholder="Your Password" 
+          type="name"
+          placeholder="Your Name" 
           required 
-          autofocus 
+          autofocus
           title 
           data-invalid={true}
           onChange={e => setPwd(e.target.value)}
         />
-        <BttContinue type="submit" id="submitButton">
+        <BttContinue onClick={ e => handlerSubmit() } className="submit" type="submit" id="submit">
           Continue
         </BttContinue>
-        <Spaced>
-          <Separator></Separator>
-          <div>
-            <span>OR</span>
-          </div>
-          <Separator></Separator>
-        </Spaced>
-        <GoogleGrid>Continue with Google</GoogleGrid>
+        
       </RegisterForm>
     </Container>
   );
 }
-export default PwdAccount
+
+export default NameAccount

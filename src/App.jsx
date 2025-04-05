@@ -14,6 +14,7 @@ import Users from './components/Users/Users';
 import SignInUsers from './components/Users/SignInUsers';
 import PwdAccount from './components/Users/PwdAccount'
 import EmailLogin from './components/Users/EmailLogin'
+import NameAccount from './components/Users/NameAccount';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path='login' element={<LoginLayout />}>
           <Route path='email' element={<EmailLogin />}/>
           <Route path='email/pwd' element={<PwdAccount />}/>
+          <Route path='email/pwd/name' element={<NameAccount />}/>
         </Route>
         <Route path='SignIn' element={<SignInUsers />} />
       </Route>

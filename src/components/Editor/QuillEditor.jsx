@@ -40,7 +40,7 @@ const QuillEditor = () => {
   
   const editorRef = useRef(null);
   const quillRef = useRef(null);
-  const DbUrl = "http://localhost:4000";
+  const DbUrl = "http://localhost:4000"
 
   const currentPath = window.location.pathname
   const segments = currentPath.split('/').filter(Boolean)

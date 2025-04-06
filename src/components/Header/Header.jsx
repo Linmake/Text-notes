@@ -80,7 +80,7 @@ const HeaderComponent = () => {
             </li> 
             <li className="nav-item">
               
-              <Link className="nav-link" to={`${RutaPrincipal}/Account/login/email`}>Account</Link>
+              <Link className="nav-link" to={`${RutaPrincipal}/Account/signup/email`}>Account</Link>
             </li>
           </SectionNotas>
         </NavContainer>

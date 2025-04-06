@@ -1,6 +1,6 @@
 import Account from '../Schema/AccountSchema.js'
 
-export const loginByIdEmail = async( body ) => {
+export const signupByIdEmail = async( body ) => {
 	try{
 		const accountById = await Account.findOne({ Id: body.Id })
 		const accountByEmail = await Account.findOne({ Email: body.Email })

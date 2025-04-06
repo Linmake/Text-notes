@@ -1,8 +1,8 @@
 import Account from '../Schema/AccountSchema.js'
 import express from "express"
 import validateAccount from '../DTO/AccountValidation.js';
-import { loginByIdEmail } from '../helpers/loginByIdEmail.js';
-import { putEmailPwdAlready } from '../helpers/loginEmailPwdAlready.js';
+import { signupByIdEmail } from '../helpers/signupByIdEmail.js';
+import { putEmailPwdAlready } from '../helpers/signupEmailPwdAlready.js';
 
 const AccountRouter = express.Router()
 
@@ -20,7 +20,7 @@ AccountRouter.get("/:idAccount", async(req, res) => {
 
 AccountRouter.post("/create", validateAccount,async(req, res) => {
     try{
-        const user = await loginByIdEmail(req.body)
+        const user = await signupByIdEmail(req.body)
         const newAccount = await Account.create(user)
 
         return res.status(201).send(newAccount)

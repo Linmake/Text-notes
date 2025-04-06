@@ -4,7 +4,6 @@ import NotepadImageRemoveBg from "../../assets/notepad-removebg.png"
 import { UseData } from '../../context/dataContext';
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
-import { SignJWT } from "jose";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -138,10 +137,11 @@ const TitleH1 = styled.h1`
   font-size: 1.5rem;
 `;
 
-const NameAccount = () => { //ponerle un load al componente para atrapar el err de que si no hya email previo redirigir a account/login/email
+const NameAccount = () => { //ponerle un load al componente para atrapar el err de que si no hya email previo redirigir a account/signup/email
 
- const { setPwd, email } = UseData()
- const navigate = useNavigate()
+  const { setPwd, email } = UseData()
+  const navigate = useNavigate()
+  const baseUrl = "http://localhost:4001/"
  
   const path = window.location.pathname
   const segmentsPath = path.split('/').filter(Boolean)
@@ -181,11 +181,11 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
           data-invalid={true}
           onChange={e => setPwd(e.target.value)}
         />
-        
+        <Link to={`${baseUrl}/signup/create`}>
         <BttContinue onClick={ e => handlerSubmit(e) } className="submit" type="submit" id="submit">
           Continue
         </BttContinue>
-
+        </Link>
         
       </RegisterForm>
     </Container>

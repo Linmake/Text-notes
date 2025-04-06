@@ -122,10 +122,10 @@ const TitleH1 = styled.h1`
   font-size: 1.5rem;
 `;
 
-const EmailLogin = () => {
+const EmailSignup = () => {
 
   /*
-  const login = () => {
+  const signup = () => {
     const DBUrl = "http://localhost:4000"
     axios.post( `${DBUrl}/account/create` )
   }
@@ -175,4 +175,4 @@ const EmailLogin = () => {
   );
 }
 
-export default EmailLogin
+export default EmailSignup

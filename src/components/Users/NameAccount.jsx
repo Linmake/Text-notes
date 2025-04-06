@@ -2,8 +2,9 @@ import styled from "styled-components";
 import {createGlobalStyle} from "styled-components"
 import NotepadImageRemoveBg from "../../assets/notepad-removebg.png"
 import { UseData } from '../../context/dataContext';
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
+import { SignJWT } from "jose";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -139,7 +140,7 @@ const TitleH1 = styled.h1`
 
 const NameAccount = () => { //ponerle un load al componente para atrapar el err de que si no hya email previo redirigir a account/login/email
 
- const { pwd, setPwd, email } = UseData()
+ const { setPwd, email } = UseData()
  const navigate = useNavigate()
  
   const path = window.location.pathname
@@ -156,10 +157,9 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
   return
  }, [] )
 
-  const handlerSubmit = ( event ) => {
-    event.preventDefault()
-
-  }
+ const handlerSubmit = async( event ) => {
+   event.preventDefault()
+}
 
   return (
     <Container>
@@ -181,9 +181,11 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
           data-invalid={true}
           onChange={e => setPwd(e.target.value)}
         />
-        <BttContinue onClick={ e => handlerSubmit() } className="submit" type="submit" id="submit">
+        
+        <BttContinue onClick={ e => handlerSubmit(e) } className="submit" type="submit" id="submit">
           Continue
         </BttContinue>
+
         
       </RegisterForm>
     </Container>

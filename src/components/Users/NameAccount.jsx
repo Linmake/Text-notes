@@ -139,7 +139,7 @@ const TitleH1 = styled.h1`
 
 const NameAccount = () => { //ponerle un load al componente para atrapar el err de que si no hya email previo redirigir a account/signup/email
 
-  const { setPwd, email } = UseData()
+  const { setPwd, email, setName } = UseData()
   const navigate = useNavigate()
   const baseUrl = "http://localhost:4001/"
  
@@ -157,10 +157,6 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
   return
  }, [] )
 
- const handlerSubmit = async( event ) => {
-   event.preventDefault()
-}
-
   return (
     <Container>
       <ContainerDesc>
@@ -172,16 +168,16 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
         <InputEmail 
           autocapitalize={false}
           spellcheck={false}
-          id="pwd"
+          id="name"
           type="name"
           placeholder="Your Name" 
           required 
           autofocus
           title 
           data-invalid={true}
-          onChange={e => setPwd(e.target.value)}
+          onChange={e => setName(e.target.value)}
         />
-        <Link to={`${baseUrl}/signup/create`}>
+        <Link to={`http://localhost:4001/Account/signup/create`}>
         <BttContinue onClick={ e => handlerSubmit(e) } className="submit" type="submit" id="submit">
           Continue
         </BttContinue>

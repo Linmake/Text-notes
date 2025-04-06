@@ -176,7 +176,7 @@ const PwdAccount = () => { //ponerle un load al componente para atrapar el err d
           type="password"
           placeholder="Your Password" 
           required 
-          autofocus 
+          autofocus
           title 
           data-invalid={true}
           onChange={e => setPwd(e.target.value)}

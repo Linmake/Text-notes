@@ -15,6 +15,7 @@ import SignInUsers from './components/Users/SignInUsers';
 import PwdAccount from './components/Users/PwdAccount'
 import EmailSignup from './components/Users/EmailSignup'
 import NameAccount from './components/Users/NameAccount';
+import SignUp from './components/Users/SignUp'
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path='email' element={<EmailSignup />}/>
           <Route path='email/pwd' element={<PwdAccount />}/>
           <Route path='email/pwd/name' element={<NameAccount />}/>
+          <Route path='create' element={<SignUp />}/>
         </Route>
         <Route path='SignIn' element={<SignInUsers />} />
       </Route>

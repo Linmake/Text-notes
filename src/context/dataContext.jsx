@@ -13,6 +13,7 @@ export function DataProvider({ children }) {
   //account
   const [email, setEmail] = useState(null)
   const [pwd, setPwd] = useState([])
+  const [name, setName] = useState([])
 
   return (
     <DataContext.Provider value = {{

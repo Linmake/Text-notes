@@ -7,8 +7,10 @@ import FileRouter from "./Routes/file.routes.js";
 import FolderRouter from "./Routes/folder.routes.js";
 import ProjectRouter from "./Routes/project.routes.js";
 import AccountRouter from "./Routes/account.routes.js";
+import cookieParser from "cookie-parser";
 
 // Configuración de dotenv
+
 dotenv.config();
 const expressApp = express();
 connectDB();
@@ -16,7 +18,9 @@ connectDB();
 const server = createServer(expressApp);
 
 // Middlewares
+
 expressApp.use(cors());
+expressApp.use(cookieParser());
 expressApp.use(express.json());
 
 expressApp.use(cors({

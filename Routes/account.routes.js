@@ -3,6 +3,8 @@ import express from "express"
 import validateAccount from '../DTO/AccountValidation.js';
 import { signupByIdEmail } from '../helpers/signupByIdEmail.js';
 import { putEmailPwdAlready } from '../helpers/signupEmailPwdAlready.js';
+import authToken from './auth_token.js';
+import { v4 as uuidv4 } from 'uuid'
 
 const AccountRouter = express.Router()
 
@@ -15,19 +17,22 @@ AccountRouter.get("/:idAccount", async(req, res) => {
     const { idAccount } = req.params
     const account = await Account.findOne({ Id: idAccount })
     if(!account) return res.status(400).send(`Account with Id: ${idAccount} don't exists`)
+
     return res.send(account).sendStatus(200)
 })
 
-AccountRouter.post("/create", validateAccount,async(req, res) => {
-    try{
-        const user = await signupByIdEmail(req.body)
-        const newAccount = await Account.create(user)
+AccountRouter.post("/create", validateAccount, async (req, res) => {
+    try {
+      const user = await signupByIdEmail(req.body);
+      const newAccount = await Account.create(user);
+      const Id = uuidv4()
+      const jwt = await authToken(Id)
 
-        return res.status(201).send(newAccount)
-    }catch(err){
-        return res.status(500).send(err.message)
+      return res.status(200).send(jwt);
+    } catch (err) {
+      return res.send(err.message + " " + "error server");
     }
-})
+  });
 
 AccountRouter.put('/edit/:idAccount', async(req, res)=> {
     const { Name, Password, Email } = req.body
@@ -35,7 +40,6 @@ AccountRouter.put('/edit/:idAccount', async(req, res)=> {
     const account = await putEmailPwdAlready(req.body, idAccount, res)
     if(!account) return res.status(400).send(`Account with Id:${idAccount} don't exists`)
     const query = { Id: req.params.idAccount }
-
 
     const newAccount = {
         Name: ( !Name ? account.Name : Name ),

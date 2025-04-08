@@ -5,34 +5,31 @@ import { signupByIdEmail } from '../helpers/signupByIdEmail.js';
 import { putEmailPwdAlready } from '../helpers/signupEmailPwdAlready.js';
 import authToken from './auth_token.js';
 import { v4 as uuidv4 } from 'uuid'
+import accountRegisterController from '../Controllers/accountRegisterController.js';
 
 const AccountRouter = express.Router()
 
 AccountRouter.get("/all", async(req, res) => {
-    const allAccounts = await Account.find({})
-    res.send(allAccounts)
+    try{
+        const allAccounts = await Account.find({})
+        return res.status(200).send(allAccounts)
+    }catch(err){
+        return res.status(400).send(err)
+    }
 })
 
 AccountRouter.get("/:idAccount", async(req, res) => {
-    const { idAccount } = req.params
-    const account = await Account.findOne({ Id: idAccount })
-    if(!account) return res.status(400).send(`Account with Id: ${idAccount} don't exists`)
-
-    return res.send(account).sendStatus(200)
+    try{
+        const { idAccount } = req.params
+        const account = await Account.findOne({ Id: idAccount })
+        if(!account) return res.status(400).send(`Account with Id: ${idAccount} don't exists`)
+        return res.send(account).sendStatus(200)
+    }catch(err){
+        return res.status(400).send(err)
+    }
 })
 
-AccountRouter.post("/create", validateAccount, async (req, res) => {
-    try {
-      const user = await signupByIdEmail(req.body);
-      const newAccount = await Account.create(user);
-      const Id = uuidv4()
-      const jwt = await authToken(Id)
-
-      return res.status(200).send(jwt);
-    } catch (err) {
-      return res.send(err.message + " " + "error server");
-    }
-  });
+AccountRouter.post("/create", accountRegisterController)
 
 AccountRouter.put('/edit/:idAccount', async(req, res)=> {
     const { Name, Password, Email } = req.body

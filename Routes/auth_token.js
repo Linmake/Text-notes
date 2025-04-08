@@ -10,7 +10,7 @@ const authToken = async(Id) => {
     const jwt = await jwtContructor
     .setProtectedHeader({alg: 'HS256', typ: 'jwt', })
     .setIssuedAt()
-    .setExpirationTime('1h')
+    .setExpirationTime('7d')
     .sign(new TextEncoder().encode(secret))
     return jwt
 

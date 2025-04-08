@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { hash } from 'bcrypt'
 
 
-const accountRegisterController = async( req, res ) => {
+const accountSignupController = async( req, res ) => {
     try{
         const { Email, Name, Password, Role } = req.body
         const uuid = uuidv4()
@@ -30,8 +30,9 @@ const accountRegisterController = async( req, res ) => {
             Password: hashPassword,
             Email, 
             Role
-        })
-        await authToken(uuid)
+        })  
+        const jwt = await authToken(uuid)
+        
         await account.save()
 
         return res.status(201).send(account)
@@ -41,4 +42,4 @@ const accountRegisterController = async( req, res ) => {
     }
 }
 
-export default accountRegisterController
+export default accountSignupController

@@ -11,6 +11,8 @@ import profileController from '../Controllers/profile.controller.js';
 import editEmailController from '../Controllers/editEmail.controller.js';
 import deleteController from '../Controllers/delete.controller.js';
 import editPasswordController from '../Controllers/editPassword.controller.js';
+import userJWTDTO from '../DTO/userJWTDTO.js';
+import editNameController from '../Controllers/editName.controller.js';
 
 const AccountRouter = express.Router()
 
@@ -23,16 +25,18 @@ AccountRouter.get("/all", async(req, res) => {
     }
 })
 
-AccountRouter.get("/:idAccount", profileController)
+AccountRouter.post("/signup", signupController)
 
-AccountRouter.post("/signin", signinController)
+AccountRouter.post("/signin", userJWTDTO, signinController)
 
-AccountRouter.post("/create", signupController)
+AccountRouter.get("/profile/:idAccount", userJWTDTO, profileController)
 
-AccountRouter.put('/edit/:idAccount', editEmailController)
+AccountRouter.put('/update-email/:idAccount', userJWTDTO, editEmailController)
 
-AccountRouter.put('/edit/:idAccount', editPasswordController)
+AccountRouter.put('/update-password/:idAccount', userJWTDTO, editPasswordController)
 
-AccountRouter.delete('delete/:idAccount', deleteController)
+AccountRouter.put('/update-name/:idAccount', userJWTDTO, editNameController)
+
+AccountRouter.delete('/delete/:idAccount', userJWTDTO, deleteController)
 
 export default AccountRouter

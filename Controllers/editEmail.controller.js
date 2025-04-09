@@ -1,20 +1,19 @@
+import { compare } from "bcrypt"
 import Account from "../Schema/AccountSchema.js"
 
 const editEmailController = async(req, res)=> {
-    const { Name, Password, Email } = req.body
+    const { Password, Email } = req.body
     const { idAccount } = req.params
-    const account = await putEmailPwdAlready(req.body, idAccount, res)
+    const account = await Account.findOne({Id: idAccount})
     if(!account) return res.status(400).send(`Account with Id:${idAccount} don't exists`)
-    const query = { Id: req.params.idAccount }
+    const checkPassword = compare(Password, account.Password)
+    if(!checkPassword) return res.status(401).send("Incorrect creentials")
+    const accountByEmail = await Account.findOne({Email: Email})
+    if(accountByEmail) return res.status(400).send("Incorrect creentials")
 
-    const newAccount = {
-        Name: ( !Name ? account.Name : Name ),
-        Password: ( !Password ? account.Password : Password ),
-        Email: ( !Email ? account.Email : Email )
-    }
 
-    await Account.findOneAndUpdate( query, newAccount )
-    res.status(200).send(newAccount)
+    await Account.findOneAndUpdate( { Id: idAccount }, {Email: Email} )
+    res.status(200).send(account)
 }
 
 export default editEmailController

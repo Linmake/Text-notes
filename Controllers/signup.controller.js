@@ -42,7 +42,7 @@ const signupController = async( req, res ) => {
 
         return res.status(201).send(jwt)
     }catch(err){
-        res.send(err.message)
+        res.status(401).send(err.message)
         return 
     }
 }

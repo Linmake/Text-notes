@@ -27,7 +27,7 @@ AccountRouter.get("/all", async(req, res) => {
 
 AccountRouter.post("/signup", signupController)
 
-AccountRouter.post("/signin", userJWTDTO, signinController)
+AccountRouter.post("/signin", signinController)
 
 AccountRouter.get("/profile/:idAccount", userJWTDTO, profileController)
 

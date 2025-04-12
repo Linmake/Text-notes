@@ -1,5 +1,6 @@
 import { compare } from "bcrypt"
 import Account from "../Schema/AccountSchema.js"
+import authToken from "../Routes/auth_token.js"
 
 const signinController = async(req, res) => {
     try{
@@ -14,10 +15,17 @@ const signinController = async(req, res) => {
             res.status(401).send("Incorrect credentials")
             return 
         }
-        res.status(200).send(accountByEmail.Id)
+        const jwt = await authToken(accountByEmail.Id)
+
+        await res.cookie("JWT", jwt, {
+            httpOnly: true,
+            exp: "1d"
+        })
+
+        res.status(200).send(accountByEmail)
         return 
     }catch(err){
-        res.status(401).send(err)
+        res.status(401).send(`Error: ${err}`)
         return 
     }
 }

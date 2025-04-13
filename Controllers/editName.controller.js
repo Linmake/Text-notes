@@ -1,16 +1,28 @@
 import { compare } from "bcrypt"
 import Account from "../Schema/AccountSchema.js"
+import { decodeJwt } from "jose"
 
 const editNameController = async(req, res)=> {
-    const { Password, Name } = req.body
-    const { idAccount } = req.params
-    const account = await Account.findOne({Id: idAccount})
-    if(!account) return res.status(400).send(`Account with Id:${idAccount} don't exists`)
-    const checkPassword = compare(Password, account.Password)
-    if(!checkPassword) return res.status(401).send("Incorrect creentials")
-
-    await Account.findOneAndUpdate( { Id: idAccount }, {Name: Name} )
-    res.status(200).send(account)
+    try{
+        const { Password, Name } = req.body
+        const JWT = req.cookies.JWT
+        if(!JWT) {
+            return res.status(401).send(`Incorrect Credentials`)
+        }
+        const {Id} = decodeJwt(JWT)
+        const account = await Account.findOne({Id: Id})
+        if(!account) {
+            return res.status(401).send(`Incorrect Credentials`)
+         }
+        const checkPassword = compare(Password, account.Password)
+        if(!checkPassword) {
+            return res.status(401).send("Incorrect creentials")
+        }
+        await Account.findOneAndUpdate({Id: Id}, { Name: Name })
+        return res.status(200).send(account)
+    }catch(err){
+        return res.status(401).send(`Error: ${err}`)
+    }
 }
 
 export default editNameController

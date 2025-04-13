@@ -1,6 +1,13 @@
 {
     "configurations": [
         {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
             "type": "chrome",
             "name": "http://127.0.0.1:4001/",
             "request": "launch",

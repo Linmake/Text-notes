@@ -29,13 +29,13 @@ AccountRouter.post("/signup", signupController)
 
 AccountRouter.post("/signin", signinController)
 
-AccountRouter.get("/profile/:idAccount", userJWTDTO, profileController)
+AccountRouter.get("/profile", userJWTDTO, profileController)
 
-AccountRouter.put('/update-email/:idAccount', userJWTDTO, editEmailController)
+AccountRouter.put('/update-email', userJWTDTO, editEmailController)
 
-AccountRouter.put('/update-password/:idAccount', userJWTDTO, editPasswordController)
+AccountRouter.put('/update-password', userJWTDTO, editPasswordController)
 
-AccountRouter.put('/update-name/:idAccount', userJWTDTO, editNameController)
+AccountRouter.put('/update-name', userJWTDTO, editNameController)
 
 AccountRouter.delete('/delete', userJWTDTO, deleteController)
 

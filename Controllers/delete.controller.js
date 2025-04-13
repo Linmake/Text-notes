@@ -1,15 +1,37 @@
 import { compare } from "bcrypt"
 import Account from "../Schema/AccountSchema.js"
+import { decodeJwt } from "jose"
 
 const deleteController = async(req, res)=>{
-    const { idAccount } = req.params
     const { Password } = req.body
-    const account = await Account.findOne({ Id: idAccount })
-    if(!account) return res.status(400).send(`Account with Id:${idAccount} don't exists`)
+    const JWT = req.cookies.JWT
+    if(!JWT || JWT == undefined) {
+        return res.status(401).send("Incorrect credentials") 
+    }
+
+    const {Id} = decodeJwt(JWT)
+
+    if(!Id) {
+        return res.status(401).send('Incorrect credentials') 
+    }
+    if(!Password){
+        return res.status(401).send('Incorrect credentials')
+    }
+    const account = await Account.findOne({ Id: Id })
+
+    if(!account) {
+        return res.status(400).send(`Account with Id: ${Id} don't exists`)
+    }
+
     const checkPassword = compare(Password, account.Password)
-    if(!checkPassword) return res.status(401).send("Incorrect creddentials")
-    await Account.findOneAndDelete({ Id: idAccount })
-    res.status(200).send(`Account with Id:${idAccount} succesfully deleted`)
+    if(!checkPassword) {
+        return res.status(401).send("Incorrect credentials")
+    }
+    
+    await Account.deleteOne({Id: Id})
+    res.clearCookie("JWT", { path:"/" })
+
+    return res.status(200).send(`Account with Id: ${Id} succesfully deleted`)
 }
 
 export default deleteController

@@ -37,6 +37,6 @@ AccountRouter.put('/update-password/:idAccount', userJWTDTO, editPasswordControl
 
 AccountRouter.put('/update-name/:idAccount', userJWTDTO, editNameController)
 
-AccountRouter.delete('/delete/:idAccount', userJWTDTO, deleteController)
+AccountRouter.delete('/delete', userJWTDTO, deleteController)
 
 export default AccountRouter

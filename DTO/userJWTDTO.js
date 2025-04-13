@@ -1,21 +1,24 @@
 import { jwtVerify } from "jose"
 
-const userJWTDTO = async(res, req, next) => {
+const userJWTDTO = async(req, res, next) => {
 	try{
-		if(!(req.cookies.jwt)){
-			res.status(401).send('JWT not avaible')
-			return
+
+		if( !(req.cookies.JWT) ) {
+			return res.status(401).send('JWT not avaible')
 		}
-		const jwt = req.cookies.jwt
-		const encoder = new TextEncoder 
+		const jwt = req.cookies.JWT
+		if( !(jwt) ) {
+			return res.status(401).send('JWT not avaible')
+		}
 		const { payload } = await jwtVerify(
-		jwt, 
-		encoder.encoder(process.env.JWT_PRIVATE_KEY)
+			jwt, 
+			new TextEncoder().encode(process.env.JWT_PRIVATE_KEY)
 		)
  		req.Id = payload.Id
+		
 		next()
 	}catch(err){
-		return 	
+		return res.status(403).send(`Error: ${err}`) 	
 	}
 }
 

@@ -43,7 +43,7 @@ export const AccountSchema = new Schema({
             message: 'Role most be a string'
         }
     },
-})
+}, { strict: 'throw' })
 
 const Account = mongoose.model('Account', AccountSchema)
 export default Account

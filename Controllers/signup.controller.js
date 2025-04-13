@@ -34,13 +34,13 @@ const signupController = async( req, res ) => {
         const jwt = await authToken(uuid)
         await account.save()
 
-        res.cookie("jwt", jwt, {
+        res.cookie("JWT", jwt, {
             httpOnly: true,
             secure: false, //true in production!
             exp: "1d"
         })
 
-        return res.status(201).send(jwt)
+        return res.status(201).send(account)
     }catch(err){
         res.status(401).send(err.message)
         return 

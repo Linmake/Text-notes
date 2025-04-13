@@ -18,7 +18,7 @@ const editNameController = async(req, res)=> {
         if(!checkPassword) {
             return res.status(401).send("Incorrect creentials")
         }
-        await Account.findOneAndUpdate({Id: Id}, { Name: Name })
+        await Account.findOneAndUpdate({Id: Id}, { Name: Name }, {new: true})
         return res.status(200).send(account)
     }catch(err){
         return res.status(401).send(`Error: ${err}`)

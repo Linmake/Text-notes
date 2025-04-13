@@ -1,4 +1,4 @@
-import { compare } from "bcrypt"
+import { compare, hash } from "bcrypt"
 import Account from "../Schema/AccountSchema.js"
 import { decodeJwt } from "jose"
 
@@ -16,7 +16,9 @@ const editPasswordController = async(req, res)=> {
     const checkPassword = compare(Password, account.Password)
     if(!checkPassword) return res.status(401).send("Incorrect creentials")
 
-    await Account.findOneAndUpdate( { Id: Id }, {Password: NewPassword} )
+    const hashNewPassword = await hash(NewPassword, 8)
+
+    await Account.findOneAndUpdate( { Id: Id }, {Password: hashNewPassword}, {new: true} )
     res.status(200).send(account)
 }
 

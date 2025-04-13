@@ -13,6 +13,12 @@ import deleteController from '../Controllers/delete.controller.js';
 import editPasswordController from '../Controllers/editPassword.controller.js';
 import userJWTDTO from '../DTO/userJWTDTO.js';
 import editNameController from '../Controllers/editName.controller.js';
+import rateLimit from 'express-rate-limit';
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+});
 
 const AccountRouter = express.Router()
 
@@ -35,7 +41,7 @@ AccountRouter.put('/update-email/:idAccount', userJWTDTO, editEmailController)
 
 AccountRouter.put('/update-password/:idAccount', userJWTDTO, editPasswordController)
 
-AccountRouter.put('/update-name/:idAccount', userJWTDTO, editNameController)
+AccountRouter.put('/update-name/:idAccount', limiter, userJWTDTO, editNameController)
 
 AccountRouter.delete('/delete/:idAccount', userJWTDTO, deleteController)
 

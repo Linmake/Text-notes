@@ -77,7 +77,7 @@ const NewFolderContent = () => {
       console.error(error);
     }
     // project.Folders.push(newFolder)
-  };
+  }
 
 
   const inputFolderOnBlur = () => {

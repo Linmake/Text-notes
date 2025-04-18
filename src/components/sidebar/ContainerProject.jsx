@@ -6,23 +6,29 @@ import { useParams } from 'react-router-dom';
 import IconNewFile from '../../assets/addFileIconWhite.png'
 import iconNewFolder from '../../assets/addFolderIconWhite.png'
 import FolderList from './FolderList';
-import ContainerFolders from './containerProjects';
+import ContainerFolders from './ContainerFolders';
 
 const ContainerProyect = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: content-box;
   width: 100%;
+  box-sizing: border-box;
   `
+
   const ContainerButtons = styled.div`
   box-sizing: content-box;
   width: 40%;
   margin-left: 10%;
-  margin-top: 4%;
+  margin-top: 3%;
   display: flex;
+  justify-content: center;
   flex-direction: row;
   gap: 1rem;
+  height: 70%;
+  padding: 2%;
   `
+
   const IconButton = styled.button`
   align-items: center;
   background-position: bottom;
@@ -32,17 +38,20 @@ const ContainerProyect = styled.div`
   display: flex;
   background-color: transparent;
   width: 1.5rem;
-  height: 30%;
+  height: 100%;
   border: none;
   background-size: 100%;
 `
+
 const ContainerTitleProject = styled.div`
 width: 100%;
 text-align: center;
-margin-top: 5%;
-padding-left: 0;
+margin-top: 8%;
+max-height: 35%;
+box-sizing: border-box;
 h1{
     font-size: 1.2rem;
+    color: #C1CCCC;
     }
 `;
 
@@ -50,14 +59,13 @@ const Header = styled.header`
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 14lvh;
+  height: 8%;
   box-sizinxg: content-box;
   justify-content: space-between;
   margin-top: 5%;
   position: absolute;
   left: -3%;
   `
-
 
 const ContainerProject = () => {
   const DbUrl = "http://localhost:4000";
@@ -95,8 +103,28 @@ const ContainerProject = () => {
       <Header>
         <ContainerTitleProject><h1>{project.Title}</h1></ContainerTitleProject>
         <ContainerButtons>
-          <IconButton id='newFileBttn' style={{backgroundImage: `url(${IconNewFile})`}}><iconNewFile/></IconButton>
-          <IconButton style={{backgroundImage: `url(${iconNewFolder})`}} id='newFolderBttn'><iconNewFolder/></IconButton>
+          <IconButton
+          id='newFileBttn'
+          style={
+                  {
+                    backgroundImage: `url(${IconNewFile})`
+                  }
+                }
+          >
+
+            <iconNewFile/>
+          </IconButton>
+          <IconButton
+          id='newFolderBttn'
+          style={
+                  {
+                    backgroundImage: `url(${iconNewFolder})`
+                  }
+                }
+          
+          >
+            <iconNewFolder/>
+          </IconButton>
         </ContainerButtons>
       </Header>
       <ContainerFolders>
@@ -105,4 +133,5 @@ const ContainerProject = () => {
     </ContainerProyect>
   );
 };
+
 export default ContainerProject;

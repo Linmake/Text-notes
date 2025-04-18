@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
 const Container = styled.div`
-box-sizing: content-box;
-margin-top: 3.5rem;
-width: 100%;
+margin-top: 4rem;
 display: flex;
 flex-direction: column;
 gap: 1rem;
-`
+min-height: 90vh;
+min-width: 100%;
+box-sizing: border-box;
+` 
 
 const ContainerFolders = ({ children }) => {
   return (

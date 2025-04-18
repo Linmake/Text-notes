@@ -45,7 +45,7 @@ border-radius: 2px;
 align-items: center;
 padding: 40px;
 `
-const ContainerProjects = styled.div`
+const ContainerFolders = styled.div`
 display: flex;
 background-color: white;
 border: 1px solid #dee0e3;
@@ -124,7 +124,7 @@ const noProjectsOpen = () => {
         <ContainerFilter>
           <Contend>
             <h1>Abrir un project</h1>
-            <ContainerProjects>
+            <ContainerFolders>
             <ListProjects>
               {projects.map((project, index) => (
                 <ProjectElement key={index} onClick={() => handlerOpen(project.Id)} >
@@ -132,7 +132,7 @@ const noProjectsOpen = () => {
                 </ProjectElement>
               ))}
             </ListProjects>
-            </ContainerProjects>
+            </ContainerFolders>
           </Contend>
         </ContainerFilter>
       </FilterSelectProject>

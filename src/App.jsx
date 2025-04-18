@@ -27,7 +27,6 @@ function App() {
         <Route exact path='/Folders/' element={<a />} />
         <Route exact path='/*' element={<NotFound/>} />
       <Route path='/Project/:projectId' element={<TextEditor />}>
-        
       </Route>
       <Route path='Account' element={<UsersLayout />}>
         <Route index path='Auth' element={<Users />} />

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFolderBlank, faFolderOpen, faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import styled from "styled-components";
 import { positionSideContext } from '../../context/SideProv';
 import axios from 'axios';
@@ -10,50 +10,57 @@ import { useNavigate, useParams } from 'react-router-dom';
 import NewFileContent from './ContainerNewFiles';
 import styles from '../../styles/components/editor/FolderList.css'
 
+const FoldersContainer = styled.ul`
+  margin-top: 4%;
+`
+
 export const LiFolder = styled.li`
   width: 100%;
   margin-top: 0;
+  box-sizing: border-box;
   &.selected {
     background-color: #5a5a5a8a;
-  }
+    }
   &.noSelected{
-   background-color: transparent;
-  }
+    background-color: transparent;
+    }
 `;
 
-export const DivSelect = styled.div`
+  export const FolderContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
 const Folder = styled.div`
-  gap: 0.5rem;
+  gap: 3%;
   display: flex;
-  align-items: baseline;
-  padding: 0;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
   word-wrap: break-word;
   white-space: nowrap;
+  text-align: center;
+  justify-content: center;
   border-radius: 0 !important;
   width: 100%;
-  margin-left: 7px;
+  min-height: 5%;
   cursor: pointer;
-  `;
-  
-const InputFolder = styled.input`
-  outline: none;
-  border: none;
-  width: 55%;
-  background-color: transparent;
-  color: #fff;
-  cursor: pointer;
-  height: 5%;
-  font-size: 1.1rem;
-  &:hover {
-    background-color: #5a5a5a2b;
+  box-sizing: border-box;
+  &:hover{
+    background-color:rgba(183, 183, 183, 0.17);
   }
-`;
+`
+  
+  const Title = styled.p`
+  color: #C1CCCC;
+  font-size: 1.1rem;
+  display: flex;
+  box-sizing: border-box;
+  `
+  
+  const Icon = styled(FontAwesomeIcon)`
+  margin-top: 2%;
+  color: #C6CCCC;
+  `
 
 /**
  * Componente que despliega la lista de los Folders visuales desde la bd 
@@ -130,56 +137,58 @@ const FolderList = () => {
       let newPath = `/${segments.join('/')}`; // Une de nuevo en formato de URL
       return newPath
   };
+
   const handlerSelectFolder = (index, id) => {
     const folder = folders.find(folder => folder.Id == id)
-    let currentPath = changePath(window.location.pathname);
     if (!folder) {
       return
     }
     setIdFolderSelect(folder.Id)
     setOpenFolder(true)
-    setFiles(folder.Files) //!!todo
-
-    let urlFolder = [currentPath, id]
-    
-    navigateFolder(`${urlFolder[0]}/${urlFolder[1]}`)
+    setFiles(folder.Files)
     
     if (statusSelectFolder && selectedFolderIndex === index) {
       setStatusSelectFolder(false);
-      setSelectedFolderIndex(""); //al volver a hacer click en el mismo folder se cierra y elimina el index del contexto
+      setSelectedFolderIndex("")
     } else {
       setStatusSelectFolder(true);
       setAddNewFile(false);
       setSelectedFolderIndex(index);
     }
     return
-  };
-
+  }
   return (
-    <ul className="nav">
+    <FoldersContainer className="nav">
       {folders.map((folder, index) => (
         <LiFolder
           className="nav-item liFolder"
           key={index}
+          onClick={() => handlerSelectFolder(index, folder.Id)}
+          role='button'
         >
-          <DivSelect className="text-white">
+          <FolderContainer 
+            className="text-white" 
+            role='button'
+          >
             <Folder
-              className={`${selectedFolderIndex == index ? 'selected' : 'noSelected'}`}
-              onClick={() => handlerSelectFolder(index, folder.Files, folder.Id)}>
-              <FontAwesomeIcon
+              className={` folder ${selectedFolderIndex == index ? 'selected' : 'noSelected'}`}
+              role='button'
+              >
+              <Icon
                 icon={
                   (selectedFolderIndex === index && statusSelectFolder)
-                   ?  faChevronDown 
-                   : faChevronRight}
-                className={` ${selectedFolderIndex === index ? 'selected' : ''}`}
+                  ?  faChevronDown 
+                  : faChevronRight}
+                  className={` ${selectedFolderIndex === index ? 'selected' : ''}`}
+                  onClick={() => handlerSelectFolder(index, folder.Id)}
+                  role='button'
               />
-              <InputFolder
-                value={folder.Title}
-                title={folder.Title}
-                readOnly
-                onClick={() => handlerSelectFolder(index, folder.Id)}
-                id={folder.id}
-              />
+              <Title 
+              id='folder.id'
+              className='input-folder'
+              >
+              {folder.Title}
+              </Title>
             </Folder>
             {openFolder && selectedFolderIndex === index && (
               <>
@@ -189,10 +198,10 @@ const FolderList = () => {
                 <FileList />
               </>
             )}
-          </DivSelect>
+          </FolderContainer>
         </LiFolder>
       ))}
-    </ul>
+    </FoldersContainer>
   );
 };
 export default FolderList;

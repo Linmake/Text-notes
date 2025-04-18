@@ -7,7 +7,7 @@ import axios from 'axios';
 import { UseData } from '../../context/dataContext';
 import { FileList } from './FileList';
 import { useNavigate, useParams } from 'react-router-dom';
-import NewFileContent from './ContainerNewFiles';
+import NewFileContent from './NewFileContent';
 import styles from '../../styles/components/editor/FolderList.css'
 
 const FoldersContainer = styled.ul`

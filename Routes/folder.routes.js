@@ -3,6 +3,8 @@ import Project from '../Schema/ProjectSchema.js'
 import validateFolder from '../DTO/FolderValidation.js';
 import express from "express";
 import { getDate } from '../middleware/Functions/Date.js';
+import { v4 as uuidv4 } from 'uuid'
+
 const FolderRouter = express.Router();
 
 FolderRouter.get("/all", async (req, res) => {
@@ -18,13 +20,26 @@ FolderRouter.get("/:ProjectId/all", async (req, res) => {
   return res.status(200).send(allFolders);
 });
 
-FolderRouter.post("/create/:ProjectId", validateFolder, async (req, res) => {
+FolderRouter.post("/create/", validateFolder, async (req, res) => {
   try {
-    const { ProjectId } = req.params
     const folder = req.body;
+    let { 
+      Id,
+      Title, 
+      Date, 
+      Void, 
+      ProjectId, 
+      Files 
+    } = folder
+
     if (!folder) return res.status(400).send("Folder don't exist");
     const project = await Project.findOne({ Id: ProjectId })
     if (!project) return res.status(400).send("Project don't exist");
+    if ((/[<>?|{}\[\]#=()]/.test(Title))) return res.status(400).send("Special characters");
+    Id = uuidv4()
+    Void = true
+    Files = []
+    Date = getDate
     await Folder.create(folder)
     project.Folders.push(folder)
     await project.save()

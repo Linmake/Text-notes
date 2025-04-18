@@ -71,11 +71,10 @@ const NewFolderContent = () => {
       Files: []
     }
     try {
-      alert(`Ejecucion en Id Project:${project.Id}`)
-      const resFolders = await axios.post(`http://localhost:4000/folder/create/${project.Id}`, newFolder);
+      const resFolders = await axios.post(`http://localhost:4000/folder/create`, newFolder);
       setFolders([...folders, newFolder])
-      inputRefNewFolder.current.value = "";
       setAddNewFolder(false);
+      inputRefNewFolder.current.value = "";
       setProjectVoid(false);
       return resFolders;
     } catch (error) {

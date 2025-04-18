@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useContext } from 'react';
 import styled from "styled-components";
 import axios from 'axios';
 import { UseData } from '../../context/dataContext';
@@ -7,6 +7,8 @@ import IconNewFile from '../../assets/addFileIconWhite.png'
 import iconNewFolder from '../../assets/addFolderIconWhite.png'
 import FolderList from './FolderList';
 import ContainerFolders from './ContainerFolders';
+import { positionSideContext } from '../../context/SideProv';
+import NewFolderContent from './NewFolderContent';
 
 const ContainerProyect = styled.div`
   display: flex;
@@ -68,6 +70,13 @@ const Header = styled.header`
   `
 
 const ContainerProject = () => {
+  const { data, folders, setFolders } = UseData();
+  const inputRefNewFolder = useRef(null);
+  const {
+    addNewFolder,
+    setAddNewFolder,
+    setProjectVoid
+  } = useContext(positionSideContext); 
   const DbUrl = "http://localhost:4000";
   const { projectId } = useParams()
   
@@ -98,6 +107,14 @@ const ContainerProject = () => {
     }
     fetchData();
   }, []);
+  const handlerNewFile = () => {
+
+  }
+
+  const handlerNewFolder = () => {
+    setAddNewFolder(true)
+  }
+
   return (
     <ContainerProyect>
       <Header>
@@ -110,8 +127,8 @@ const ContainerProject = () => {
                     backgroundImage: `url(${IconNewFile})`
                   }
                 }
+          onClick={() => alert("new file")}
           >
-
             <iconNewFile/>
           </IconButton>
           <IconButton
@@ -121,13 +138,14 @@ const ContainerProject = () => {
                     backgroundImage: `url(${iconNewFolder})`
                   }
                 }
-          
+          onClick={() => handlerNewFolder()}
           >
             <iconNewFolder/>
           </IconButton>
         </ContainerButtons>
       </Header>
       <ContainerFolders>
+        <NewFolderContent />
         <FolderList/>
       </ContainerFolders>
     </ContainerProyect>

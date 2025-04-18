@@ -1,5 +1,5 @@
 import { compare } from "bcrypt"
-import Account from "../Schema/AccountSchema.js"
+import Account from "../../Schema/AccountSchema.js"
 import { decodeJwt } from "jose"
 
 const editEmailController = async(req, res)=> {

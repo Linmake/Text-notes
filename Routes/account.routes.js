@@ -1,12 +1,12 @@
 import Account from '../Schema/AccountSchema.js'
 import express from "express"
-import signupController from '../Controllers/signup.controller.js';
-import signinController from '../Controllers/signin.controller.js';
-import editEmailController from '../Controllers/editEmail.controller.js';
-import deleteController from '../Controllers/delete.controller.js';
-import editPasswordController from '../Controllers/editPassword.controller.js';
+import signupController from '../Controllers/Account/signup.controller.js';
+import signinController from '../Controllers/Account/signin.controller.js';
+import editEmailController from '../Controllers/Account/editEmail.controller.js';
+import deleteController from '../Controllers/Account/delete.controller.js';
+import editPasswordController from '../Controllers/Account/editPassword.controller.js';
 import userJWTDTO from '../DTO/userJWTDTO.js';
-import editNameController from '../Controllers/editName.controller.js';
+import editNameController from '../Controllers/Account/editName.controller.js';
 
 const AccountRouter = express.Router()
 

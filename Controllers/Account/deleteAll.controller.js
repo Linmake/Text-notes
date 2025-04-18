@@ -1,5 +1,5 @@
 import { compare } from "bcrypt"
-import Account from "../Schema/AccountSchema.js"
+import Account from "../../Schema/AccountSchema.js"
 
 const deleteAllController = async(req, res)=>{
     const JWT = req.cookies.JWT

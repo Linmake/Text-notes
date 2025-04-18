@@ -1,5 +1,5 @@
-import authToken from '../Routes/auth_token.js'
-import Account from '../Schema/AccountSchema.js'
+import authToken from '../../Routes/auth_token.js'
+import Account from '../../Schema/AccountSchema.js'
 import { v4 as uuidv4 } from 'uuid'
 import { hash } from 'bcrypt'
 

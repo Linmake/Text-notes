@@ -1,5 +1,5 @@
 import { compare, hash } from "bcrypt"
-import Account from "../Schema/AccountSchema.js"
+import Account from "../../Schema/AccountSchema.js"
 import { decodeJwt } from "jose"
 
 const editPasswordController = async(req, res)=> {

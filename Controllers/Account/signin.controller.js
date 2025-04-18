@@ -1,6 +1,6 @@
 import { compare } from "bcrypt"
-import Account from "../Schema/AccountSchema.js"
-import authToken from "../Routes/auth_token.js"
+import Account from "../../Schema/AccountSchema.js"
+import authToken from "../../Routes/auth_token.js"
 
 const signinController = async(req, res) => {
     try{

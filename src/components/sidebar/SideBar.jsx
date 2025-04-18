@@ -1,7 +1,6 @@
 import "../../styles/components/sidebar/SideBarComponent.css";
 import ContainerProject from "./ContainerProject";
 import ContainerNotFolders from "./ContainerNotFolders";
-import NewFolderContent from "./ContainerNewFolders";
 import SideContenedor from "./ContainerSideBar";
 import styled from "styled-components";
 
@@ -21,7 +20,6 @@ const SideBar = () => {
       <SideContenedor >
         <ContainerProject />
         <ContainerNotFolders />
-        <NewFolderContent />
       </SideContenedor>
     </DivSidebar>
   );

@@ -30,7 +30,9 @@ export function DataProvider({ children }) {
        email,
        setEmail,
        pwd,
-       setPwd
+       setPwd,
+       name,
+       setName
   }}>
       {children}
     </DataContext.Provider>

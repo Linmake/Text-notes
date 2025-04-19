@@ -4,6 +4,7 @@ import NotepadImageRemoveBg from "../../assets/notepad-removebg.png"
 import { UseData } from '../../context/dataContext';
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
+import SignUp from "./SignUp";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -139,7 +140,7 @@ const TitleH1 = styled.h1`
 
 const NameAccount = () => { //ponerle un load al componente para atrapar el err de que si no hya email previo redirigir a account/signup/email
 
-  const { setPwd, email, setName } = UseData()
+  const {email, setName, pwd, name } = UseData()
   const navigate = useNavigate()
   const baseUrl = "http://localhost:4001/"
  
@@ -148,7 +149,12 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
   segmentsPath.pop()
   segmentsPath.pop()
   const newPath = "/" + segmentsPath.join('/')
-  console.log(newPath)
+
+  const handlerSubmit = ( event ) => {
+    event.preventDefault()
+    //alert( `email: ${email} pwd${pwd} name${name}`)
+    SignUp(email, pwd, name)
+  }
 
   useEffect( () => {
    if(email == null){

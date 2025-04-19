@@ -1,14 +1,8 @@
-import { useEffect } from "react"
-import { UseData } from "../../context/dataContext"
 import axios from "axios"
 import { v4 as uuidv4 } from 'uuid';
 
-const SignUp = () => {
-  const { pwd, email, name } = UseData()
-
-  useEffect( async() => {
+const SignUp = async(email, pwd, name) => {
     try{
-
       const account = {
         Id: uuidv4(),
         Email: email,
@@ -16,17 +10,11 @@ const SignUp = () => {
         Name: name,
         Role: "user"
       }
-      const res = await axios.post("http://localhost:4000/account/create", account)
+      const res = await axios.post("http://localhost:4000/account/signup", account)
+      return res
     }catch(err){
-      return res.status(401)
+      return console.log(err)
     }
-  }, [])
-  
-  return (
-    <div>
-
-    </div>
-  )
 }
 
-export default SignUp
+export default SignUp 

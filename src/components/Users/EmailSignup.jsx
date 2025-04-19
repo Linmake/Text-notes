@@ -3,7 +3,8 @@ import {createGlobalStyle} from "styled-components"
 import NotepadImageRemoveBg from "../../assets/notepad-removebg.png"
 import { UseData } from '../../context/dataContext';
 import { useNavigate } from "react-router-dom";
-
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -125,18 +126,35 @@ const TitleH1 = styled.h1`
 const EmailSignup = () => {
 
   /*
-  const signup = () => {
-    const DBUrl = "http://localhost:4000"
-    axios.post( `${DBUrl}/account/create` )
+  const signup = async() => {
+    try{
+      const account = {
+        Id: uuidv4(),
+        Name: name,
+        Password: pwd,
+        Email: email,
+        Role: "user"
+      }
+      const res = await axios.post("http://localhost:4000/account/create", account)
+    }catch(err){
+      return res.status(401)
+    }
   }
   */
 
-  const { setEmail } = UseData()
+  const { 
+    email,
+    setEmail,
+    pwd,
+    setPwd,
+    name,
+    setName 
+  } = UseData()
   const navigate = useNavigate()
 
-  const handlerSubmit = ( event ) => {
+  const handlerSubmit = async( event ) => {
     event.preventDefault()
-    navigate("pwd")
+      navigate("pwd")
   }
 
   return (

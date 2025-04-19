@@ -145,7 +145,6 @@ const PwdAccount = () => { //ponerle un load al componente para atrapar el err d
   const segmentsPath = path.split('/').filter(Boolean)
   segmentsPath.pop()
   const newPath = "/" + segmentsPath.join('/')
-  console.log(newPath)
 
  useEffect( () => {
    if(email == null){

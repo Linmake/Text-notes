@@ -10,7 +10,7 @@ const fileJsonSchema = {
   properties: {
     Id: { type: 'string', minLength: 1 },
     Title: { type: 'string', minLength: 1 },
-    Text: { type: 'string' },
+    Text: { type: 'string', minLength: 0},
     FolderId: { type: 'string' },
   },
   required: ['Id', 'Title', 'FolderId'],
@@ -19,7 +19,7 @@ const fileJsonSchema = {
 
 const validate = ajv.compile(fileJsonSchema);
 
-const validateFile = (req, res, next) => {
+const FileValidation = (req, res, next) => {
   const project = req.body;
   const valid = validate(project);
   if (!valid) {
@@ -29,4 +29,4 @@ const validateFile = (req, res, next) => {
   next();
 };
 
-export default validateFile
+export default FileValidation

@@ -33,8 +33,7 @@ export const InputFile = styled.input`
 `
 
 const NewFileContent = () => {
-  const inputRefNewFile = useRef("");
-  const inputRefNewFolder = useRef("");
+  const inputRefNewFile = useRef(null);
 
   const {
     addNewFile,
@@ -68,33 +67,33 @@ const NewFileContent = () => {
       return;
     } else {
 
-      const idFolder = idFolderSelect;
+      const IdFolder = idFolderSelect;
 
       const folder = folders.find(
-        folder => folder.Id === idFolder
+        folder => folder.Id === IdFolder
       )
 
       if (!folder) {
-        console.error(`Folder with id ${idFolder} not found.`);
+        console.error(`Folder with id ${IdFolder} not found.`);
         return;
       }
 
       const newFile = {
         Id: uuidV4(),
-        IdFolder: folder.Id,
+        FolderId: folder.Id,
         Title: inputRefNewFile.current.value,
-        Text: "text initial"
+        Text: " "
       };
 
       const filesList = folder.Files;
 
       try {
-        const resFiles = await axios.post(`http://localhost:4000/file/create/${folder.Id}`, newFile)
+        const resFiles = await axios.post(`http://localhost:4000/file/create`, newFile)
         setFiles([...filesList, newFile])
         inputRefNewFile.current.value = "";
-        console.log("file add", newFile.titulo)
         filesList.push(newFile);
         setAddNewFile(false);
+        return resFiles
       } catch (error) {
         console.error(error);
       }
@@ -111,15 +110,16 @@ const NewFileContent = () => {
   }
 
   return (
-    <Ul className={
-      `nav-item
-      ${(addNewFile) ? '' : 'hidde'}`}
-    >
+    <Ul 
+    className={
+      `nav-item ${(addNewFile) ? '' : 'hidde'}`
+    }>
       <div className="nav-link text-white">
         <FontAwesomeIcon id="iconFolder" icon={faFile} />
         <span className="fs-4 d-none d-sm-inline fa-table-list newFileInp">
           <InputFile
-            ref={inputRefNewFile} type="text"
+            ref={inputRefNewFile} 
+            type="text"
             id="newFileInp"
             onKeyDown={event => handlerNewFiles(event)}
           />

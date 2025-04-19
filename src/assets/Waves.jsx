@@ -1,6 +1,6 @@
 // Waves.jsx
 import styled from 'styled-components';
-import wavesUrl from '../assets/waves.svg';
+import wavesUrl from './waves.svg';
 
 const sizes = {
   laptop: 1920,

@@ -7,7 +7,7 @@ export const FileSchema = new Schema({
     type: String,
     required: [true, 'El campo Id es obligatorio.']
   },
-  IdFolder: {
+  FolderId: {
     type: String,
     required: [true, 'El campo IdFolder es obligatorio.']
   },

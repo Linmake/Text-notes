@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import Waves from "../assets/Waves";
 import notepad from "../assets/notepad.webp";
 
-
 /*
 const sizes = {
   laptop: 1920,

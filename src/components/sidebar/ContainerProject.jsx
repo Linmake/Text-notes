@@ -70,12 +70,9 @@ const Header = styled.header`
   `
 
 const ContainerProject = () => {
-  const { data, folders, setFolders } = UseData();
-  const inputRefNewFolder = useRef(null);
   const {
-    addNewFolder,
+    setAddNewFile,
     setAddNewFolder,
-    setProjectVoid
   } = useContext(positionSideContext); 
   const DbUrl = "http://localhost:4000";
   const { projectId } = useParams()
@@ -107,12 +104,13 @@ const ContainerProject = () => {
     }
     fetchData();
   }, []);
-  const handlerNewFile = () => {
-
-  }
 
   const handlerNewFolder = () => {
     setAddNewFolder(true)
+  }
+
+  const handlerNewFile = () => {
+    setAddNewFile(true)
   }
 
   return (
@@ -127,7 +125,7 @@ const ContainerProject = () => {
                     backgroundImage: `url(${IconNewFile})`
                   }
                 }
-          onClick={() => alert("new file")}
+          onClick={() => handlerNewFile()}
           >
             <iconNewFile/>
           </IconButton>

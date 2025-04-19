@@ -7,9 +7,9 @@ import HeaderEditorComponent from "../components/Header/HeaderEditorComponent";
 import styled from 'styled-components';
 import { useContext, useEffect } from 'react';
 import axios from 'axios';
-import { UseData } from '../context/dataContext';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from 'react-router-dom'
+import { UseData } from '../context/dataContext';
 
 const FilterSelectProject = styled.div`
 z-index: 100;
@@ -142,6 +142,7 @@ const noProjectsOpen = () => {
     </>
   )
 }
+
 const handlerOpen = (id) => {
   navigate(id)
   setData({ key: id })
@@ -160,4 +161,5 @@ const handlerOpen = (id) => {
     </EditorCompTemplate>
   );
 };
+
 export default TextEditor

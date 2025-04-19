@@ -1,5 +1,5 @@
 import Express from "express"
-import validateFile from "../DTO/FileValidation.js"
+import FileValidation from "../DTO/FileValidation.js"
 import getAllFilesController from '../Controllers/File/getAll.controller.js'
 import getFileByProjectController from '../Controllers/File/getAllByProject.controller.js'
 import getFileController from '../Controllers/File/get.controller.js'
@@ -18,7 +18,7 @@ const FileRouter = Express.Router()
 
   FileRouter.get('/all/:FolderId', getAllFilesController)
 
-  FileRouter.post('/create', validateFile, createController)
+  FileRouter.post('/create', FileValidation, createController)
 
   FileRouter.put('/edit-text', editTextController)
 

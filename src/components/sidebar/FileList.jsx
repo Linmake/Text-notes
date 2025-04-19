@@ -14,47 +14,44 @@ export const UlFile = styled.ul`
   margin: 0;
   max-height: 100%;
   flex-grow: 1;
+  height: 50%;
+  &:last-child{
+    margin-bottom: 3%;
+  }  
 `;
 
 export const LiFile = styled.li`
   display: flex;
-  border-left: 1px solid #66666694;
-  margin-left: 8%;
   list-style: none;
-  padding: 0.5rem 0;
-
+  align-items: center;
+  
+  &:hover{
+    background-color: #5a5a5a2b;
+  }
   & > .nav-item {
     ${navItem}
-  }
-
+    }
+    
   & > .nav-link {
     ${navLink}
-    &.selected {
-      background-color: #5a5a5a67;
-    }
+  &.selected {
+    background-color: #5a5a5a67;
   }
-
   &.hidden {
     display: none;
   }
-`;
-
-export const File = styled.div`
+  `;
+          
+  export const File = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: baseline;
-  margin-left: 3%;
-  padding: 0.5rem;
-
+  margin-left: 8%;
+  height: 50%;
   &.selected {
     background-color: #5a5a5a67;
   }
   &.noSelected {
     background-color: transparent;
-  }
-
-  &:hover {
-    background-color: #5a5a5a2b;
   }
 `;
 
@@ -66,8 +63,12 @@ export const InputFile = styled.input`
   background-color: transparent;
   color: #fff;
   cursor: pointer;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 `;
+
+const Icon = styled(FontAwesomeIcon)`
+  width: 5%;
+`
 
 /**
  * Componente que despliega la lista de los files visuales desde la bd 
@@ -77,37 +78,6 @@ export const FileList = () => {
   const { files } = UseData();
   const { addNewFile } = useContext(positionSideContext)
   const { fileCurrent, setFileCurrent } = useContext(EditorFunctionsContext);
-
-  /*useEffect(() => {
-      const getFiles = async () => {
-        try {
-          const res = await axios({
-            url: `${DbUrl}/folder/${data.key}/all`,
-            method: 'GET'
-          });
-          return res;
-        } catch (error) {
-          console.error(error);
-          return
-        }
-      };
-  
-     
-      const fetchData = async () => {
-  
-        const resFetch = await getFolder()
-  
-        if (resFetch && resFetch.status === 200) {
-          setFolders(resFetch.data)
-  
-        } else {
-          console.error(new Error("Error del servidor"))
-        }
-      };
-  
-      fetchData();
-  
-    }, [data, setFolders]);*/
 
   if ((!files || files.length === 0) && !addNewFile) {
     return <p>No files available</p>; // Maneja el caso cuando no hay archivos
@@ -123,7 +93,7 @@ export const FileList = () => {
         files.map(file => (
           <LiFile className="nav-item" key={file.Id}>
             <File className="nav-link text-white file" onClick={event => handlerFile(file)}>
-              <FontAwesomeIcon id={`iconFile-${file.Id}`} icon={faFile} />
+              <Icon id={`iconFile-${file.Id}`} icon={faFile} />
               <InputFile
                 readOnly
                 value={file.Title}

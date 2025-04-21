@@ -11,7 +11,7 @@ export function DataProvider({ children }) {
   const [folders, setFolders] = useState([])
 
   //account
-  const [email, setEmail] = useState(null)
+  const [emailSignUp, setEmail] = useState(null)
   const [pwd, setPwd] = useState([])
   const [name, setName] = useState([])
 
@@ -27,7 +27,7 @@ export function DataProvider({ children }) {
        setProject,
        folders, 
        setFolders,
-       email,
+       email: emailSignUp,
        setEmail,
        pwd,
        setPwd,

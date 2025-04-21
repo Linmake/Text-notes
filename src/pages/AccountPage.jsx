@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import SignupUsers from '../components/Users/SignupUsers'
+import SignupUsers from '../components/Account/SignupUsers'
 
 const Container = styled.div`
   display: flex;

@@ -10,12 +10,12 @@ import RootLayout from './Layout/RootLayout';
 import NotFound from './pages/NotFound';
 import UsersLayout from './Layout/UsersLayout';
 import SignupLayout from './Layout/SignupLayout';
-import Users from './components/Users/Users';
-import SignInUsers from './components/Users/SignInUsers';
-import PwdAccount from './components/Users/PwdAccount'
-import EmailSignup from './components/Users/EmailSignup'
-import NameAccount from './components/Users/NameAccount';
-import SignUp from './components/Users/SignUp'
+import Account from './components/Account/Accounts/Account';
+import SignInUsers from './components/Account/SignIn/SignInUsers';
+import PwdAccount from './components/Account/SignUp/PwdAccount'
+import EmailSignup from './components/Account/SignUp/EmailSignup'
+import NameAccount from './components/Account/SignUp/NameAccount';
+import SignUp from './components/Account/SignUp/SignUp'
 
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
       <Route path='/Project/:projectId' element={<TextEditor />}>
       </Route>
       <Route path='Account' element={<UsersLayout />}>
-        <Route index path='Auth' element={<Users />} />
+        <Route index path='Auth' element={<Account />} />
         <Route path='signup' element={<SignupLayout />}>
           <Route path='email' element={<EmailSignup />}/>
           <Route path='email/pwd' element={<PwdAccount />}/>

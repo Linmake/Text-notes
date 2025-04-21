@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {createGlobalStyle} from "styled-components"
-import NotepadImageRemoveBg from "../../assets/notepad-removebg.png"
-import { UseData } from '../../context/dataContext';
+import NotepadImageRemoveBg from "../../../assets/notepad-removebg.png"
+import { UseData } from '../../../context/dataContext';
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
 import SignUp from "./SignUp";
@@ -9,7 +9,7 @@ import SignUp from "./SignUp";
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Inter';
-    src: url('../../../public/fonts/Inter/Inter_28pt-Regular.ttf') format('ttf'),
+    src: url('../../../../public/fonts/Inter/Inter_28pt-Regular.ttf') format('ttf'),
     font-weight: normal;
     font-style: normal;
     }
@@ -167,18 +167,18 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
     <Container>
       <ContainerDesc>
         <img srcSet={NotepadImageRemoveBg} width={70} alt="efficent notes logo"></img>
-        <TitleH1>Log in to Efficient Notes</TitleH1>
+        <TitleH1>Sign up to Efficient Notes</TitleH1>
       </ContainerDesc>
       <RegisterForm onSubmit={event => handlerSubmit( event )}>
         <LabelPsw htmlFor="pwd">Name:</LabelPsw>
         <InputEmail 
-          autocapitalize={false}
-          spellcheck={false}
+          autoCapitalize
+          spellCheck
           id="name"
           type="name"
           placeholder="Your Name" 
           required 
-          autofocus
+          autoFocus
           title 
           data-invalid={true}
           onChange={e => setName(e.target.value)}

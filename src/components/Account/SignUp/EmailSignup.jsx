@@ -1,27 +1,26 @@
 import styled from "styled-components";
-import {createGlobalStyle} from "styled-components"
-import NotepadImageRemoveBg from "../../assets/notepad-removebg.png"
-import { UseData } from '../../context/dataContext';
+import { createGlobalStyle } from "styled-components";
+import NotepadImageRemoveBg from "../../../assets/notepad-removebg.png";
+import { UseData } from "../../../context/dataContext";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-
+import { isSignupByEmail } from "../Methods/isSignupByEmail.js";
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Inter';
-    src: url('../../../public/fonts/Inter/Inter_28pt-Regular.ttf') format('ttf'),
+    src: url('../../../../public//fonts/Inter/Inter_28pt-Regular.ttf') format('ttf'),
     font-weight: normal;
     font-style: normal;
   }
-  `
-  const Container = styled.div`
+  `;
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
   left: 35%;
   top: 10%;
   align-items: center;
-  ::selection{
-  background-color: #d7dbfe;
+  ::selection {
+    background-color: #d7dbfe;
   }
   gap: 0.5rem;
 `;
@@ -43,7 +42,6 @@ const RegisterForm = styled.form`
   box-sizing: border-box;
   text-align: start !important;
 `;
-
 const BttContinue = styled.button`
   width: 22rem;
   height: 2.25rem;
@@ -59,22 +57,10 @@ const BttContinue = styled.button`
     background-color: #2e2e2e;
   }
 `;
-
-const LabelPsw = styled.label`
-  font-size: 0.875rem;
-  align-self: start;
-`;
 const LabelEmail = styled.label`
   font-size: 0.875rem;
   align-self: start;
-  font-color: #686868 !important;
 `;
-
-const Email = styled.p`
-  font-size: 0.875rem;
-  align-self: start;
-`
-
 const InputEmail = styled.input`
   width: 22rem;
   height: 2.25rem;
@@ -86,13 +72,12 @@ const InputEmail = styled.input`
   text-indent: calc(calc(12px * 1) - 1px);
   border-radius: max(calc(6px * 1 * 0.75));
   font-size: 1rem;
-  &:focus{
-  border: 1px solid #979ef7;
+  &:focus {
+    border: 1px solid #979ef7;
   }
   box-shadow: inset 0 0 0 #202020;
   outline-color: #979ef7;
 `;
-
 const Spaced = styled.div`
   display: flex;
   margin-top: 1.5rem;
@@ -107,13 +92,11 @@ const Spaced = styled.div`
   font-size: 0.75rem;
   user-select: none;
 `;
-
 const Separator = styled.span`
-width: 100%;
-height: 1px;
-background-color: #cdcdcd;
+  width: 100%;
+  height: 1px;
+  background-color: #cdcdcd;
 `;
-
 const GoogleGrid = styled.button`
   width: 22rem;
   height: 2.25rem;
@@ -125,60 +108,52 @@ const GoogleGrid = styled.button`
   border-radius: max(calc(6px * 1 * 0.75), 0px);
   user-select: none;
 `;
-
 const TitleH1 = styled.h1`
   color: #202020;
   font-size: 1.5rem;
 `;
-const PwdAccount = () => { //ponerle un load al componente para atrapar el err de que si no hya email previo redirigir a account/signup/email
-
-  /*
-  const signup = () => {
-    const DBUrl = "http://localhost:4001"
-    axios.post( `${DBUrl}/account/create` )
+const EmailSignup = () => {
+  const { email, setEmail } = UseData();
+  const navigate = useNavigate();
+  const handlerSubmit = async (event) => {
+    try{
+    event.preventDefault();
+    const body = {
+      Email: email,
+    };
+    const data = await isSignupByEmail(body);
+    if (data){ 
+      console.log(`email already exist, ${data}`)
+      return
+    };
+    navigate("pwd");
+  }catch(err){
+    console.log(err)
   }
-  */
- const { pwd, setPwd, email } = UseData()
- const navigate = useNavigate()
- 
-  const path = window.location.pathname
-  const segmentsPath = path.split('/').filter(Boolean)
-  segmentsPath.pop()
-  const newPath = "/" + segmentsPath.join('/')
-
- useEffect( () => {
-   if(email == null){
-   navigate(newPath, { replace: true })
-  }
-  return
- }, [] )
-
-  const handlerSubmit = ( event ) => {
-    event.preventDefault()
-    navigate("name")
-  }
-
+  };
   return (
     <Container>
       <ContainerDesc>
-        <img srcSet={NotepadImageRemoveBg} width={70} alt="efficent notes logo"></img>
-        <TitleH1>Log in to Efficient Notes</TitleH1>
+        <img
+          srcSet={NotepadImageRemoveBg}
+          width={70}
+          alt="efficent notes logo"
+        ></img>
+        <TitleH1>Sign up to Efficient Notes</TitleH1>
       </ContainerDesc>
-      <RegisterForm onSubmit={event => handlerSubmit( event )}>
-        <LabelEmail>Email</LabelEmail>
-        <Email>{ email }</Email>
-        <LabelPsw htmlFor="pwd">Password</LabelPsw>
-        <InputEmail 
-          autocapitalize={false} 
-          spellcheck={false}
-          id="pwd"
-          type="password"
-          placeholder="Your Password" 
-          required 
-          autofocus
-          title 
+      <RegisterForm onSubmit={(event) => handlerSubmit(event)}>
+        <LabelEmail htmlFor="email">Email</LabelEmail>
+        <InputEmail
+          autoCapitalize
+          spellCheck
+          id="email"
+          type="email"
+          placeholder="Your email address"
+          required
+          autoFocus
+          title
           data-invalid={true}
-          onChange={e => setPwd(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <BttContinue type="submit" id="submitButton">
           Continue
@@ -194,5 +169,5 @@ const PwdAccount = () => { //ponerle un load al componente para atrapar el err d
       </RegisterForm>
     </Container>
   );
-}
-export default PwdAccount
+};
+export default EmailSignup;

@@ -18,8 +18,8 @@ const signupController = async( req, res ) => {
             res.status(400).send(`Account with Id: ${uuid} already exists`)
             return
         }
-        if (accountByEmail ){
-            res.status(400).send(`Account with Email: ${Email} already exists`)
+        if (accountByEmail){
+            res.status(400).send(`Account with Email: ${Email, accountByEmail} already exists`)
             return
         }
         const hashPassword = await hash(Password, 8)

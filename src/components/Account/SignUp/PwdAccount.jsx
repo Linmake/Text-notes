@@ -1,20 +1,18 @@
 import styled from "styled-components";
 import {createGlobalStyle} from "styled-components"
-import NotepadImageRemoveBg from "../../assets/notepad-removebg.png"
-import { UseData } from '../../context/dataContext';
+import NotepadImageRemoveBg from "../../../assets/notepad-removebg.png"
+import { UseData } from '../../../context/dataContext';
 import { useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import axios from "axios";
+import { useEffect } from "react";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Inter';
-    src: url('../../../public/fonts/Inter/Inter_28pt-Regular.ttf') format('ttf'),
+    src: url('../../../../public/fonts/Inter/Inter_28pt-Regular.ttf') format('ttf'),
     font-weight: normal;
     font-style: normal;
   }
   `
-
   const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -62,10 +60,20 @@ const BttContinue = styled.button`
   }
 `;
 
-const LabelEmail = styled.label`
+const LabelPsw = styled.label`
   font-size: 0.875rem;
   align-self: start;
 `;
+const LabelEmail = styled.label`
+  font-size: 0.875rem;
+  align-self: start;
+  font-color: #686868 !important;
+`;
+
+const Email = styled.p`
+  font-size: 0.875rem;
+  align-self: start;
+`
 
 const InputEmail = styled.input`
   width: 22rem;
@@ -122,61 +130,56 @@ const TitleH1 = styled.h1`
   color: #202020;
   font-size: 1.5rem;
 `;
-
-const EmailSignup = () => {
+const PwdAccount = () => { //ponerle un load al componente para atrapar el err de que si no hya email previo redirigir a account/signup/email
 
   /*
-  const signup = async() => {
-    try{
-      const account = {
-        Id: uuidv4(),
-        Name: name,
-        Password: pwd,
-        Email: email,
-        Role: "user"
-      }
-      const res = await axios.post("http://localhost:4000/account/create", account)
-    }catch(err){
-      return res.status(401)
-    }
+  const signup = () => {
+    const DBUrl = "http://localhost:4001"
+    axios.post( `${DBUrl}/account/create` )
   }
   */
+ const { setPwd, email } = UseData()
+ const navigate = useNavigate()
+ 
+  const path = window.location.pathname
+  const segmentsPath = path.split('/').filter(Boolean)
+  segmentsPath.pop()
+  const newPath = "/" + segmentsPath.join('/')
 
-  const { 
-    email,
-    setEmail,
-    pwd,
-    setPwd,
-    name,
-    setName 
-  } = UseData()
-  const navigate = useNavigate()
+ useEffect( () => {
+   if(email == null){
+   navigate(newPath, { replace: true })
+  }
+  return
+ }, [] )
 
-  const handlerSubmit = async( event ) => {
+  const handlerSubmit = ( event ) => {
     event.preventDefault()
-      navigate("pwd")
+    navigate("name")
   }
 
   return (
     <Container>
       <ContainerDesc>
         <img srcSet={NotepadImageRemoveBg} width={70} alt="efficent notes logo"></img>
-        <TitleH1>Log in to Efficient Notes</TitleH1>
+        <TitleH1>Sign up to Efficient Notes</TitleH1>
       </ContainerDesc>
       <RegisterForm onSubmit={event => handlerSubmit( event )}>
-        <LabelEmail htmlFor="email">Email</LabelEmail>
+        <LabelEmail>Email</LabelEmail>
+        <Email>{ email }</Email>
+        <LabelPsw htmlFor="pwd">Password</LabelPsw>
         <InputEmail 
-          autocapitalize={false} 
-          spellcheck={false}
-          id="email" 
-          type="email" 
-          placeholder="Your email address" 
+          autoCapitalize 
+          spellCheck
+          id="pwd"
+          type="password"
+          placeholder="Your Password" 
           required 
-          autofocus 
+          autoFocus
           title 
           data-invalid={true}
-          onChange={ e => setEmail(e.target.value) }
-          />
+          onChange={e => setPwd(e.target.value)}
+        />
         <BttContinue type="submit" id="submitButton">
           Continue
         </BttContinue>
@@ -192,5 +195,4 @@ const EmailSignup = () => {
     </Container>
   );
 }
-
-export default EmailSignup
+export default PwdAccount

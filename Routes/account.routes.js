@@ -7,6 +7,7 @@ import deleteController from '../Controllers/Account/delete.controller.js';
 import editPasswordController from '../Controllers/Account/editPassword.controller.js';
 import userJWTDTO from '../DTO/userJWTDTO.js';
 import editNameController from '../Controllers/Account/editName.controller.js';
+import emailExistsController from '../Controllers/Account/emailExists.controller.js';
 
 const AccountRouter = express.Router()
 
@@ -24,6 +25,8 @@ AccountRouter.post("/signup", signupController)
 AccountRouter.post("/signin", signinController)
 
 AccountRouter.put('/update-email', userJWTDTO, editEmailController)
+
+AccountRouter.post('/email-exists', emailExistsController)
 
 AccountRouter.put('/update-password', userJWTDTO, editPasswordController)
 

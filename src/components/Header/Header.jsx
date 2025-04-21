@@ -52,6 +52,11 @@ const DropDownMenu = styled.ul`
   top: 3.2vh !important;
 `
 
+const ContainerAccount = styled.li`
+  display: flex;
+  flex-direction: row;
+`
+
 
 const HeaderComponent = () => {
   const RutaPrincipal = "http://localhost:4001"
@@ -78,10 +83,11 @@ const HeaderComponent = () => {
                 <li><a className="dropdown-item" href={`${RutaPrincipal}/Folders/`}>Folders</a></li>
               </DropDownMenu>
             </li> 
-            <li className="nav-item">
+            <ContainerAccount className="nav-item">
               
-              <Link className="nav-link" to={`${RutaPrincipal}/Account/signup/email`}>Account</Link>
-            </li>
+              <Link className="nav-link" to={`${RutaPrincipal}/Account/signup/email`}>Sign up</Link>
+              <Link className="nav-link" to={`${RutaPrincipal}/Account/signin/`}>Login</Link>
+            </ContainerAccount>
           </SectionNotas>
         </NavContainer>
       </Header>

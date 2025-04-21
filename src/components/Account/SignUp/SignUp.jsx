@@ -1,6 +1,5 @@
 import axios from "axios"
 import { v4 as uuidv4 } from 'uuid';
-
 const SignUp = async(email, pwd, name) => {
     try{
       const account = {
@@ -16,5 +15,4 @@ const SignUp = async(email, pwd, name) => {
       return console.log(err)
     }
 }
-
-export default SignUp 
+export default SignUp  

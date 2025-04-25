@@ -105,7 +105,7 @@ const IndexMenuPage = () => {
           </CardComponent>
         </Link>
       </ContainerCards>
-    </>
+    </> 
   )
 }
 export default IndexMenuPage

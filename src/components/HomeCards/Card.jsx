@@ -42,7 +42,7 @@ const Img = styled.img`
 `;
 export const CardBody = ({ title, icon }) => {
   let imgSource;
-  if (icon === "projectIcon") {
+  if (icon === "iconProject") {
     imgSource = project;
   } else if (icon === "iconProjectsMenu") {
     imgSource = projectosMenu;

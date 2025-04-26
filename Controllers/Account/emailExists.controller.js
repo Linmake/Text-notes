@@ -1,14 +1,14 @@
-const emailExistsController = () => async( req, res ) => {
-	try{
-        const { Email } = req.body
-		const accountByEmail = await Account.findOne({ Email: Email })
-        if( accountByEmail ) {
-            return res.send(true)
-        }
-        return res.send(false)
-    }catch(err){
-        return res.send(false)
+import { compare } from "bcrypt"
+import Account from "../../Schema/AccountSchema.js"
+import { decodeJwt } from "jose"
+
+const emailExistsController = async(req, res)=> {
+    const { Email } = req.body
+    const accountExistByEmail = await Account.findOne({Email: Email})
+    if(accountExistByEmail) {
+        return res.send(true)
     }
+    res.status(200).send(false)
 }
 
 export default emailExistsController

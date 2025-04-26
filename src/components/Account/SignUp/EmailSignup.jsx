@@ -4,6 +4,7 @@ import NotepadImageRemoveBg from "../../../assets/notepad-removebg.png";
 import { UseData } from "../../../context/dataContext";
 import { useNavigate } from "react-router-dom";
 import { isSignupByEmail } from "../Methods/isSignupByEmail.js";
+import { trusted } from "mongoose";
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Inter';
@@ -123,10 +124,10 @@ const EmailSignup = () => {
     };
     const data = await isSignupByEmail(body);
     if (data){ 
-      console.log(`email already exist, ${data}`)
+      console.log(`email already exist`)
       return
-    };
-    navigate("pwd");
+    }
+    navigate("pwd")
   }catch(err){
     console.log(err)
   }

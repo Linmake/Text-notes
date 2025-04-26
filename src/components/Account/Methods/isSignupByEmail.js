@@ -1,3 +1,5 @@
+import axios from "axios";
+
 /**
  *
  * @param {*} body Verify that the account creation email already exists
@@ -6,8 +8,9 @@
 export const isSignupByEmail = async (body) => {
   try {
     const res = await axios.post("http://localhost:4000/account/email-exists", body);
-    return res;
+    return res.data;
   } catch (err) {
-    return false;
+    console.log(err)
+    return (false);
   }
 };

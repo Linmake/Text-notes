@@ -19,14 +19,14 @@ const server = createServer(expressApp);
 
 // Middlewares
 
-expressApp.use(cors());
 expressApp.use(cookieParser());
 expressApp.use(express.json());
 
 expressApp.use(cors({
-  origin: '*', // Permite solo solicitudes desde esta URL
-  methods: ['GET', 'POST'], // Permite solo estos métodos HTTP
+  origin: 'http://localhost:4001', // Permite solo solicitudes desde esta URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permite solo estos métodos HTTP
   allowedHeaders: ['Content-Type', 'Authorization'], // Permite solo estos encabezados
+  credentials: true,
 }));
 
 // Rutas

@@ -9,7 +9,9 @@ const SignUp = async(email, pwd, name) => {
         Name: name,
         Role: "user"
       }
-      const res = await axios.post("http://localhost:4000/account/signup", account)
+      const res = await axios.post("http://localhost:4000/account/signup", account, {
+        withCredentials: true
+    })  
       return res
     }catch(err){
       return console.log(err)

@@ -37,13 +37,13 @@ const signupController = async( req, res ) => {
         res.cookie("JWT", jwt, {
             httpOnly: true,
             secure: false, //true in production!
-            exp: "1d"
+            expires: new Date(Date.now() + 86400000),
+            sameSite: 'None'
         })
-
         return res.status(201).send(account)
     }catch(err){
-        res.status(401).send(err.message)
-        return 
+        console.log("catch error signup")
+        return res.status(401).send(err.message)
     }
 }
 

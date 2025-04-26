@@ -152,7 +152,6 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
 
   const handlerSubmit = ( event ) => {
     event.preventDefault()
-    //alert( `email: ${email} pwd${pwd} name${name}`)
     SignUp(email, pwd, name)
   }
 

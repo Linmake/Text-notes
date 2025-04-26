@@ -4,7 +4,7 @@ import NotepadImageRemoveBg from "../../../assets/notepad-removebg.png";
 import { UseData } from "../../../context/dataContext";
 import { useNavigate } from "react-router-dom";
 import { isSignupByEmail } from "../Methods/isSignupByEmail.js";
-import { trusted } from "mongoose";
+import { useState } from "react";
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Inter';
@@ -24,12 +24,14 @@ const Container = styled.div`
     background-color: #d7dbfe;
   }
   gap: 0.5rem;
+  box-sizing: border-box;
 `;
 const ContainerDesc = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  box-sizing: border-box;
 `;
 const RegisterForm = styled.form`
   display: flex;
@@ -113,8 +115,14 @@ const TitleH1 = styled.h1`
   color: #202020;
   font-size: 1.5rem;
 `;
+const EmailNotice = styled.h1`
+  color: tomato;
+  font-size: 1rem;
+  display: ${(props) => props.display}
+`;
 const EmailSignup = () => {
   const { email, setEmail } = UseData();
+  const [ sendEmailExist, setSendEmailExist ] = useState(false)
   const navigate = useNavigate();
   const handlerSubmit = async (event) => {
     try{
@@ -123,7 +131,8 @@ const EmailSignup = () => {
       Email: email,
     };
     const data = await isSignupByEmail(body);
-    if (data){ 
+    if (data){
+      setSendEmailExist(true)
       console.log(`email already exist`)
       return
     }
@@ -156,6 +165,7 @@ const EmailSignup = () => {
           data-invalid={true}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <EmailNotice display={ ( !sendEmailExist ) ? "none" : "block" }>Email already exist</EmailNotice>
         <BttContinue type="submit" id="submitButton">
           Continue
         </BttContinue>

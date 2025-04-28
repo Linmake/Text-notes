@@ -149,11 +149,12 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
   segmentsPath.pop()
   segmentsPath.pop()
   const newPath = "/" + segmentsPath.join('/')
+  const query = window.location.search
 
   const handlerSubmit = ( event ) => {
     event.preventDefault()
     SignUp(email, pwd, name)
-    navigate(`${newPath}/projects-menu`, { replace: true })
+    navigate(`${query}/projects-menu`, {replace: true})
   }
 
   useEffect( () => {

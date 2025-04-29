@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {createGlobalStyle} from "styled-components"
 import NotepadImageRemoveBg from "../../../assets/notepad-removebg.png"
 import { UseData } from '../../../context/dataContext';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import SignUp from "./SignUp";
 
@@ -184,12 +184,9 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
           data-invalid={true}
           onChange={e => setName(e.target.value)}
         />
-        <Link to={`http://localhost:4001/Account/signup/create`}>
         <BttContinue onClick={ e => handlerSubmit(e) } className="submit" type="submit" id="submit">
           Continue
         </BttContinue>
-        </Link>
-        
       </RegisterForm>
     </Container>
   );

@@ -37,8 +37,8 @@ const signupController = async( req, res ) => {
         res.cookie("JWT", jwt, {
             httpOnly: true,
             secure: false, //true in production!
-            expires: new Date(Date.now() + 86400000),
-            sameSite: 'None'
+            maxAge: 2_592_000_000,
+            sameSite: 'Strict'
         })
         return res.status(201).send(account)
     }catch(err){

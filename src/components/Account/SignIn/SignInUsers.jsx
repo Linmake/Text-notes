@@ -1,6 +1,8 @@
 import React from 'react'
 import { createGlobalStyle } from 'https://esm.sh/styled-components';
 import styled from 'styled-components';
+import { UseData } from '../../../context/dataContext';
+import axios from 'axios';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -128,6 +130,28 @@ const TitleH1 = styled.h1`
 `;
 
 const SignInAccount = () => {
+
+  const {
+    setEmail, 
+    setPwd,
+    email,
+    pwd
+  } = UseData()
+
+    const handlerSubmit = async(e) => {
+      e.preventDefault();
+      //enviar al servidor
+      const body = {
+        Email: email,
+        Password: pwd
+      }
+      const res = await axios.post("http://localhost:4000/account/signin", body)
+      const data = res.data
+      console.log(data)
+
+      console.info(`Email: ${email}, password: ${pwd}`);
+    };
+
  return(
  <Container>
       <ContainerDesc> 
@@ -135,10 +159,30 @@ const SignInAccount = () => {
       </ContainerDesc>
       <RegisterForm>
         <Label htmlFor="email">Email</Label>
-        <Input autocapitalize={false} spellcheck={false} id="email" type="email" placeholder="Your email address" required autofocus title data-invalid={true} />
+        <Input 
+          onChange={ (e) => setEmail(e.target.value)}
+          autocapitalize={false} 
+          spellcheck={false} 
+          id="email" type="email" 
+          placeholder="Your email address" 
+          required 
+          autofocus 
+          title 
+          data-invalid={true}
+        />
         <Label htmlFor="password">Password</Label>
-        <Input autocapitalize={false} spellcheck={false} id="password" type="password" placeholder="" required title data-invalid={true} />
-        <BttContinue type="submit" id="submitButton">
+        <Input 
+          onChange={(e) => setPwd(e.target.value)}
+          autocapitalize={false}
+          spellcheck={false} 
+          id="password" 
+          type="password" 
+          placeholder="" 
+          required 
+          title 
+          data-invalid={true}
+        />
+        <BttContinue onClick={(e) => handlerSubmit(e)} type="submit" id="submitButton">
           Continue
         </BttContinue>
         <Spaced>

@@ -1,6 +1,7 @@
 import { compare } from "bcrypt"
 import Account from "../../Schema/AccountSchema.js"
 import authToken from "../../Routes/auth_token.js"
+import cookieAuth from "./cookie/cookieAuth.js"
 
 const signinController = async(req, res) => {
     try{
@@ -17,13 +18,11 @@ const signinController = async(req, res) => {
         }
         const jwt = await authToken(accountByEmail.Id)
 
-        await res.cookie("JWT", jwt, {
-            httpOnly: true,
-            exp: "1d"
-        })
-
+        const cookieBody = cookieAuth()
+        res.cookie("JWT", jwt, cookieBody)
         res.status(200).send(accountByEmail)
-        return 
+        console.info(jwt)
+        return res.data
     }catch(err){
         res.status(401).send(`Error: ${err}`)
         return 

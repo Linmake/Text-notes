@@ -2,6 +2,7 @@ import authToken from '../../Routes/auth_token.js'
 import Account from '../../Schema/AccountSchema.js'
 import { v4 as uuidv4 } from 'uuid'
 import { hash } from 'bcrypt'
+import cookieAuth from './cookie/cookieAuth.js'
 
 
 const signupController = async( req, res ) => {
@@ -34,12 +35,9 @@ const signupController = async( req, res ) => {
         const jwt = await authToken(uuid)
         await account.save()
 
-        res.cookie("JWT", jwt, {
-            httpOnly: true,
-            secure: false, //true in production!
-            maxAge: 2_592_000_000,
-            sameSite: 'Strict'
-        })
+        const cookieBody = cookieAuth()
+        res.cookie("JWT", jwt, cookieBody)
+        
         return res.status(201).send(account)
     }catch(err){
         console.log("catch error signup")

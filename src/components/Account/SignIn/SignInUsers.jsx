@@ -1,8 +1,9 @@
-import React from 'react'
-import { createGlobalStyle } from 'https://esm.sh/styled-components';
-import styled from 'styled-components';
-import { UseData } from '../../../context/dataContext';
-import axios from 'axios';
+import React from "react";
+import { createGlobalStyle } from "https://esm.sh/styled-components";
+import styled from "styled-components";
+import { UseData } from "../../../context/dataContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -15,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
   ::selection{
   background-color: #d7dbfe;
   }
-  `
+  `;
 
 const Container = styled.div`
   display: flex;
@@ -24,8 +25,8 @@ const Container = styled.div`
   left: 35%;
   top: 10%;
   align-items: center;
-  ::selection{
-  background-color: #d7dbfe;
+  ::selection {
+    background-color: #d7dbfe;
   }
   gap: 0.5rem;
 `;
@@ -67,10 +68,10 @@ const BttContinue = styled.button`
 const Label = styled.label`
   font-size: 0.875rem;
   align-self: start;
-  &:first-child{
-  margin-top: 0rem
+  &:first-child {
+    margin-top: 0rem;
   }
-  margin-top: 2%
+  margin-top: 2%;
 `;
 
 const Input = styled.input`
@@ -84,8 +85,8 @@ const Input = styled.input`
   text-indent: calc(calc(12px * 1) - 1px);
   border-radius: max(calc(6px * 1 * 0.75));
   font-size: 1rem;
-  &:focus{
-  border: 1px solid #979ef7;
+  &:focus {
+    border: 1px solid #979ef7;
   }
   box-shadow: inset 0 0 0 #202020;
   outline-color: #979ef7;
@@ -107,9 +108,9 @@ const Spaced = styled.div`
 `;
 
 const Separator = styled.span`
-width: 100%;
-height: 1px;
-background-color: #cdcdcd;
+  width: 100%;
+  height: 1px;
+  background-color: #cdcdcd;
 `;
 
 const GoogleGrid = styled.button`
@@ -130,59 +131,58 @@ const TitleH1 = styled.h1`
 `;
 
 const SignInAccount = () => {
+  const { setEmail, setPwd, email, pwd } = UseData()
+  const navigate = useNavigate()
 
-  const {
-    setEmail, 
-    setPwd,
-    email,
-    pwd
-  } = UseData()
-
-    const handlerSubmit = async(e) => {
-      e.preventDefault();
-      //enviar al servidor
-      const body = {
-        Email: email,
-        Password: pwd
-      }
-      const res = await axios.post("http://localhost:4000/account/signin", body)
-      const data = res.data
-      console.log(data)
-
-      console.info(`Email: ${email}, password: ${pwd}`);
+  const handlerSubmit = async (e) => {
+    e.preventDefault();
+    //enviar al servidor
+    const body = {
+      Email: email,
+      Password: pwd,
     };
+    const res = await axios.post("http://localhost:4000/account/signin", body, { withCredentials: true })
+    const data = res.data;
+    const query = window.location.search;
+    navigate(`${query}/projects-menu`, { replace: true });
+  };
 
- return(
- <Container>
-      <ContainerDesc> 
+  return (
+    <Container>
+      <ContainerDesc>
         <TitleH1>Log in to Efficient Notes</TitleH1>
       </ContainerDesc>
       <RegisterForm>
         <Label htmlFor="email">Email</Label>
-        <Input 
-          onChange={ (e) => setEmail(e.target.value)}
-          autocapitalize={false} 
-          spellcheck={false} 
-          id="email" type="email" 
-          placeholder="Your email address" 
-          required 
-          autofocus 
-          title 
+        <Input
+          onChange={(e) => setEmail(e.target.value)}
+          autocapitalize={false}
+          spellcheck={false}
+          id="email"
+          type="email"
+          placeholder="Your email address"
+          required
+          autofocus
+          title
           data-invalid={true}
         />
         <Label htmlFor="password">Password</Label>
-        <Input 
+        <Input
           onChange={(e) => setPwd(e.target.value)}
           autocapitalize={false}
-          spellcheck={false} 
-          id="password" 
-          type="password" 
-          placeholder="" 
-          required 
-          title 
+          spellcheck={false}
+          id="password"
+          type="password"
+          placeholder=""
+          required
+          title
           data-invalid={true}
         />
-        <BttContinue onClick={(e) => handlerSubmit(e)} type="submit" id="submitButton">
+        <BttContinue
+          onClick={(e) => handlerSubmit(e)}
+          type="submit"
+          id="submitButton"
+        >
           Continue
         </BttContinue>
         <Spaced>
@@ -195,7 +195,7 @@ const SignInAccount = () => {
         <GoogleGrid>Continue with Google</GoogleGrid>
       </RegisterForm>
     </Container>
- )
-}
+  );
+};
 
-export default SignInAccount
+export default SignInAccount;

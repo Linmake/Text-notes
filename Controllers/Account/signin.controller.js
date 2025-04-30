@@ -20,10 +20,9 @@ const signinController = async(req, res) => {
 
         const cookieBody = cookieAuth()
         res.cookie("JWT", jwt, cookieBody)
-        res.status(200).send(accountByEmail)
-        console.info(jwt)
-        return res.data
-    }catch(err){
+
+        return res.status(200).send(accountByEmail)
+        }catch(err){
         res.status(401).send(`Error: ${err}`)
         return 
     }

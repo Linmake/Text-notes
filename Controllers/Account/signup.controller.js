@@ -3,8 +3,6 @@ import Account from '../../Schema/AccountSchema.js'
 import { v4 as uuidv4 } from 'uuid'
 import { hash } from 'bcrypt'
 import cookieAuth from './cookie/cookieAuth.js'
-
-
 const signupController = async( req, res ) => {
     try{
         const { Email, Name, Password, Role } = req.body
@@ -24,7 +22,6 @@ const signupController = async( req, res ) => {
             return
         }
         const hashPassword = await hash(Password, 8)
-
         const account = new Account({
             Id: uuid,
             Name,
@@ -37,12 +34,10 @@ const signupController = async( req, res ) => {
 
         const cookieBody = cookieAuth()
         res.cookie("JWT", jwt, cookieBody)
-        
         return res.status(201).send(account)
     }catch(err){
         console.log("catch error signup")
         return res.status(401).send(err.message)
     }
 }
-
 export default signupController

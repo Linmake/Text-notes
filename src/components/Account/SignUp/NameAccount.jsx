@@ -4,7 +4,7 @@ import NotepadImageRemoveBg from "../../../assets/notepad-removebg.png"
 import { UseData } from '../../../context/dataContext';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import SignUp from "./SignUp";
+import SignUp from "./querys/SignUp";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -142,18 +142,18 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
 
   const {email, setName, pwd, name } = UseData()
   const navigate = useNavigate()
-  const baseUrl = "http://localhost:4001/"
- 
+  const baseUrl = "http://localhost:4000/"
+  
   const path = window.location.pathname
   const segmentsPath = path.split('/').filter(Boolean)
   segmentsPath.pop()
   segmentsPath.pop()
   const newPath = "/" + segmentsPath.join('/')
-  const query = window.location.search
-
-  const handlerSubmit = ( event ) => {
-    event.preventDefault()
+  
+  const handlerSubmit = ( e ) => {
+    e.preventDefault()
     SignUp(email, pwd, name)
+    const query = window.location.search
     navigate(`${query}/projects-menu`, {replace: true})
   }
 
@@ -170,7 +170,7 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
         <img srcSet={NotepadImageRemoveBg} width={70} alt="efficent notes logo"></img>
         <TitleH1>Sign up to Efficient Notes</TitleH1>
       </ContainerDesc>
-      <RegisterForm onSubmit={event => handlerSubmit( event )}>
+      <RegisterForm onSubmit={(e) => handlerSubmit(e)}>
         <LabelPsw htmlFor="pwd">Name:</LabelPsw>
         <InputEmail 
           autoCapitalize
@@ -184,7 +184,7 @@ const NameAccount = () => { //ponerle un load al componente para atrapar el err 
           data-invalid={true}
           onChange={e => setName(e.target.value)}
         />
-        <BttContinue onClick={ e => handlerSubmit(e) } className="submit" type="submit" id="submit">
+        <BttContinue className="submit" type="submit" id="submitButton">
           Continue
         </BttContinue>
       </RegisterForm>

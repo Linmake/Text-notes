@@ -5,7 +5,7 @@ export default function cookieAuth() {
         httpOnly: true,
         secure: false, //true in production!
         maxAge: 2_592_000_000,
-        sameSite: 'Strict'
+        sameSite: 'Lax'
     }
     return  cookieBody
 }

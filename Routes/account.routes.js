@@ -8,6 +8,8 @@ import editPasswordController from '../Controllers/Account/editPassword.controll
 import userJWTDTO from '../DTO/userJWTDTO.js';
 import editNameController from '../Controllers/Account/editName.controller.js';
 import emailExistsController from '../Controllers/Account/emailExists.controller.js';
+import idAccountController from '../Controllers/Account/idAccount.controller.js';
+import deleteAllController from '../Controllers/Account/deleteAll.controller.js';
 
 const AccountRouter = express.Router()
 
@@ -33,5 +35,9 @@ AccountRouter.put('/update-password', userJWTDTO, editPasswordController)
 AccountRouter.put('/update-name', userJWTDTO, editNameController)
 
 AccountRouter.delete('/delete', userJWTDTO, deleteController)
+
+AccountRouter.delete('/delete/all', userJWTDTO, deleteAllController)
+
+AccountRouter.get('/idAccount', userJWTDTO, idAccountController)
 
 export default AccountRouter

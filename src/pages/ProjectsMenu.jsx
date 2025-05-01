@@ -78,16 +78,20 @@ const Subtitle = styled.h2`
 *@returns List Projects
 */
 const ProjectsMenu = () => {
+  const [cookie, setCookie] = useState(null)
   //const InitialData = useLoaderData()
   //const [ projects, setProjects ] = useState(InitialData);
   const {projects, setProjects} = useContext(positionSideContext)
   const { setData, setProject } = UseData()
+  const { name } = UseData()
 
   const navProject = useNavigate()
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
+        //peticion
+        setCookie(document.cookie)
         const res = await axios.get(`http://localhost:4000/project/all`);
         setProjects(res.data);
       } catch (error) {
@@ -96,7 +100,6 @@ const ProjectsMenu = () => {
     };
     fetchProjects();
   }, [setProjects, setProject, setData]);
-
   /*
   *Open Project and open the URL 
   */
@@ -106,7 +109,6 @@ const ProjectsMenu = () => {
     const findProject = projects.find(project => project.Id == id)
     setProject(findProject)
   };
-  
   const noProjects = () => {
     return (
     <NoProjectCompTemplate>
@@ -123,6 +125,9 @@ const ProjectsMenu = () => {
       {projects.length == 0 ? noProjects(event => event)  
         : (
           <ProjectCompTemplate>
+          <div>
+            <div>{name}</div>
+          </div>
             <Container>
               <NewProjectTab />
               <Ul>

@@ -11,6 +11,7 @@ import emailExistsController from '../Controllers/Account/emailExists.controller
 import idAccountController from '../Controllers/Account/idAccount.controller.js';
 import deleteAllController from '../Controllers/Account/deleteAll.controller.js';
 import loginController from '../Controllers/Account/login.controller.js';
+import tokenController from '../Controllers/Account/cookie/token.controller.js';
 
 const AccountRouter = express.Router()
 
@@ -42,5 +43,7 @@ AccountRouter.delete('/delete/all', userJWTDTO, deleteAllController)
 AccountRouter.get('/idAccount', userJWTDTO, idAccountController)
 
 AccountRouter.get('/login', loginController)
+
+AccountRouter.get('/token', tokenController)
 
 export default AccountRouter

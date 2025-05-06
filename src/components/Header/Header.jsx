@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import '../../styles/components/header/HeaderInicio.css'
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 //Pantalla Laptop: 1080*1920
 const Header = styled.nav`
   height: 99px;
@@ -57,9 +59,32 @@ const ContainerAccount = styled.li`
   flex-direction: row;
 `
 
-
 const HeaderComponent = () => {
   const RutaPrincipal = "http://localhost:4001"
+  const [login, setLogin] = useState(true)
+  const [Name, setName] = useState("User")
+  useEffect( () => {
+    //peticion a la bd para verificar si el JWT existe y es valido en las cookies
+    const fetchAccount = async() => {
+      const res = await axios.get("http://localhost:4000/account/login", {withCredentials: true})
+      const {Name} = res.data
+      setName(Name)
+    }
+    const fetchJWT = async() => {
+      const res = await axios.get("http://localhost:4000/account/token", {withCredentials: true})
+      const { status, JWT } = res.data
+      if(!status){
+        return setLogin(false)
+      }
+      setLogin(true)
+      fetchAccount()      
+    }
+
+    fetchJWT()
+    //traer la cuenta
+    //colocar el nombre de la cuenta
+  },[setLogin])
+
   return (
     <>
       <Header className="navbar navbar-expand-lg bg-body-tertiary">
@@ -82,11 +107,17 @@ const HeaderComponent = () => {
                 <li><a className="dropdown-item" href={`${RutaPrincipal}/Projects-menu/`}>Projects</a></li>
                 <li><a className="dropdown-item" href={`${RutaPrincipal}/Folders/`}>Folders</a></li>
               </DropDownMenu>
-            </li> 
+            </li>
             <ContainerAccount className="nav-item">
-              
+             { (!login) ? (
+              <>
               <Link className="nav-link" to={`${RutaPrincipal}/Account/signup/email`}>Sign up</Link>
               <Link className="nav-link" to={`${RutaPrincipal}/Account/signin/`}>Login</Link>
+              </>
+             ) : (
+               <Link className="nav-link" to={`${RutaPrincipal}/projects-menu`}>{Name}</Link> 
+              )
+            }
             </ContainerAccount>
           </SectionNotas>
         </NavContainer>
@@ -94,5 +125,4 @@ const HeaderComponent = () => {
     </>
   )
 }
-
 export default HeaderComponent

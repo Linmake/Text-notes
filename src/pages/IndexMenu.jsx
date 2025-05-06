@@ -15,7 +15,7 @@ const media = {
 const IndexMenuPage = () => {
   return (
     <>
-      <HeaderComponent />
+      <HeaderComponent/>
       <HomeContainer/>
       <CardsContainer/>
     </> 

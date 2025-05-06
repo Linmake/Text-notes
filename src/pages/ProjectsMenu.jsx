@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { NewProjectTab } from "../components/Project/NewProjectTab.jsx";
 import { ProjectCompTemplate } from "../components/Templates/ProjectCompTemplate.jsx";
 import styled from "styled-components";
@@ -18,7 +18,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: fit-content;
-  background-color: #FFF;
+  background-color: #fff;
   padding: 3%;
   padding-top: 2%;
   margin-top: 7%;
@@ -38,10 +38,10 @@ const NoProjectsContainer = styled.div`
   margin-top: 7%;
 `;
 const ProjectElement = styled.li`
-  border-bottom: 1px solid #C4C7C5;
+  border-bottom: 1px solid #c4c7c5;
   font-size: 1.3rem;
   list-style: none;
-  font-family: "Poppins", 'Lucida Sans', 'Lucida Sans Regular';
+  font-family: "Poppins", "Lucida Sans", "Lucida Sans Regular";
   width: 58vw;
   height: 80px;
   padding-top: 0.625rem;
@@ -55,100 +55,115 @@ const ProjectElement = styled.li`
   cursor: pointer;
 
   &:last-child {
-  border: none;
+    border: none;
   }
   &:hover {
-    background-color:rgba(242, 244, 245, 0.45);
+    background-color: rgba(242, 244, 245, 0.45);
   }
 `;
 const Ul = styled.ul`
   margin: 0 !important;
   padding-inline-start: 0 !important;
-`
+`;
 const Subtitle = styled.h2`
   font-size: 32px;
-  color: #3B3A40;
+  color: #3b3a40;
   font-weight: bold;
   user-select: none;
-`
+`;
 /*
-*Get Projects from de DB 
-*/
+ *Get Projects from de DB
+ */
 /*
-*@returns List Projects
-*/
+ *@returns List Projects
+ */
 const ProjectsMenu = () => {
-  const [cookie, setCookie] = useState(null)
+  const [cookie, setCookie] = useState(null);
   //const InitialData = useLoaderData()
   //const [ projects, setProjects ] = useState(InitialData);
-  const {projects, setProjects} = useContext(positionSideContext)
-  const { setData, setProject } = UseData()
-  const { name } = UseData()
+  const { projects, setProjects } = useContext(positionSideContext);
+  const { setData, setProject, name, setName } = UseData();
+  const [nameAccount, setNameAccount] = useState(null);
 
-  const navProject = useNavigate()
+  const navProject = useNavigate();
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        //peticion
-        setCookie(document.cookie)
+        setCookie(document.cookie);
         const res = await axios.get(`http://localhost:4000/project/all`);
         setProjects(res.data);
       } catch (error) {
-        console.error('Error fetching projects:', error);
+        console.error("Error fetching projects:", error);
       }
     };
     fetchProjects();
   }, [setProjects, setProject, setData]);
-  /*
-  *Open Project and open the URL 
-  */
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setCookie(document.cookie);
+        const resLogin = await axios.get(
+          `http://localhost:4000/account/login`,
+          { withCredentials: true }
+        );
+        const account = resLogin.data;
+        const { Name } = account;
+        setName(Name);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+    fetchProjects();
+  }, []);
+
   const handleClick = (id) => {
-    navProject(`/Project/${id}`)
-    setData({ key: id })
-    const findProject = projects.find(project => project.Id == id)
-    setProject(findProject)
+    navProject(`/Project/${id}`);
+    setData({ key: id });
+    const findProject = projects.find((project) => project.Id == id);
+    setProject(findProject);
   };
   const noProjects = () => {
     return (
-    <NoProjectCompTemplate>
-      <NoProjectsContainer>
-        <div></div>
-        <NewProjectTab />
-        <Subtitle className="subtitle-noprojects">Without projects</Subtitle>
-      </NoProjectsContainer>
-    </NoProjectCompTemplate>
-  )}
+      <NoProjectCompTemplate>
+        <div>
+          <div>{name}</div>
+        </div>
+        <NoProjectsContainer>
+          <div></div>
+          <NewProjectTab />
+          <Subtitle className="subtitle-noprojects">Without projects</Subtitle>
+        </NoProjectsContainer>
+      </NoProjectCompTemplate>
+    );
+  };
 
   return (
     <>
-      {projects.length == 0 ? noProjects(event => event)  
-        : (
-          <ProjectCompTemplate>
+      {projects.length == 0 ? (
+        noProjects((event) => event)
+      ) : (
+        <ProjectCompTemplate>
           <div>
             <div>{name}</div>
           </div>
-            <Container>
-              <NewProjectTab />
-              <Ul>
-                {projects.map((project, index) => (
-                  <ProjectElement key={index} onClick={() => handleClick(project.Id)} >
-                    {project.Title}
-                  </ProjectElement>
-                ))}
-              </Ul>
-            </Container>
-          </ProjectCompTemplate>
-        )
-      }
+          <Container>
+            <NewProjectTab />
+            <Ul>
+              {projects.map((project, index) => (
+                <ProjectElement
+                  key={index}
+                  onClick={() => handleClick(project.Id)}
+                >
+                  {project.Title}
+                </ProjectElement>
+              ))}
+            </Ul>
+          </Container>
+        </ProjectCompTemplate>
+      )}
     </>
   );
 };
-
-/*export const ProjectsLoader = async() => {
-      const res = await axios.get(`http://localhost:4000/project/all`)
-      return res.data;
-
-}
-*/
 export default ProjectsMenu;

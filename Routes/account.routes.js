@@ -10,6 +10,7 @@ import editNameController from '../Controllers/Account/editName.controller.js';
 import emailExistsController from '../Controllers/Account/emailExists.controller.js';
 import idAccountController from '../Controllers/Account/idAccount.controller.js';
 import deleteAllController from '../Controllers/Account/deleteAll.controller.js';
+import loginController from '../Controllers/Account/login.controller.js';
 
 const AccountRouter = express.Router()
 
@@ -39,5 +40,7 @@ AccountRouter.delete('/delete', userJWTDTO, deleteController)
 AccountRouter.delete('/delete/all', userJWTDTO, deleteAllController)
 
 AccountRouter.get('/idAccount', userJWTDTO, idAccountController)
+
+AccountRouter.get('/login', loginController)
 
 export default AccountRouter

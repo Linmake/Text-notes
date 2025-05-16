@@ -8,7 +8,6 @@ import './index.css'
 import { SideProv } from './context/SideProv.jsx';
 import { DataProvider } from './context/dataContext.jsx';
 import { EditorProvider } from './context/editorFunctions.jsx';
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <SideProv>
@@ -18,5 +17,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </EditorProvider>
       </DataProvider>
     </SideProv>
-  </React.StrictMode>,
+  </React.StrictMode>
 )

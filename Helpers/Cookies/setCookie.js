@@ -1,4 +1,3 @@
-
 /**
  * 
  * @param {string} cookieName cookie name

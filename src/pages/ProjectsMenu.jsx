@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NewProjectTab } from "../components/Project/NewProjectTab.jsx";
 import { ProjectCompTemplate } from "../components/Templates/ProjectCompTemplate.jsx";
 import styled from "styled-components";
@@ -8,6 +8,7 @@ import axios from "axios";
 import { positionSideContext } from "../context/SideProv.jsx";
 import { UseData } from "../context/dataContext.jsx";
 import { NoProjectCompTemplate } from "../components/Templates/NoProjectCompTemplate.jsx";
+import LogoAccount from "./components/Account/LogoAccount.jsx";
 
 const Container = styled.div`
   width: 52%;
@@ -78,6 +79,7 @@ const Subtitle = styled.h2`
  *@returns List Projects
  */
 const ProjectsMenu = () => {
+  const RutaPrincipal = "http://localhost:4001" 
   const [cookie, setCookie] = useState(null);
   //const InitialData = useLoaderData()
   //const [ projects, setProjects ] = useState(InitialData);
@@ -146,6 +148,9 @@ const ProjectsMenu = () => {
       ) : (
         <ProjectCompTemplate>
           <div>
+            <Link to={`${RutaPrincipal}/projects-menu`}>
+              <LogoAccount/>
+            </Link>
             <div>{name}</div>
           </div>
           <Container>

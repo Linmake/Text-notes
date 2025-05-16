@@ -12,6 +12,7 @@ import idAccountController from '../Controllers/Account/idAccount.controller.js'
 import deleteAllController from '../Controllers/Account/deleteAll.controller.js';
 import loginController from '../Controllers/Account/login.controller.js';
 import tokenController from '../Controllers/Account/cookie/token.controller.js';
+import logoutController from '../Controllers/Account/logout.controller.js';
 
 const AccountRouter = express.Router()
 
@@ -28,6 +29,7 @@ AccountRouter.post("/signup", signupController)
 
 AccountRouter.post("/signin", signinController)
 
+ 
 AccountRouter.put('/update-email', userJWTDTO, editEmailController)
 
 AccountRouter.post('/email-exists', emailExistsController)
@@ -43,6 +45,8 @@ AccountRouter.delete('/delete/all', userJWTDTO, deleteAllController)
 AccountRouter.get('/idAccount', userJWTDTO, idAccountController)
 
 AccountRouter.get('/login', loginController)
+
+AccountRouter.get("/logout", logoutController)
 
 AccountRouter.get('/token', tokenController)
 

@@ -1,4 +1,3 @@
-
 import { createBrowserRouter, createRoutesFromElements, Route, BrowserRouter as Router, RouterProvider, Routes } from 'react-router-dom';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,8 +14,6 @@ import SignInUsers from './components/Account/SignIn/SignInUsers';
 import PwdAccount from './components/Account/SignUp/PwdAccount'
 import EmailSignup from './components/Account/SignUp/EmailSignup'
 import NameAccount from './components/Account/SignUp/NameAccount';
-
-
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -43,5 +40,4 @@ function App() {
     <RouterProvider router={router}/>
   )
 }
-
 export default App

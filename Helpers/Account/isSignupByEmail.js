@@ -1,5 +1,4 @@
-import Account from '../Schema/AccountSchema.js'
-
+import Account from '../../Schema/AccountSchema.js'
 /**
  * 
  * @param {*} body Verify that the account creation email already exists

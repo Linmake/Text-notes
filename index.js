@@ -36,7 +36,6 @@ expressApp.use("/project", ProjectRouter);
 expressApp.use("/account", AccountRouter);
 
 const portUrl = process.env.PORT;
-
 server.listen(portUrl, () => {
   console.log(`Servidor levantado en el puerto ${portUrl}`)
 });

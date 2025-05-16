@@ -1,4 +1,4 @@
-import HeaderComponent from '../components/Header/Header';
+import HeaderIndex from '../components/Header/HeaderIndex';
 import '../styles/pages/index/IndexMenu.css'
 import CardsContainer from "./components/Index/CardsContainer";
 import HomeContainer from './components/Index/HomeContainer';
@@ -15,9 +15,9 @@ const media = {
 const IndexMenuPage = () => {
   return (
     <>
-      <HeaderComponent/>
+      <HeaderIndex mainRoute={"http://localhost:4001"} />
       <HomeContainer/>
-      <CardsContainer/>
+      <CardsContainer/>                   
     </> 
   )
 }

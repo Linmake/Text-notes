@@ -1,6 +1,6 @@
 import "../../styles/components/sidebar/SideBarComponent.css";
 import ContainerProject from "./ContainerProject";
-import ContainerNotFolders from "./ContainerNotFolders";
+import ContainerNotFolders from "../Folder/ContainerNotFolders";
 import SideContenedor from "./ContainerSideBar";
 import styled from "styled-components";
 

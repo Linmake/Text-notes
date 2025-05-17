@@ -24,7 +24,7 @@ const LinksContent = styled.li`
   }
 `
 
-export default function LinksIndex({ mainRoute, login, nameAccount }) {
+export default function LinksIndex({ mainRoute, nameAccount }) {
   return (
     <SectionNotas className="navbar-nav me-auto mb-2 mb-lg-0">
       <LinksContent>
@@ -50,7 +50,7 @@ export default function LinksIndex({ mainRoute, login, nameAccount }) {
           Folders
         </Links>
       </LinksContent>
-      <Account marginLeft={"18%"} login={login} mainRoute={mainRoute} nameAccount={nameAccount} />
+      <Account marginLeft={"5%"} mainRoute={mainRoute} nameAccount={nameAccount} />
     </SectionNotas>
   );
 }

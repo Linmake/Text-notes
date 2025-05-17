@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Logo from './Components/Logo'
 import LinksIndex from './Components/LinksIndex'
+import { UseData } from '../../context/dataContext'
 
 const Header = styled.nav`
   height: 99px;
@@ -22,7 +23,7 @@ const NavContainer = styled.nav`
 `
 
 const HeaderIndex = ({mainRoute}) => {
-  const [login, setLogin] = useState(true)
+  const {login, setLogin} = UseData()
   const [Name, setName] = useState("User")
   useEffect( () => {
     const fetchAccount = async() => {

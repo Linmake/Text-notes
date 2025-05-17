@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import { navItem, navLink } from "./Hooks/themaStyled";
+import { navItem, navLink } from "../Hooks/themaStyled";
 import { UseData } from '../../context/dataContext';
 import { useContext } from 'react'
 import { positionSideContext } from '../../context/SideProv'

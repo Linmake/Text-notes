@@ -5,10 +5,10 @@ import { UseData } from '../../context/dataContext';
 import { useParams } from 'react-router-dom';
 import IconNewFile from '../../assets/addFileIconWhite.png'
 import iconNewFolder from '../../assets/addFolderIconWhite.png'
-import FolderList from './FolderList';
-import ContainerFolders from './ContainerFolders';
+import FolderList from '../Folder/FolderList';
+import ContainerFolders from '../Folder/ContainerFolders';
 import { positionSideContext } from '../../context/SideProv';
-import NewFolderContent from './NewFolderContent';
+import NewFolderContent from '../Folder/NewFolderContent';
 
 const ContainerProyect = styled.div`
   display: flex;

@@ -11,6 +11,8 @@ export function DataProvider({ children }) {
   const [email, setEmail] = useState(null)
   const [pwd, setPwd] = useState([])
   const [name, setName] = useState([])
+  const [login, setLogin] = useState([])
+
   return (
     <DataContext.Provider value = {{
        data,
@@ -28,7 +30,9 @@ export function DataProvider({ children }) {
        pwd,
        setPwd,
        name,
-       setName
+       setName,
+       login, 
+       setLogin
   }}>
       {children}
     </DataContext.Provider>

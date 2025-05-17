@@ -1,7 +1,7 @@
-import useFolderManagement from './Hooks/useFolderManagement';
-import useSidebarManagement from './Hooks/useSidebarManagement';
+import useFolderManagement from './Hook/useFolderManagement';
+import useSidebarManagement from '../sidebar/Hooks/useSidebarManagement';
 import styled from 'styled-components';
-import { navItem } from './Hooks/themaStyled';
+import { navItem } from '../Hooks/themaStyled';
 
 const Li = styled.li`
   box-sizing: border-box;

@@ -8,9 +8,9 @@ import styled from "styled-components";
 import { positionSideContext } from "../../context/SideProv";
 import axios from "axios";
 import { UseData } from "../../context/dataContext";
-import { FileList } from "./FileList";
+import { FileList } from "../File/FileList";
 import { useNavigate, useParams } from "react-router-dom";
-import NewFileContent from "./NewFileContent";
+import NewFileContent from "../File/NewFileContent";
 import styles from "../../styles/components/editor/FolderList.css";
 
 const FoldersContainer = styled.ul`

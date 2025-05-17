@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import LogoAccount from "../../../pages/components/Account/LogoAccount";
 import styled from "styled-components";
 import axios from "axios";
+import { UseData } from "../../../context/dataContext";
 
 const AccountContainer = styled.li`
   display: flex;
@@ -20,21 +21,23 @@ const Dropdown = styled.li``;
 const DropdownMenu = styled.ul`
 `;
 
-export default function Account({ nameAccount, mainRoute, login, marginLeft }) { 
+export default function Account({ nameAccount, mainRoute, marginLeft }) { 
 
+  const {login, setLogin} = UseData()
   const handlerLogout = async() => {
-    const res = await axios.get("http://localhost:4000/account/logout", {withCredentials: true})
-    console.log(res.data)
+    await axios.get("http://localhost:4000/account/logout", {withCredentials: true})
+    setLogin(false)
   }
 
   return (
     
-    (!login) ? (
+    (!login)
+    ? (
       <AccountContainer marginLeft={marginLeft} >
         <Link className="nav-link" to={`${mainRoute}/Account/signup/email`}>Sign up</Link>
         <Link className="nav-link" to={`${mainRoute}/Account/signin/`}>Login</Link>
       </AccountContainer>
-     ) 
+     )
      :(<AccountContainer marginLeft={marginLeft} >
       <Link to={`${mainRoute}/projects-menu`}>
         <LogoAccount />

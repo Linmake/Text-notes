@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Account from "../../Account/Accounts/Account";
 
 const SectionNotas = styled.ul`
   display: flex;
@@ -16,41 +15,41 @@ const LinksContent = styled.li`
   display: block;
   box-sizing: border-box;
   margin-left: 7%;
-  color: #FFFF !important;
+  color: #6B6B6B;
   font-weight: 400;
   height: 20px;
   &:hover{
-    border-bottom: 1px solid white;
+    color: black;
   }
 `
 
-export default function LinksIndex({ mainRoute, nameAccount }) {
+export default function LinksIndex({ mainRoute }) {
   return (
     <SectionNotas className="navbar-nav me-auto mb-2 mb-lg-0">
       <LinksContent>
         <Links
-          className="nav-link active"
+          className="active"
           aria-current="page"
           href={`${mainRoute}/#Create`}
         >
           Model
         </Links>
         <Links
-          className="nav-link active"
+          className="active"
           aria-current="page"
           href={`${mainRoute}/projects-menu`}
         >
           Projects
         </Links>
         <Links
-          className="nav-link active"
+          className="active"
           aria-current="page"
           href={`${mainRoute}/folder`}
         >
           Folders
         </Links>
       </LinksContent>
-      <Account marginLeft={"5%"} mainRoute={mainRoute} nameAccount={nameAccount} />
+      
     </SectionNotas>
   );
 }

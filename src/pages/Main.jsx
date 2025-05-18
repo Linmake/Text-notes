@@ -12,7 +12,7 @@ const media = {
   laptop: `(min-width: ${sizes.laptop})`,
 }*/
 
-const IndexMenuPage = () => {
+const MainPage = () => {
   return (
     <>
       <HeaderIndex mainRoute={"http://localhost:4001"} />
@@ -21,4 +21,4 @@ const IndexMenuPage = () => {
     </> 
   )
 }
-export default IndexMenuPage
+export default MainPage

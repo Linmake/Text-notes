@@ -2,7 +2,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, BrowserRouter as 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import IndexMenuPage from './pages/IndexMenu';
+
 import TextEditor from './pages/TextEditor';
 import ProjectsMenu, { ProjectsLoader } from './pages/ProjectsMenu';
 import RootLayout from './Layout/RootLayout';
@@ -14,11 +14,12 @@ import SignInUsers from './components/Account/SignIn/SignInUsers';
 import PwdAccount from './components/Account/SignUp/PwdAccount'
 import EmailSignup from './components/Account/SignUp/EmailSignup'
 import NameAccount from './components/Account/SignUp/NameAccount';
+import MainPage from './pages/Main';
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<RootLayout/>}>
-        <Route index element={<IndexMenuPage/>} />
+        <Route index element={<MainPage/>} />
         <Route exact path='/Projects-menu/' element={<ProjectsMenu />} /*loader={ProjectsLoader}*/ />
         <Route exact path='/Folders/' element={<a />} />
         <Route exact path='/*' element={<NotFound/>} />

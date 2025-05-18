@@ -1,12 +1,12 @@
-import { createBrowserRouter, createRoutesFromElements, Route, BrowserRouter as Router, RouterProvider, Routes } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import IndexMenuPage from './pages/IndexMenu';
-import TextEditor from './pages/TextEditor';
-import ProjectsMenu, { ProjectsLoader } from './pages/ProjectsMenu';
+import IndexMenuPage from './pages/Main/MainPage';
+import TextEditor from './pages/TextEditor/TextEditor';
+import ProjectsMenu from './pages/ProjectsMenu/ProjectsMenu';
 import RootLayout from './Layout/RootLayout';
-import NotFound from './pages/NotFound';
+import NotFound from './pages/NotFound/NotFound';
 import UsersLayout from './Layout/UsersLayout';
 import SignupLayout from './Layout/SignupLayout';
 import Account from './components/Account/Accounts/Account';

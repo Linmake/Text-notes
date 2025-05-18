@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { NewProjectTab } from "../../components/Project/NewProjectTab.jsx";
+import { NewProjectTab } from "../../components/ProjectSideBar/NewProjectTab.jsx";
 import { ProjectCompTemplate } from "../../components/Templates/ProjectCompTemplate.jsx";
 import styled from "styled-components";
 import axios from "axios";
@@ -9,8 +9,9 @@ import { UseData } from "../../context/dataContext.jsx";
 import { NoProjectCompTemplate } from "../../components/Templates/NoProjectCompTemplate.jsx";
 import LogoAccount from "../../components/Account/Accounts/LogoAccount.jsx";
 import "../../styles/pages/projects/global.css";
-
-const Container = styled.div`
+import ProjectComponent from "../../components/ProjectsMenu/Project.jsx";
+import NoProjects from "../../components/ProjectsMenu/NotProjects.jsx";
+const ContainerProjects = styled.div`
   width: 52%;
   display: flex;
   box-shadow: 0px 0px 2px #c4c7cc;
@@ -38,31 +39,7 @@ const NoProjectsContainer = styled.div`
   padding-top: 2%;
   margin-top: 7%;
 `;
-const ProjectElement = styled.li`
-  border-bottom: 1px solid #c4c7c5;
-  font-size: 1.3rem;
-  list-style: none;
-  font-family: "Poppins", "Lucida Sans", "Lucida Sans Regular";
-  width: 58vw;
-  height: 80px;
-  padding-top: 0.625rem;
-  padding-left: 1.2rem;
-  overflow-wrap: break-word;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  color: #000;
-  cursor: pointer;
-
-  &:last-child {
-    border: none;
-  }
-  &:hover {
-    background-color: rgba(242, 244, 245, 0.45);
-  }
-`;
-const Ul = styled.ul`
+const ProjectList = styled.ul`
   margin: 0 !important;
   padding-inline-start: 0 !important;
 `;
@@ -73,21 +50,16 @@ const Subtitle = styled.h2`
   user-select: none;
 `;
 /*
- *Get Projects from de DB
- */
-/*
  *@returns List Projects
  */
 const ProjectsMenu = () => {
   const RutaPrincipal = "http://localhost:4001" 
   const [cookie, setCookie] = useState(null);
-  //const InitialData = useLoaderData()
-  //const [ projects, setProjects ] = useState(InitialData);
   const { projects, setProjects } = useContext(positionSideContext);
   const { setData, setProject, name, setName } = UseData();
-  const [nameAccount, setNameAccount] = useState(null);
 
   const navProject = useNavigate();
+
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -126,26 +98,11 @@ const ProjectsMenu = () => {
     const findProject = projects.find((project) => project.Id == id);
     setProject(findProject);
   };
-  const noProjects = () => {
-    return (
-      <NoProjectCompTemplate>
-        <div>
-          <div>{name}</div>
-        </div>
-        <NoProjectsContainer>
-          <div></div>
-          <NewProjectTab />
-          <Subtitle className="subtitle-noprojects">Without projects</Subtitle>
-        </NoProjectsContainer>
-      </NoProjectCompTemplate>
-    );
-  };
-
   return (
     <>
-      {projects.length == 0 ? (
-        noProjects((event) => event)
-      ) : (
+      {projects.length == 0 
+      ? <NoProjects/> 
+       : (
         <ProjectCompTemplate>
           <div>
             <Link to={`${RutaPrincipal}/projects-menu`}>
@@ -153,19 +110,18 @@ const ProjectsMenu = () => {
             </Link>
             <div>{name}</div>
           </div>
-          <Container>
-            <NewProjectTab />
-            <Ul>
+          <ContainerProjects>
+            <NewProjectTab/>
+            <ProjectList>
               {projects.map((project, index) => (
-                <ProjectElement
-                  key={index}
-                  onClick={() => handleClick(project.Id)}
-                >
-                  {project.Title}
-                </ProjectElement>
+                <ProjectComponent 
+                Title={project.Title}
+                key={index}
+                onClick={() => handleClick(project.Id)}
+                />
               ))}
-            </Ul>
-          </Container>
+            </ProjectList>
+          </ContainerProjects>
         </ProjectCompTemplate>
       )}
     </>

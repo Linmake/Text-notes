@@ -83,7 +83,6 @@ const ProjectElement = styled.li`
     background-color: #F2F4F5;
   }
 `;
-
 const noProjectsOpen = () => {  
   return (
     <>

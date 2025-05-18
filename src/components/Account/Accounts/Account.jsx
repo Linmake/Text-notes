@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import LogoAccount from "../../../pages/components/Account/LogoAccount";
+import LogoAccount from "./LogoAccount";
 import styled from "styled-components";
 import axios from "axios";
 import { UseData } from "../../../context/dataContext";

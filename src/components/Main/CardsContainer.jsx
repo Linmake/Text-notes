@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CardBody, CardComponent } from "../../../components/HomeCards/Card";
+import { CardBody, CardComponent } from "../HomeCards/Card";
 import styled from "styled-components";
 
 export default function CardsContainer() {

@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import Waves from "../../../assets/Waves"
-import notepad from "../../../assets/notepad.webp"
+import Waves from "../../assets/Waves"
+import notepad from "../../assets/notepad.webp"
 import { useNavigate } from "react-router-dom"
 
 const ContainerInicio= styled.div`

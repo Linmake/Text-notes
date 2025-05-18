@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { NewProjectTab } from "../components/Project/NewProjectTab.jsx";
-import { ProjectCompTemplate } from "../components/Templates/ProjectCompTemplate.jsx";
+import { NewProjectTab } from "../../components/Project/NewProjectTab.jsx";
+import { ProjectCompTemplate } from "../../components/Templates/ProjectCompTemplate.jsx";
 import styled from "styled-components";
-import "../styles/pages/projects/global.css";
 import axios from "axios";
-import { positionSideContext } from "../context/SideProv.jsx";
-import { UseData } from "../context/dataContext.jsx";
-import { NoProjectCompTemplate } from "../components/Templates/NoProjectCompTemplate.jsx";
-import LogoAccount from "./components/Account/LogoAccount.jsx";
+import { positionSideContext } from "../../context/SideProv.jsx";
+import { UseData } from "../../context/dataContext.jsx";
+import { NoProjectCompTemplate } from "../../components/Templates/NoProjectCompTemplate.jsx";
+import LogoAccount from "../../components/Account/Accounts/LogoAccount.jsx";
+import "../../styles/pages/projects/global.css";
 
 const Container = styled.div`
   width: 52%;

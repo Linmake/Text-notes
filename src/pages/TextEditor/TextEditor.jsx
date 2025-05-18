@@ -1,15 +1,15 @@
-import { positionSideContext, SideProv } from '../context/SideProv'
-import { EditorProvider } from '../context/editorFunctions';
-import EditorCompTemplate from "../components/Templates/EditorCompTemplate";
-import SideBar from "../components/sidebar/SideBar";
-import QuillEditor from "../components/Editor/QuillEditor";
-import HeaderEditorComponent from "../components/Header/HeaderEditorComponent";
+import { positionSideContext, SideProv } from '../../context/SideProv'
+import { EditorProvider } from '../../context/editorFunctions';
+import EditorCompTemplate from "../../components/Templates/EditorCompTemplate";
+import SideBar from "../../components/sidebar/SideBar";
+import QuillEditor from "../../components/Editor/QuillEditor";
+import HeaderEditorComponent from "../../components/Header/HeaderEditorComponent";
 import styled from 'styled-components';
 import { useContext, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from 'react-router-dom'
-import { UseData } from '../context/dataContext';
+import { UseData } from '../../context/dataContext';
 
 const FilterSelectProject = styled.div`
 z-index: 100;

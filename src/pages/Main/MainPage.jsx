@@ -1,7 +1,7 @@
-import HeaderIndex from '../components/Header/HeaderIndex';
-import '../styles/pages/index/IndexMenu.css'
-import CardsContainer from "./components/Index/CardsContainer";
-import HomeContainer from './components/Index/HomeContainer';
+import HeaderIndex from '../../components/Header/HeaderIndex';
+import '../../styles/pages/index/IndexMenu.css'
+import CardsContainer from "../../components/Main/CardsContainer";
+import HomeContainer from '../../components/Main/HomeContainer';
 
 /*
 const sizes = {

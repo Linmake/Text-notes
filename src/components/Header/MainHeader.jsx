@@ -2,19 +2,19 @@ import styled from 'styled-components'
 import '../../styles/components/header/HeaderInicio.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import Logo from './Components/Logo'
-import LinksIndex from './Components/LinksIndex'
+import MainLinks from './Components/MainLinks'
 import { UseData } from '../../context/dataContext'
+import Account from '../Account/Accounts/Account'
 
 const Header = styled.nav`
   height: 99px;
   display: flex;
-  background: rgb(251,120,80);
-  background: linear-gradient(90deg, rgba(251,120,80,1) 0%, rgba(242,179,50,1) 100%);
+  background-color: white !important;
   padding: 0px;
   width: 100%;
   border-bottom: 2px solid white;
   user-select: none;
+  position: fixed;
 `
 const NavContainer = styled.nav`
   display: flex;
@@ -22,7 +22,7 @@ const NavContainer = styled.nav`
   gap: 50%;
 `
 
-const HeaderIndex = ({mainRoute}) => {
+const MainHeader = ({mainRoute}) => {
   const {login, setLogin} = UseData()
   const [Name, setName] = useState("User")
   useEffect( () => {
@@ -46,11 +46,11 @@ const HeaderIndex = ({mainRoute}) => {
     <>
       <Header className="navbar navbar-expand-lg bg-body-tertiary">
         <NavContainer className="container-fluid">
-          <Logo/>
-          <LinksIndex mainRoute={mainRoute} login={login} nameAccount={Name} />
+          <MainLinks mainRoute={mainRoute} login={login} nameAccount={Name} />
+          <Account marginLeft={"5%"} mainRoute={mainRoute} nameAccount={Name} />
         </NavContainer>
       </Header>
     </>
   )
 }
-export default HeaderIndex
+export default MainHeader

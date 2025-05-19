@@ -1,7 +1,7 @@
-import HeaderIndex from '../../components/Header/HeaderIndex';
 import '../../styles/pages/index/IndexMenu.css'
 import CardsContainer from "../../components/Main/CardsContainer";
 import HomeContainer from '../../components/Main/HomeContainer';
+import MainHeader from '../../components/Header/MainHeader';
 
 /*
 const sizes = {
@@ -12,13 +12,13 @@ const media = {
   laptop: `(min-width: ${sizes.laptop})`,
 }*/
 
-const IndexMenuPage = () => {
+const MainPage = () => {
   return (
     <>
-      <HeaderIndex mainRoute={"http://localhost:4001"} />
+      <MainHeader mainRoute={"http://localhost:4001"}/>
       <HomeContainer/>
       <CardsContainer/>                   
     </> 
   )
 }
-export default IndexMenuPage
+export default MainPage

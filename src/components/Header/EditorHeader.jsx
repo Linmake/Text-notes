@@ -51,7 +51,7 @@ const LinkInicio = styled.a`
   font-size: 1.3rem;
 `
 
-const HeaderEditorComponent = () => {
+const EditorHeader = () => {
   const RutaPrincipal = "http://localhost:4001"
   return (
     <>
@@ -86,4 +86,4 @@ const HeaderEditorComponent = () => {
   )
 }
 
-export default HeaderEditorComponent
+export default EditorHeader

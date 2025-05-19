@@ -1,0 +1,17 @@
+.text{
+    animation: texto ease;
+    animation-duration: 1s;
+    animation-timeline: scroll();
+    animation-range: entry 0% cover 50%;
+}
+
+@keyframes texto {
+    from{
+        opacity: 1;
+        transform: scale(1)
+    }
+    to{
+        opacity: 0.8;
+        transform: scale(0.9)
+    }
+}

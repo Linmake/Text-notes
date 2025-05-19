@@ -8,7 +8,7 @@ export default function CardsContainer() {
     width: 100vw;
     height: 100%;
     position: absolute;
-    background-color: #f8f8f8;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;

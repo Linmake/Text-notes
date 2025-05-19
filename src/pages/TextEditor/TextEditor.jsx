@@ -3,13 +3,13 @@ import { EditorProvider } from '../../context/editorFunctions';
 import EditorCompTemplate from "../../components/Templates/EditorCompTemplate";
 import SideBar from "../../components/sidebar/SideBar";
 import QuillEditor from "../../components/Editor/QuillEditor";
-import HeaderEditorComponent from "../../components/Header/HeaderEditorComponent";
 import styled from 'styled-components';
 import { useContext, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from 'react-router-dom'
 import { UseData } from '../../context/dataContext';
+import EditorHeader from '../../components/Header/EditorHeader';
 
 const FilterSelectProject = styled.div`
 z-index: 100;
@@ -137,7 +137,7 @@ const noProjectsOpen = () => {
         </ContainerFilter>
       </FilterSelectProject>
       <SideBar />
-      <HeaderEditorComponent />
+      <EditorHeader/>
       <QuillEditor />
     </>
   )
@@ -154,7 +154,7 @@ const handlerOpen = (id) => {
       <SideProv>
         <EditorProvider>
           <SideBar />
-          <HeaderEditorComponent />
+          <EditorHeader/>
           <QuillEditor />
         </EditorProvider>
       </SideProv>

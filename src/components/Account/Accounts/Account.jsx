@@ -13,12 +13,48 @@ const AccountContainer = styled.li`
   align-items: center;
   height: 52%;
   box-sizing: border-box;
+  color: #212121;
   margin-left: ${ (props) => props.marginLeft || '0' };
+  gap: 1%;
 `;
 
-const Dropdown = styled.li``;
+const AccountUnLogContainer = styled.li`
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  height: 52%;
+  box-sizing: border-box;
+  color: #212121;
+  margin-left: ${ (props) => props.marginLeft || '0' };
+  gap: 7%;
+`;
+
+const SignUpContent = styled.div`
+  border: 1px solid black;
+  padding: 4px 12px;
+  border-radius: 6px;
+`
+
+const Dropdown = styled.li`
+  list-style: none;
+  width: 25%;
+`;
 
 const DropdownMenu = styled.ul`
+`;
+
+const Name = styled.li`
+
+`;
+
+const LogoutBtn = styled.button`
+    color: tomato;
+    &:hover{
+    color: red;
+  }
 `;
 
 export default function Account({ nameAccount, mainRoute, marginLeft }) { 
@@ -33,30 +69,32 @@ export default function Account({ nameAccount, mainRoute, marginLeft }) {
     
     (!login)
     ? (
-      <AccountContainer marginLeft={marginLeft} >
-        <Link className="nav-link" to={`${mainRoute}/Account/signup/email`}>Sign up</Link>
-        <Link className="nav-link" to={`${mainRoute}/Account/signin/`}>Login</Link>
-      </AccountContainer>
+      <AccountUnLogContainer marginLeft={marginLeft} >
+        <Link to={`${mainRoute}/Account/signin/`}>Sign in</Link>
+        <SignUpContent>
+          <Link to={`${mainRoute}/Account/signup/email`}>Sign up</Link>
+        </SignUpContent>
+      </AccountUnLogContainer>
      )
      :(<AccountContainer marginLeft={marginLeft} >
       <Link to={`${mainRoute}/projects-menu`}>
         <LogoAccount />
       </Link>
 
-      <Dropdown className="nav-item dropdown">
-        <li
-          className="nav-link dropdown-toggle"
+      <Dropdown className="dropdown">
+        <Name
+          className="dropdown-toggle"
           role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
           {nameAccount}
-        </li>
+        </Name>
         <DropdownMenu className="dropdown-menu">
           <li>
-            <button onClick={e => handlerLogout(e)} role="button" className="nav-item dropdown-item">
+            <LogoutBtn onClick={e => handlerLogout(e)} role="button" className="dropdown-item">
               Sign out
-            </button>
+            </LogoutBtn>
           </li>
         </DropdownMenu>
       </Dropdown>

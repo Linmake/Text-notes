@@ -2,7 +2,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import IndexMenuPage from './pages/Main/MainPage';
+import MainPage from './pages/Main/MainPage';
 import TextEditor from './pages/TextEditor/TextEditor';
 import ProjectsMenu from './pages/ProjectsMenu/ProjectsMenu';
 import RootLayout from './Layout/RootLayout';
@@ -18,7 +18,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<RootLayout/>}>
-        <Route index element={<IndexMenuPage/>} />
+        <Route index element={<MainPage/>} />
         <Route exact path='/Projects-menu/' element={<ProjectsMenu />} /*loader={ProjectsLoader}*/ />
         <Route exact path='/Folders/' element={<a />} />
         <Route exact path='/*' element={<NotFound/>} />

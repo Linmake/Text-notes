@@ -2,70 +2,78 @@ import styled from "styled-components"
 import Waves from "../../assets/Waves"
 import notepad from "../../assets/notepad.webp"
 import { useNavigate } from "react-router-dom"
+import '../../styles/components/main/main.css'
 
-const ContainerInicio= styled.div`
+const ContainerInicio = styled.div`
 width: 100%;
 height: 85%;
-background: linear-gradient(90deg, rgba(251,120,80,1) 0%, rgba(242,179,50,1) 100%);
+background-color: white;
 max-width: 100%;
-padding-top: 8% !important;   
+padding-top: 8% !important;
+display: flex;
+justify-content: center;
 `
 
 const ContainerTitle = styled.div`
-  width: 42%;
+width: 42%;
+margin-top: 8%;
+  display: flex;
   height: 550px;
   font-family: "rubik";
-  color: #ffffff;
-  position: absolute;
-  top: 22%;
-  left: 14%;
-  font-weight: bold;
+  flex-direction: column;
+  color: #212121;
+  align-items: center;
   cursor: default;
   user-select: none;
 `
 
 const ButtonFirst = styled.button`
-  width: 30%;
-  height: fit-content;
   background-color: white;
   color: black;
-  padding: 1.3% 0.5%;
+  width: 11.25rem;
+  height: 3.125rem;
   marging 2% 2px;
-  font-size: 62%;
+  font-size: 1.4rem;
+  color:rgb(84, 200, 255);
   letter-spacing: 0;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 5px 0px;
-  border: 1px solid white;
-  border-radius: 5px;
-  font-weight: bold;
+  border: 2px solid rgb(84, 200, 255);
+  border-radius: 4px;
   cursor: pointer;
-  margin-top: 7.8%;
+  margin-top: 2rem;
   &:hover{
-    background-color: rgb(247, 247, 247);
+    background-color: #3ac0ff;
+    color: white;
+    border: 2px solid rgb(84, 200, 255);
   }
 `
 
+const Title = styled.h1`
+  font-size: 3.7rem;
+  &:hover{
+    transition: scale(0.7, 0.7) 1s ;
+  }
+`
+
+const Subtitle = styled.h2`
+  margin-top: 2rem;
+  font-size: 1.7rem;
+`
+
 export default function HomeContainer() {
-    const navigate = useNavigate()
-  
-    const handlerNavigate = () => {
-      navigate("Projects-menu")
-    }
+  const navigate = useNavigate()
+
+  const handlerNavigate = () => {
+    navigate("Projects-menu")
+  }
   return (
     <ContainerInicio className="container-title">
-        <ContainerTitle>
-          <h1 className="font">Efficient Notes</h1>
-          <h2 className="subtitles">
-          Boost ideas, get powerful performance by getting organized
-            <ul className="ul">
-              <li>A note inside a folder in a project</li>
-              <li>Unlimited and sorted by priority</li>
-              <li>maximum visual feedback thanks to the structure</li>
-            </ul>
-            <ButtonFirst type="button" onClick={handlerNavigate}>Create a project</ButtonFirst>
-          </h2>
-        </ContainerTitle>
-        <img src={notepad} className="notepadImg" />
-        <Waves />
-      </ContainerInicio>
+      <ContainerTitle>
+        <Title className="font text">Able Note</Title>
+        <Subtitle className="text">Herramienta de notas de texto y proyectos</Subtitle>
+          <ButtonFirst type="button" onClick={handlerNavigate}>Crear</ButtonFirst>
+      </ContainerTitle>
+
+
+    </ContainerInicio> 
   )
 }   

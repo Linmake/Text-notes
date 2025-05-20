@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { NewProjectTab } from "../../components/ProjectSideBar/NewProjectTab.jsx";
 import { ProjectCompTemplate } from "../../components/Templates/ProjectCompTemplate.jsx";
 import styled from "styled-components";
@@ -11,11 +11,13 @@ import LogoAccount from "../../components/Account/Accounts/LogoAccount.jsx";
 import "../../styles/pages/projects/global.css";
 import ProjectComponent from "../../components/ProjectsMenu/Project.jsx";
 import NoProjects from "../../components/ProjectsMenu/NotProjects.jsx";
+import Account from "../../components/Account/Accounts/Account.jsx";
+import ProjectsMenuHeader from "../../components/ProjectsMenuHeader/ProjectsMenuHeader.jsx";
 const ContainerProjects = styled.div`
   width: 52%;
   display: flex;
-  box-shadow: 0px 0px 2px #c4c7cc;
-  border-radius: 3px;
+  box-shadow: 0px 0px 2px rgb(102, 102, 104);
+  border-radius: 5px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -58,9 +60,6 @@ const ProjectsMenu = () => {
   const { projects, setProjects } = useContext(positionSideContext);
   const { setData, setProject, name, setName } = UseData();
 
-  const navProject = useNavigate();
-
-
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -92,32 +91,21 @@ const ProjectsMenu = () => {
     fetchProjects();
   }, []);
 
-  const handleClick = (id) => {
-    navProject(`/Project/${id}`);
-    setData({ key: id });
-    const findProject = projects.find((project) => project.Id == id);
-    setProject(findProject);
-  };
   return (
     <>
       {projects.length == 0 
       ? <NoProjects/> 
        : (
-        <ProjectCompTemplate>
-          <div>
-            <Link to={`${RutaPrincipal}/projects-menu`}>
-              <LogoAccount/>
-            </Link>
-            <div>{name}</div>
-          </div>
+         <ProjectCompTemplate>
+          <ProjectsMenuHeader/>
           <ContainerProjects>
             <NewProjectTab/>
             <ProjectList>
               {projects.map((project, index) => (
                 <ProjectComponent 
                 Title={project.Title}
+                Id={project.Id}
                 key={index}
-                onClick={() => handleClick(project.Id)}
                 />
               ))}
             </ProjectList>

@@ -3,6 +3,7 @@ import LogoAccount from "../../../pages/components/Account/LogoAccount";
 import styled from "styled-components";
 import axios from "axios";
 import { UseData } from "../../../context/dataContext";
+import { useEffect } from "react";
 
 const AccountContainer = styled.li`
   display: flex;
@@ -14,8 +15,8 @@ const AccountContainer = styled.li`
   height: 52%;
   box-sizing: border-box;
   color: #212121;
-  margin-left: ${ (props) => props.marginLeft || '0' };
-  gap: ${ (props) => props.gap || '0'  };
+  margin-left: ${(props) => props.marginLeft || "0"};
+  gap: ${(props) => props.gap || "0"};
 `;
 
 const AccountUnLogContainer = styled.li`
@@ -28,55 +29,73 @@ const AccountUnLogContainer = styled.li`
   height: 52%;
   box-sizing: border-box;
   color: #212121;
-  margin-left: ${ (props) => props.marginLeft || '0' };
-  gap: ${ (props) => props.gap || '0'  };
+  margin-left: ${(props) => props.marginLeft || "0"};
+  gap: ${(props) => props.gap || "0"};
 `;
 
 const SignUpContent = styled.div`
   border: 1px solid black;
   padding: 4px 12px;
   border-radius: 6px;
-`
+`;
 
 const Dropdown = styled.li`
   list-style: none;
   width: 25%;
 `;
 
-const DropdownMenu = styled.ul`
-`;
+const DropdownMenu = styled.ul``;
 
-const Name = styled.li`
-
-`;
+const Name = styled.li``;
 
 const LogoutBtn = styled.button`
-    color: tomato;
-    &:hover{
+  color: tomato;
+  &:hover {
     color: red;
   }
 `;
 
-const Account = ({ nameAccount, mainRoute, marginLeft, gap }) => { 
+const Account = ({mainRoute, marginLeft, gap }) => {
+  const { login, setLogin, name, setName } = UseData();
 
-  const {login, setLogin} = UseData()
-  const handlerLogout = async() => {
-    await axios.get("http://localhost:4000/account/logout", {withCredentials: true})
-    setLogin(false)
-  }
+  useEffect(() => {
+    const fetchAccount = async () => {
+      const { data } = await axios.get("http://localhost:4000/account/login", {
+        withCredentials: true,
+      });
+      const { Name } = data;
+      setName(Name);
+    };
+    const fetchJWT = async () => {
+      const res = await axios.get("http://localhost:4000/account/token", {
+        withCredentials: true,
+      });
+      const { status } = res.data;
+      if (!status) {
+        return setLogin(false);
+      }
+      setLogin(true);
+      fetchAccount();
+    };
+    fetchJWT();
+  }, [setLogin, setName]);
 
-  return (
-    
-    (!login)
-    ? (
-      <AccountUnLogContainer marginLeft={marginLeft} gap={gap} >
-        <Link to={`${mainRoute}/Account/signin/`}>Sign in</Link>
-        <SignUpContent>
-          <Link to={`${mainRoute}/Account/signup/email`}>Sign up</Link>
-        </SignUpContent>
-      </AccountUnLogContainer>
-     )
-     :(<AccountContainer marginLeft={marginLeft} gap={gap} >
+  const handlerLogout = async () => {
+    await axios.get("http://localhost:4000/account/logout", {
+      withCredentials: true,
+    });
+    setLogin(false);
+  };
+
+  return !login ? (
+    <AccountUnLogContainer marginLeft={marginLeft} gap={gap}>
+      <Link to={`${mainRoute}/Account/signin/`}>Sign in</Link>
+      <SignUpContent>
+        <Link to={`${mainRoute}/Account/signup/email`}>Sign up</Link>
+      </SignUpContent>
+    </AccountUnLogContainer>
+  ) : (
+    <AccountContainer marginLeft={marginLeft} gap={gap}>
       <Link to={`${mainRoute}/projects-menu`}>
         <LogoAccount />
       </Link>
@@ -88,18 +107,22 @@ const Account = ({ nameAccount, mainRoute, marginLeft, gap }) => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          {nameAccount}
+          {name}
         </Name>
         <DropdownMenu className="dropdown-menu">
           <li>
-            <LogoutBtn onClick={e => handlerLogout(e)} role="button" className="dropdown-item">
+            <LogoutBtn
+              onClick={(e) => handlerLogout(e)}
+              role="button"
+              className="dropdown-item"
+            >
               Sign out
             </LogoutBtn>
           </li>
         </DropdownMenu>
       </Dropdown>
     </AccountContainer>
-  ))
-}
+  );
+};
 
-export default Account
+export default Account;

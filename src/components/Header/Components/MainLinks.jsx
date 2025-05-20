@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import Account from "../../Account/Accounts/Account";
 
-const SectionNotas = styled.ul`
+const LinksContainer = styled.ul`
   display: flex;
   width: 35%;
   justify-content: space-around;
@@ -16,8 +15,8 @@ const LinksContent = styled.li`
   const Links = styled.a`
   display: block;
   box-sizing: border-box;
-  margin-left: 7%;
-  color: #FFFF !important;
+  margin-left: 8%;
+  color: #6b6b6b;
   font-weight: 400;
   height: 20px;
   &:hover{
@@ -25,9 +24,9 @@ const LinksContent = styled.li`
   }
 `
 
-export default function LinksIndex({ mainRoute, nameAccount }) {
+export default function LinksIndex({ mainRoute }) {
   return (
-    <SectionNotas className="navbar-nav me-auto mb-2 mb-lg-0">
+    <LinksContainer className="me-auto mb-2 mb-lg-0">
       <LinksContent>
         <Links
           className="active"
@@ -51,6 +50,6 @@ export default function LinksIndex({ mainRoute, nameAccount }) {
           Folders
         </Links>
       </LinksContent>
-    </SectionNotas>
+    </LinksContainer>
   );
 }

@@ -1,15 +1,28 @@
+<<<<<<< HEAD:src/pages/TextEditor/TextEditor.jsx
 import { positionSideContext, SideProv } from '../../context/SideProv'
 import { EditorProvider } from '../../context/editorFunctions';
 import EditorCompTemplate from "../../components/Templates/EditorCompTemplate";
 import SideBar from "../../components/sidebar/SideBar";
 import QuillEditor from "../../components/Editor/QuillEditor";
+=======
+import { positionSideContext, SideProv } from '../context/SideProv'
+import { EditorProvider } from '../context/editorFunctions';
+import EditorCompTemplate from "../components/Templates/EditorCompTemplate";
+import SideBar from "../components/sidebar/SideBar";
+import QuillEditor from "../components/Editor/QuillEditor";
+import HeaderEditorComponent from "../components/Header/HeaderEditorComponent";
+>>>>>>> 0cdf65131d46ee7babc75842d8fd7d8fda0c7d97:src/pages/TextEditor.jsx
 import styled from 'styled-components';
 import { useContext, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from 'react-router-dom'
+<<<<<<< HEAD:src/pages/TextEditor/TextEditor.jsx
 import { UseData } from '../../context/dataContext';
 import EditorHeader from '../../components/Header/EditorHeader';
+=======
+import { UseData } from '../context/dataContext';
+>>>>>>> 0cdf65131d46ee7babc75842d8fd7d8fda0c7d97:src/pages/TextEditor.jsx
 
 const FilterSelectProject = styled.div`
 z-index: 100;

@@ -15,8 +15,8 @@ const LinksContent = styled.li`
   const Links = styled.a`
   display: block;
   box-sizing: border-box;
-  margin-left: 11%;
-  color: #6B6B6B;
+  margin-left: 7%;
+  color: #FFFF !important;
   font-weight: 400;
   height: 20px;
   &:hover{
@@ -24,7 +24,7 @@ const LinksContent = styled.li`
   }
 `
 
-export default function MainLinks({ mainRoute }) {
+export default function LinksIndex({ mainRoute, nameAccount }) {
   return (
     <SectionNotas className="navbar-nav me-auto mb-2 mb-lg-0">
       <LinksContent>
@@ -50,6 +50,7 @@ export default function MainLinks({ mainRoute }) {
           Folders
         </Links>
       </LinksContent>
+      <Account marginLeft={"5%"} mainRoute={mainRoute} nameAccount={nameAccount} />
     </SectionNotas>
   );
 }

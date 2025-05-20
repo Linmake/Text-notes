@@ -3,8 +3,8 @@ import img from "../../../assets/user.png";
 
 const Img = styled.img`
   border-radius: 55%;
-  width: 100%;
-  height: 100%;
+  width: 3.5vw;
+  height: 5.1vh;
   box-sizing: border-box;
 `;
 

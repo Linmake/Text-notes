@@ -9,7 +9,7 @@ import Account from '../Account/Accounts/Account'
 const Header = styled.nav`
   height: 99px;
   display: flex;
-  background-color: white !important;
+  background-color: white;
   padding: 0px;
   width: 100%;
   border-bottom: 2px solid white;

@@ -91,7 +91,8 @@ const ProjectsMenu = () => {
     fetchProjects();
   }, []);
 
-  return (
+
+return (
     <>
       {projects.length == 0 
       ? <NoProjects/> 

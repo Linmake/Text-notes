@@ -1,8 +1,6 @@
 import styled from "styled-components"
-import Waves from "../../assets/Waves"
-import notepad from "../../assets/notepad.webp"
 import { useNavigate } from "react-router-dom"
-import '../../styles/components/main/main.css'
+import '../../../styles/components/main/main.css'
 
 const ContainerInicio = styled.div`
 width: 100%;
@@ -59,7 +57,7 @@ const Subtitle = styled.h2`
   font-size: 1.7rem;
 `
 
-export default function MainContainer() {
+const MainContainer = () => {
   const navigate = useNavigate()
 
   const handlerNavigate = () => {
@@ -75,3 +73,5 @@ export default function MainContainer() {
     </ContainerInicio> 
   )
 }   
+
+export default MainContainer

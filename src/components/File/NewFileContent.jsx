@@ -4,10 +4,7 @@ import styled from 'styled-components';
 import { navItem, navLink } from "../Hooks/themaStyled";
 import { useContext, useEffect, useRef } from 'react';
 import { positionSideContext } from '../../context/SideProv';
-import { UseData } from '../../context/dataContext';
 import { useNewFile } from './Hook/useNewFile';
-
-
 export const Ul = styled.ul`
 list-style: none;
 margin-top: 5%;
@@ -32,33 +29,24 @@ export const InputFile = styled.input`
   font-size: 1rem;
   border-radius: 3px;
 `
-
 const NewFileContent = () => {
   const inputRefNewFile = useRef(null);
-
   const {
     addNewFile,
     setAddNewFile,
     idFolderSelect,
     statusSelectFolder
   } = useContext(positionSideContext);
-
-
   const {
-
   } = useNewFile()
-
   useEffect(() => {
-
     if (addNewFile) {
       inputRefNewFile.current.focus();
     }
     if (!statusSelectFolder) {
       setAddNewFile(false)
     }
-
   }, [addNewFile, inputRefNewFile, statusSelectFolder]);
-
   return (
     <Ul 
     className={
@@ -78,5 +66,4 @@ const NewFileContent = () => {
     </Ul >
   );
 }
-
 export default NewFileContent

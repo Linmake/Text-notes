@@ -1,7 +1,7 @@
 import '../../styles/pages/index/IndexMenu.css'
-import CardsContainer from "../../components/Main/CardsContainer";
-import MainContainer from '../../components/Main/MainContainer';
+import MainContainer from '../components/Index/MainContainer';
 import MainHeader from '../../components/Header/MainHeader';
+import CardsContainer from '../components/Index/CardsContainer';
 
 /*
 const sizes = {

@@ -15,7 +15,7 @@ const AccountContainer = styled.li`
   box-sizing: border-box;
   color: #212121;
   margin-left: ${ (props) => props.marginLeft || '0' };
-  gap: 1%;
+  gap: ${ (props) => props.gap || '0'  };
 `;
 
 const AccountUnLogContainer = styled.li`
@@ -29,7 +29,7 @@ const AccountUnLogContainer = styled.li`
   box-sizing: border-box;
   color: #212121;
   margin-left: ${ (props) => props.marginLeft || '0' };
-  gap: 7%;
+  gap: ${ (props) => props.gap || '0'  };
 `;
 
 const SignUpContent = styled.div`
@@ -57,7 +57,7 @@ const LogoutBtn = styled.button`
   }
 `;
 
-export default function Account({ nameAccount, mainRoute, marginLeft }) { 
+export default function Account({ nameAccount, mainRoute, marginLeft, gap }) { 
 
   const {login, setLogin} = UseData()
   const handlerLogout = async() => {
@@ -69,14 +69,14 @@ export default function Account({ nameAccount, mainRoute, marginLeft }) {
     
     (!login)
     ? (
-      <AccountUnLogContainer marginLeft={marginLeft} >
+      <AccountUnLogContainer marginLeft={marginLeft} gap={gap} >
         <Link to={`${mainRoute}/Account/signin/`}>Sign in</Link>
         <SignUpContent>
           <Link to={`${mainRoute}/Account/signup/email`}>Sign up</Link>
         </SignUpContent>
       </AccountUnLogContainer>
      )
-     :(<AccountContainer marginLeft={marginLeft} >
+     :(<AccountContainer marginLeft={marginLeft} gap={gap} >
       <Link to={`${mainRoute}/projects-menu`}>
         <LogoAccount />
       </Link>

@@ -47,7 +47,7 @@ const MainHeader = ({mainRoute}) => {
       <Header className="navbar navbar-expand-lg bg-body-tertiary">
         <NavContainer className="container-fluid">
           <MainLinks mainRoute={mainRoute} login={login} nameAccount={Name} />
-          <Account marginLeft={"5%"} mainRoute={mainRoute} nameAccount={Name} />
+          <Account marginLeft={"0"} mainRoute={mainRoute} nameAccount={Name} />
         </NavContainer>
       </Header>
     </>

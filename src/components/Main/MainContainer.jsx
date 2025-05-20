@@ -59,7 +59,7 @@ const Subtitle = styled.h2`
   font-size: 1.7rem;
 `
 
-export default function HomeContainer() {
+export default function MainContainer() {
   const navigate = useNavigate()
 
   const handlerNavigate = () => {
@@ -72,8 +72,6 @@ export default function HomeContainer() {
         <Subtitle className="text">Herramienta de notas de texto y proyectos</Subtitle>
           <ButtonFirst type="button" onClick={handlerNavigate}>Crear</ButtonFirst>
       </ContainerTitle>
-
-
     </ContainerInicio> 
   )
 }   

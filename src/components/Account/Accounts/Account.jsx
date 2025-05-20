@@ -57,7 +57,7 @@ const LogoutBtn = styled.button`
   }
 `;
 
-export default function Account({ nameAccount, mainRoute, marginLeft, gap }) { 
+const Account = ({ nameAccount, mainRoute, marginLeft, gap }) => { 
 
   const {login, setLogin} = UseData()
   const handlerLogout = async() => {
@@ -101,3 +101,5 @@ export default function Account({ nameAccount, mainRoute, marginLeft, gap }) {
     </AccountContainer>
   ))
 }
+
+export default Account

@@ -31,7 +31,7 @@ height: 65%;
 top: 17%;
 left: 30%;
 padding-top: 50px;
-padding-left: 110px;
+padding-left: 110px; 
 padding-right: 110px;
 padding-bottom: 0px;
 `
@@ -69,7 +69,7 @@ const ProjectElement = styled.li`
   font-size: 1.3rem;
   list-style: none;
   font-family: "Poppins", 'Lucida Sans', 'Lucida Sans Regular';
-  width: 50vw;
+  width: 50vw; 
   height: 80px;
   padding: 16px;
   overflow-wrap: break-word;

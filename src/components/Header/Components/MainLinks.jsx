@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Account from "../../Account/Accounts/Account";
 
 const SectionNotas = styled.ul`
   display: flex;
@@ -50,7 +51,6 @@ export default function LinksIndex({ mainRoute, nameAccount }) {
           Folders
         </Links>
       </LinksContent>
-      <Account marginLeft={"5%"} mainRoute={mainRoute} nameAccount={nameAccount} />
     </SectionNotas>
   );
 }

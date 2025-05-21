@@ -4,19 +4,22 @@ import MainLinks from './Components/MainLinks'
 import Account from '../Account/Accounts/Account'
 
 const Header = styled.nav`
-  padding: 8px 16px;
-  marging: 0;
-  height: ;
   display: flex;
-  background-color: white;
+  flex-direction: row;
   width: 100%;
+  border: 1px solid #cccc;
+  marging: 0;
+  background-color: white;
   user-select: none;
-  position: sticky;
+  padding: 8px 16px;
+  position: fixed;
+  top: 0;
 `
 const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   gap: 50%;
+  border: 1px solid #cccc;
 `
 
 const MainHeader = ({mainRoute}) => {

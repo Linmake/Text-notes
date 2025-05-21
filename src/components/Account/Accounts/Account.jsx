@@ -27,6 +27,7 @@ const AccountUnLogContainer = styled.li`
   justify-content: center;
   align-items: center;
   height: 52%;
+  border: 1px solid #cccc;
   box-sizing: border-box;
   color: #212121;
   margin-left: ${(props) => props.marginLeft || "0"};
@@ -101,14 +102,6 @@ const Account = ({mainRoute, marginLeft, gap }) => {
       </Link>
 
       <Dropdown className="dropdown">
-        <Name
-          className="dropdown-toggle"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          {name}
-        </Name>
         <DropdownMenu className="dropdown-menu">
           <li>
             <LogoutBtn

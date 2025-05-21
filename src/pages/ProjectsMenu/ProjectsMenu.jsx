@@ -9,6 +9,7 @@ import "../../styles/pages/projects/global.css";
 import NoProjects from "../../components/ProjectsMenu/NoProjects.jsx";
 import ProjectsMenuHeader from "../../components/ProjectsMenuHeader/ProjectsMenuHeader.jsx";
 import Project from "../../components/ProjectsMenu/Project.jsx";
+import MainHeader from '../../components/Header/MainHeader.jsx'
 
 const ContainerProjects = styled.div`
   width: 52%;
@@ -55,7 +56,7 @@ return (
       ? <NoProjects/> 
        : (
          <ProjectCompTemplate>
-          <ProjectsMenuHeader/>
+          <MainHeader mainRoute={"http://localhost:4001"}/>
           <ContainerProjects>
             <NewProjectTab/>
             <ProjectList>

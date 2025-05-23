@@ -14,8 +14,8 @@ const AccountContainer = styled.li`
   height: 52%;
   box-sizing: border-box;
   color: #212121;
-  margin-left: ${ (props) => props.marginLeft || '0' };
-  gap: ${ (props) => props.gap || '0'  };
+  margin-left: ${(props) => props.marginLeft || '0'};
+  gap: ${(props) => props.gap || '0'};
 `;
 
 const AccountUnLogContainer = styled.li`
@@ -28,8 +28,8 @@ const AccountUnLogContainer = styled.li`
   height: 52%;
   box-sizing: border-box;
   color: #212121;
-  margin-left: ${ (props) => props.marginLeft || '0' };
-  gap: ${ (props) => props.gap || '0'  };
+  margin-left: ${(props) => props.marginLeft || '0'};
+  gap: ${(props) => props.gap || '0'};
 `;
 
 const SignUpContent = styled.div`
@@ -57,49 +57,50 @@ const LogoutBtn = styled.button`
   }
 `;
 
-const Account = ({ nameAccount, mainRoute, marginLeft, gap }) => { 
+const Account = ({ nameAccount, mainRoute, marginLeft, gap }) => {
 
-  const {login, setLogin} = UseData()
-  const handlerLogout = async() => {
-    await axios.get("http://localhost:4000/account/logout", {withCredentials: true})
+  const { login, setLogin } = UseData()
+  const handlerLogout = async () => {
+    await axios.get("http://localhost:4000/account/logout", { withCredentials: true })
     setLogin(false)
   }
 
   return (
-    
-    (!login)
-    ? (
-      <AccountUnLogContainer marginLeft={marginLeft} gap={gap} >
-        <Link to={`${mainRoute}/Account/signin/`}>Sign in</Link>
-        <SignUpContent>
-          <Link to={`${mainRoute}/Account/signup/email`}>Sign up</Link>
-        </SignUpContent>
-      </AccountUnLogContainer>
-     )
-     :(<AccountContainer marginLeft={marginLeft} gap={gap} >
-      <Link to={`${mainRoute}/projects-menu`}>
-        <LogoAccount />
-      </Link>
 
-      <Dropdown className="dropdown">
-        <Name
-          className="dropdown-toggle"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          {nameAccount}
-        </Name>
-        <DropdownMenu className="dropdown-menu">
-          <li>
-            <LogoutBtn onClick={e => handlerLogout(e)} role="button" className="dropdown-item">
-              Sign out
-            </LogoutBtn>
-          </li>
-        </DropdownMenu>
-      </Dropdown>
-    </AccountContainer>
-  ))
+    (!login)
+      ? (
+        <AccountUnLogContainer marginLeft={marginLeft} gap={gap} >
+          <Link to={`${mainRoute}/Account/signin/`}>Sign in</Link>
+          <SignUpContent>
+            <Link to={`${mainRoute}/Account/signup/email`}>Sign up</Link>
+          </SignUpContent>
+        </AccountUnLogContainer>
+      )
+      : (
+        <AccountContainer marginLeft={marginLeft} gap={gap} >
+          <Link to={`${mainRoute}/projects-menu`}>
+            <LogoAccount />
+          </Link>
+
+          <Dropdown className="dropdown">
+            <Name
+              className="dropdown-toggle"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {nameAccount}
+            </Name>
+            <DropdownMenu className="dropdown-menu">
+              <li>
+                <LogoutBtn onClick={e => handlerLogout(e)} role="button" className="dropdown-item">
+                  Sign out
+                </LogoutBtn>
+              </li>
+            </DropdownMenu>
+          </Dropdown>
+        </AccountContainer>
+      ))
 }
 
 export default Account

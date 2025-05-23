@@ -23,7 +23,6 @@ const AccountContainer = styled.div`
 
 const ProjectsMenuHeader = () => {
     const { name } = UseData();
-
     return (
         <HeaderContainer>
             <AccountContainer>

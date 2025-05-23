@@ -7,7 +7,6 @@ const Header = styled.nav`
   display: flex;
   flex-direction: row;
   width: 100%;
-  border: 1px solid #cccc;
   marging: 0;
   background-color: white;
   user-select: none;
@@ -19,7 +18,6 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   gap: 50%;
-  border: 1px solid #cccc;
 `
 
 const MainHeader = ({mainRoute}) => {

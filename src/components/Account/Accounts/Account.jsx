@@ -15,13 +15,9 @@ const AccountContainer = styled.li`
   height: 52%;
   box-sizing: border-box;
   color: #212121;
-<<<<<<< HEAD
   margin-left: ${(props) => props.marginLeft || '0'};
   gap: ${(props) => props.gap || '0'};
-=======
-  margin-left: ${(props) => props.marginLeft || "0"};
-  gap: ${(props) => props.gap || "0"};
->>>>>>> fbf95fca6a58b89804f5abc1162b349698c570b5
+
 `;
 
 const AccountUnLogContainer = styled.li`
@@ -32,16 +28,10 @@ const AccountUnLogContainer = styled.li`
   justify-content: center;
   align-items: center;
   height: 52%;
-  border: 1px solid #cccc;
   box-sizing: border-box;
   color: #212121;
-<<<<<<< HEAD
   margin-left: ${(props) => props.marginLeft || '0'};
   gap: ${(props) => props.gap || '0'};
-=======
-  margin-left: ${(props) => props.marginLeft || "0"};
-  gap: ${(props) => props.gap || "0"};
->>>>>>> fbf95fca6a58b89804f5abc1162b349698c570b5
 `;
 
 const SignUpContent = styled.div`
@@ -65,54 +55,6 @@ const LogoutBtn = styled.button`
     color: red;
   }
 `;
-
-<<<<<<< HEAD
-const Account = ({ nameAccount, mainRoute, marginLeft, gap }) => {
-
-  const { login, setLogin } = UseData()
-  const handlerLogout = async () => {
-    await axios.get("http://localhost:4000/account/logout", { withCredentials: true })
-    setLogin(false)
-  }
-
-  return (
-
-    (!login)
-      ? (
-        <AccountUnLogContainer marginLeft={marginLeft} gap={gap} >
-          <Link to={`${mainRoute}/Account/signin/`}>Sign in</Link>
-          <SignUpContent>
-            <Link to={`${mainRoute}/Account/signup/email`}>Sign up</Link>
-          </SignUpContent>
-        </AccountUnLogContainer>
-      )
-      : (
-        <AccountContainer marginLeft={marginLeft} gap={gap} >
-          <Link to={`${mainRoute}/projects-menu`}>
-            <LogoAccount />
-          </Link>
-
-          <Dropdown className="dropdown">
-            <Name
-              className="dropdown-toggle"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              {nameAccount}
-            </Name>
-            <DropdownMenu className="dropdown-menu">
-              <li>
-                <LogoutBtn onClick={e => handlerLogout(e)} role="button" className="dropdown-item">
-                  Sign out
-                </LogoutBtn>
-              </li>
-            </DropdownMenu>
-          </Dropdown>
-        </AccountContainer>
-      ))
-}
-=======
 const Account = ({mainRoute, marginLeft, gap }) => {
   const { login, setLogin, name, setName } = UseData();
 
@@ -174,6 +116,4 @@ const Account = ({mainRoute, marginLeft, gap }) => {
     </AccountContainer>
   );
 };
->>>>>>> fbf95fca6a58b89804f5abc1162b349698c570b5
-
 export default Account;

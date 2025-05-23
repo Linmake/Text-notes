@@ -85,5 +85,4 @@ const EditorHeader = () => {
     </>
   )
 }
-
 export default EditorHeader

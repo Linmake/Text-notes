@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const ProjectLi = styled(Link)`
+const ProjectLi = styled.li`
   border-bottom: 1px solid #c4c7c5;
   font-size: 1.3rem;
   list-style: none;
@@ -31,9 +31,16 @@ const ProjectLi = styled(Link)`
  * @returns Project Component
  */
 const Project = ({Title, Id}) => {
+
+  const navigate = useNavigate()
+
+  const goToProject = (Id) => {
+    return navigate(`/Project/${Id}`)
+  }
+
     return(
         <ProjectLi 
-        to={`Project/${Id}`}
+        onClick={e => goToProject(Id)}
         >
             {Title}
         </ProjectLi>

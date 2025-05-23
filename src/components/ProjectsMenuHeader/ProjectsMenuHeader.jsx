@@ -13,7 +13,6 @@ const HeaderContainer = styled.div`
     justify-content: end;
     user-select: none;
     position: sticky;
-    border: 1px solid #cccc;
     gap: 50%;
 `
 
@@ -21,7 +20,6 @@ const AccountContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #cccc;
 `
 
 const ProjectsMenuHeader = () => {

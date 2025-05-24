@@ -1,11 +1,8 @@
 import Folder from "../../Schema/FolderSchema.js";
-import Project from "../../Schema/ProjectSchema.js";
 
 const getAllFoldersController = async (req, res) => {
-  const { ProjectId } = req.params
-  const project = await Project.findOne({ Id: ProjectId })
-  if (!project) return res.status(400).send(`Project with Id: ${ProjectId} don't exist`)
-  const allFolders = project.Folders
+  const allFolders = await Folder.find({})
+  if (!allFolders) return res.status(400).send("There are no folders")
   return res.status(200).send(allFolders);
 }
 

@@ -9,18 +9,13 @@ import { UseData } from '../../../context/dataContext.jsx';
  * @param {*} e 
  * @returns file nuevo 
  */
-export function useNewFile({event, FileInput, IdFolder}) {
+const handlerNewFile = async(FileInput, IdFolder) => {
   const {
     setAddNewFile,
-    idFolderSelect,
   } = useContext(positionSideContext);
 
   const { folders, setFiles } = UseData()
 
-  setAddNewFile(true);
-
-  const handlerNewFile = async () => {
-    
     if (event.keyCode !== 13) return
     
     const folder = folders.find(
@@ -50,17 +45,4 @@ export function useNewFile({event, FileInput, IdFolder}) {
     }
   }
 
-  const NewFileOnBlur = () => {
-    setAddNewFile(false)
-    const newFileName = FileInput.current.value
-    if (newFileName === "" || newFileName.lentgh == 0) {
-      setAddNewFile(false)
-    }
-    return
-  }
-
-  return (
-    handlerNewFile,
-    NewFileOnBlur
-  )
-}
+export default handlerNewFile

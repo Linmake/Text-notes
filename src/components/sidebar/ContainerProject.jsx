@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from 'axios';
 import { UseData } from '../../context/dataContext';
 import { useParams } from 'react-router-dom';
-import IconNewFile from '../../assets/addFileIconWhite.png'
+import iconNewFile from '../../assets/addFileIconWhite.png'
 import iconNewFolder from '../../assets/addFolderIconWhite.png'
 import FolderList from '../Folder/FolderList';
 import ContainerFolders from '../Folder/ContainerFolders';
@@ -122,7 +122,7 @@ const ContainerProject = () => {
           id='newFileBttn'
           style={
                   {
-                    backgroundImage: `url(${IconNewFile})`
+                    backgroundImage: `url(${iconNewFile})`
                   }
                 }
           onClick={() => handlerNewFile()}
@@ -147,7 +147,7 @@ const ContainerProject = () => {
         <FolderList/>
       </ContainerFolders>
     </ContainerProyect>
-  );
+  );  
 };
 
 export default ContainerProject;

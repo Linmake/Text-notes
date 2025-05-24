@@ -43,8 +43,12 @@ const NewFileContent = ({ IdFolder }) => {
 
   useEffect( () => {
     
-    if (addNewFile) FileInput.current.focus();
-    if (!statusSelectFolder) setAddNewFile(false)
+    if (addNewFile) {
+      return FileInput.current.focus()
+    }
+    if (!statusSelectFolder) {
+      return setAddNewFile(false)
+    }
 
   }, [
     addNewFile, 
@@ -52,6 +56,8 @@ const NewFileContent = ({ IdFolder }) => {
     statusSelectFolder
   ]);
   
+  const {handlerNewFile} = useNewFile(FileInput, IdFolder)
+
   return (
     <Ul 
     className={
@@ -65,7 +71,7 @@ const NewFileContent = ({ IdFolder }) => {
             type="text"
             id="newFileInp"
             onKeyDown={
-              event => useNewFile(event, FileInput, IdFolder)
+              event => handlerNewFile(event)
             }
           />
         </span>

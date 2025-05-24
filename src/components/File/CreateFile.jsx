@@ -2,21 +2,20 @@ import { useContext } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 
 import axios from 'axios';
-import { positionSideContext } from '../../../context/SideProv.jsx';
-import { UseData } from '../../../context/dataContext.jsx';
+import { positionSideContext } from '../../context/SideProv.jsx';
+import { UseData } from '../../context/dataContext.jsx';
 /**
- * Guarda la creacion de un file con la tecla Enter, una vez ingresado el nombre
- * @param {*} e 
- * @returns file nuevo 
+ * Guarda la creacion de un file con la tecla Enter {Code: 13}
+ * @param {String} FileInput 
+ * @param {String} IdFolder 
+ * @returns Void
  */
-const handlerNewFile = async(FileInput, IdFolder) => {
+const CreateFile = async(FileInput, IdFolder) => {
   const {
     setAddNewFile,
   } = useContext(positionSideContext);
 
   const { folders, setFiles } = UseData()
-
-    if (event.keyCode !== 13) return
     
     const folder = folders.find(
       folder => folder.Id === IdFolder
@@ -34,15 +33,16 @@ const handlerNewFile = async(FileInput, IdFolder) => {
     const filesList = folder.Files;
 
     try {
-      const resFiles = await axios.post(`http://localhost:4000/file/create`, newFile)
+      const {data, status} = await axios.post(`http://localhost:4000/file/create`, newFile)
+      if(status !== 201) return console.error(data);
       setFiles([...filesList, newFile])
       FileInput.current.value = "";
       filesList.push(newFile);
       setAddNewFile(false);
-      return resFiles
+      return
     } catch (error) {
       console.error(error);
     }
   }
 
-export default handlerNewFile
+export default CreateFile

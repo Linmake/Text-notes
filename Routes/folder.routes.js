@@ -1,4 +1,3 @@
-import Folder from '../Schema/FolderSchema.js'
 import validateFolder from '../DTO/FolderValidation.js';
 import express from "express";
 import createController from '../Controllers/Folder/Create.controller.js';
@@ -13,7 +12,7 @@ import getAllFoldersController from '../Controllers/Folder/getAllFolders.control
 
   FolderRouter.get("/all", getAllFoldersController);
 
-  FolderRouter.get("/:ProjectId/all", getAllOnProjectController);
+  FolderRouter.get("all/:ProjectId", getAllOnProjectController);
 
   FolderRouter.post("/create/", validateFolder, createController);
 

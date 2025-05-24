@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { navItem, navLink } from "../Hooks/themaStyled";
 import { useContext, useEffect, useRef } from 'react';
 import { positionSideContext } from '../../context/SideProv';
-import { useNewFile } from './Hook/useNewFile';
+import CreateFile from './CreateFile';
+
 export const Ul = styled.ul`
 list-style: none;
 margin-top: 5%;
@@ -29,20 +30,17 @@ export const InputFile = styled.input`
   font-size: 1rem;
   border-radius: 3px;
 `
+
 const NewFileContent = ({ IdFolder }) => {
   const FileInput = useRef(null);
   
   const {
     addNewFile,
     setAddNewFile,
-    idFolderSelect,
     statusSelectFolder
   } = useContext(positionSideContext);
-  const {
-  } = useNewFile()
 
   useEffect( () => {
-    
     if (addNewFile) {
       return FileInput.current.focus()
     }
@@ -56,7 +54,10 @@ const NewFileContent = ({ IdFolder }) => {
     statusSelectFolder
   ]);
   
-  const {handlerNewFile} = useNewFile(FileInput, IdFolder)
+  const handlerNewFile = (event) => {
+    if (event.keyCode !== 13) return
+    CreateFile(FileInput, IdFolder)
+  }
 
   return (
     <Ul 
@@ -70,9 +71,7 @@ const NewFileContent = ({ IdFolder }) => {
             ref={FileInput} 
             type="text"
             id="newFileInp"
-            onKeyDown={
-              event => handlerNewFile(event)
-            }
+            onKeyDown={ event => handlerNewFile(event) }
           />
         </span>
       </div>

@@ -29,8 +29,9 @@ export const InputFile = styled.input`
   font-size: 1rem;
   border-radius: 3px;
 `
-const NewFileContent = () => {
-  const inputRefNewFile = useRef(null);
+const NewFileContent = ({ IdFolder }) => {
+  const FileInput = useRef(null);
+  
   const {
     addNewFile,
     setAddNewFile,
@@ -39,27 +40,33 @@ const NewFileContent = () => {
   } = useContext(positionSideContext);
   const {
   } = useNewFile()
-  useEffect(() => {
-    if (addNewFile) {
-      inputRefNewFile.current.focus();
-    }
-    if (!statusSelectFolder) {
-      setAddNewFile(false)
-    }
-  }, [addNewFile, inputRefNewFile, statusSelectFolder]);
+
+  useEffect( () => {
+    
+    if (addNewFile) FileInput.current.focus();
+    if (!statusSelectFolder) setAddNewFile(false)
+
+  }, [
+    addNewFile, 
+    FileInput, 
+    statusSelectFolder
+  ]);
+  
   return (
     <Ul 
     className={
       `nav-item ${(addNewFile) ? '' : 'hidde'}`
     }>
-      <div className="nav-link text-white">
+      <div className="text-white">
         <FontAwesomeIcon id="iconFolder" icon={faFile} />
         <span className="fs-4 d-none d-sm-inline fa-table-list newFileInp">
           <InputFile
-            ref={inputRefNewFile} 
+            ref={FileInput} 
             type="text"
             id="newFileInp"
-            onKeyDown={event => useNewFile(event)}
+            onKeyDown={
+              event => useNewFile(event, FileInput, IdFolder)
+            }
           />
         </span>
       </div>

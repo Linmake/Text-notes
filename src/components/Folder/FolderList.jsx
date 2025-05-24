@@ -69,7 +69,7 @@ const Icon = styled(FontAwesomeIcon)`
 `;
 
 /**
- * Componente que despliega la lista de los Folders visuales desde la bd
+ * Componente que despliega la lista de los Folders desde la bd
  * @returns Lista de Folders
  */
 const FolderList = () => {
@@ -87,8 +87,14 @@ const FolderList = () => {
     setIdFolderSelect,
   } = useContext(positionSideContext);
 
-  const { data, setOpenFolder, setFiles, openFolder, folders, setFolders } =
-    UseData();
+  const { 
+    data,
+    setOpenFolder,
+    setFiles, 
+    openFolder, 
+    folders, 
+    setFolders
+   } = UseData();
 
   useEffect(() => {
     const getFolders = async () => {

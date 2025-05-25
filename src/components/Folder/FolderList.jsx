@@ -10,7 +10,7 @@ import axios from "axios";
 import { UseData } from "../../context/dataContext";
 import { FileList } from "../File/FileList";
 import { useNavigate, useParams } from "react-router-dom";
-import NewFileContent from "../File/NewFileContent";
+import NewFileContent from "../File/NewFileComponent";
 import styles from "../../styles/components/editor/FolderList.css";
 
 const FoldersContainer = styled.ul`
@@ -100,7 +100,7 @@ const FolderList = () => {
     const getFolders = async () => {
       try {
         const res = await axios({
-          url: `${DbUrl}/folder/${projectId}/all`,
+          url: `${DbUrl}/folder/all/${projectId}`,
           method: "GET",
         });
         return res;
@@ -206,6 +206,7 @@ const FolderList = () => {
                 <NewFileContent
                   className={`nav-item ${addNewFile ? "" : "hidde"}`}
                   key={"InputNewFile"}
+                  IdFolder={folder.Id}
                 />
                 <FileList />
               </>

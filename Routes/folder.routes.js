@@ -12,7 +12,7 @@ import getAllFoldersController from '../Controllers/Folder/getAllFolders.control
 
   FolderRouter.get("/all", getAllFoldersController);
 
-  FolderRouter.get("all/:ProjectId", getAllOnProjectController);
+  FolderRouter.get("/all/:ProjectId", getAllOnProjectController);
 
   FolderRouter.post("/create/", validateFolder, createController);
 
@@ -22,6 +22,6 @@ import getAllFoldersController from '../Controllers/Folder/getAllFolders.control
 
   FolderRouter.delete("/delete/all/:ProjectId", deleteAllOnProjectController)
 
-  FolderRouter.delete("delete/all", deleteAllController)
+  FolderRouter.delete("/delete/all", deleteAllController)
 
   export default FolderRouter;

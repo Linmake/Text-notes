@@ -10,8 +10,8 @@ import axios from "axios";
 import { UseData } from "../../context/dataContext";
 import { FileList } from "../File/FileList";
 import { useNavigate, useParams } from "react-router-dom";
-import NewFileContent from "../File/NewFileComponent";
 import styles from "../../styles/components/editor/FolderList.css";
+import NewFile from "../File/NewFile";
 
 const FoldersContainer = styled.ul`
   margin-top: 3%;
@@ -203,7 +203,7 @@ const FolderList = () => {
             </Folder>
             {openFolder && selectedFolderIndex === index && (
               <>
-                <NewFileContent
+                <NewFile
                   className={`nav-item ${addNewFile ? "" : "hidde"}`}
                   key={"InputNewFile"}
                   IdFolder={folder.Id}

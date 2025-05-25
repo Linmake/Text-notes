@@ -19,13 +19,9 @@ export default function LogoAccount() {
 
   useEffect(() => {
     const handlerBlur = (event) => {
-      (ref.current && !ref.current.contains(event.target)) 
-        && (setToggleState(false))
+      if(ref.current && !ref.current.contains(event.target)) setToggleState(false)
     }
     document.addEventListener("mousedown", handlerBlur)
-    return(
-      document.removeEventListener("mousedown", handlerBlur)
-    )
   }, [])
 
   const handlerMouseEnter = () => {

@@ -8,7 +8,6 @@ export const navItem = css`
 
 export const navLink = css` 
   display: flex;
-  align-items: baseline;
   padding: 0;
   word-wrap: break-word;
   white-space: nowrap;

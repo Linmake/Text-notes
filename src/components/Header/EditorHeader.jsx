@@ -5,10 +5,11 @@ const Header = styled.nav`
   grid-area: header;
   width: 100%;
   height: 60px;
-  background: rgb(251,120,80);
-  background: linear-gradient(90deg, rgba(251,120,80,1) 0%, rgba(242,179,50,1) 100%);
   z-index: 3;
-`
+  background-color: #212529 !important;
+  border-bottom: 1px solid #2B2B2B;
+  border-top  : 1px solid #2B2B2B;
+  `
 const ListaInicio = styled.ul`
   margin-left: 72px;
   display: column;

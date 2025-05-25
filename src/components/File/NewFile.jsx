@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from 'react';
 import { positionSideContext } from '../../context/SideProv';
-import useCreateFile from './useCreateFile';
 import NewFileComponent from './components/NewFileComponent';
+import useCreateFile from './Hook/useCreateFile';
 
 const NewFile = ({ IdFolder }) => {
   const FileInput = useRef(null);

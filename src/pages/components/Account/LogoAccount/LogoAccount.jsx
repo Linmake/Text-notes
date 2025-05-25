@@ -1,0 +1,48 @@
+import styled from "styled-components";
+import img from "../../../../assets/user.png";
+import { useEffect, useRef, useState } from "react";
+import ToggleAccount from "./ToggleAccount";
+
+const Img = styled.img`
+  border-radius: 55%;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+`;
+
+const ToggleContent = styled.div`
+`
+
+export default function LogoAccount() {
+  const ref = useRef(null)
+  const [ toggleState, setToggleState ] = useState(false)
+
+  useEffect(() => {
+    const handlerBlur = (event) => {
+      (ref.current && !ref.current.contains(event.target)) 
+        && (setToggleState(false))
+    }
+    document.addEventListener("mousedown", handlerBlur)
+    return(
+      document.removeEventListener("mousedown", handlerBlur)
+    )
+  }, [])
+
+  const handlerMouseEnter = () => {
+    setToggleState(true)
+  }
+
+  return (
+  <ToggleContent
+    ref={ref}
+  >
+    <Img src={img} 
+      onMouseEnter={e => handlerMouseEnter(e)}
+    />
+    {(toggleState) 
+    && (
+      <ToggleAccount/>
+    )}
+  </ToggleContent>
+)
+}

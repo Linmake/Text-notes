@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import LogoAccount from "../../../pages/components/Account/LogoAccount";
+import LogoAccount from "../../../pages/components/Account/LogoAccount/LogoAccount";
 import styled from "styled-components";
 import axios from "axios";
 import { UseData } from "../../../context/dataContext";
@@ -46,8 +46,6 @@ const Dropdown = styled.li`
 `;
 
 const DropdownMenu = styled.ul``;
-
-const Name = styled.li``;
 
 const LogoutBtn = styled.button`
   color: tomato;

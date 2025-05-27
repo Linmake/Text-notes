@@ -146,9 +146,8 @@ const SignInAccount = () => {
     setName(data.Name)
     // const query = window.location.search;
     // navigate(`${query}/projects-menu`, { replace: true });
-    window.history.scrollRestoration = "auto"
     window.history.back()
-
+    
   };
 
   return (

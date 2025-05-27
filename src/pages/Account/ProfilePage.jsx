@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import profileImg from "../../assets/people.png";
+import { UseData } from "../../context/dataContext";
 
 const Container = styled.div`
   display: flex;
@@ -30,16 +31,17 @@ const LogoImg = styled.img`
   box-sizing: border-box;
 `;
 
-const SettingsAccountPage = () => {
+const ProfilePage = () => {
+  const {setName, name } = UseData()
   return (
     <Container>
       <ParentContent>
         <ProfileContent>
           <LogoImg src={profileImg} />
-          Settings Account ✨🎇🔧🔨⚙🛠
+          {name}
         </ProfileContent>
       </ParentContent>
     </Container>
   );
 };
-export default SettingsAccountPage;
+export default ProfilePage;

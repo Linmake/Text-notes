@@ -3,10 +3,9 @@ import img from "../../../../assets/user.png";
 import { useEffect, useRef, useState } from "react";
 import ToggleAccount from "./ToggleAccount";
 
-const Img = styled.img`
+const LogoImg = styled.img`
   border-radius: 55%;
   width: 100%;
-  height: 100%;
   box-sizing: border-box;
 `;
 
@@ -32,7 +31,7 @@ export default function LogoAccount() {
   <ToggleContent
     ref={ref}
   >
-    <Img src={img} 
+    <LogoImg src={img} 
       onMouseEnter={e => handlerDropDown(e)}
       onClick={e => handlerDropDown(e)}
     />

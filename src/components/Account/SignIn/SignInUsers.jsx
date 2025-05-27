@@ -132,7 +132,7 @@ const TitleH1 = styled.h1`
 
 const SignInAccount = () => {
   const { setEmail, setPwd, setName, name, email, pwd } = UseData()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
@@ -144,8 +144,11 @@ const SignInAccount = () => {
     const res = await axios.post("http://localhost:4000/account/signin", body, { withCredentials: true })
     const data = res.data;
     setName(data.Name)
-    const query = window.location.search;
-    navigate(`${query}/projects-menu`, { replace: true });
+    // const query = window.location.search;
+    // navigate(`${query}/projects-menu`, { replace: true });
+    window.history.scrollRestoration = "auto"
+    window.history.back()
+
   };
 
   return (

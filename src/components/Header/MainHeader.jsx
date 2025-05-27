@@ -13,6 +13,7 @@ const Header = styled.nav`
   padding: 8px 16px;
   position: fixed;
   top: 0;
+  z-index: 10000000;
 `
 const NavContainer = styled.nav`
   display: flex;

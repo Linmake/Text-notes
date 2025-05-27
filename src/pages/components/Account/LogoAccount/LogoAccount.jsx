@@ -24,7 +24,7 @@ export default function LogoAccount() {
     document.addEventListener("mousedown", handlerBlur)
   }, [])
 
-  const handlerMouseEnter = () => {
+  const handlerDropDown = () => {
     setToggleState(true)
   }
 
@@ -33,7 +33,8 @@ export default function LogoAccount() {
     ref={ref}
   >
     <Img src={img} 
-      onMouseEnter={e => handlerMouseEnter(e)}
+      onMouseEnter={e => handlerDropDown(e)}
+      onClick={e => handlerDropDown(e)}
     />
     {(toggleState) 
     && (

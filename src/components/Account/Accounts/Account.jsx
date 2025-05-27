@@ -47,6 +47,8 @@ const Dropdown = styled.li`
 
 const DropdownMenu = styled.ul``;
 
+const Name = styled.li``;
+
 const LogoutBtn = styled.button`
   color: tomato;
   &:hover {
@@ -54,7 +56,7 @@ const LogoutBtn = styled.button`
   }
 `;
 const Account = ({mainRoute, marginLeft, gap }) => {
-  const { login, setLogin, name, setName } = UseData();
+  const { login, setLogin, setName } = UseData();
 
   useEffect(() => {
     const fetchAccount = async () => {
@@ -84,7 +86,6 @@ const Account = ({mainRoute, marginLeft, gap }) => {
     });
     setLogin(false);
   };
-
   return !login ? (
     <AccountUnLogContainer marginLeft={marginLeft} gap={gap}>
       <Link to={`${mainRoute}/Account/signin/`}>Sign in</Link>
@@ -94,24 +95,21 @@ const Account = ({mainRoute, marginLeft, gap }) => {
     </AccountUnLogContainer>
   ) : (
     <AccountContainer marginLeft={marginLeft} gap={gap}>
-      <Link to={`${mainRoute}/projects-menu`}>
-        <LogoAccount />
-      </Link>
-
-      <Dropdown className="dropdown">
-        <DropdownMenu className="dropdown-menu">
-          <li>
-            <LogoutBtn
-              onClick={(e) => handlerLogout(e)}
-              role="button"
-              className="dropdown-item"
-            >
-              Sign out
-            </LogoutBtn>
-          </li>
-        </DropdownMenu>
-      </Dropdown>
+        <LogoAccount/>
+        {/* 
+          <DropdownMenu className="dropdown-menu">
+            <li>
+              <LogoutBtn
+                onClick={(e) => handlerLogout(e)}
+                role="button"
+                className="dropdown-item"
+              > 
+                Sign out
+              </LogoutBtn>
+            </li>
+          </DropdownMenu>
+        */}
     </AccountContainer>
-  );
+  )
 };
 export default Account;

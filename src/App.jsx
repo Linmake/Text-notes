@@ -14,6 +14,8 @@ import SignInUsers from './components/Account/SignIn/SignInUsers';
 import PwdAccount from './components/Account/SignUp/PwdAccount'
 import EmailSignup from './components/Account/SignUp/EmailSignup'
 import NameAccount from './components/Account/SignUp/NameAccount';
+import SettingsAccountPage from './pages/SettingsAccount/SettingsAccountPage';
+import AccountPage from './pages/Account/AccountPage';
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -25,7 +27,7 @@ function App() {
       <Route path='/Project/:projectId' element={<TextEditor />}>
       </Route>
       <Route path='Account' element={<UsersLayout />}>
-        <Route index path='Auth' element={<Account />} />
+        <Route index path='Enter' element={<AccountPage />} />
         <Route path='signup' element={<SignupLayout />}>
           <Route path='email' element={<EmailSignup />}/>
           <Route path='email/pwd' element={<PwdAccount />}/>
@@ -33,6 +35,7 @@ function App() {
         </Route>
         <Route path='SignIn' element={<SignInUsers />} />
       </Route>
+      <Route index path='settings' element={<SettingsAccountPage/>} />
     </Route>
     )
   )

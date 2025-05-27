@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+
 const Container = styled.div`
   display: flex;
   width: 100vw;
@@ -10,11 +11,11 @@ const Container = styled.div`
   margin-right: 50%;
 `;
 
-const AccountPage = () => {
+const SettingsAccountPage = () => {
   return (
     <Container>
-        Account ✨
+        Settings Account ✨🎇🔧🔨⚙🛠
     </Container>
   )
 }
-export default AccountPage
+export default SettingsAccountPage

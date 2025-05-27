@@ -73,8 +73,8 @@ const ToggleAccount = () => {
   };
   return (
     <Toggle>
-      <ToggleElement to={"account"}>Account</ToggleElement>
-      <ToggleElement to={"settings"}>Settings</ToggleElement>
+      <ToggleElement to={"Account/Enter"}>Account</ToggleElement>
+      <ToggleElement to={"Settings"}>Settings</ToggleElement>
       <LogoutBtn
         onClick={(e) => handlerLogout(e)}
         role="button"

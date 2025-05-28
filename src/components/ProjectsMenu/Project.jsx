@@ -24,6 +24,9 @@ const ProjectLi = styled.li`
   &:hover {
     background-color: rgba(242, 244, 245, 0.45);
   }
+  &:active {
+    background-color: rgba(242, 244, 245, 0.45);
+  }
 `;
 /**
  * 

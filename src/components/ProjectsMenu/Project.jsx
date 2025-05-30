@@ -1,10 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
+import OptionsMenu from "./OptionsMenu";
 
-const ProjectLi = styled.li`
+const Container = styled.li`
   border-bottom: 1px solid #c4c7c5;
   font-size: 1.3rem;
   list-style: none;
@@ -19,35 +17,18 @@ const ProjectLi = styled.li`
   display: flex;
   align-items: center;
   color: #000;
-  justify-content: space-between;
-  &:last-child {
-    border: none;
-  }
+  border: 1px solid grey;
+  gap: 10%;
+  `;
+  const ProjectContent = styled.div`
+  width: 10rem;
+  border: 1px solid grey;
+  cursor: pointer;
   &:hover {
     background-color: rgba(242, 244, 245, 0.45);
   }
   &:active {
     background-color: rgba(242, 244, 245, 0.45);
-  }
-`;
-const DeleteIcon = styled(FontAwesomeIcon)`
-  width: 1.5rem;
-  color: black;
-  &:hover {
-    cursor: pointer;
-  }
-  &:active {
-    cursor: pointer;
-  } 
-`
-const EditIcon = styled(FontAwesomeIcon)`
-  width: 1.5rem;
-  color: black; 
-  &:hover {
-    cursor: pointer;
-  }
-  &:active {
-    cursor: pointer;
   }
 `
 /**
@@ -56,38 +37,20 @@ const EditIcon = styled(FontAwesomeIcon)`
  * @returns Project Component
  */
 const Project = ({ Title, Id }) => {
-
   const navigate = useNavigate()
 
   const goToProject = (Id) => {
     return navigate(`/Project/${Id}`)
   }
 
-  const handlerDelete = (e) => {
-    const {status} = axios.delete(`http://localhost:4000/project/delete/${Id}`)
-    if(!status) return 
-    alert(`Project: ${Title} delete`)  
-  }
-
-  const handlerEdit = () => {
-    
-  }
-
   return (
-    <ProjectLi
-      onClick={e => goToProject(Id)}
-    >
-      {Title}
-    <DeleteIcon
-      icon={faTrash}
-      onClick={(e) => handlerDelete(e) }
-    />
-    
-    <EditIcon 
-      icon={faPenToSquare}
-      onClick={(e) => handlerEdit(e) }
-    />
-    </ProjectLi>
+    <Container>
+      <ProjectContent onClick={e => goToProject(Id)}> {Title} </ProjectContent>
+      <OptionsMenu 
+        Id={Id}
+        Title={Title}
+      />
+    </Container>
   )
 }
 export default Project

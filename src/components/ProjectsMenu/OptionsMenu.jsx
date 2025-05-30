@@ -4,6 +4,7 @@ import { positionSideContext } from "../../context/SideProv";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import { ProjectInput } from "./Project";
 
 const Container = styled.div`
     width: 5rem;
@@ -42,9 +43,14 @@ const OptionsMenu = ({ Title, Id }) => {
         setProjects(currentProjects)
     }
 
-    const handlerEdit = () => {
-
+    const handlerEdit = (e) => {
+      const editProject = projects.find(project => project.Id == Id)
+      const index = projects.indexOf(editProject)
+      console.log((projects[index]).Title)
+      console.log(ProjectInput)
+      // const currentProjects = projects.filter(project => project.Id !== Id)
     }
+
     return (
         <Container>
             <DeleteIcon

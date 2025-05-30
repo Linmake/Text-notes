@@ -27,7 +27,7 @@ const MainHeader = ({mainRoute}) => {
       <Header className="navbar navbar-expand-lg">
         <NavContainer className="container-fluid">
           <MainLinks mainRoute={mainRoute}/>
-          <Account marginLeft={"0"} mainRoute={mainRoute} gap={"1rem"}/>
+          <Account marginleft={"0"} mainRoute={mainRoute} gap={"1rem"}/>
         </NavContainer>
       </Header>
     </>

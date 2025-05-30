@@ -20,7 +20,7 @@ const Container = styled.li`
   border: 1px solid grey;
   gap: 10%;
   `;
-  const ProjectContent = styled.div`
+  export const ProjectInput = styled.input`
   width: 10rem;
   border: 1px solid grey;
   cursor: pointer;
@@ -45,7 +45,7 @@ const Project = ({ Title, Id }) => {
 
   return (
     <Container>
-      <ProjectContent onClick={e => goToProject(Id)}> {Title} </ProjectContent>
+      <ProjectInput value={Title} type={"text"} onClick={e => goToProject(e, Id)}/>
       <OptionsMenu 
         Id={Id}
         Title={Title}

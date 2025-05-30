@@ -7,7 +7,6 @@ import { positionSideContext } from "../../context/SideProv.jsx";
 import { UseData } from "../../context/dataContext.jsx";
 import "../../styles/pages/projects/global.css";
 import NoProjects from "../../components/ProjectsMenu/NoProjects.jsx";
-import ProjectsMenuHeader from "../../components/ProjectsMenuHeader/ProjectsMenuHeader.jsx";
 import Project from "../../components/ProjectsMenu/Project.jsx";
 import MainHeader from '../../components/Header/MainHeader.jsx'
 
@@ -41,8 +40,8 @@ const ProjectsMenu = () => {
     const fetchProjects = async () => {
       try {
         setCookie(document.cookie);
-        const res = await axios.get(`http://localhost:4000/project/all`);
-        setProjects(res.data);
+        const {data} = await axios.get(`http://localhost:4000/project/all`);
+        setProjects(data);
       } catch (error) {
         console.error("Error fetching projects:", error);
       }

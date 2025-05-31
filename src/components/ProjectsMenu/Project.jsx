@@ -93,26 +93,27 @@ const Project = ({ Title, Id }) => {
     setEdit(true);
   };
 
-  const handlerSaveEdit = async (e) => {
-    if (e.keyCode !== 13) return;
+  const handlerSaveEdit = async (event) => {
+    if (event.keyCode !== 13) return;
     const { status } = await axios.put(
       `http://localhost:4000/project/edit/${Id}`,
       { Title: newTitle }
     );
-    console.info(status);
     if (status !== 200) console.info("project no guardado");
-    console.info("project guardado");
     const projectsList = projects.filter((project) => project.Id !== Id);
     const editProject = projects.find( project => project.Id == Id )
+    const indexOrigProject = projects.indexOf(editProject)
     editProject.Title = newTitle
-    // console.info(...projectsList);
-    setProjects([...projectsList, editProject])
+    projectsList.splice(indexOrigProject, 0, editProject)
+    setProjects(projectsList)
     setEdit(false)
   };
 
-  useEffect(() => {
-    
-  }, [setEdit])
+  const handlerOnBlur = (e) => {
+    setEdit(false)
+  }
+
+  useEffect( () => {}, [setEdit])
 
   return (
     <Container>
@@ -130,6 +131,7 @@ const Project = ({ Title, Id }) => {
           ref={refEditInput}
           onChange={(e) => setNewTitle(refEditInput.current.value)}
           onKeyDown={(e) => handlerSaveEdit(e)}
+          onBlur={e => handlerOnBlur(e)}
         />
       )}
       <ContainerOptions>

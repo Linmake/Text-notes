@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 // import OptionsMenu from "./OptionsMenu";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ProjectsMenuContext } from "../../context/projectsMenuContext";
 import { positionSideContext } from "../../context/SideProv";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -71,8 +71,8 @@ const EditIcon = styled(FontAwesomeIcon)`
 const Project = ({ Title, Id }) => {
   const { projects, setProjects } = useContext(positionSideContext);
   const navigate = useNavigate();
-  const [ edit, setEdit ] = useState(false);
-  const [newTitle, setNewTitle] = useState(null)
+  const [edit, setEdit] = useState(false);
+  const [newTitle, setNewTitle] = useState(null);
   const refInput = useRef(null);
   const refEditInput = useRef(null);
 
@@ -93,11 +93,26 @@ const Project = ({ Title, Id }) => {
     setEdit(true);
   };
 
-  const handlerSaveEdit = (e) => {
-    if(e.keyCode !== 13) return
-    alert(newTitle)
+  const handlerSaveEdit = async (e) => {
+    if (e.keyCode !== 13) return;
+    const { status } = await axios.put(
+      `http://localhost:4000/project/edit/${Id}`,
+      { Title: newTitle }
+    );
+    console.info(status);
+    if (status !== 200) console.info("project no guardado");
+    console.info("project guardado");
+    const projectsList = projects.filter((project) => project.Id !== Id);
+    const editProject = projects.find( project => project.Id == Id )
+    editProject.Title = newTitle
+    // console.info(...projectsList);
+    setProjects([...projectsList, editProject])
+    setEdit(false)
   };
 
+  useEffect(() => {
+    
+  }, [setEdit])
 
   return (
     <Container>
@@ -110,11 +125,11 @@ const Project = ({ Title, Id }) => {
           ref={refInput}
         />
       ) : (
-        <input 
+        <input
           autoFocus
           ref={refEditInput}
-          onChange={e=>setNewTitle(refEditInput.current.value)}
-          onKeyDown={e=>handlerSaveEdit(e)}
+          onChange={(e) => setNewTitle(refEditInput.current.value)}
+          onKeyDown={(e) => handlerSaveEdit(e)}
         />
       )}
       <ContainerOptions>

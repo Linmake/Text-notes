@@ -43,19 +43,32 @@ ProjectRouter.post('/create', validateProject, async (req, res) => {
 })
 
 ProjectRouter.put('/edit/:ProjectId', async (req, res) => {
-  const { Title } = req.body
-  const { ProjectId } = req.params
-  const project = await Project.findOne({
-    Id: ProjectId
-  })
-  const titleExist = await Project.exists({ Title: Title })
-  if (!project) return res.status(400).send(`Project with Id: ${ProjectId} don't exist`)
-  if (titleExist) return res.status(400).send(`Project with Title: ${Title} already exist`)
-  const query = { Id: ProjectId }
-  const projectEdit = { Title: Title }
-  await Project.findOneAndUpdate(query, projectEdit)
-  return res.status(200).send(`Project with Id: ${ProjectId} succesfully edited`)
-})
+  try {
+    const { Title } = req.body;
+    const { ProjectId } = req.params;
+
+    const project = await Project.findOne({ Id: ProjectId });
+    
+    if (!project) {
+      return res.status(400).send(`Project with Id: ${ProjectId} doesn't exist`);
+    }
+    
+    const updatedProject = await Project.findOneAndUpdate(
+      { Id: ProjectId },
+      { Title },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedProject) {
+      return res.status(500).send('Project could not be updated');
+    }
+
+    return res.status(200).send(updatedProject);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send('Server error');
+  }
+});
 
 ProjectRouter.delete('/delete/:ProjectId', async (req, res) => {
   const { ProjectId } = req.params

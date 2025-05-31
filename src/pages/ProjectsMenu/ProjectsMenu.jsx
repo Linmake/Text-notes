@@ -8,7 +8,8 @@ import { UseData } from "../../context/dataContext.jsx";
 import "../../styles/pages/projects/global.css";
 import NoProjects from "../../components/ProjectsMenu/NoProjects.jsx";
 import Project from "../../components/ProjectsMenu/Project.jsx";
-import MainHeader from '../../components/Header/MainHeader.jsx'
+import MainHeader from "../../components/Header/MainHeader.jsx";
+import { ProjectsMenuProvider } from "../../context/projectsMenuContext.jsx";
 
 const ContainerProjects = styled.div`
   width: 52%;
@@ -40,7 +41,7 @@ const ProjectsMenu = () => {
     const fetchProjects = async () => {
       try {
         setCookie(document.cookie);
-        const {data} = await axios.get(`http://localhost:4000/project/all`);
+        const { data } = await axios.get(`http://localhost:4000/project/all`);
         setProjects(data);
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -49,27 +50,25 @@ const ProjectsMenu = () => {
     fetchProjects();
   }, [setProjects, setProject, setData]);
 
-return (
+  return (
     <>
-      {projects.length == 0 
-      ? <NoProjects/> 
-       : (
-         <ProjectCompTemplate>
-          <MainHeader mainRoute={"http://localhost:4001"}/>
-          <ContainerProjects>
-            <NewProjectTab/>
-            <ProjectList>
-              {projects.map((project, index) => (
-                <Project 
-                Title={project.Title}
-                Id={project.Id}
-                key={index}
-                />
-              ))}
-            </ProjectList>
-          </ContainerProjects>
-        </ProjectCompTemplate>
-      )}
+      <ProjectsMenuProvider>
+        {projects.length == 0 ? (
+          <NoProjects />
+        ) : (
+          <ProjectCompTemplate>
+            <MainHeader mainRoute={"http://localhost:4001"} />
+            <ContainerProjects>
+              <NewProjectTab />
+              <ProjectList>
+                {projects.map((project, index) => (
+                  <Project Title={project.Title} Id={project.Id} key={index} />
+                ))}
+              </ProjectList>
+            </ContainerProjects>
+          </ProjectCompTemplate>
+        )}
+      </ProjectsMenuProvider>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import OptionsMenu from "./OptionsMenu";
+import { useRef } from "react";
 
 const Container = styled.li`
   border-bottom: 1px solid #c4c7c5;
@@ -43,10 +44,18 @@ const Project = ({ Title, Id }) => {
     return navigate(`/Project/${Id}`)
   }
 
+  const refInput = useRef(null)
+
   return (
     <Container>
-      <ProjectInput value={Title} type={"text"} onClick={e => goToProject(e, Id)}/>
-      <OptionsMenu 
+      <ProjectInput
+        value={Title} 
+        type={"text"}
+        readOnly={true}
+        onClick={e => handlerEdith(e)}
+        ref={refInput}
+      />
+      <OptionsMenu
         Id={Id}
         Title={Title}
       />

@@ -5,6 +5,7 @@ import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { ProjectInput } from "./Project";
+import { ProjectsMenuContext } from "../../context/projectsMenuContext";
 
 const Container = styled.div`
     width: 5rem;
@@ -34,8 +35,9 @@ const EditIcon = styled(FontAwesomeIcon)`
 `
 
 const OptionsMenu = ({ Title, Id }) => {
+  const { edit, setEdit } = useContext(ProjectsMenuContext)
     const { projects, setProjects } = useContext(positionSideContext);
-    
+
     const handlerDelete = async (e) => {
         const { status } = await axios.delete(`http://localhost:4000/project/delete/${Id}`)
         if (!status) return
@@ -48,6 +50,7 @@ const OptionsMenu = ({ Title, Id }) => {
       const index = projects.indexOf(editProject)
       console.log((projects[index]).Title)
       console.log(ProjectInput)
+      setEdit(true)
       // const currentProjects = projects.filter(project => project.Id !== Id)
     }
 

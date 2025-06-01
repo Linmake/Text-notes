@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
@@ -49,6 +49,9 @@ const Folder = styled.div`
   &:hover {
     background-color: rgba(183, 183, 183, 0.17);
   }
+  &:active {
+    background-color: rgba(183, 183, 183, 0.17);
+  }
 `;
 const Title = styled.input`
   color: #c1cccc;
@@ -62,9 +65,12 @@ const Icon = styled(FontAwesomeIcon)`
   cursor: pinter;
   color: #c6cccc;
 `;
+const NewFileContainer = styled.div``;
+const FileContainer = styled.div``;
 const FolderList = () => {
   const DbUrl = "http://localhost:4000";
   const { projectId } = useParams();
+  const [openFo, setOpenFo] = useState(false)
   const {
     selectedFolderIndex,
     setSelectedFolderIndex,
@@ -80,10 +86,10 @@ const FolderList = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const { status, data } = await axios({
-          url: `${DbUrl}/folder/all/${projectId}`,
-          method: "GET",
-        });
+        const { status, data } = await axios.get(
+          `${DbUrl}/folder/all/${projectId}`,
+          { withCredentials: true }
+        );
         if (status == "200") setFolders(data);
       } catch (error) {
         console.error(error);
@@ -105,8 +111,9 @@ const FolderList = () => {
     setStatusSelectFolder(true);
     setAddNewFile(false);
     setSelectedFolderIndex(index);
+    
   };
-
+  useEffect(() => {}, [setStatusSelectFolder, setSelectedFolderIndex]);
   return (
     <Container className="nav">
       {folders.map((folder, index) => (
@@ -129,9 +136,7 @@ const FolderList = () => {
                     ? faChevronDown
                     : faChevronRight
                 }
-                className={` ${
-                  selectedFolderIndex === index ? "selected" : ""
-                }`}
+                className={`${selectedFolderIndex === index ? "selected" : ""}`}
                 onClick={() => handlerSelectFolder(index, folder.Id)}
                 role="button"
               />
@@ -142,16 +147,19 @@ const FolderList = () => {
                 readOnly
               ></Title>
             </Folder>
-            {openFolder && selectedFolderIndex === index && (
-              <>
-                <NewFile
-                  className={`nav-item ${addNewFile ? "" : "hidde"}`}
-                  key={"InputNewFile"}
-                  IdFolder={folder.Id}
-                />
-                <FileList />
-              </>
-            )}
+            {/*file*/}
+            {openFolder &&
+              selectedFolderIndex === index &&
+              (addNewFile ? (
+                <NewFileContainer>
+                  <NewFile key={folder.Id} IdFolder={folder.Id} />
+                  <FileList />
+                </NewFileContainer>
+              ) : (
+                <FileContainer>
+                  <FileList />
+                </FileContainer>
+              ))}
           </FolderContainer>
         </LiFolder>
       ))}

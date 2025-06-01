@@ -5,7 +5,7 @@ import { UseData } from '../../context/dataContext';
 import { useParams } from 'react-router-dom';
 import iconNewFile from '../../assets/addFileIconWhite.png'
 import iconNewFolder from '../../assets/addFolderIconWhite.png'
-import FolderList from '../Folder/FolderList';
+import FolderList from '../Folder/Folders';
 import ContainerFolders from '../Folder/ContainerFolders';
 import { positionSideContext } from '../../context/SideProv';
 import NewFolderContent from '../Folder/NewFolderContent';

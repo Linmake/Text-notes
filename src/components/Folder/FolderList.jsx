@@ -9,16 +9,15 @@ import { positionSideContext } from "../../context/SideProv";
 import axios from "axios";
 import { UseData } from "../../context/dataContext";
 import { FileList } from "../File/FileList";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "../../styles/components/editor/FolderList.css";
 import NewFile from "../File/NewFile";
 
-const FoldersContainer = styled.ul`
+const Container = styled.ul`
   margin-top: 3%;
   height: 12%;
 `;
-
-export const LiFolder = styled.li`
+const LiFolder = styled.li`
   width: 100%;
   box-sizing: border-box;
   align-items: center;
@@ -29,12 +28,10 @@ export const LiFolder = styled.li`
     background-color: transparent;
   }
 `;
-
-export const FolderContainer = styled.div`
+const FolderContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
 const Folder = styled.div`
   box-sizing: border-box;
   gap: 3%;
@@ -53,7 +50,6 @@ const Folder = styled.div`
     background-color: rgba(183, 183, 183, 0.17);
   }
 `;
-
 const Title = styled.input`
   color: #c1cccc;
   font-size: 1.1rem;
@@ -62,20 +58,13 @@ const Title = styled.input`
   border: none;
   background: transparent;
 `;
-
 const Icon = styled(FontAwesomeIcon)`
   cursor: pinter;
   color: #c6cccc;
 `;
-
-/**
- * Componente que despliega la lista de los Folders desde la bd
- * @returns Lista de Folders
- */
 const FolderList = () => {
   const DbUrl = "http://localhost:4000";
   const { projectId } = useParams();
-
   const {
     selectedFolderIndex,
     setSelectedFolderIndex,
@@ -83,91 +72,43 @@ const FolderList = () => {
     setAddNewFile,
     addNewFile,
     statusSelectFolder,
-    idFolderSelect,
     setIdFolderSelect,
   } = useContext(positionSideContext);
-
-  const { 
-    data,
-    setOpenFolder,
-    setFiles, 
-    openFolder, 
-    folders, 
-    setFolders
-   } = UseData();
+  const { data, setOpenFolder, setFiles, openFolder, folders, setFolders } =
+    UseData();
 
   useEffect(() => {
-    const getFolders = async () => {
+    const fetch = async () => {
       try {
-        const res = await axios({
+        const { status, data } = await axios({
           url: `${DbUrl}/folder/all/${projectId}`,
           method: "GET",
         });
-        return res;
+        if (status == "200") setFolders(data);
       } catch (error) {
-        console.error(
-          new Error(
-            `Server status code: (${res.status}, ${res.statusText}), ${res.data}`
-          )
-        );
-        return;
+        console.error(error);
       }
     };
-    const fetchData = async () => {
-      const resFetch = await getFolders();
-      if (resFetch.status == "200") {
-        setFolders(resFetch.data);
-      }
-    };
-
-    fetchData();
+    fetch();
   }, [data, setFolders]);
-
-  const navigateFolder = useNavigate();
-  const cleanSamePath = () => {
-    let currentPath = window.location.pathname;
-    let segments = currentPath.split("/").filter(Boolean); // Divide en segmentos
-    if (segments.length > 2) {
-      segments.pop(); // Elimina el penúltimo segmento
-      segments.pop(); // Elimina el último segmento
-      let newPath = `/${segments.join("/")}`; // Une de nuevo en formato de URL
-      navigateFolder(newPath, { replace: true }); // Reemplaza en la historia del navegador
-    } else {
-      navigateFolder(`/${segments.join("/")}`, { replace: true }); // Mantiene la URL base
-    }
-  };
-
-  const changePath = (currentPath) => {
-    let segments = currentPath.split("/").filter(Boolean); // Divide en segmentos
-    if (segments.length <= 2) {
-      return currentPath;
-    }
-    segments.pop(); // Elimina el último segmento
-    let newPath = `/${segments.join("/")}`; // Une de nuevo en formato de URL
-    return newPath;
-  };
 
   const handlerSelectFolder = (index, id) => {
     const folder = folders.find((folder) => folder.Id == id);
-    if (!folder) {
-      return;
-    }
+    if (!folder) return;
     setIdFolderSelect(folder.Id);
     setOpenFolder(true);
     setFiles(folder.Files);
-
     if (statusSelectFolder && selectedFolderIndex === index) {
       setStatusSelectFolder(false);
       setSelectedFolderIndex("");
-    } else {
-      setStatusSelectFolder(true);
-      setAddNewFile(false);
-      setSelectedFolderIndex(index);
     }
-    return;
+    setStatusSelectFolder(true);
+    setAddNewFile(false);
+    setSelectedFolderIndex(index);
   };
+
   return (
-    <FoldersContainer className="nav">
+    <Container className="nav">
       {folders.map((folder, index) => (
         <LiFolder
           className="nav-item liFolder"
@@ -214,7 +155,7 @@ const FolderList = () => {
           </FolderContainer>
         </LiFolder>
       ))}
-    </FoldersContainer>
+    </Container>
   );
 };
 export default FolderList;

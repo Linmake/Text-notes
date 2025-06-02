@@ -45,7 +45,7 @@ const Folder = styled.div`
   align-items: center;
   border-radius: 0 !important;
   padding-left: 9%;
-  width: 100%;
+  width: 80%;
   cursor: pointer;
   box-sizing: border-box;
   vertical-align: middle;
@@ -87,17 +87,15 @@ const ContainerMenu = styled.div`
   align-items: center;
   border-radius: 0.2rem;
   position: relative;
-  right: 42%;
-  top: 85%;
-  padding: 0.5rem;
-  width: 5.5rem;
-  height: 100%;
+  left: 5%;
+  width: 20%;
+  height: 3rem;
   z-index: 100;
   background-color: white;
   border: 1px solid grey;
 `;
 const DeleteIcon = styled(FontAwesomeIcon)`
-  width: 1.5rem;
+  width: 2rem;
   color: rgb(247, 93, 76);
   &:hover {
     cursor: pointer;
@@ -115,6 +113,13 @@ const EditIcon = styled(FontAwesomeIcon)`
   &:active {
     cursor: pointer;
   }
+`;
+const EditFolderInput = styled.input`
+  width: 65%;
+  height: 98%;
+  border: none;
+  border-radius: 0.2rem;
+  outline: none;
 `;
 const NewFileContainer = styled.div``;
 const FileContainer = styled.div``;
@@ -215,7 +220,6 @@ const FolderList = () => {
     setOptsMenu(false)
   };
 
-
   return (
     <Container className="nav">
       {folders.map((folder, index) => (
@@ -250,7 +254,7 @@ const FolderList = () => {
                   readOnly
                 ></Title>
               ) : (
-                <EditProjectInput
+                <EditFolderInput
                   autoFocus
                   ref={refEditInput}
                   onChange={(e) => setNewTitle(refEditInput.current.value)}

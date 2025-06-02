@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { navItem, navLink } from "../Hooks/themaStyled";
 import { UseData } from '../../context/dataContext';
@@ -53,7 +51,7 @@ export const InputFile = styled.input`
   cursor: pointer;
   font-size: 1.2rem;
 `;
-export const FileList = () => {
+export const Files = () => {
   const { files } = UseData();
   const { addNewFile } = useContext(positionSideContext)
   const { fileCurrent, setFileCurrent } = useContext(EditorFunctionsContext);
@@ -62,10 +60,6 @@ export const FileList = () => {
     return <p>No files available</p>
   }
 
-  const handlerFile = (file) => {
-    setFileCurrent(file)
-  }
-  
   return (
     <UlFile className="nav nav-pills flex-column ul-liFile">
       {

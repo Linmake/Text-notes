@@ -1,7 +1,7 @@
 import { faFile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import InputContainer from './InputContainer';
-import { InputFile } from '../FileList';
+import { InputFile } from '../Files';
 const NewFileComponent = ({ addNewFile, FileInput, handlerNewFile, onBlur }) => {
   return (
     <InputContainer

@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { positionSideContext } from "../../context/SideProv";
 import axios from "axios";
 import { UseData } from "../../context/dataContext";
-import { FileList } from "../File/FileList";
+import { Files } from "../File/Files";
 import { useParams } from "react-router-dom";
 import styles from "../../styles/components/editor/FolderList.css";
 import NewFile from "../File/NewFile";
@@ -41,7 +41,7 @@ const Folder = styled.div`
   text-align: center;
   align-items: center;
   border-radius: 0 !important;
-  padding-left: 8%;
+  padding-left: 9%;
   width: 100%;
   cursor: pointer;
   box-sizing: border-box;
@@ -153,11 +153,11 @@ const FolderList = () => {
               (addNewFile ? (
                 <NewFileContainer>
                   <NewFile key={folder.Id} IdFolder={folder.Id} />
-                  <FileList />
+                  <Files />
                 </NewFileContainer>
               ) : (
                 <FileContainer>
-                  <FileList />
+                  <Files />
                 </FileContainer>
               ))}
           </FolderContainer>

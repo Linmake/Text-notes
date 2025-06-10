@@ -20,10 +20,10 @@ const Container = styled.ul`
   margin-top: 3%;
   height: 12%;
 `;
+
 const LiFolder = styled.li`
   width: 100%;
   box-sizing: border-box;
-  align-items: center;
   &.selected {
     background-color: #5a5a5a8a;
   }
@@ -31,24 +31,32 @@ const LiFolder = styled.li`
     background-color: transparent;
   }
 `;
+
 const FolderContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `;
+
 const Folder = styled.div`
-  box-sizing: border-box;
-  gap: 3%;
   display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
   word-wrap: break-word;
   white-space: nowrap;
-  text-align: center;
-  align-items: center;
   border-radius: 0 !important;
   padding-left: 9%;
   width: 80%;
-  cursor: pointer;
   box-sizing: border-box;
   vertical-align: middle;
+`;
+
+const ContainerTitle = styled.div`
+  width: 11rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
+  justify-content: center;
+  align-items: center;
   &:hover {
     background-color: rgba(183, 183, 183, 0.17);
   }
@@ -56,6 +64,7 @@ const Folder = styled.div`
     background-color: rgba(183, 183, 183, 0.17);
   }
 `;
+
 const Title = styled.input`
   color: #c1cccc;
   font-size: 1.1rem;
@@ -64,36 +73,38 @@ const Title = styled.input`
   border: none;
   background: transparent;
 `;
+
 const Icon = styled(FontAwesomeIcon)`
-  cursor: pinter;
+  cursor: pointer;
   color: #c6cccc;
-`;
-const MenuIcon = styled(FontAwesomeIcon)`
-  width: 1.7rem;
   margin-right: 0.5rem;
-  color: rgb(26, 79, 104);
-  &:hover {
-    cursor: pointer;
-  }
-  &:active {
-    cursor: pointer;
-  }
 `;
+
+const MenuIcon = styled(FontAwesomeIcon)`
+  margin-left: 0.5rem;
+  padding: 0;
+  color: rgb(195, 216, 225);
+  font-size: 1.3rem;
+  z-index: -100;
+`;
+
 const ContainerMenu = styled.div`
   display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.3rem;
   justify-content: center;
   align-items: center;
   border-radius: 0.2rem;
   position: relative;
-  left: 5%;
-  width: 20%;
-  height: 3rem;
-  z-index: 100;
-  background-color: white;
-  border: 1px solid grey;
+  left: 25%;
+  top: 25%;
+  width: 8rem;
+  height: 5rem;
+  z-index: 10000000;
+  background-color: rgb(244, 244, 244);
+  border: 1px solid rgb(176, 176, 176);
 `;
+
 const DeleteIcon = styled(FontAwesomeIcon)`
   width: 2rem;
   color: rgb(247, 93, 76);
@@ -104,6 +115,7 @@ const DeleteIcon = styled(FontAwesomeIcon)`
     cursor: pointer;
   }
 `;
+
 const EditIcon = styled(FontAwesomeIcon)`
   width: 1.5rem;
   color: rgb(102, 196, 240);
@@ -114,6 +126,7 @@ const EditIcon = styled(FontAwesomeIcon)`
     cursor: pointer;
   }
 `;
+
 const EditFolderInput = styled.input`
   width: 65%;
   height: 98%;
@@ -121,6 +134,50 @@ const EditFolderInput = styled.input`
   border-radius: 0.2rem;
   outline: none;
 `;
+
+const ContainerOptions = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  left: 1%;
+  width: 10rem;
+  z-index: 10;
+`;
+
+const ContainerFile = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ButtonEdit = styled.div`
+  color: rgb(102, 196, 240);
+  width: 100%;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(236, 236, 236, 0.7);
+  }
+  &:active {
+    cursor: pointer;
+  }
+`;
+
+const ButtonDelete = styled.div`
+  color: rgb(102, 196, 240);
+  width: 100%;
+  text-align: center;
+  &:hover {
+    background-color: rgba(236, 236, 236, 0.7);
+    cursor: pointer;
+  }
+  &:active {
+    cursor: pointer;
+  }
+`;
+
 const NewFileContainer = styled.div``;
 const FileContainer = styled.div``;
 const FolderList = () => {
@@ -180,7 +237,7 @@ const FolderList = () => {
 
   const handlerOptsMenu = (e, folderId) => {
     setOptsMenu(true);
-    setIdOptMenu(folderId)
+    setIdOptMenu(folderId);
   };
 
   const handlerDelete = async (e) => {
@@ -199,9 +256,9 @@ const FolderList = () => {
   };
 
   const handlerOnBlur = (e) => {
-    setEdit(false)
-    setOptsMenu(false)
-  }
+    setEdit(false);
+    setOptsMenu(false);
+  };
 
   const handlerSaveEdit = async (event) => {
     if (event.keyCode !== 13) return;
@@ -211,13 +268,13 @@ const FolderList = () => {
     );
     if (status !== 200) console.info("project no guardado");
     const projectsList = projects.filter((project) => project.Id !== Id);
-    const editProject = projects.find( project => project.Id == Id )
-    const indexOrigProject = projects.indexOf(editProject)
-    editProject.Title = newTitle
-    projectsList.splice(indexOrigProject, 0, editProject)
-    setProjects(projectsList)
-    setEdit(false)
-    setOptsMenu(false)
+    const editProject = projects.find((project) => project.Id == Id);
+    const indexOrigProject = projects.indexOf(editProject);
+    editProject.Title = newTitle;
+    projectsList.splice(indexOrigProject, 0, editProject);
+    setProjects(projectsList);
+    setEdit(false);
+    setOptsMenu(false);
   };
 
   return (
@@ -229,74 +286,82 @@ const FolderList = () => {
           onClick={() => handlerSelectFolder(index, folder.Id)}
           role="button"
         >
-          <FolderContainer className="text-white" role="button">
+          <FolderContainer>
             <Folder
               className={` folder ${
                 selectedFolderIndex == index ? "selected" : "noSelected"
               }`}
               role="button"
             >
-              <Icon
-                icon={
-                  selectedFolderIndex === index && statusSelectFolder
-                    ? faChevronDown
-                    : faChevronRight
-                }
-                className={`${selectedFolderIndex === index ? "selected" : ""}`}
-                onClick={() => handlerSelectFolder(index, folder.Id)}
-                role="button"
-              />
-              {!edit ? (
-                <Title
-                  id="folder.id"
-                  className="input-folder"
-                  value={folder.Title}
-                  readOnly
-                ></Title>
-              ) : (
-                <EditFolderInput
-                  autoFocus
-                  ref={refEditInput}
-                  onChange={(e) => setNewTitle(refEditInput.current.value)}
-                  onKeyDown={(e) => handlerSaveEdit(e)}
-                  onBlur={(e) => handlerOnBlur(e)}
+              <ContainerTitle>
+                <Icon
+                  icon={
+                    selectedFolderIndex === index && statusSelectFolder
+                      ? faChevronDown
+                      : faChevronRight
+                  }
+                  className={`${
+                    selectedFolderIndex === index ? "selected" : ""
+                  }`}
+                  onClick={() => handlerSelectFolder(index, folder.Id)}
+                  role="button"
                 />
-              )}
+                {!edit ? (
+                  <Title
+                    id="folder.id"
+                    className="input-folder"
+                    value={folder.Title}
+                    readOnly
+                  ></Title>
+                ) : (
+                  <EditFolderInput
+                    autoFocus
+                    ref={refEditInput}
+                    onChange={(e) => setNewTitle(refEditInput.current.value)}
+                    onKeyDown={(e) => handlerSaveEdit(e)}
+                    onBlur={(e) => handlerOnBlur(e)}
+                  />
+                )}
+              </ContainerTitle>
+              <ContainerFile>
+                {openFolder &&
+                  selectedFolderIndex === index &&
+                  (addNewFile ? (
+                    <NewFileContainer>
+                      <NewFile key={folder.Id} IdFolder={folder.Id} />
+                      <Files />
+                    </NewFileContainer>
+                  ) : (
+                    <FileContainer>
+                      <Files />
+                    </FileContainer>
+                  ))}
+              </ContainerFile>
+            </Folder>
+            <ContainerOptions>
               <MenuIcon
                 title="Options"
                 icon={faEllipsis}
                 onClick={(e) => handlerOptsMenu(e, folder.Id)}
               />
-              {(optsMenu && idOptMenu == folder.Id ) ? (
+              {optsMenu && idOptMenu == folder.Id ? (
                 <ContainerMenu ref={refMenuContainer}>
-                  <EditIcon
-                    title="Edit"
-                    icon={faPenToSquare}
-                    onClick={(e) => handlerEdit(e)}
-                  />
-                  <DeleteIcon
+                  <ButtonEdit title="Edit" onClick={(e) => handlerEdit(e)}>
+                    {" "}
+                    Edit{" "}
+                  </ButtonEdit>
+                  <ButtonDelete
                     title="Delete"
-                    icon={faTrashAlt}
                     onClick={(e) => handlerDelete(e)}
-                  />
+                  >
+                    {" "}
+                    Delete{" "}
+                  </ButtonDelete>
                 </ContainerMenu>
               ) : (
                 <></>
               )}
-            </Folder>
-            {/*file*/}
-            {openFolder &&
-              selectedFolderIndex === index &&
-              (addNewFile ? (
-                <NewFileContainer>
-                  <NewFile key={folder.Id} IdFolder={folder.Id} />
-                  <Files />
-                </NewFileContainer>
-              ) : (
-                <FileContainer>
-                  <Files />
-                </FileContainer>
-              ))}
+            </ContainerOptions>
           </FolderContainer>
         </LiFolder>
       ))}

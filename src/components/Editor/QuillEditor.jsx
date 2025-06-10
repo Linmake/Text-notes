@@ -8,6 +8,8 @@ import QuillToolbar from './QuillToolbar';
 import { EditorFunctionsContext } from '../../context/editorFunctions';
 import styled from "styled-components"
 import axios from "axios"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCloud, faSave } from '@fortawesome/free-solid-svg-icons';
 
 const ButtonSend = styled.button`
 position: absolute;
@@ -15,11 +17,16 @@ top: 1.6%;
 left: 73%;
 width: 4.4rem;
 z-index: 20;
-border-radius: 10%;
+border-radius: 5%;
 width: 4%;
 height: 5%;
-border: 2px solid orange;
-background-color: white;
+color: white;
+border: none;
+background-color: #0078D4;
+`
+
+const Icon = styled(FontAwesomeIcon)`
+  width: 2rem;
 `
 
 const QuillEditor = () => {
@@ -77,48 +84,15 @@ const QuillEditor = () => {
       quillRef.current?.off('text-change')
     }
   }, [])
-
-  //!!todo descomentar solo comentado para el desarrollo!!
-/*
-  useEffect(() => {
-    if(!fileCurrent || fileCurrent === "" ) return 
-    quillRef.current.setText(fileCurrent.Text) //cambia el texto del editor por el texto del file seleccionado
-  }, [fileCurrent])
-
-  useEffect(() => {
-
-  }, [])
-
-  useEffect(() => {
-    const getFiles = async () => {
-        const res = await axios({
-          url: `${DbUrl}/file/all/${idFolder}`,
-          method: 'get'
-        });
-        return res; 
-    }
-    const fetchData = async () => {
-      const resFetch = await getFiles()
-      if (resFetch.status == '200') {
-        setFiles(resFetch.data)
-      } else {
-        console.error(new Error("Error del servidor"))
-      }
-    };
-
-    fetchData();
-
-  }, [fileCurrent]);
-  */
  
   const handlerSave = async() => {
     if(fileCurrent && fileCurrent !== ""){
       
-      const newFile = { //File actualizado 
+      const newFile = { 
         Id: fileCurrent.Id,
         IdFolder: fileCurrent.IdFolder,
         Title: fileCurrent.Title,
-        Text: quillRef.current.getText().trim()  //text a guardar del editor 
+        Text: quillRef.current.getText().trim() 
       }
       try{
         const currentPath = window.location.pathname
@@ -129,7 +103,7 @@ const QuillEditor = () => {
       }catch (error) {
         console.error("Error en la solicitud PATCH:", error);
       }
-    }else{ // **file no seleccionado
+    }else{
       //si no esta seleccionado ningun file se crea el file dentro de la primer folder del primer project
       //si esta seleccionado un project pero no el folder se crea dentro del primer folder del project
       //si esta seleccionado un project y un folder se crea dentro de estos con este Text
@@ -146,9 +120,10 @@ const QuillEditor = () => {
         spellCheck={"false"}
         autoCorrect={"false"}
       />
-      <ButtonSend onClick={handlerSave}>Save</ButtonSend>
+      <ButtonSend onClick={handlerSave}>
+        <Icon icon={faCloud}></Icon>
+      </ButtonSend>
     </>
   );
 };
-
 export default QuillEditor;

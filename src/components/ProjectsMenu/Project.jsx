@@ -54,11 +54,11 @@ const ContainerMenu = styled.div`
   align-items: center;
   border-radius: 0.2rem;
   position: relative;
-  right: 42%;
-  top: 85%;
+  left: 2%;
+  top: -2%;
   padding: 0.5rem;
   width: 5.5rem;
-  height: 100%;
+  height: 90%;
   z-index: 100;
   background-color: white;
   border: 1px solid grey;

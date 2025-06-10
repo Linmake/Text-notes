@@ -24,7 +24,6 @@ const ContainerProyect = styled.div`
   margin-left: 10%;
   margin-top: 3%;
   display: flex;
-  justify-content: center;
   flex-direction: row;
   gap: 1rem;
   height: 70%;

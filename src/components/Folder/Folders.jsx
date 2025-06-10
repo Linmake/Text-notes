@@ -101,7 +101,7 @@ const ContainerMenu = styled.div`
   width: 8rem;
   height: 5rem;
   z-index: 10000000;
-  background-color: rgb(244, 244, 244);
+  background-color: #1F1F1F;
   border: 1px solid rgb(176, 176, 176);
 `;
 
@@ -118,7 +118,7 @@ const DeleteIcon = styled(FontAwesomeIcon)`
 
 const EditIcon = styled(FontAwesomeIcon)`
   width: 1.5rem;
-  color: rgb(102, 196, 240);
+  color: rgb(25, 62, 78);
   &:hover {
     cursor: pointer;
   }
@@ -153,28 +153,32 @@ const ContainerFile = styled.div`
 `;
 
 const ButtonEdit = styled.div`
-  color: rgb(102, 196, 240);
+  color: rgb(255, 255, 255);
   width: 100%;
   text-align: center;
+  font-weight: 500;
   &:hover {
     cursor: pointer;
-    background-color: rgba(236, 236, 236, 0.7);
+    background-color: #0078D4;
   }
   &:active {
     cursor: pointer;
+    background-color: #0078D4;
   }
 `;
 
 const ButtonDelete = styled.div`
-  color: rgb(102, 196, 240);
+  color: rgb(255, 255, 255);
+  font-weight: 500;
   width: 100%;
   text-align: center;
   &:hover {
-    background-color: rgba(236, 236, 236, 0.7);
+    background-color: #0078D4;
     cursor: pointer;
   }
   &:active {
     cursor: pointer;
+    background-color: #0078D4;
   }
 `;
 

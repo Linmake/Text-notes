@@ -12,11 +12,12 @@ const DivSidebar = styled.div`
   width: 17%;
   height: 100%;
   top: 5.8%;
+  background-color: #181818;
 `;
 
 const SideBar = () => {
   return (
-    <DivSidebar className={"slider-contenedor bg-dark col-auto col-md-2"}>
+    <DivSidebar className={"slider-contenedor col-auto col-md-2"}>
       <SideContenedor >
         <ContainerProject />
         <ContainerNotFolders />

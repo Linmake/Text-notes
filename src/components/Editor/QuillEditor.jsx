@@ -11,6 +11,11 @@ import axios from "axios"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloud, faSave } from '@fortawesome/free-solid-svg-icons';
 
+const TextEditor = styled.div`
+  background-color: #303030 !important;
+  color: white !important;
+`
+
 const ButtonSend = styled.button`
 position: absolute;
 top: 1.6%;
@@ -113,12 +118,13 @@ const QuillEditor = () => {
   return (
     <>
       <QuillToolbar />
-      <div
+      <TextEditor
         ref={editorRef}
         id={'editor'}
         className={sidebarVisible ? '' : 'expand-editor'}
         spellCheck={"false"}
         autoCorrect={"false"}
+        backgroundColor={"#1F1F1F"}
       />
       <ButtonSend onClick={handlerSave}>
         <Icon icon={faCloud}></Icon>

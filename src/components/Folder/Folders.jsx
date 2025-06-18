@@ -65,15 +65,6 @@ const ContainerTitle = styled.div`
   }
 `;
 
-const Title = styled.input`
-  color: #c1cccc;
-  font-size: 1.1rem;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  background: transparent;
-`;
-
 const Icon = styled(FontAwesomeIcon)`
   cursor: pointer;
   color: #c6cccc;
@@ -182,6 +173,24 @@ const ButtonDelete = styled.div`
   }
 `;
 
+const Title = styled.input`
+  color:rgb(198, 251, 251) ;
+  font-size: 1.1rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+`;
+
+const EditTitle = styled.input`
+  color:rgb(224, 198, 251);
+  font-size: 1.1rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+`;
+
 const NewFileContainer = styled.div``;
 const FileContainer = styled.div``;
 const FolderList = () => {
@@ -244,6 +253,15 @@ const FolderList = () => {
     setIdOptMenu(folderId);
   };
 
+  
+  const handlerEdit = (folderId) => {
+    setEdit(true);
+    setOptsMenu(false);
+    // const res = axios.put(`http://localhost:4000/folder/edit/${projectId}/${folderId}`)
+  };
+
+  useEffect(() => {}, [setEdit])
+
   const handlerDelete = async (e) => {
     const { status } = await axios.delete(
       `http://localhost:4000/folder/delete/${projectId}/${Id}`
@@ -251,11 +269,6 @@ const FolderList = () => {
     if (!status) return;
     const currentProjects = projects.filter((project) => project.Id !== Id);
     setProjects(currentProjects);
-    setOptsMenu(false);
-  };
-
-  const handlerEdit = (e) => {
-    setEdit(true);
     setOptsMenu(false);
   };
 
@@ -316,10 +329,11 @@ const FolderList = () => {
                     className="input-folder"
                     value={folder.Title}
                     readOnly
-                  ></Title>
-                ) : (
-                  <EditFolderInput
-                    autoFocus
+                    />
+                  ) : (
+                    <EditTitle
+                    id="folder.id"
+                    className="input-folder"
                     ref={refEditInput}
                     onChange={(e) => setNewTitle(refEditInput.current.value)}
                     onKeyDown={(e) => handlerSaveEdit(e)}
@@ -350,23 +364,21 @@ const FolderList = () => {
               />
               {optsMenu && idOptMenu == folder.Id ? (
                 <ContainerMenu ref={refMenuContainer}>
-                  <ButtonEdit title="Edit" onClick={(e) => handlerEdit(e)}>
-                    {" "}
-                    Edit{" "}
+                  <ButtonEdit title="Edit" onClick={() => handlerEdit(folder.Id)}>
+                    Edit
                   </ButtonEdit>
                   <ButtonDelete
                     title="Delete"
-                    onClick={(e) => handlerDelete(e)}
+                    onClick={() => handlerDelete(folder.Id)}
                   >
-                    {" "}
-                    Delete{" "}
+                    Delete
                   </ButtonDelete>
                 </ContainerMenu>
               ) : (
                 <></>
               )}
             </ContainerOptions>
-          </FolderContainer>
+          </FolderContainer>  
         </LiFolder>
       ))}
     </Container>

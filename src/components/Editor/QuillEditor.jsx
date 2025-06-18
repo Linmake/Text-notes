@@ -125,6 +125,7 @@ const QuillEditor = () => {
         spellCheck={"false"}
         autoCorrect={"false"}
         backgroundColor={"#1F1F1F"}
+        autoFocus
       />
       <ButtonSend onClick={handlerSave}>
         <Icon icon={faCloud}></Icon>

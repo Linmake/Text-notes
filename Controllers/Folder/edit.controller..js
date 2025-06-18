@@ -1,5 +1,7 @@
+
 import Folder from "../../Schema/FolderSchema.js";
 import Project from "../../Schema/ProjectSchema.js";
+import { getDate } from "../../src/components/sidebar/Hooks/date.js";
 
 const editController = async (req, res) => {
   try {
@@ -14,9 +16,9 @@ const editController = async (req, res) => {
     if (!folderRef) {
       return res.status(404).send(`Folder with Id: ${FolderId} don't exist`);
     }
-    await Folder.findOneAndUpdate({ Id: FolderId }, { Title: Title, ModifyDate: getDate })
+    await Folder.findOneAndUpdate({ Id: FolderId }, { Title: Title, Date: getDate })
     folderRef.Title = Title;
-    folderRef.ModifyDate = getDate;
+    folderRef.Date = getDate;
     await project.save()
     res.status(200).send("Edited with succesfully");
   } catch (error) {

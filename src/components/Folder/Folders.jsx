@@ -261,17 +261,15 @@ const FolderList = () => {
   };
 
   useEffect(() => {
-    console.log("actualization..")
-    // console.log(folders)
   }, [setEdit, setNewTitle])
 
-  const handlerDelete = async (e) => {
+  const handlerDelete = async (e, FolderId) => {
     const { status } = await axios.delete(
-      `http://localhost:4000/folder/delete/${projectId}/${Id}`
+      `http://localhost:4000/folder/delete/${projectId}/${FolderId}`
     );
     if (!status) return;
-    const currentProjects = projects.filter((project) => project.Id !== Id);
-    setProjects(currentProjects);
+    const currentFolders = folders.filter((folder) => folder.Id !== FolderId);
+    setFolders(currentFolders);
     setOptsMenu(false);
   };
 
@@ -376,7 +374,7 @@ const FolderList = () => {
                   </ButtonEdit>
                   <ButtonDelete
                     title="Delete"
-                    onClick={() => handlerDelete(folder.Id)}
+                    onClick={(e) => handlerDelete(e, folder.Id)}
                   >
                     Delete
                   </ButtonDelete>

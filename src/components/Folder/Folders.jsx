@@ -82,23 +82,24 @@ const MenuIcon = styled(FontAwesomeIcon)`
 const ContainerMenu = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  justify-content: center;
   align-items: center;
   border-radius: 0.2rem;
   position: relative;
   left: 25%;
   top: 25%;
   width: 8rem;
-  height: 5rem;
   z-index: 10000000;
-  background-color: #1F1F1F;
-  border: 1px solid rgb(176, 176, 176);
+  background-color: #1f1f1f;
+  border: 1px solid #3e3e3e;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 `;
 
-const DeleteIcon = styled(FontAwesomeIcon)`
-  width: 2rem;
-  color: rgb(247, 93, 76);
+const EditIcon = styled(FontAwesomeIcon)`
+  width: 1.5rem;
+  color: rgb(25, 62, 78);
   &:hover {
     cursor: pointer;
   }
@@ -107,9 +108,9 @@ const DeleteIcon = styled(FontAwesomeIcon)`
   }
 `;
 
-const EditIcon = styled(FontAwesomeIcon)`
-  width: 1.5rem;
-  color: rgb(25, 62, 78);
+const DeleteIcon = styled(FontAwesomeIcon)`
+  width: 2rem;
+  color: rgb(247, 93, 76);
   &:hover {
     cursor: pointer;
   }
@@ -144,37 +145,39 @@ const ContainerFile = styled.div`
 `;
 
 const ButtonEdit = styled.div`
+  border-radius: 0.2rem;
   color: rgb(255, 255, 255);
   width: 100%;
   text-align: center;
   font-weight: 500;
   &:hover {
     cursor: pointer;
-    background-color: #0078D4;
+    background-color: #0078d4;
   }
   &:active {
     cursor: pointer;
-    background-color: #0078D4;
+    background-color: #0078d4;
   }
 `;
 
 const ButtonDelete = styled.div`
+  border-radius: 0.2rem;
   color: rgb(255, 255, 255);
   font-weight: 500;
   width: 100%;
   text-align: center;
   &:hover {
-    background-color: #0078D4;
+    background-color: #0078d4;
     cursor: pointer;
   }
   &:active {
     cursor: pointer;
-    background-color: #0078D4;
+    background-color: #0078d4;
   }
 `;
 
 const Title = styled.input`
-  color:rgb(198, 251, 251) ;
+  color: rgb(198, 251, 251);
   font-size: 1.1rem;
   cursor: pointer;
   outline: none;
@@ -183,12 +186,23 @@ const Title = styled.input`
 `;
 
 const EditTitle = styled.input`
-  color:rgb(224, 198, 251);
+  color: rgb(224, 198, 251);
   font-size: 1.1rem;
   cursor: pointer;
   outline: none;
   border: none;
   background: transparent;
+`;
+
+const ContainerButtonEdit = styled.div`
+  width: 100%;
+  border-bottom: 1px solid #3e3e3e;
+  padding: 0.2rem;
+  `;
+  
+  const ContainerButtonDelete = styled.div`
+  width: 100%;
+  padding: 0.2rem;
 `;
 
 const NewFileContainer = styled.div``;
@@ -232,6 +246,19 @@ const FolderList = () => {
     fetch();
   }, [data, setFolders]);
 
+  useEffect(() => {
+    const handlerOutMenu = (event) => {
+      const menu = refMenuContainer.current;
+      if (menu && !menu.contains(event.target)) {
+        setOptsMenu(false);
+      }
+    };
+  document.addEventListener("click", handlerOutMenu, true);
+  return () => {
+    document.removeEventListener("click", handlerOutMenu, true);
+  };
+}, [setOptsMenu]);
+
   useEffect(() => {}, [setStatusSelectFolder, setSelectedFolderIndex]);
 
   const handlerSelectFolder = (index, id) => {
@@ -254,14 +281,12 @@ const FolderList = () => {
     setIdOptMenu(folderId);
   };
 
-  
   const handlerEdit = (folderId) => {
     setEdit(true);
     setOptsMenu(false);
   };
 
-  useEffect(() => {
-  }, [setEdit, setNewTitle])
+  useEffect(() => {}, [setEdit, setNewTitle]);
 
   const handlerDelete = async (e, FolderId) => {
     const { status } = await axios.delete(
@@ -282,19 +307,20 @@ const FolderList = () => {
     if (event.keyCode !== 13) return;
     const { status } = await axios.put(
       `http://localhost:4000/folder/edit/${projectId}/${FolderId}`,
-      { Title: newTitle }, {withCredentials: true}
+      { Title: newTitle },
+      { withCredentials: true }
     );
     if (status !== 200) console.info("Folder don't save");
     const folder = folders.find((folder) => folder.Id == FolderId);
     const newFolder = folders.find((folder) => folder.Id == FolderId);
-    newFolder.Title = newTitle
-    const indexFolder = folders.findIndex(folder => folder.Id == FolderId)
-    const filterFolders = folders.filter(folder => folder.Id !== FolderId);
-    const newFolders = [...filterFolders]
-    newFolders.splice(indexFolder, 0, newFolder)
-    setFolders(newFolders)
+    newFolder.Title = newTitle;
+    const indexFolder = folders.findIndex((folder) => folder.Id == FolderId);
+    const filterFolders = folders.filter((folder) => folder.Id !== FolderId);
+    const newFolders = [...filterFolders];
+    newFolders.splice(indexFolder, 0, newFolder);
+    setFolders(newFolders);
     setEdit(false);
-    setNewTitle(refEditInput.current.value)
+    setNewTitle(refEditInput.current.value);
     setOptsMenu(false);
   };
 
@@ -327,7 +353,7 @@ const FolderList = () => {
                   onClick={() => handlerSelectFolder(index, folder.Id)}
                   role="button"
                 />
-                {(edit && idOptMenu == folder.Id) ? (
+                {edit && idOptMenu == folder.Id ? (
                   <EditTitle
                     id="folder.id"
                     className="input-folder"
@@ -337,13 +363,13 @@ const FolderList = () => {
                     onBlur={(e) => handlerOnBlur(e)}
                     autoFocus
                   />
-                  ) : (
-                    <Title
+                ) : (
+                  <Title
                     id="folder.id"
                     className="input-folder"
                     value={folder.Title}
                     readOnly
-                    />
+                  />
                 )}
               </ContainerTitle>
               <ContainerFile>
@@ -369,21 +395,28 @@ const FolderList = () => {
               />
               {optsMenu && idOptMenu == folder.Id ? (
                 <ContainerMenu ref={refMenuContainer}>
-                  <ButtonEdit title="Edit" onClick={() => handlerEdit(folder.Id)}>
-                    Edit
-                  </ButtonEdit>
-                  <ButtonDelete
-                    title="Delete"
-                    onClick={(e) => handlerDelete(e, folder.Id)}
-                  >
-                    Delete
-                  </ButtonDelete>
+                  <ContainerButtonEdit>
+                    <ButtonEdit
+                      title="Edit"
+                      onClick={() => handlerEdit(folder.Id)}
+                    >
+                      Edit
+                    </ButtonEdit>
+                  </ContainerButtonEdit>
+                  <ContainerButtonDelete>
+                    <ButtonDelete
+                      title="Delete"
+                      onClick={(e) => handlerDelete(e, folder.Id)}
+                    >
+                      Delete
+                    </ButtonDelete>
+                  </ContainerButtonDelete>
                 </ContainerMenu>
               ) : (
                 <></>
               )}
             </ContainerOptions>
-          </FolderContainer>  
+          </FolderContainer>
         </LiFolder>
       ))}
     </Container>

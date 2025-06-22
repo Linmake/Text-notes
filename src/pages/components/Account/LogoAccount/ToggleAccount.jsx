@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 const Toggle = styled.div`
   width: 10vw;
-  height: 15vh;
-  background-color: rgba(237, 241, 250, 0.14);
+  height: 20vh;
+  background-color: rgb(255, 255, 255);
   display: flex;
-  padding-bottom: 1.5rem;
+  padding-bottom: 2.4rem;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
@@ -17,7 +17,6 @@ const Toggle = styled.div`
   right: 7.5vw;
   border: 1px solid #d2d2d2;
   border-radius: 0.3rem;
-  padding-inline: 0.5rem;
 `;
 
 const ToggleElement = styled(Link)`
@@ -28,6 +27,8 @@ const ToggleElement = styled(Link)`
   z-index: 1000;
   &:first-child {
     margin-top: 2rem;
+    font-weight: 600;
+    font-size: 1.1rem;
   }
   &:last-child {
     margin-bottom: 0.8rem;

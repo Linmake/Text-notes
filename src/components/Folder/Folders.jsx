@@ -203,6 +203,7 @@ const FolderList = () => {
   const refInput = useRef(null);
   const refEditInput = useRef(null);
   const refMenuContainer = useRef(null);
+  const [newTitle, setNewTitle] = useState(null);
 
   const {
     selectedFolderIndex,
@@ -257,10 +258,12 @@ const FolderList = () => {
   const handlerEdit = (folderId) => {
     setEdit(true);
     setOptsMenu(false);
-    // const res = axios.put(`http://localhost:4000/folder/edit/${projectId}/${folderId}`)
   };
 
-  useEffect(() => {}, [setEdit])
+  useEffect(() => {
+    console.log("actualization..")
+    // console.log(folders)
+  }, [setEdit, setNewTitle])
 
   const handlerDelete = async (e) => {
     const { status } = await axios.delete(
@@ -277,20 +280,23 @@ const FolderList = () => {
     setOptsMenu(false);
   };
 
-  const handlerSaveEdit = async (event) => {
+  const handlerSaveEdit = async (event, FolderId) => {
     if (event.keyCode !== 13) return;
     const { status } = await axios.put(
-      `http://localhost:4000/project/edit/${Id}`,
-      { Title: newTitle }
+      `http://localhost:4000/folder/edit/${projectId}/${FolderId}`,
+      { Title: newTitle }, {withCredentials: true}
     );
-    if (status !== 200) console.info("project no guardado");
-    const projectsList = projects.filter((project) => project.Id !== Id);
-    const editProject = projects.find((project) => project.Id == Id);
-    const indexOrigProject = projects.indexOf(editProject);
-    editProject.Title = newTitle;
-    projectsList.splice(indexOrigProject, 0, editProject);
-    setProjects(projectsList);
+    if (status !== 200) console.info("Folder don't save");
+    const folder = folders.find((folder) => folder.Id == FolderId);
+    const newFolder = folders.find((folder) => folder.Id == FolderId);
+    newFolder.Title = newTitle
+    const indexFolder = folders.findIndex(folder => folder.Id == FolderId)
+    const filterFolders = folders.filter(folder => folder.Id !== FolderId);
+    const newFolders = [...filterFolders, newFolder]
+    newFolders.sort((a, b) => a.Title.localeCompare(b.Title));
+    setFolders(newFolders)
     setEdit(false);
+    setNewTitle(refEditInput.current.value)
     setOptsMenu(false);
   };
 
@@ -323,22 +329,23 @@ const FolderList = () => {
                   onClick={() => handlerSelectFolder(index, folder.Id)}
                   role="button"
                 />
-                {!edit ? (
-                  <Title
+                {(edit && idOptMenu == folder.Id) ? (
+                  <EditTitle
+                    id="folder.id"
+                    className="input-folder"
+                    ref={refEditInput}
+                    onChange={() => setNewTitle(refEditInput.current.value)}
+                    onKeyDown={(e) => handlerSaveEdit(e, folder.Id)}
+                    onBlur={(e) => handlerOnBlur(e)}
+                    autoFocus
+                  />
+                  ) : (
+                    <Title
                     id="folder.id"
                     className="input-folder"
                     value={folder.Title}
                     readOnly
                     />
-                  ) : (
-                    <EditTitle
-                    id="folder.id"
-                    className="input-folder"
-                    ref={refEditInput}
-                    onChange={(e) => setNewTitle(refEditInput.current.value)}
-                    onKeyDown={(e) => handlerSaveEdit(e)}
-                    onBlur={(e) => handlerOnBlur(e)}
-                  />
                 )}
               </ContainerTitle>
               <ContainerFile>

@@ -292,8 +292,8 @@ const FolderList = () => {
     newFolder.Title = newTitle
     const indexFolder = folders.findIndex(folder => folder.Id == FolderId)
     const filterFolders = folders.filter(folder => folder.Id !== FolderId);
-    const newFolders = [...filterFolders, newFolder]
-    newFolders.sort((a, b) => a.Title.localeCompare(b.Title));
+    const newFolders = [...filterFolders]
+    newFolders.splice(indexFolder, 0, newFolder)
     setFolders(newFolders)
     setEdit(false);
     setNewTitle(refEditInput.current.value)

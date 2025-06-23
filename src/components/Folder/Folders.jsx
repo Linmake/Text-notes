@@ -71,24 +71,16 @@ const Icon = styled(FontAwesomeIcon)`
   margin-right: 0.5rem;
 `;
 
-const MenuIcon = styled(FontAwesomeIcon)`
-  margin-left: 0.5rem;
-  padding: 0;
-  color: rgb(195, 216, 225);
-  font-size: 1.3rem;
-  z-index: -100;
-`;
-
 const ContainerMenu = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 0.2rem;
-  position: relative;
-  left: 25%;
-  top: 25%;
+  position: absolute;
+  right: 10px;
+  top: 5px;
   width: 8rem;
-  z-index: 10000000;
+  z-index: 1000000;
   background-color: #1f1f1f;
   border: 1px solid #3e3e3e;
   padding-top: 0.2rem;
@@ -125,15 +117,6 @@ const EditFolderInput = styled.input`
   border: none;
   border-radius: 0.2rem;
   outline: none;
-`;
-
-const ContainerOptions = styled.div`
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  left: 1%;
-  width: 10rem;
-  z-index: 10;
 `;
 
 const ContainerFile = styled.div`
@@ -198,9 +181,9 @@ const ContainerButtonEdit = styled.div`
   width: 100%;
   border-bottom: 1px solid #3e3e3e;
   padding: 0.2rem;
-  `;
-  
-  const ContainerButtonDelete = styled.div`
+`;
+
+const ContainerButtonDelete = styled.div`
   width: 100%;
   padding: 0.2rem;
 `;
@@ -213,11 +196,18 @@ const FolderList = () => {
   const [openFo, setOpenFo] = useState(false);
   const [optsMenu, setOptsMenu] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [idOptMenu, setIdOptMenu] = useState(false);
+  const [idOptMenu, setIdOptMenu] = useState(null);
   const refInput = useRef(null);
-  const refEditInput = useRef(null);
+  const refEditInput = useRef(null); 
   const refMenuContainer = useRef(null);
   const [newTitle, setNewTitle] = useState(null);
+  // const [contextPosition, setContextPosition] = useState({
+  //   position: {
+  //     pageX: 0,
+  //     pageY: 0,
+  //   },
+  //   toggled: false
+  // })
 
   const {
     selectedFolderIndex,
@@ -253,15 +243,16 @@ const FolderList = () => {
         setOptsMenu(false);
       }
     };
-  document.addEventListener("click", handlerOutMenu, true);
-  return () => {
-    document.removeEventListener("click", handlerOutMenu, true);
-  };
-}, [setOptsMenu]);
+    document.addEventListener("click", handlerOutMenu, true);
+    return () => {
+      document.removeEventListener("click", handlerOutMenu, true);
+    };
+  }, [setOptsMenu]);
 
   useEffect(() => {}, [setStatusSelectFolder, setSelectedFolderIndex]);
 
-  const handlerSelectFolder = (index, id) => {
+  const handlerSelectFolder = (e, index, id) => {
+    e.stopPropagation()
     const folder = folders.find((folder) => folder.Id == id);
     if (!folder) return;
     setIdFolderSelect(folder.Id);
@@ -277,6 +268,15 @@ const FolderList = () => {
   };
 
   const handlerOptsMenu = (e, folderId) => {
+    e.stopPropagation()
+    e.preventDefault()
+    // ContainerMenu.style.left =`${e.pageX}px`;
+    // console.log(ContainerMenu.componentStyle.rules[0])
+    // ContainerMenu.componentStyle.rules.push(`left: ${e.pageX}px`)
+    const stringStyles = ContainerMenu.componentStyle.rules.join(";")
+    const newStylesStr = stringStyles.concat(`left: ${e.pageX + 35}px; top: ${((e.pageY)-60)}px;`)
+    ContainerMenu.componentStyle.rules[0] = newStylesStr
+    console.log(ContainerMenu.componentStyle.rules[0])
     setOptsMenu(true);
     setIdOptMenu(folderId);
   };
@@ -323,14 +323,14 @@ const FolderList = () => {
     setNewTitle(refEditInput.current.value);
     setOptsMenu(false);
   };
-
+ 
   return (
     <Container className="nav">
       {folders.map((folder, index) => (
         <LiFolder
           className="nav-item liFolder"
           key={index}
-          onClick={() => handlerSelectFolder(index, folder.Id)}
+          onClick={(e) => handlerSelectFolder(e, index, folder.Id)}
           role="button"
         >
           <FolderContainer>
@@ -339,6 +339,7 @@ const FolderList = () => {
                 selectedFolderIndex == index ? "selected" : "noSelected"
               }`}
               role="button"
+              onContextMenu={(e) => handlerOptsMenu(e, folder.Id)}
             >
               <ContainerTitle>
                 <Icon
@@ -387,14 +388,10 @@ const FolderList = () => {
                   ))}
               </ContainerFile>
             </Folder>
-            <ContainerOptions>
-              <MenuIcon
-                title="Options"
-                icon={faEllipsis}
-                onClick={(e) => handlerOptsMenu(e, folder.Id)}
-              />
               {optsMenu && idOptMenu == folder.Id ? (
-                <ContainerMenu ref={refMenuContainer}>
+                <ContainerMenu 
+                  ref={refMenuContainer}
+                >
                   <ContainerButtonEdit>
                     <ButtonEdit
                       title="Edit"
@@ -403,6 +400,7 @@ const FolderList = () => {
                       Edit
                     </ButtonEdit>
                   </ContainerButtonEdit>
+
                   <ContainerButtonDelete>
                     <ButtonDelete
                       title="Delete"
@@ -415,7 +413,6 @@ const FolderList = () => {
               ) : (
                 <></>
               )}
-            </ContainerOptions>
           </FolderContainer>
         </LiFolder>
       ))}

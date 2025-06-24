@@ -96,19 +96,6 @@ const Account = ({mainRoute, marginleft, gap }) => {
   ) : (
     <AccountContainer marginleft={marginleft} gap={gap}>
         <LogoAccount/>
-        {/* 
-          <DropdownMenu className="dropdown-menu">
-            <li>
-              <LogoutBtn
-                onClick={(e) => handlerLogout(e)}
-                role="button"
-                className="dropdown-item"
-              > 
-                Sign out
-              </LogoutBtn>
-            </li>
-          </DropdownMenu>
-        */}
     </AccountContainer>
   )
 };

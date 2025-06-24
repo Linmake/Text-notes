@@ -30,6 +30,9 @@ const LiFolder = styled.li`
   &.noSelected {
     background-color: transparent;
   }
+    &:hover{
+    background-color: #2A2D2E;
+  }
 `;
 
 const FolderContainer = styled.div`
@@ -48,6 +51,7 @@ const Folder = styled.div`
   width: 80%;
   box-sizing: border-box;
   vertical-align: middle;
+  pointer-events: none;
 `;
 
 const ContainerTitle = styled.div`
@@ -201,13 +205,6 @@ const FolderList = () => {
   const refEditInput = useRef(null); 
   const refMenuContainer = useRef(null);
   const [newTitle, setNewTitle] = useState(null);
-  // const [contextPosition, setContextPosition] = useState({
-  //   position: {
-  //     pageX: 0,
-  //     pageY: 0,
-  //   },
-  //   toggled: false
-  // })
 
   const {
     selectedFolderIndex,
@@ -270,9 +267,6 @@ const FolderList = () => {
   const handlerOptsMenu = (e, folderId) => {
     e.stopPropagation()
     e.preventDefault()
-    // ContainerMenu.style.left =`${e.pageX}px`;
-    // console.log(ContainerMenu.componentStyle.rules[0])
-    // ContainerMenu.componentStyle.rules.push(`left: ${e.pageX}px`)
     const stringStyles = ContainerMenu.componentStyle.rules.join(";")
     const newStylesStr = stringStyles.concat(`left: ${e.pageX + 35}px; top: ${((e.pageY)-60)}px;`)
     ContainerMenu.componentStyle.rules[0] = newStylesStr
@@ -397,7 +391,7 @@ const FolderList = () => {
                       title="Edit"
                       onClick={() => handlerEdit(folder.Id)}
                     >
-                      Edit
+                      Rename
                     </ButtonEdit>
                   </ContainerButtonEdit>
 

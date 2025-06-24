@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Account from '../Account/Accounts/Account'
 
 const Header = styled.nav`
   position: fixed;
@@ -82,6 +83,7 @@ const EditorHeader = () => {
             </ul>
           </li>
         </ListaInicio>
+        <Account mainRoute={"http://localhost:4001/"} gap={0} marginleft={0} />
       </Header>
     </>
   )

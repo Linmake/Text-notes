@@ -8,6 +8,7 @@ const Container = styled.div`
   height: 100vh;
   background-color: #fcfcfc;
   align-items: center;
+  user-select: none;
 `;
 const ParentContent = styled.div`
   border: 1px solid #bebebe;
@@ -23,6 +24,9 @@ const ProfileContent = styled.div`
   padding-top: 3%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.5rem;
 `;
 const LogoImg = styled.img`
   border: 1px solid #bebebe;

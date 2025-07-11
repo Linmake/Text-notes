@@ -9,7 +9,6 @@ export const FileComponent = styled.div`
   flex-direction: row;
   margin-left: 8%;
   height: 50%;
-  background-color: #5a5a5a67; 
   &.selected {
     background-color: #5a5a5a67;
   }
@@ -32,10 +31,16 @@ export const InputFile = styled.input`
   font-size: 1.2rem;
 `;
 
+/**
+ * File component
+ * @param {*} param0 
+ * @returns 
+ */
 const File = ({ file }) => {
     const { fileCurrent, setFileCurrent } = useContext(EditorFunctionsContext);
     const handlerFile = (file) => {
     setFileCurrent(file)
+    console.log(fileCurrent)
   }
 
   return (

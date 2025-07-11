@@ -45,7 +45,6 @@ const Folder = styled.div`
   width: 80%;
   box-sizing: border-box;
   vertical-align: middle;
-  pointer-events: none;
 `;
 
 const ContainerTitle = styled.div`
@@ -243,7 +242,6 @@ const FolderList = () => {
   useEffect(() => {}, [setStatusSelectFolder, setSelectedFolderIndex]);
 
   const handlerSelectFolder = (e, index, id) => {
-    e.stopPropagation()
     const folder = folders.find((folder) => folder.Id == id);
     if (!folder) return;
     setIdFolderSelect(folder.Id);

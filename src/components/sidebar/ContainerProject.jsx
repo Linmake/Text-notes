@@ -66,7 +66,7 @@ const Header = styled.header`
   margin-top: 5%;
   position: absolute;
   left: -3%;
-  `
+`
 
 const ContainerProject = () => {
   const {

@@ -9,6 +9,7 @@ export const FileComponent = styled.div`
   flex-direction: row;
   margin-left: 8%;
   height: 50%;
+  background-color: #5a5a5a67; 
   &.selected {
     background-color: #5a5a5a67;
   }
@@ -16,6 +17,7 @@ export const FileComponent = styled.div`
     background-color: transparent;
   }
 `;
+
 const Icon = styled(FontAwesomeIcon)`
   width: 5%;
 `
@@ -35,6 +37,7 @@ const File = ({ file }) => {
     const handlerFile = (file) => {
     setFileCurrent(file)
   }
+
   return (
     <FileComponent
       className="nav-link text-white file"

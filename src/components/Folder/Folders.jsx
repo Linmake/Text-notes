@@ -24,14 +24,8 @@ const Container = styled.ul`
 const LiFolder = styled.li`
   width: 100%;
   box-sizing: border-box;
-  &.selected {
-    background-color: #5a5a5a8a;
-  }
   &.noSelected {
     background-color: transparent;
-  }
-    &:hover{
-    background-color: #2A2D2E;
   }
 `;
 

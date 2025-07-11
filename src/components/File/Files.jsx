@@ -42,7 +42,7 @@ export const LiFile = styled.li`
   `;
 
 export const InputFile = styled.input`
-  outline: none;
+  outline: 1px solid #08538D;
   border: none;
   width: 70%;
   height: 2rem;
@@ -50,7 +50,9 @@ export const InputFile = styled.input`
   color: #fff;
   cursor: pointer;
   font-size: 1.2rem;
+  width: 100%;
 `;
+
 export const Files = () => {
   const { files } = UseData();
   const { addNewFile } = useContext(positionSideContext)
@@ -60,12 +62,19 @@ export const Files = () => {
     return <p>No files available</p>
   }
 
+  const handlerSelectFile = () => {
+    alert(`Selected file`);
+  }
+
   return (
     <UlFile className="nav nav-pills flex-column ul-liFile">
       {
         files.map(file => (
           <LiFile className="nav-item" key={file.Id}>
-            <File file={file} />
+            <File 
+              file={file}
+              onClick={() => handlerSelectFile()} 
+            />
           </LiFile>
         ))
       }

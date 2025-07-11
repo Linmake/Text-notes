@@ -69,7 +69,6 @@ const Folder = ({
     setIdFolderSelect(folder.Id);
     setOpenFolder(true);
     setFiles(folder.Files);
-
     if (statusSelectFolder && selectedFolderIndex === index) {
       setStatusSelectFolder(false);
       setSelectedFolderIndex("");
@@ -80,10 +79,9 @@ const Folder = ({
     }
     return;
   };
-
   return (
     <Folder
-        className={` folder liFolder ${
+        className={`folder liFolder ${
             selectedFolderIndex == index ? "selected" : "noSelected"
         }`}
         role="button"
@@ -99,7 +97,7 @@ const Folder = ({
         role="button"
       />
       <Title
-        id="folder.id"
+        id={folder.Title}
         className="input-folder"
         value={folder.Title}
         readOnly
@@ -107,5 +105,4 @@ const Folder = ({
     </Folder>
   );
 };
-
 export default Folder;

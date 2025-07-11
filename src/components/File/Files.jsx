@@ -23,14 +23,9 @@ export const LiFile = styled.li`
   display: flex;
   list-style: none;
   align-items: center;
-  
-  &:hover{
-    background-color: #5a5a5a2b;
-  }
   & > .nav-item {
     ${navItem}
     }
-    
   & > .nav-link {
     ${navLink}
   &.selected {
@@ -39,7 +34,10 @@ export const LiFile = styled.li`
   &.hidden {
     display: none;
   }
-  `;
+  &:hover{
+    background-color: #2A2D2E;
+  }
+`;
 
 export const InputFile = styled.input`
   outline: 1px solid #08538D;
@@ -62,15 +60,19 @@ export const Files = () => {
     return <p>No files available</p>
   }
 
-  const handlerSelectFile = () => {
-    alert(`Selected file`);
+  const handlerSelectFile = (e) => {
+    console.log('Selected file');
   }
 
   return (
     <UlFile className="nav nav-pills flex-column ul-liFile">
       {
         files.map(file => (
-          <LiFile className="nav-item" key={file.Id}>
+          <LiFile 
+            onClick={(e) => handlerSelectFile(e)}
+            className="nav-item" 
+            key={file.Id}
+          >
             <File 
               file={file}
               onClick={() => handlerSelectFile()} 

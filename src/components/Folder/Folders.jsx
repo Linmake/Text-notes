@@ -45,6 +45,7 @@ const Folder = styled.div`
   width: 80%;
   box-sizing: border-box;
   vertical-align: middle;
+  user-select: none;
 `;
 
 const ContainerTitle = styled.div`
@@ -207,6 +208,7 @@ const FolderList = () => {
     addNewFile,
     statusSelectFolder,
     setIdFolderSelect,
+    idFolderSelect,
   } = useContext(positionSideContext);
   const { data, setOpenFolder, setFiles, openFolder, folders, setFolders } =
     UseData();
@@ -239,11 +241,19 @@ const FolderList = () => {
     };
   }, [setOptsMenu]);
 
-  useEffect(() => {}, [setStatusSelectFolder, setSelectedFolderIndex]);
+  useEffect(() => {}, [statusSelectFolder]);
 
   const handlerSelectFolder = (e, index, id) => {
     const folder = folders.find((folder) => folder.Id == id);
     if (!folder) return;
+    
+    if(idFolderSelect === folder.Id && statusSelectFolder) {
+      setOpenFolder(false);
+      setStatusSelectFolder(false);
+      setSelectedFolderIndex("");
+      return;
+    }
+
     setIdFolderSelect(folder.Id);
     setOpenFolder(true);
     setFiles(folder.Files);

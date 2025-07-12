@@ -1,6 +1,6 @@
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { EditorFunctionsContext } from "../../context/editorFunctions";
 
@@ -36,17 +36,22 @@ export const InputFile = styled.input`
  * @param {*} param0 
  * @returns 
  */
+
 const File = ({ file }) => {
-    const { fileCurrent, setFileCurrent } = useContext(EditorFunctionsContext);
+    // const { fileCurrent, setFileCurrent } = useContext(EditorFunctionsContext);
+
+    const [fileCurrent, setFile] = useState(null)
+
     const handlerFile = (file) => {
-    setFileCurrent(file)
-    console.log(fileCurrent)
+    alert(file.Title)
   }
+
+  useEffect(() => {}, [setFile])
 
   return (
     <FileComponent
       className="nav-link text-white file"
-      onClick={(event) => handlerFile(file)}
+      onClick={() => handlerFile(file)}
     >
       <Icon id={`iconFile-${file.Id}`} icon={faFile} />
       <InputFile readOnly value={file.Title} id={`file-${file.Id}`} />

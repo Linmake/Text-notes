@@ -27,14 +27,14 @@ const LiFolder = styled.li`
   &.noSelected {
     background-color: transparent;
   }
-`;
-
-const FolderContainer = styled.div`
+  `;
+  
+  const FolderContainer = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-const Folder = styled.div`
+  `;
+  
+  const Folder = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -46,10 +46,11 @@ const Folder = styled.div`
   box-sizing: border-box;
   vertical-align: middle;
   user-select: none;
-`;
-
-const ContainerTitle = styled.div`
-  width: 11rem;
+  `;
+  
+  const ContainerTitle = styled.div`
+  width: 100%;
+  padding-left: 0.8rem !important;
   display: flex;
   flex-direction: row;
   gap: 0.4rem;
@@ -326,7 +327,6 @@ const FolderList = () => {
         <LiFolder
           className="nav-item liFolder"
           key={index}
-          onClick={(e) => handlerSelectFolder(e, index, folder.Id)}
           role="button"
         >
           <FolderContainer>
@@ -337,7 +337,9 @@ const FolderList = () => {
               role="button"
               onContextMenu={(e) => handlerOptsMenu(e, folder.Id)}
             >
-              <ContainerTitle>
+              <ContainerTitle
+                onClick={(e) => handlerSelectFolder(e, index, folder.Id)}
+              >
                 <Icon
                   icon={
                     selectedFolderIndex === index && statusSelectFolder

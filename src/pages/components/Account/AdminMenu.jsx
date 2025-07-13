@@ -72,6 +72,24 @@ const AdminMenuComponent = () => {
      console.log("All Proyects delete with succesfull")
      return setProjects([])
     }
+    
+    const handlerDeleteFolders = async(e) => {
+     const { status } = await axios.delete("http://localhost:4000/folder/all/delete", {withCredentials: true})
+     if(status !== 200) {
+        return
+     }
+     console.log("All Folders delete with succesfull")
+     return setFolders([])
+    }
+
+    const handlerDeleteFiles = async(e) => {
+     const { status } = await axios.delete("http://localhost:4000/file/all/delete", {withCredentials: true})
+     if(status !== 200) {
+        return
+     }
+     console.log("All Files delete with succesfull")
+     return setProjects([])
+    }
 
     return (
         <AdminMenu>

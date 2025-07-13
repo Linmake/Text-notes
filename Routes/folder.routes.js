@@ -22,6 +22,6 @@ import getAllFoldersController from '../Controllers/Folder/getAllFolders.control
 
   FolderRouter.delete("/delete/all/:ProjectId", deleteAllOnProjectController)
 
-  FolderRouter.delete("/delete/all", deleteAllController)
+  FolderRouter.delete("/all/delete", deleteAllController)
 
   export default FolderRouter;

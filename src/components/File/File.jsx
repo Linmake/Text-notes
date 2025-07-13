@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { EditorFunctionsContext } from "../../context/editorFunctions";
+import axios, { Axios } from "axios";
 
 export const FileComponent = styled.div`
   display: flex;
   flex-direction: row;
   margin-left: 8%;
+  padding-left: 4% !important;
   height: 50%;
   &.selected {
     background-color: #5a5a5a67;
@@ -42,9 +44,11 @@ const File = ({ file }) => {
 
     const [fileCurrent, setFile] = useState(null)
 
-    const handlerFile = (file) => {
-    alert(file.Title)
+    const handlerFile = async(file) => {
+      const { data } = await axios.get("http://localhost:4000/account/idAccount", {withCredentials: true})
+      alert(data)
   }
+
 
   useEffect(() => {}, [setFile])
 

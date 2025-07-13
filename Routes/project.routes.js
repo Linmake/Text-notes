@@ -82,7 +82,7 @@ ProjectRouter.delete('/delete/:ProjectId', async (req, res) => {
   return res.status(200).send('Project succesfully deleted')
 })
 
-ProjectRouter.delete('/delete/all', async (req, res) => {
+ProjectRouter.delete('/all/delete', async (req, res) => {
   await Project.deleteMany({})
   await Folder.deleteMany({})
   await File.deleteMany({})

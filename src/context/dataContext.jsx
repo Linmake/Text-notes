@@ -5,6 +5,7 @@ export function DataProvider({ children }) {
   const [data, setData] = useState(null);
   const [openFolder, setOpenFolder] = useState(false)
   const [files, setFiles] = useState([])
+  const [UserFiles, SetUserFiles] = useState([])
   const [project, setProject] = useState([])
   const [folders, setFolders] = useState([])
   //***------account-------****
@@ -32,7 +33,9 @@ export function DataProvider({ children }) {
        name,
        setName,
        login, 
-       setLogin
+       setLogin,
+       UserFiles,
+       SetUserFiles,
   }}>
       {children}
     </DataContext.Provider>

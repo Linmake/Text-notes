@@ -14,7 +14,7 @@ import { UseData } from "../../context/dataContext";
 import { Files } from "../File/Files";
 import { useParams } from "react-router-dom";
 import styles from "../../styles/components/editor/FolderList.css";
-import NewFile from "../File/NewFile";
+import NewFile from "../File/components/NewFile";
 
 const Container = styled.ul`
   margin-top: 3%;
@@ -188,6 +188,7 @@ const ContainerButtonDelete = styled.div`
 `;
 
 const NewFileContainer = styled.div``;
+
 const FileContainer = styled.div``;
 const FolderList = () => {
   const DbUrl = "http://localhost:4000";

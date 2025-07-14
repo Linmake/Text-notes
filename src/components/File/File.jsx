@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import GetUserId from "./Hook/GetUserId";
 
 export const FileComponent = styled.div`
   display: flex;
@@ -43,8 +44,8 @@ const File = ({ file, onContextMenu }) => {
   const [fileCurrent, setFile] = useState(null)
 
   const handlerFile = async (file) => {
-    const { data } = await axios.get("http://localhost:4000/account/idAccount", { withCredentials: true })
-    alert(data)
+    const UserId = await GetUserId()
+    alert(UserId)
   }
 
   useEffect(() => { }, [setFile])

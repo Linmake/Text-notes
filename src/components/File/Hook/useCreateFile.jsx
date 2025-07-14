@@ -4,6 +4,7 @@ import { v4 as uuidV4 } from 'uuid';
 import axios from 'axios';
 import { positionSideContext } from '../../../context/SideProv.jsx';
 import { UseData } from '../../../context/dataContext.jsx';
+import GetUserId from './GetUserId.jsx';
 
 const useCreateFile = () => {
  
@@ -19,12 +20,14 @@ const useCreateFile = () => {
      const folder = folders.find(
         folder => folder.Id === IdFolder
       )  
+      const UserId = await GetUserId();
       if (!folder) return
       const newFile = {
         Id: uuidV4(),
         FolderId: folder.Id,
         Title: FileInput.current.value,
-        Text: " "
+        Text: "",
+        UserId: UserId
       };
       const filesList = folder.Files;
       const {data, status} = await axios.post(`http://localhost:4000/file/create`, newFile)

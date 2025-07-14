@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from 'react';
-import { positionSideContext } from '../../context/SideProv';
-import NewFileComponent from './components/NewFileComponent';
-import useCreateFile from './Hook/useCreateFile';
+import { positionSideContext } from '../../../context/SideProv';
+import NewFileComponent from './NewFileComponent';
+import useCreateFile from '../Hook/useCreateFile';
 
 const NewFile = ({ IdFolder }) => {
   const FileInput = useRef(null);
@@ -22,8 +22,8 @@ const NewFile = ({ IdFolder }) => {
   
   const [create, onBlur] = useCreateFile() 
 
-  const handlerNewFile = async(event) => {
-    if (event.keyCode !== 13) return
+  const handlerNewFile = async(e) => {
+    if (e.keyCode !== 13) return
     await create(FileInput, IdFolder)
   }
 

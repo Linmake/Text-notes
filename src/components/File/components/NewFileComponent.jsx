@@ -24,7 +24,7 @@ const NewFileComponent = ({ addNewFile, FileInput, handlerNewFile, onBlur }) => 
             ref={FileInput} 
             type="text"
             id="newFileInp"
-            onKeyDown={ event => handlerNewFile(event)}
+            onKeyDown={ e => handlerNewFile(e)}
             onBlur={e => onBlur(e)}
           />
         </span>

@@ -15,7 +15,7 @@ const media = {
 const MainPage = () => {
   return (
     <>
-      <MainHeader mainRoute={"http://localhost:4001"} />
+      <MainHeader mainRoute={"http://localhost:3000"} />
 
       <HomeContainer/>
       <CardsContainer/>                   

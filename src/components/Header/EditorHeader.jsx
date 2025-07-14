@@ -54,7 +54,7 @@ const LinkInicio = styled.a`
 `
 
 const EditorHeader = () => {
-  const RutaPrincipal = "http://localhost:4001"
+  const RutaPrincipal = "http://localhost:3000"
   return (
     <>
       <Header className="navbar navbar-expand-lg bg-body-tertiary" id='headerEditor'>
@@ -65,7 +65,7 @@ const EditorHeader = () => {
         <ListaInicio className="navbar-nav me-auto mb-2 mb-lg-0" id='navbarSection1'>
           <li className="nav-item">
             <ButtonInicio aria-expanded="false" role="menuitem">
-              <LinkInicio className="nav-link active" aria-current="page" href="http://localhost:4001/">
+              <LinkInicio className="nav-link active" aria-current="page" href="http://localhost:3000/">
                 Home
               </LinkInicio>
             </ButtonInicio>
@@ -83,7 +83,7 @@ const EditorHeader = () => {
             </ul>
           </li>
         </ListaInicio>
-        <Account mainRoute={"http://localhost:4001/"} gap={0} marginleft={0} />
+        <Account mainRoute={"http://localhost:3000/"} gap={0} marginleft={0} />
       </Header>
     </>
   )

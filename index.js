@@ -22,8 +22,19 @@ const server = createServer(expressApp);
 expressApp.use(cookieParser());
 expressApp.use(express.json());
 
+
+const allowedOrigins = [
+  'http://localhost:3000',
+];
+
 expressApp.use(cors({
-  origin: 'http://localhost:4001', // Permite solo solicitudes desde esta URL
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permite solo estos métodos HTTP
   allowedHeaders: ['Content-Type', 'Authorization'], // Permite solo estos encabezados
   credentials: true,
@@ -35,7 +46,8 @@ expressApp.use("/folder", FolderRouter);
 expressApp.use("/project", ProjectRouter);
 expressApp.use("/account", AccountRouter);
 
-const portUrl = process.env.PORT;
+const portUrl = process.env.VITE_API_PORT;
+
 server.listen(portUrl, () => {
   console.log(`Servidor levantado en el puerto ${portUrl}`)
 });

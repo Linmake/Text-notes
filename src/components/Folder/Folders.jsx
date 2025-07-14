@@ -211,7 +211,7 @@ const FolderList = () => {
     setIdFolderSelect,
     idFolderSelect,
   } = useContext(positionSideContext);
-  const { data, setOpenFolder, setFiles, openFolder, folders, setFolders } =
+  const { data, setOpenFolder, setFiles, files, openFolder, folders, setFolders } =
     UseData();
 
   useEffect(() => {
@@ -245,6 +245,7 @@ const FolderList = () => {
   useEffect(() => {}, [statusSelectFolder]);
 
   const handlerSelectFolder = (e, index, id) => {
+    console.clear()
     const folder = folders.find((folder) => folder.Id == id);
     if (!folder) return;
     
@@ -257,7 +258,8 @@ const FolderList = () => {
 
     setIdFolderSelect(folder.Id);
     setOpenFolder(true);
-    setFiles(folder.Files);
+    setFiles(folder.Files); /** Set Files */
+    console.log(files)
     if (statusSelectFolder && selectedFolderIndex === index) {
       setStatusSelectFolder(false);
       setSelectedFolderIndex("");
@@ -273,7 +275,6 @@ const FolderList = () => {
     const stringStyles = ContainerMenu.componentStyle.rules.join(";")
     const newStylesStr = stringStyles.concat(`left: ${e.pageX + 35}px; top: ${((e.pageY)-60)}px;`)
     ContainerMenu.componentStyle.rules[0] = newStylesStr
-    console.log(ContainerMenu.componentStyle.rules[0])
     setOptsMenu(true);
     setIdOptMenu(folderId);
   };
@@ -335,10 +336,10 @@ const FolderList = () => {
                 selectedFolderIndex == index ? "selected" : "noSelected"
               }`}
               role="button"
-              onContextMenu={(e) => handlerOptsMenu(e, folder.Id)}
-            >
+              >
               <ContainerTitle
                 onClick={(e) => handlerSelectFolder(e, index, folder.Id)}
+                onContextMenu={(e) => handlerOptsMenu(e, folder.Id)}
               >
                 <Icon
                   icon={

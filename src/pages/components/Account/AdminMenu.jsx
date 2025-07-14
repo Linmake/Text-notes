@@ -61,7 +61,7 @@ const DeleteFilesBttn = styled.button`
 
 const AdminMenuComponent = () => {
 
-    const { data, setOpenFolder, setFiles, openFolder, folders, setFolders } = UseData();
+    const { data, setOpenFolder, folders, setFolders, setFiles } = UseData();
       const { projects, setProjects } = useContext(positionSideContext);
 
     const handlerDeleteProyects = async(e) => {
@@ -88,7 +88,7 @@ const AdminMenuComponent = () => {
         return
      }
      console.log("All Files delete with succesfull")
-     return setProjects([])
+     return setFiles([])
     }
 
     return (

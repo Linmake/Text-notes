@@ -57,7 +57,7 @@ const ProjectsMenu = () => {
           <NoProjects />
         ) : (
           <ProjectCompTemplate>
-            <MainHeader mainRoute={"http://localhost:4001"} />
+            <MainHeader mainRoute={"http://localhost:3000"} />
             <ContainerProjects>
               <NewProjectTab />
               <ProjectList>

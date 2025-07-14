@@ -259,7 +259,6 @@ const FolderList = () => {
     setIdFolderSelect(folder.Id);
     setOpenFolder(true);
     setFiles(folder.Files); /** Set Files */
-    console.log(files)
     if (statusSelectFolder && selectedFolderIndex === index) {
       setStatusSelectFolder(false);
       setSelectedFolderIndex("");

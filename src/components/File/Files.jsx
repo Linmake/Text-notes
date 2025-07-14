@@ -4,6 +4,7 @@ import { UseData } from '../../context/dataContext';
 import { useContext, useEffect, useRef, useState } from 'react'
 import { positionSideContext } from '../../context/SideProv'
 import File from "./File";
+import axios from "axios";
 
 // Styled components
 export const Container = styled.ul`
@@ -132,12 +133,11 @@ export const Files = () => {
     console.log('Selected file');
   }
 
-  useEffect(() => { }, [files, setFiles]);
-
+  
   const [optsMenu, setOptsMenu] = useState(false);
   const [idOptMenu, setIdOptMenu] = useState(null);
   const refMenuContainer = useRef(null);
-
+  
   const handlerOptsMenu = (e, fileId) => {
     e.stopPropagation();
     e.preventDefault()
@@ -148,27 +148,30 @@ export const Files = () => {
     setIdOptMenu(fileId);
     console.log(idOptMenu)
   };
-
+  
   const handlerEdit = (fileId) => {
     setEdit(true);
     setOptsMenu(false);
   };
-
-  const handlerDelete = async (e, fileId) => {
+  
+  const handlerDelete = async(e, fileId) => {
     const { status } = await axios.delete(
       `http://localhost:4000/file/delete/${fileId}`
     );
-    if (!status) return;
-    const currentFiles = files.filter((folder) => file.Id !== fileId);
-    setFolders(currentFiles);
+    if (status !== 200) return;
+    console.info("File deleted successfully");
+    const currentFiles = files.filter( file => file.Id !== fileId );
+    setFiles(currentFiles);
     setOptsMenu(false);
+    console.info(currentFiles)
+    console.info(files)
   };
-
+  
   const handlerOnBlur = (e) => {
     setEdit(false);
     setOptsMenu(false);
   };
-
+  
   const handlerSaveEdit = async (event, FolderId) => {
     if (event.keyCode !== 13) return;
     const { status } = await axios.put(
@@ -189,7 +192,7 @@ export const Files = () => {
     setNewTitle(refEditInput.current.value);
     setOptsMenu(false);
   };
-
+  
   useEffect(() => {
     const handlerOutMenu = (event) => {
       const menu = refMenuContainer.current;
@@ -204,7 +207,9 @@ export const Files = () => {
       document.removeEventListener("contextmenu", handlerOutMenu, true);
     };
   }, [setOptsMenu]);
-
+  
+  useEffect(() => { }, [setFiles]);
+  
   return (
     <Container className="nav nav-pills flex-column ul-liFile">
       {

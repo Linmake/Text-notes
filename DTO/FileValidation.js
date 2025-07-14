@@ -8,12 +8,13 @@ addErrors(ajv)
 const fileJsonSchema = {
   type: 'object',
   properties: {
-    Id: { type: 'string', minLength: 1 },
+    Id: { type: 'string', minLength: 5 },
     Title: { type: 'string', minLength: 1 },
-    Text: { type: 'string', minLength: 0},
+    Text: { type: 'string', nullable: true },
     FolderId: { type: 'string' },
+    UserId: { type: 'string', minLength: 5 },
   },
-  required: ['Id', 'Title', 'FolderId'],
+  required: ['Id', 'Title', 'FolderId', 'UserId'],
   additionalProperties: false
 };
 

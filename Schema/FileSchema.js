@@ -5,19 +5,28 @@ const { Schema } = mongoose;
 export const FileSchema = new Schema({
   Id: {
     type: String,
-    required: [true, 'El campo Id es obligatorio.']
+    required: [true, 'Id is required'],
+    unique: true,
+    minlength: [5, 'Id must be at least 5 characters long.']
   },
   FolderId: {
     type: String,
-    required: [true, 'El campo IdFolder es obligatorio.']
+    required: [true, 'FolderId is required'],
+    minlength: [5, 'FolderId must be at least 5 characters long.']
   },
   Title: {
     type: String,
-    required: [true, 'El campo Title es obligatorio.']
+    required: [true, 'Title is required'],
+    minlength: [1, 'Title must be at least 1 character long.']
   },
   Text: {
     type: String,
-    required: [true, 'El campo Text es obligatorio.']
+    required: [false]
+  },
+  UserId: {
+    type: String,
+    required: [true, 'Id User is required'],
+    minlength: [5, 'Id User must be at least 5 characters long.']
   },
 });
 

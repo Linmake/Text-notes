@@ -192,11 +192,9 @@ const FileContainer = styled.div``;
 const FolderList = () => {
   const DbUrl = "http://localhost:4000";
   const { projectId } = useParams();
-  const [openFo, setOpenFo] = useState(false);
   const [optsMenu, setOptsMenu] = useState(false);
   const [edit, setEdit] = useState(false);
   const [idOptMenu, setIdOptMenu] = useState(null);
-  const refInput = useRef(null);
   const refEditInput = useRef(null); 
   const refMenuContainer = useRef(null);
   const [newTitle, setNewTitle] = useState(null);
@@ -237,8 +235,10 @@ const FolderList = () => {
       }
     };
     document.addEventListener("click", handlerOutMenu, true);
+    document.addEventListener("contextmenu", handlerOutMenu, true);
     return () => {
       document.removeEventListener("click", handlerOutMenu, true);
+      document.removeEventListener("contextmenu", handlerOutMenu, true);
     };
   }, [setOptsMenu]);
 

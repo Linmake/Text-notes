@@ -122,8 +122,8 @@ const ContainerButtonDelete = styled.div`
  * @returns Component that renders a list of files.
  */
 export const Files = () => {
-  const { files, setFiles } = UseData();
-  const { addNewFile } = useContext(positionSideContext)
+  const { folders, files, setFiles } = UseData();
+  const { addNewFile, idFolderSelect } = useContext(positionSideContext)
 
   if ((!files || files.length === 0) && !addNewFile) {
     return <p>No files available</p>
@@ -160,11 +160,12 @@ export const Files = () => {
     );
     if (status !== 200) return;
     console.info("File deleted successfully");
+    const folder = folders.find( folder => folder.Id === idFolderSelect );
+    if (!folder) return;
+    console.info(folder);
     const currentFiles = files.filter( file => file.Id !== fileId );
     setFiles(currentFiles);
     setOptsMenu(false);
-    console.info(currentFiles)
-    console.info(files)
   };
   
   const handlerOnBlur = (e) => {

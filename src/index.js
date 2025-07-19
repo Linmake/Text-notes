@@ -10,12 +10,12 @@ import { DataProvider } from './context/dataContext.jsx';
 import { EditorProvider } from './context/editorFunctions.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <SideProv>
-      <DataProvider>
-        <EditorProvider>
+    <EditorProvider>
+      <SideProv>
+        <DataProvider>
           <App />
-        </EditorProvider>
-      </DataProvider>
-    </SideProv>
+        </DataProvider>
+      </SideProv>
+    </EditorProvider>
   </React.StrictMode>
 )

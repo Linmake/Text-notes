@@ -1,9 +1,11 @@
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import GetUserId from "./Hook/GetUserId";
+import { EditorFunctionsContext } from "../../context/editorFunctions";
+import { UseData } from "../../context/dataContext";
 
 export const FileComponent = styled.div`
   display: flex;
@@ -41,14 +43,20 @@ export const InputFile = styled.input`
  */
 
 const File = ({ file, onContextMenu }) => {
-  const [fileCurrent, setFile] = useState(null)
+  const { fileCurrent, setFileCurrent } = useContext(EditorFunctionsContext);
+  const { data, setOpenFolder, setFiles, files, openFolder, folders, setFolders } = UseData();
 
   const handlerFile = async (file) => {
-    const UserId = await GetUserId()
-    alert(UserId)
+    // const UserId = await GetUserId()
+    if (fileCurrent?.Id !== file.Id) {
+      setFileCurrent(file);
+    }
+    return
   }
 
-  useEffect(() => { }, [setFile])
+  useEffect(() => {
+    console.log(fileCurrent);
+  }, [fileCurrent])
 
   return (
     <FileComponent
@@ -61,4 +69,5 @@ const File = ({ file, onContextMenu }) => {
     </FileComponent>
   );
 }
-export default File
+
+export default React.memo(File);

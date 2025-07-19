@@ -129,11 +129,6 @@ export const Files = () => {
     return <p>No files available</p>
   }
 
-  const handlerSelectFile = (e) => {
-    console.log('Selected file');
-  }
-
-  
   const [optsMenu, setOptsMenu] = useState(false);
   const [idOptMenu, setIdOptMenu] = useState(null);
   const refMenuContainer = useRef(null);
@@ -209,20 +204,16 @@ export const Files = () => {
     };
   }, [setOptsMenu]);
   
-  useEffect(() => { }, [setFiles]);
-  
   return (
     <Container className="nav nav-pills flex-column ul-liFile">
       {
         files.map(file => (
           <FileContainer
-            onClick={(e) => handlerSelectFile(e)}
             className="nav-item"
             key={file.Id}
           >
             <File
               file={file}
-              onClick={() => handlerSelectFile()}
               onContextMenu={(e) => handlerOptsMenu(e, file.Id)}
             />
             {optsMenu && idOptMenu == file.Id ? (

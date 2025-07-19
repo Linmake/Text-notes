@@ -47,25 +47,26 @@ const SaveFileBttn = ({ quillRef }) => {
                 Text: quillRef.getText().trim() // Now accessing the ref correctly
             }
             try {
-                const { status } = await axios.put('http://localhost:4000/file/edit-text/', {
+                const editText = await axios.put('http://localhost:4000/file/edit-text/', {
                     Text: quillRef.getText().trim(),
                     Id: fileCurrent.Id
                 })
-                if (status !== 200) return;
+                if (editText.status !== 200) return;
                 setFileCurrent(newFile)
                 const folder = folders.find(folder => folder.Id === newFile.IdFolder);
+                const getFolders = await axios.get(`http://localhost:4000/folder/all/${folder.ProjectId}`, { withCredentials: true });
+                if (getFolders.status !== 200) return;
+                // setFolders([...folders, folder])
                 if (!folder) {
                     console.error("Folder not found for the current file.");
                     return;
                 }
-                const fileOnFolder = folder.Files.find(file => file.Id === newFile.Id);
-                if (!fileOnFolder) {
+                const file = folder.Files.find(file => file.Id === newFile.Id);
+                if (!file) {
                     console.error("File not found in the folder.");
                     return;
                 }
-                
-                console.log(fileOnFolder.Title);
-
+                console.log(getFolders.data);
             } catch (error) {
                 console.error("Error en la solicitud PATCH:", error);
             }

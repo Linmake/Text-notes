@@ -89,6 +89,7 @@ const AdminMenuComponent = () => {
      }
      console.log("All Files delete with succesfull")
      return setFiles([])
+     
     }
 
     return (

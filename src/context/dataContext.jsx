@@ -13,6 +13,8 @@ export function DataProvider({ children }) {
   const [pwd, setPwd] = useState([])
   const [name, setName] = useState([])
   const [login, setLogin] = useState([])
+  const [account, setAccount] = useState(null)
+
 
   return (
     <DataContext.Provider value = {{
@@ -36,6 +38,8 @@ export function DataProvider({ children }) {
        setLogin,
        UserFiles,
        SetUserFiles,
+       account,
+       setAccount
   }}>
       {children}
     </DataContext.Provider>

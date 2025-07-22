@@ -44,24 +44,20 @@ export const InputFile = styled.input`
 
 const File = ({ file, onContextMenu }) => {
   const { fileCurrent, setFileCurrent } = useContext(EditorFunctionsContext);
-  const { data, setOpenFolder, setFiles, files, openFolder, folders, setFolders } = UseData();
+  const { data, setOpenFolder, setFiles, files, openFolder, folders, setFolders, project } = UseData();
 
-  const handlerFile = async (file) => {
-    // const UserId = await GetUserId()
-    if (fileCurrent?.Id !== file.Id) {
-      setFileCurrent(file);
-    }
-    return
+  const handlerFile = async (e, file) => {
+    console.info(folders)
+    console.info(project)
   }
 
   useEffect(() => {
-    console.log(fileCurrent);
-  }, [fileCurrent])
+  }, [fileCurrent, setFolders, setFiles])
 
   return (
     <FileComponent
-      className="nav-link text-white file"
-      onClick={() => handlerFile(file)}
+      className="nav-link text-white file"  
+      onClick={(e) => handlerFile(e, file)}
       onContextMenu={onContextMenu}
     >
       <Icon id={`iconFile-${file.Id}`} icon={faFile} />

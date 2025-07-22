@@ -3,6 +3,7 @@ import Project from "../Schema/ProjectSchema.js"
 import Folder from "../Schema/FolderSchema.js"
 import File from "../Schema/FileSchema.js"
 import validateProject from '../DTO/ProjectValidation.js'
+import editFolderInsideController from '../Controllers/Proyect/editFolderInside.controller.js'
 
 const ProjectRouter = express.Router()
 
@@ -69,6 +70,8 @@ ProjectRouter.put('/edit/:ProjectId', async (req, res) => {
     return res.status(500).send('Server error');
   }
 });
+
+ProjectRouter.put('/edit-folder/:ProjectId', editFolderInsideController)
 
 ProjectRouter.delete('/delete/:ProjectId', async (req, res) => {
   const { ProjectId } = req.params

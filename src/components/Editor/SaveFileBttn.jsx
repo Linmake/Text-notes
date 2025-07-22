@@ -1,7 +1,7 @@
 import { faCloud } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios"
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { EditorFunctionsContext } from "../../context/editorFunctions";
 import { UseData } from "../../context/dataContext";
@@ -37,14 +37,17 @@ const SaveFileBttn = ({ quillRef }) => {
         idFolderSelect
     } = useContext(positionSideContext);
 
+    useEffect(() => {}, [setFiles])
+
 
     const handlerSave = async () => {
         if (fileCurrent && fileCurrent !== "") {
             const newFile = {
                 Id: fileCurrent.Id,
                 IdFolder: idFolderSelect,
-                Title: fileCurrent.Title,
-                Text: quillRef.getText().trim() // Now accessing the ref correctly
+                Title: fileCurrent.Title?.replace(/[^a-zA-Z0-9\s]/g, "") ?? "Untitled",
+                Text: quillRef.getText().trim(),
+                UserId: "User"
             }
             try {
                 const editText = await axios.put('http://localhost:4000/file/edit-text/', {
@@ -52,7 +55,6 @@ const SaveFileBttn = ({ quillRef }) => {
                     Id: fileCurrent.Id
                 })
                 if (editText.status !== 200) return;
-                setFileCurrent(newFile)
                 const folder = folders.find(folder => folder.Id === newFile.IdFolder);
                 const getFolders = await axios.get(`http://localhost:4000/folder/all/${folder.ProjectId}`, { withCredentials: true });
                 if (getFolders.status !== 200) return;
@@ -66,12 +68,16 @@ const SaveFileBttn = ({ quillRef }) => {
                     console.error("File not found in the folder.");
                     return;
                 }
-                console.log(getFolders.data);
+                // const remainingFiles = folder.Files.filter(file => file.Id !== fileCurrent.Id)
+                // const newEditedFiles = [...remainingFiles, fileCurrent]
+                setFileCurrent(newFile)
+                const filesInFolder =  await axios.get(`http://localhost:4000/file/get/${folder.Id}`, { withCredentials: true })
+                setFiles(filesInFolder.data)
             } catch (error) {
                 console.error("Error en la solicitud PATCH:", error);
             }
         } else {
-            //si no esta seleccionado ningun file se crea el file dentro de la primer folder del primer project
+            console.info("not select any file for save text")
             //si esta seleccionado un project pero no el folder se crea dentro del primer folder del project
             //si esta seleccionado un project y un folder se crea dentro de estos con este Text
         }

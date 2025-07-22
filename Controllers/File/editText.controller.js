@@ -1,5 +1,6 @@
 import File from "../../Schema/FileSchema.js"
 import Folder from "../../Schema/FolderSchema.js"
+import Project from "../../Schema/ProjectSchema.js"
 
 const editTextController = async (req, res) => {
   try {
@@ -19,12 +20,24 @@ const editTextController = async (req, res) => {
       return res.status(400).json({ message: `Folder with Id: ${FolderId} doesn't exist` })
     }
 
+    const project = await Project.findOne({Id: folder.ProjectId})
+
+    if (!project){
+      return res.status(400).json({ message: `Project with Id: ${folder.ProjectId} doesn't exist` })
+    }
 
     const fileText = {}
       fileText.Text = Text
       const fileOnFolder = folder.Files.find(file => file.Id === Id)
       fileOnFolder.Text = Text
+
+      const { Folders } = project
+      const remainingFolders = Folders.filter( folder => folder.Id !== FolderId )
+      const newFoldersInProject = [...remainingFolders, folder]
+      project.Folders = newFoldersInProject
+      
       await folder.save()
+      await project.save()
 
     await File.findOneAndUpdate(queryFile, fileText, { new: true })
     

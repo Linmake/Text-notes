@@ -37,7 +37,7 @@ const SaveFileBttn = ({ quillRef }) => {
         idFolderSelect
     } = useContext(positionSideContext);
 
-    useEffect(() => {}, [setFiles])
+    useEffect(() => { }, [setFiles])
 
 
     const handlerSave = async () => {
@@ -71,8 +71,8 @@ const SaveFileBttn = ({ quillRef }) => {
                 // const remainingFiles = folder.Files.filter(file => file.Id !== fileCurrent.Id)
                 // const newEditedFiles = [...remainingFiles, fileCurrent]
                 setFileCurrent(newFile)
-                const filesInFolder =  await axios.get(`http://localhost:4000/file/get/${folder.Id}`, { withCredentials: true })
-                setFiles(filesInFolder.data)
+                const { data } = await axios.get(`http://localhost:4000/file/all/${idFolderSelect}`, { withCredentials: true });
+                setFiles(data);
             } catch (error) {
                 console.error("Error en la solicitud PATCH:", error);
             }

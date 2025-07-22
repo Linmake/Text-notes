@@ -47,12 +47,12 @@ const File = ({ file, onContextMenu }) => {
   const { data, setOpenFolder, setFiles, files, openFolder, folders, setFolders, project } = UseData();
 
   const handlerFile = async (e, file) => {
-    console.info(folders)
-    console.info(project)
+    setFileCurrent(file);
   }
 
-  useEffect(() => {
-  }, [fileCurrent, setFolders, setFiles])
+useEffect(() => {
+  console.info(fileCurrent.Text);
+}, [fileCurrent]);
 
   return (
     <FileComponent

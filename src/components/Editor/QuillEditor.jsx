@@ -5,31 +5,28 @@ import '../../styles/components/editor/Editor.css';
 import { positionSideContext } from '../../context/SideProv';
 import QuillToolbar from './QuillToolbar';
 import { EditorFunctionsContext } from '../../context/editorFunctions';
-import styled from "styled-components"
+import styled from "styled-components";
 import SaveFileBttn from './SaveFileBttn';
 
 const TextEditor = styled.div`
   background-color: #303030 !important;
   color: white !important;
-`
+`;
 
 const QuillEditor = () => {
-  const { fileCurrent } = useContext(EditorFunctionsContext);
+  const { fileCurrent, setSaveFile } = useContext(EditorFunctionsContext);
   const { sidebarVisible } = useContext(positionSideContext);
-  
+
   const editorRef = useRef(null);
   const quillRef = useRef(null);
 
-  // Función estable establecida con useCallback
   const handleTextChange = useCallback(() => {
-    const { setSaveFile } = useContext(EditorFunctionsContext);
     setSaveFile(false);
-  }, []);
+  }, [setSaveFile]);
 
   useEffect(() => {
     if (!editorRef.current || quillRef.current) return;
 
-    // Inicializar Quill solo una vez
     const quill = new Quill(editorRef.current, {
       theme: 'snow',
       modules: {
@@ -46,22 +43,16 @@ const QuillEditor = () => {
     });
 
     quillRef.current = quill;
-
-    // Configurar el listener
     quill.on('text-change', handleTextChange);
+  }, [handleTextChange]);
 
-    // Cargar contenido inicial si existe
-    if (fileCurrent?.Text) {
-      quill.setText(fileCurrent.Text);
+  // Cada vez que cambia el archivo actual, se actualiza el contenido del editor
+  useEffect(() => {
+    if (quillRef.current && fileCurrent?.Text !== undefined) {
+      quillRef.current.setText(fileCurrent.Text || '');
     }
+  }, [fileCurrent?.Text]);
 
-    // Limpieza
-    return () => {
-      quill.off('text-change', handleTextChange);
-    };
-  }, [fileCurrent?.Text, handleTextChange]);
-
-  // Memoizar el editor para evitar re-renders innecesarios
   const editor = useMemo(() => (
     <TextEditor
       ref={editorRef}
@@ -69,8 +60,6 @@ const QuillEditor = () => {
       className={sidebarVisible ? '' : 'expand-editor'}
       spellCheck={"false"}
       autoCorrect={"false"}
-      backgroundColor={"#1F1F1F"}
-      autoFocus
     />
   ), [sidebarVisible]);
 
@@ -78,7 +67,7 @@ const QuillEditor = () => {
     <>
       <QuillToolbar />
       {editor}
-      <SaveFileBttn quillRef={quillRef.current} />
+      <SaveFileBttn quillRef={quillRef} />
     </>
   );
 };

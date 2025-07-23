@@ -43,7 +43,7 @@ export const InputFile = styled.input`
  */
 
 const File = ({ file, onContextMenu }) => {
-  const { fileCurrent, setFileCurrent } = useContext(EditorFunctionsContext);
+  const { fileCurrent, setFileCurrent, quillReference } = useContext(EditorFunctionsContext);
   const { data, setOpenFolder, setFiles, files, openFolder, folders, setFolders, project } = UseData();
 
   const handlerFile = async (e, file) => {
@@ -51,8 +51,13 @@ const File = ({ file, onContextMenu }) => {
   }
 
 useEffect(() => {
-  console.info(fileCurrent.Text);
-}, [fileCurrent]);
+  if (quillReference && typeof quillReference.getText === "function") {
+    const text = quillReference.getText();
+    console.log("Texto del editor:", text);
+  } else {
+    console.warn("quillReference aún no está listo o no es válido");
+  }
+}, [fileCurrent, quillReference]);
 
   return (
     <FileComponent

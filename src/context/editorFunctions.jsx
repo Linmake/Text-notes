@@ -8,9 +8,10 @@ export function EditorProvider({ children }) {
   const [saveFile, setSaveFile] = useState(false)
   const [textEditor, setTextEditor] = useState("")
   const [fileCurrent, setFileCurrent] = useState("")
+  const [quillReference, setQuillReference] = useState("")
 
   return (
-    <EditorFunctionsContext.Provider value={{ saveFile, setSaveFile, textEditor, setTextEditor, fileCurrent, setFileCurrent }}>
+    <EditorFunctionsContext.Provider value={{ saveFile, setSaveFile, textEditor, setTextEditor, fileCurrent, setFileCurrent, quillReference, setQuillReference }}>
       {children}
     </EditorFunctionsContext.Provider>
   )

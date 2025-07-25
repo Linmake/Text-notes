@@ -7,21 +7,22 @@ import editController from '../Controllers/Folder/edit.controller..js';
 import deleteAllController from '../Controllers/Folder/deleteAll.controller.js';
 import getAllOnProjectController from '../Controllers/Folder/getAllOnProject.controller.js';
 import getAllFoldersController from '../Controllers/Folder/getAllFolders.controller.js';
+import userJWTDTO from '../DTO/userJWTDTO.js';
 
   const FolderRouter = express.Router();
 
-  FolderRouter.get("/all", getAllFoldersController);
+  FolderRouter.get("/all", userJWTDTO, getAllFoldersController);
 
-  FolderRouter.get("/all/:ProjectId", getAllOnProjectController);
+  FolderRouter.get("/all/:ProjectId", userJWTDTO, getAllOnProjectController);
 
-  FolderRouter.post("/create/", validateFolder, createController);
+  FolderRouter.post("/create/", userJWTDTO, validateFolder, createController);
 
-  FolderRouter.put("/edit/:ProjectId/:FolderId", editController);
+  FolderRouter.put("/edit/:ProjectId/:FolderId", userJWTDTO, editController);
 
-  FolderRouter.delete("/delete/:ProjectId/:FolderId/", deleteController);
+  FolderRouter.delete("/delete/:ProjectId/:FolderId/", userJWTDTO, deleteController);
 
-  FolderRouter.delete("/delete/all/:ProjectId", deleteAllOnProjectController)
+  FolderRouter.delete("/delete/all/:ProjectId", userJWTDTO, deleteAllOnProjectController)
 
-  FolderRouter.delete("/all/delete", deleteAllController)
+  FolderRouter.delete("/all/delete", userJWTDTO, deleteAllController)
 
   export default FolderRouter;

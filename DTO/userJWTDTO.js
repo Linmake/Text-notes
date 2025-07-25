@@ -15,7 +15,6 @@ const userJWTDTO = async(req, res, next) => {
 			new TextEncoder().encode(process.env.JWT_PRIVATE_KEY)
 		)
  		req.UserId = payload.Id
-		
 		next()
 	}catch(err){
 		return res.status(403).send(`Error: ${err}`) 	

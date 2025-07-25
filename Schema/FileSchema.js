@@ -25,7 +25,6 @@ export const FileSchema = new Schema({
   },
   UserId: {
     type: String,
-    required: [true, 'Id User is required'],
     minlength: [5, 'Id User must be at least 5 characters long.']
   },
 });

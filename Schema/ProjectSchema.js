@@ -26,7 +26,11 @@ const ProjectSchema = new Schema({
     },
     default: null
   },
-  Folders: [FolderSchema]
+  Folders: [FolderSchema],
+  UserId: {
+    type: String,
+    minlength: [5, 'Id User must be at least 5 characters long.']
+  },
 }, {
   versionKey: false,
   strict: true,

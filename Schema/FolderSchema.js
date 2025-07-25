@@ -33,6 +33,10 @@ export const FolderSchema = new Schema({
     trim: true
   },
   Files: [FileSchema],
+  UserId: {
+    type: String,
+    minlength: [5, 'Id User must be at least 5 characters long.']
+  },
 });
 
 const Folder = mongoose.model('Folder', FolderSchema);

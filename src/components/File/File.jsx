@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import GetUserId from "./Hook/GetUserId";
 import { EditorFunctionsContext } from "../../context/editorFunctions";
 import { UseData } from "../../context/dataContext";
 

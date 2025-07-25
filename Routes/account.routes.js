@@ -29,7 +29,6 @@ AccountRouter.post("/signup", signupController)
 
 AccountRouter.post("/signin", signinController)
 
- 
 AccountRouter.put('/update-email', userJWTDTO, editEmailController)
 
 AccountRouter.post('/email-exists', emailExistsController)

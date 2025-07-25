@@ -7,14 +7,15 @@ import editProjectController from '../Controllers/Proyect/editProject.controller
 import deleteProjectController from '../Controllers/Proyect/deleteProject.controller.js'
 import getProjectController from '../Controllers/Proyect/getProject.controller.js'
 import deleteAllProjectsController from '../Controllers/Proyect/deleteAllProjects.controller.js'
+import userJWTDTO from '../DTO/userJWTDTO.js'
 
 const ProjectRouter = express.Router()
 
-ProjectRouter.get('/all', getAllProjectsController)
+ProjectRouter.get('/all', userJWTDTO, getAllProjectsController)
 
 ProjectRouter.get('/:ProjectId', getProjectController)
 
-ProjectRouter.post('/create', validateProject, createController)
+ProjectRouter.post('/create', validateProject, userJWTDTO, createController)
 
 ProjectRouter.put('/edit/:ProjectId', editProjectController);
 

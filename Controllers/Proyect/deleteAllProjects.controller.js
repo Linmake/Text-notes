@@ -1,5 +1,6 @@
-import Folder from "../../Schema/FolderSchema"
-import Project from "../../Schema/ProjectSchema"
+import File from "../../Schema/FileSchema.js"
+import Folder from "../../Schema/FolderSchema.js"
+import Project from "../../Schema/ProjectSchema.js"
 
 const deleteAllProjectsController = async (req, res) => {
   await Project.deleteMany({})

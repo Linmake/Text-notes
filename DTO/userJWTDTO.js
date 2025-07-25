@@ -14,7 +14,7 @@ const userJWTDTO = async(req, res, next) => {
 			jwt, 
 			new TextEncoder().encode(process.env.JWT_PRIVATE_KEY)
 		)
- 		req.Id = payload.Id
+ 		req.UserId = payload.Id
 		
 		next()
 	}catch(err){

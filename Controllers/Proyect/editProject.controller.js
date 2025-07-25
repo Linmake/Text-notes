@@ -1,4 +1,4 @@
-import Project from "../../Schema/ProjectSchema"
+import Project from "../../Schema/ProjectSchema.js"
 
 const editProjectController = async (req, res) => {
   try {

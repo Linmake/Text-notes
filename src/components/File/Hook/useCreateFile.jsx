@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { v4 as uuidV4 } from 'uuid';
-
 import axios from 'axios';
 import { positionSideContext } from '../../../context/SideProv.jsx';
 import { UseData } from '../../../context/dataContext.jsx';
@@ -14,8 +13,7 @@ const useCreateFile = () => {
  
  const { folders, setFiles } = UseData()
   
- const create = async(FileInput, IdFolder) => {
-  
+ const handlerCreate = async(FileInput, IdFolder) => {
    try {
      const folder = folders.find(
         folder => folder.Id === IdFolder
@@ -49,7 +47,7 @@ const useCreateFile = () => {
     }
   }
   
-  return [create, onBlur]
+  return [handlerCreate, onBlur]
 }
 
 export default useCreateFile

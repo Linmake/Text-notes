@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import styled from 'styled-components';
 import axios from 'axios';
 import { positionSideContext } from "../../context/SideProv";
+import GetUserId from '../Hooks/GetUserId/GetUserId';
 
 const Form = styled.div`
   width: 24vw;
@@ -35,20 +36,22 @@ export const NewProjectTab = () => {
     if (event.keyCode !== 13) {
       return
     }
-    handleSubmit(event)
+    handleCreate(event)
   }
 
-  const handleSubmit = async (e) => {
+  const handleCreate = async (e) => {
     e.preventDefault();
-    const data = {
+    const UserId = await GetUserId();
+    const newProyect = {
       Id: uuidV4(),
       Title: refName.current.value,
       Date: format(new Date(), "yyyy-MM-dd"),
-      Folders: []
+      Folders: [],
+      UserId: UserId
     };
     try {
-      const res = await axios.post("http://localhost:4000/project/create", data);
-      setProjects(prevProjects => [...prevProjects, data]);
+      const res = await axios.post("http://localhost:4000/project/create", newProyect);
+      setProjects(prevProjects => [...prevProjects, newProyect]);
       refName.current.value = ""
       return res;
     } catch (error) {
@@ -59,7 +62,7 @@ export const NewProjectTab = () => {
   return (
     <Form>
       <Input ref={refName} autoFocus type="text" className="form-control me-2" onKeyDown={handlerEnt} />
-      <Button type='Submit' onClick={handleSubmit} className="btn btn-outline-success">Create</Button>
+      <Button type='Submit' onClick={handleCreate} className="btn btn-outline-success">Create</Button>
     </Form>
   );
 };

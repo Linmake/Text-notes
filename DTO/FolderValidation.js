@@ -15,7 +15,7 @@ const FolderJsonSchema = {
     Date: { type: 'string', pattern: '\\d{4}-\\d{2}-\\d{2}' },
     Void: { type: 'boolean' },
     Files: { type: 'array' },
-    ProjectId: { type: 'string', minLength: 1 }
+    ProjectId: { type: 'string', minLength: 1 },
   },
   required: ['Id', 'Title', 'ProjectId'],
   additionalProperties: false

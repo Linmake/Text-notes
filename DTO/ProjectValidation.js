@@ -13,7 +13,7 @@ const projectJsonSchema = {
     Id: { type: 'string', minLength: 1 },
     Title: { type: 'string', minLength: 1 },
     Date: { type: ['string', 'null'], pattern: '\\d{4}-\\d{2}-\\d{2}' },
-    Folders: { type: 'array' }
+    Folders: { type: 'array' },
   },
   required: ['Id', 'Title', 'Date' ],
   additionalProperties: false

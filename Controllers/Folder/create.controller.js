@@ -12,7 +12,8 @@ const createController = async(req, res) => {
           Date, 
           Void, 
           ProjectId, 
-          Files 
+          Files,
+          UserId
         } = folder
     
         if (!folder) return res.status(400).send("Folder don't exist");

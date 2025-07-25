@@ -7,7 +7,7 @@ import axios from "axios";
  */
 export const isSignupByEmail = async (body) => {
   try {
-    const res = await axios.post("http://localhost:4000/account/email-exists", body);
+    const res = await axios.post("http://localhost:4000/account/email-exists", body, {withCredentials: true});
     return res.data;
   } catch (err) {
     console.log(err)

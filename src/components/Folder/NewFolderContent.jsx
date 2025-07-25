@@ -77,7 +77,8 @@ const NewFolderContent = () => {
     try {
       const resFolders = await axios.post(
         `http://localhost:4000/folder/create`,
-        newFolder, 
+        newFolder,
+        {withCredentials: true}
       );
       setFolders([...folders, newFolder]);
       setAddNewFolder(false);
@@ -109,7 +110,8 @@ const NewFolderContent = () => {
         };
         const resFolders = await axios.post(
           `http://localhost:4000/folder/create`,
-          newFolder
+          newFolder,
+          {withCredentials: true}
         );
         setFolders([...folders, newFolder]);
         setAddNewFolder(false);

@@ -151,7 +151,8 @@ export const Files = () => {
   
   const handlerDelete = async(e, fileId) => {
     const { status } = await axios.delete(
-      `http://localhost:4000/file/delete/${fileId}`
+      `http://localhost:4000/file/delete/${fileId}`,
+      {withCredentials: true}
     );
     if (status !== 200) return;
     console.info("File deleted successfully");
@@ -171,7 +172,7 @@ export const Files = () => {
   const handlerSaveEdit = async (event, FolderId) => {
     if (event.keyCode !== 13) return;
     const { status } = await axios.put(
-      `http://localhost:4000/folder/edit/${projectId}/${FolderId}`,
+      `http://localhost:4000/folder/edit/${projectId}/${FolderId}, {withCredentials: true}`,
       { Title: newTitle },
       { withCredentials: true }
     );

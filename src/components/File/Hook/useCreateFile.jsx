@@ -28,7 +28,7 @@ const useCreateFile = () => {
         UserId: UserId
       };
       const filesList = folder.Files;
-      const {data, status} = await axios.post(`http://localhost:4000/file/create`, newFile)
+      const {data, status} = await axios.post(`http://localhost:4000/file/create`, newFile, {withCredentials: true})
       if(status !== 201) return console.error(data);
       setFiles([...filesList, newFile])
       FileInput.current.value = "";

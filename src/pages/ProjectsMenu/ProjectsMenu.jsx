@@ -41,7 +41,7 @@ const ProjectsMenu = () => {
     const fetchProjects = async () => {
       try {
         setCookie(document.cookie);
-        const { data } = await axios.get(`http://localhost:4000/project/all`);
+        const { data } = await axios.get(`http://localhost:4000/project/all`, {withCredentials: true});
         setProjects(data);
       } catch (error) {
         console.error("Error fetching projects:", error);

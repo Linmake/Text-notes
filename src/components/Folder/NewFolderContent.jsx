@@ -8,6 +8,7 @@ import { getDate } from "../sidebar/Hooks/date";
 import { UseData } from "../../context/dataContext";
 import { v4 as uuidV4 } from "uuid";
 import axios from "axios";
+import GetUserId from "../Hooks/GetUserId/GetUserId";
 
 export const Li = styled.li`
   list-style: none;
@@ -63,6 +64,7 @@ const NewFolderContent = () => {
       setAddNewFolder(false);
       return;
     }
+    const UserId = await GetUserId();
     const newFolder = {
       Id: uuidV4(),
       Title: inputRefNewFolder.current.value,
@@ -70,6 +72,7 @@ const NewFolderContent = () => {
       Void: true,
       ProjectId: project.Id,
       Files: [],
+      UserId: UserId,
     };
     try {
       const resFolders = await axios.post(

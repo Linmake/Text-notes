@@ -80,6 +80,7 @@ const NewFolderContent = () => {
         newFolder,
         {withCredentials: true}
       );
+
       setFolders([...folders, newFolder]);
       setAddNewFolder(false);
       inputRefNewFolder.current.value = "";
@@ -100,6 +101,7 @@ const NewFolderContent = () => {
       return;
     } else {
       try {
+        const UserId = await GetUserId();
         const newFolder = {
           Id: uuidV4(),
           Title: inputRefNewFolder.current.value,
@@ -107,7 +109,9 @@ const NewFolderContent = () => {
           Void: true,
           ProjectId: project.Id,
           Files: [],
+          UserId: UserId
         };
+
         const resFolders = await axios.post(
           `http://localhost:4000/folder/create`,
           newFolder,

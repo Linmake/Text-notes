@@ -32,7 +32,31 @@ export const FolderSchema = new Schema({
     required: [true, 'El Id del Proyecto es obligatorio.'],
     trim: true
   },
-  Files: [FileSchema],
+  Files: [{
+    Id: {
+      type: String,
+      required: [true, 'Id is required'],
+      minlength: [5, 'Id must be at least 5 characters long.']
+    },
+    FolderId: {
+      type: String,
+      required: [true, 'FolderId is required'],
+      minlength: [5, 'FolderId must be at least 5 characters long.']
+    },
+    Title: {
+      type: String,
+      required: [true, 'Title is required'],
+      minlength: [1, 'Title must be at least 1 character long.']
+    },
+    Text: {
+      type: String,
+      required: [false]
+    },
+    UserId: {
+      type: String,
+      minlength: [5, 'Id User must be at least 5 characters long.']
+    },
+  }],
   UserId: {
     type: String,
     minlength: [5, 'Id User must be at least 5 characters long.']

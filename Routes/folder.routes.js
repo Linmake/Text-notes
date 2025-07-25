@@ -15,7 +15,7 @@ import userJWTDTO from '../DTO/userJWTDTO.js';
 
   FolderRouter.get("/all/:ProjectId", userJWTDTO, getAllOnProjectController);
 
-  FolderRouter.post("/create/", userJWTDTO, validateFolder, createController);
+  FolderRouter.post("/create/", validateFolder, userJWTDTO, createController);
 
   FolderRouter.put("/edit/:ProjectId/:FolderId", userJWTDTO, editController);
 

@@ -16,6 +16,7 @@ const FolderJsonSchema = {
     Void: { type: 'boolean' },
     Files: { type: 'array' },
     ProjectId: { type: 'string', minLength: 1 },
+    UserId: {type: 'string'}
   },
   required: ['Id', 'Title', 'ProjectId'],
   additionalProperties: false

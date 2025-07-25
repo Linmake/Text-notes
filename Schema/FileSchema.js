@@ -6,7 +6,6 @@ export const FileSchema = new Schema({
   Id: {
     type: String,
     required: [true, 'Id is required'],
-    unique: true,
     minlength: [5, 'Id must be at least 5 characters long.']
   },
   FolderId: {

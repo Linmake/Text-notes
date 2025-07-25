@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const createController = async(req, res) => {
     try {
-        let {
+        const {
           Id,
           Title, 
           Date, 
@@ -16,7 +16,7 @@ const createController = async(req, res) => {
 
         const { UserId } = req
 
-        let folderData = { 
+        const folderData = { 
           Id: Id,
           Title: Title, 
           Date: Date, 
@@ -30,10 +30,6 @@ const createController = async(req, res) => {
         const project = await Project.findOne({ Id: ProjectId })
         if (!project) return res.status(400).send("Project don't exist");
         if ((/[<>?|{}\[\]#=()]/.test(Title))) return res.status(400).send("Special characters");
-        Id = uuidv4()
-        Void = true
-        Files = []
-        Date = getDate()
         await Folder.create(folderData)
         project.Folders.push(folderData)
         await project.save()

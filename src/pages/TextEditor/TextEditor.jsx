@@ -11,7 +11,7 @@ import EditorHeader from '../../components/Header/EditorHeader';
 
 const getProjects = async () => {
   try {
-    const { data } = await axios.get(`http://localhost:4000/project/all`);
+    const { data } = await axios.get(`http://localhost:4000/project/all`, {withCredentials: true});
     return data;
   } catch (error) {
     console.error(error);

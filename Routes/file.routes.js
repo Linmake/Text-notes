@@ -9,25 +9,26 @@ import editTextController from '../Controllers/File/editText.controller.js'
 import deleteAllFilesController from '../Controllers/File/deleteAll.controller.js'
 import deleteAllByFolderController from '../Controllers/File/deleteAllByFolder.controller.js'
 import deleteController from '../Controllers/File/delete.controller.js'
+import userJWTDTO from "../DTO/userJWTDTO.js"
 
 const FileRouter = Express.Router()
 
-  FileRouter.get('/all/', getAllFilesController)
+  FileRouter.get('/all/', userJWTDTO, getAllFilesController)
 
-  FileRouter.get('/get/:FolderId', getFileController)
+  FileRouter.get('/get/:FolderId', userJWTDTO, getFileController)
 
-  FileRouter.get('/all/:FolderId', getAllFilesController)
+  FileRouter.get('/all/:FolderId', userJWTDTO, getAllFilesController)
 
-  FileRouter.post('/create', FileValidation, createController)
+  FileRouter.post('/create', userJWTDTO, FileValidation, createController)
 
-  FileRouter.put('/edit-text', editTextController)
+  FileRouter.put('/edit-text', userJWTDTO, editTextController)
 
-  FileRouter.put('/edit-title', editTitleController)
+  FileRouter.put('/edit-title', userJWTDTO, editTitleController)
 
-  FileRouter.delete('/all/delete', deleteAllFilesController)
+  FileRouter.delete('/all/delete', userJWTDTO, deleteAllFilesController)
 
-  FileRouter.delete('/delete/:FileId', deleteController)
+  FileRouter.delete('/delete/:FileId', userJWTDTO, deleteController)
 
-  FileRouter.delete('/delete/all/:FolderId', deleteAllByFolderController)
+  FileRouter.delete('/delete/all/:FolderId', userJWTDTO, deleteAllByFolderController)
 
 export default FileRouter

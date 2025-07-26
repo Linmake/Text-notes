@@ -1,26 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 #editor {
   position: absolute;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.05) !important;
   width: 48%;
-  height: 100%;
-  border: 1px solid rgba(216, 216, 216, 0.277);
-  box-shadow: 0px 0px 10px 0px rgba(166, 166, 166, 0.327);
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(151, 151, 151, 0.389);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(130, 130, 130, 0.609);
-  border-radius: 0.5rem;
+  height: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
   outline-style: none;
   resize: none;
   text-transform: initial;
   grid-area: main;
-  padding: 1%;
-  -webkit-user-select: text;
-     -moz-user-select: text;
-          user-select: text;
+  padding: 24px;
+  user-select: text;
   margin: 6% auto 0 10%;
-  top: 5%;
+  top: 14%;
+  color: #f0f0f0;
   left: 25%;
+  font-size: 1.3rem;
 }
+
+#editor input{
+  display: none;
+}
+
 
 .stylesEditor {
   font-family: "Poppins";
@@ -31,12 +36,26 @@
 }
 
 .ql-container {
+  background: transparent !important;
   border: none !important;
 }
 
 .ql-editor {
-  width: 100%;
-  background: none;
+  background: transparent !important;
+  color: white !important;
+  font-size: 1.2rem;
+  min-height: 200px;
+  border: none;
+}
+
+.ql-editor p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ql-editor:empty::before {
+  content: '';
+  display: block;
 }
 
 #toolbar {
@@ -49,10 +68,38 @@
   top: 8%;
   left: 17%;
   right: auto;
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   align-items: center;
   border-left: none;
   z-index: 2;
+}
+
+.ql-toolbar button {
+  color: white !important;
+  border: none;
+  background: transparent;
+  margin: 0 4px;
+  transition: background 0.2s ease;
+}
+
+.ql-toolbar button:hover,
+.ql-toolbar button.ql-active {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+}
+
+.ql-toolbar button svg {
+  fill: white !important; /* Cambia íconos vectoriales */
+}
+
+.ql-toolbar .ql-picker,
+.ql-toolbar .ql-picker-label,
+.ql-toolbar .ql-picker-item {
+  color: white !important;
 }
 
 .expand-toolbar {

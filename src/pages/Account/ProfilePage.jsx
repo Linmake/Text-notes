@@ -7,30 +7,49 @@ const Container = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: #2f3e68ff;
+  background-color: white;
   align-items: center;
   user-select: none;
+  margin: 0;
 `;
 const ParentContent = styled.div`
-  width: 90%;
-  height: 90%;
+  width: 95%;
+  height: 100%;
   display: flex;
+  background-color: #FFFFFE;
 `;
 
-const ProfileContent = styled.div`
+const Onboard = styled.div`
   display: flex;
-  border: 1px solid #bebebe;
   flex-direction: column;
-  width: 30%;
+  width: 14%;
   height: 100%;
   align-items: center;
   padding-top: 6%;
-  background-color: #bebebe54;
-  margin-left: 0.9rem;
+  background-color: #ffffffff;
   gap: 0.7rem;
-  border-radius: 9px;
   color: #1d2936ff;
   font-size: 1.5rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  box-shadow: rgba(158, 162, 165, 0.2) 0px 8px 24px;
+`;
+
+const Profile = styled.div`
+  position: absolute;
+  margin-left: 86%;
+  display: flex;
+  flex-direction: column;
+  width: 14%;
+  height: 100%;
+  align-items: center;
+  padding-top: 6%;
+  background-color: #ffffffff;
+  color: #1d2936ff;
+  font-size: 1.5rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  box-shadow: rgba(158, 162, 165, 0.2) 0px 8px 24px;
 `;
 
 const LogoImg = styled.img`
@@ -46,11 +65,14 @@ const ProfilePage = () => {
   return (
     <Container>
       <ParentContent>
-        <ProfileContent>
+        <Onboard>
+          OVERVIEW
+        </Onboard>
+        <AdminMenuComponent/>
+        <Profile>
           <LogoImg src={profileImg} />
           {name}
-        </ProfileContent>
-        <AdminMenuComponent/>
+        </Profile>
       </ParentContent>
     </Container>
   );

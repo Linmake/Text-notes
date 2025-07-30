@@ -19,7 +19,29 @@ const Toggle = styled.div`
   border-radius: 0.3rem;
 `;
 
-const ToggleElement = styled(Link)`
+// const ToggleElement = styled(Link)`
+//   text-align: center;
+//   width: 100%;
+//   padding: 0.2rem;
+//   border-radius: 0.3rem;
+//   z-index: 1000;
+//   &:first-child {
+//     margin-top: 2rem;
+//     font-weight: 600;
+//     font-size: 1.1rem;
+//   }
+//   &:last-child {
+//     margin-bottom: 0.8rem;
+//   }
+//   &:hover {
+//     background-color: rgba(247, 248, 248, 0.69);
+//   }
+//   &:active {
+//     background-color: rgba(247, 248, 248, 0.69);
+//   }
+// `;
+
+const ToggleElement = styled.a`
   text-align: center;
   width: 100%;
   padding: 0.2rem;
@@ -40,13 +62,6 @@ const ToggleElement = styled(Link)`
     background-color: rgba(247, 248, 248, 0.69);
   }
 `;
-
-const Dropdown = styled.li`
-  list-style: none;
-  width: 25%;
-`;
-
-const DropdownMenu = styled.ul``;
 
 const LogoutBtn = styled.button`
   color: tomato;
@@ -74,8 +89,8 @@ const ToggleAccount = () => {
   };
   return (
     <Toggle>
-      <ToggleElement to={"account/profile"}>Account</ToggleElement>
-      <ToggleElement to={"settings"}>Settings</ToggleElement>
+      <ToggleElement href={"account/profile"} >Account</ToggleElement>
+      <ToggleElement href={"settings"} >Settings</ToggleElement>
       <LogoutBtn
         onClick={(e) => handlerLogout(e)}
         role="button"

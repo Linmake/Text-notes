@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { positionSideContext } from '../../context/SideProv';
 
+
 const QuillToolbar = () => {
   const { sidebarVisible } = useContext(positionSideContext);
 
@@ -56,7 +57,7 @@ const QuillToolbar = () => {
       <button className="ql-bold"></button>
       <button className="ql-italic"></button>
       <button className="ql-underline"></button>
-      <button className="ql-strike"></button>
+      <button className=""></button>
       <span className="ql-formats">
         <button className="ql-script" value="sub"></button>
         <button className="ql-script" value="super"></button>

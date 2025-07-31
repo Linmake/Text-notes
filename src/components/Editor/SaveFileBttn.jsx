@@ -11,18 +11,18 @@ const SaveBttn = styled.button`
   position: absolute;
   top: 1.6%;
   left: 73%;
-  width: 4.4rem;
   z-index: 20;
-  border-radius: 5%;
-  width: 4%;
-  height: 5%;
+  border-radius: 0.2rem;
+  width: 4.3rem;
+  height: 2.5rem;
   color: white;
   border: none;
+  box-shadow: rgba(222, 222, 222, 0.15) 0px 2px 5px 0px, rgba(222, 222, 222, 0.15) 0px 1px 1px 0px;
   background-color: #2791e2ff;
 `;
 
 const Icon = styled(FontAwesomeIcon)`
-  width: 2rem;
+  width: 3rem;
 `;
 
 const SaveFileBttn = ({ quillRef }) => {

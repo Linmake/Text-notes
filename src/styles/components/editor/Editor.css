@@ -62,11 +62,12 @@
   position: fixed;
   display: flex;
   gap: 2rem;
-  width: 83.1%;
+  width: 70%;
+
   height: 5.5%;
   padding: 10px;
-  top: 8%;
-  left: 17%;
+  top: 10%;
+  left: 24%;
   right: auto;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
@@ -83,17 +84,11 @@
   border: none;
   background: transparent;
   margin: 0 4px;
-  transition: background 0.2s ease;
-}
-
-.ql-toolbar button:hover,
-.ql-toolbar button.ql-active {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
 }
 
 .ql-toolbar button svg {
   fill: white !important; /* Cambia íconos vectoriales */
+  color: #f0f0f0;
 }
 
 .ql-toolbar .ql-picker,
@@ -110,3 +105,27 @@
 .expand-editor {
   left: 18% !important;
 }/*# sourceMappingURL=Editor.css.map */
+
+.ql-toolbar .ql-stroke {
+  stroke: rgb(207, 207, 207) !important;
+}
+
+ql-toolbar button:hover .ql-fill,
+.ql-toolbar button.ql-active .ql-fill {
+  fill: #333 !important;
+}
+
+.ql-toolbar .ql-stroke,
+.ql-toolbar .ql-fill {
+  transition: all 0.2s ease-in-out;
+}
+
+.ql-toolbar button:hover .ql-stroke,
+.ql-toolbar button.ql-active .ql-stroke {
+  stroke: #ffffff !important;
+}
+
+.ql-toolbar button:hover .ql-fill,
+.ql-toolbar button.ql-active .ql-fill {
+  fill: #ffffff !important;
+}

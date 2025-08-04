@@ -8,6 +8,15 @@ import { EditorFunctionsContext } from '../../context/editorFunctions';
 import styled from "styled-components";
 import SaveFileBttn from './SaveFileBttn';
 
+const breakpoints = {
+  xsm: "376px",
+  sm: "576px",  // móviles horizontales / tablets pequeñas
+  md: "768px",  // tablets verticales
+  lg: "905px",  // laptops pequeñas
+  xl: "1200px", // pantallas grandes
+  xxl: "1400px", // TVs/monitores extra grandes
+};
+
 const TextEditor = styled.div`
   background-color: rgba(255, 255, 255, 0.05) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;

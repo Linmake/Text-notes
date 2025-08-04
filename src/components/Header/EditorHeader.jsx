@@ -1,6 +1,15 @@
 import styled from 'styled-components'
 import Account from '../Account/Accounts/Account'
 
+const breakpoints = {
+  xsm: "376px",
+  sm: "576px",  // móviles horizontales / tablets pequeñas
+  md: "768px",  // tablets verticales
+  lg: "905px",  // laptops pequeñas
+  xl: "1200px", // pantallas grandes
+  xxl: "1400px", // TVs/monitores extra grandes
+};
+
 const Header = styled.nav`
   position: fixed;
   grid-area: header;
@@ -10,6 +19,38 @@ const Header = styled.nav`
   background-color: #212529 !important;
   border-bottom: 1px solid #2B2B2B;
   border-top  : 1px solid #2B2B2B;
+  
+  /* Mobile First (estilo base para móviles) */
+  @media (min-width: ${breakpoints.xsm}) {
+    background-color: violet !important;
+    height: 50px;
+    padding: 0;
+  }
+
+  media (min-width: ${breakpoints.sm}) {
+    background-color: salmon !important;
+    height: 50px;
+  }
+
+  /* Tablet (≥ 768px) */
+  @media (min-width: ${breakpoints.md}) {
+    background-color: lightgreen !important;
+  }
+
+  /* Desktop (≥ 905px) */
+  @media (min-width: ${breakpoints.lg}) {
+    background: lightcoral !important;
+    height: 55px;
+  }
+  
+  @media (min-width: ${breakpoints.xl}) {
+    background-color: tomato !important;
+  }
+
+  @media (min-width: ${breakpoints.xxl}) {
+    background-color: brown !important;
+  }
+  
   `
 const ListaInicio = styled.ul`
   margin-left: 72px;

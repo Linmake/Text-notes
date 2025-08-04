@@ -83,12 +83,12 @@ const AdminMenuComponent = () => {
      
     }
     return (
-        <div className="bg-blue-500 text-white p-4 border border-gray-400 w-[40%] h-[50%] mt-[9%] ml-[15%] rounded-[9px] flex flex-col items-center">
+        <AdminMenu>
             <Title>Admin Menu</Title>
             <DeleteProyectsBttn onClick={ (e) => handlerDeleteProyects(e) } role={"button"}>Delete Proyects</DeleteProyectsBttn>
             <DeleteFoldersBttn onClick={ (e) => handlerDeleteFolders(e) } role={"button"}>Delete Folders</DeleteFoldersBttn>
             <DeleteFilesBttn onClick={ (e) => handlerDeleteFiles(e) } role={"button"}>Delete Files</DeleteFilesBttn>
-        </div>
+        </AdminMenu>
     )
 }
 //quitar styled components por completo para que los estilos agarren 

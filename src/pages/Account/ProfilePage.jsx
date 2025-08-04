@@ -87,7 +87,7 @@ const SearchBox = styled.input`
  const FilterSearchIcon = styled(FontAwesomeIcon)`
   font-size: 1.4rem;
  margin-left: 1.7rem;
-`;
+`
 
 const MainCore = styled.div`
   position: absolute;
@@ -97,15 +97,23 @@ const MainCore = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  ` 
-
+`
 const ProfilePage = () => {
   const {setName, name } = UseData()
   return (
     <Container>
       <ParentContent>
         <Onboard>
-          OVERVIEW
+          <ul className="bg-green-50">
+            <li>
+              <p className="text-green-500">OVERVIEW</p>
+              </li>
+            <li>Dashboard</li>
+            <li>Inbox</li>
+            <li>Lesson</li>
+            <li>Task</li>
+            <li>Group</li>
+          </ul>
         </Onboard>
         <MainCore>
         <SearchContainer>

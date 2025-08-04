@@ -16,13 +16,11 @@ padding: 2.3rem;
 flex-direction: column;
 align-items: center;
 `
-
 const Title = styled.h1`
 font-size: 2rem;
 color: #bebebe;
 margin-bottom: 2.5rem;
 `
-
 const DeleteProyectsBttn = styled.button`
     width: 9rem;
     height: 3.3rem;
@@ -34,7 +32,6 @@ const DeleteProyectsBttn = styled.button`
     color: #1d2936ff;
     font-size: 1.04rem;
 `
-
 const DeleteFoldersBttn = styled.button`
      width: 9rem;
     height: 3.3rem;
@@ -46,7 +43,6 @@ const DeleteFoldersBttn = styled.button`
     color: #1d2936ff;
     font-size: 1.04rem;
 `
-
 const DeleteFilesBttn = styled.button`
      width: 9rem;
     height: 3.3rem;
@@ -58,12 +54,9 @@ const DeleteFilesBttn = styled.button`
     color: #1d2936ff;
     font-size: 1.04rem;
 `
-
 const AdminMenuComponent = () => {
-
     const { data, setOpenFolder, folders, setFolders, setFiles } = UseData();
       const { projects, setProjects } = useContext(positionSideContext);
-
     const handlerDeleteProyects = async(e) => {
      const { status } = await axios.delete("http://localhost:4000/project/all/delete", {withCredentials: true})
      if(status !== 200) {
@@ -72,7 +65,6 @@ const AdminMenuComponent = () => {
      console.log("All Proyects delete with succesfull")
      return setProjects([])
     }
-    
     const handlerDeleteFolders = async(e) => {
      const { status } = await axios.delete("http://localhost:4000/folder/all/delete", {withCredentials: true})
      if(status !== 200) {
@@ -81,7 +73,6 @@ const AdminMenuComponent = () => {
      console.log("All Folders delete with succesfull")
      return setFolders([])
     }
-
     const handlerDeleteFiles = async(e) => {
      const { status } = await axios.delete("http://localhost:4000/file/all/delete", {withCredentials: true})
      if(status !== 200) {
@@ -91,15 +82,14 @@ const AdminMenuComponent = () => {
      return setFiles([])
      
     }
-
     return (
-        <AdminMenu>
+        <div className="bg-blue-500 text-white p-4 border border-gray-400 w-[40%] h-[50%] mt-[9%] ml-[15%] rounded-[9px] flex flex-col items-center">
             <Title>Admin Menu</Title>
             <DeleteProyectsBttn onClick={ (e) => handlerDeleteProyects(e) } role={"button"}>Delete Proyects</DeleteProyectsBttn>
             <DeleteFoldersBttn onClick={ (e) => handlerDeleteFolders(e) } role={"button"}>Delete Folders</DeleteFoldersBttn>
             <DeleteFilesBttn onClick={ (e) => handlerDeleteFiles(e) } role={"button"}>Delete Files</DeleteFilesBttn>
-        </AdminMenu>
+        </div>
     )
 }
-
+//quitar styled components por completo para que los estilos agarren 
 export default AdminMenuComponent

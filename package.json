@@ -22,7 +22,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@sinclair/typebox": "^0.32.35",
-    "@tailwindcss/vite": "^4.1.11",
     "ajv": "^8.17.1",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^3.0.1",
@@ -53,7 +52,6 @@
     "sass": "^1.87.0",
     "stream-browserify": "^3.0.0",
     "styled-components": "^6.1.17",
-    "tailwindcss": "^4.1.11",
     "util": "^0.12.5",
     "uuid": "^11.1.0",
     "uuid-parse": "^1.1.0"

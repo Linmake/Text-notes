@@ -63,7 +63,6 @@
   display: flex;
   gap: 2rem;
   width: 70%;
-
   height: 5.5%;
   padding: 10px;
   top: 10%;
@@ -104,7 +103,7 @@
 
 .expand-editor {
   left: 18% !important;
-}/*# sourceMappingURL=Editor.css.map */
+}
 
 .ql-toolbar .ql-stroke {
   stroke: rgb(207, 207, 207) !important;

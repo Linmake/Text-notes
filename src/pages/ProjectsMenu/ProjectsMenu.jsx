@@ -5,7 +5,6 @@ import styled from "styled-components";
 import axios from "axios";
 import { positionSideContext } from "../../context/SideProv.jsx";
 import { UseData } from "../../context/dataContext.jsx";
-import "../../styles/pages/Projects/global.css";
 import NoProjects from "../../components/ProjectsMenu/NoProjects.jsx";
 import Project from "../../components/ProjectsMenu/Project.jsx";
 import MainHeader from "../../components/Header/MainHeader.jsx";

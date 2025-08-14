@@ -1,4 +1,3 @@
-import '../../styles/pages/Main/main.css'
 import MainContainer from '../components/Main/MainContainer';
 import MainHeader from '../../components/Header/MainHeader';
 import CardsContainer from '../components/Main/CardsContainer';

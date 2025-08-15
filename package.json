@@ -14,7 +14,6 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postbuild": "next-sitemap",
     "dev": "nodemon /index.js",
     "build": "vite build"
   },

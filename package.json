@@ -42,6 +42,7 @@
     "jose": "^6.0.12",
     "mongodb": "^6.18.0",
     "mongoose": "^8.17.1",
+    "next-sitemap": "^4.2.3",
     "path-browserify": "^1.0.1",
     "quill": "^2.0.3",
     "react": "^19.1.1",

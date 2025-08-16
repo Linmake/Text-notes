@@ -4,7 +4,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   base: './',
-  plugins: [react(), svgr(),], // ✅ Aquí agregas el plugin
+  plugins: [react(), svgr(),],
+  server: {
+    port: 3000
+  },
   resolve: {
     alias: {
       '@context': '/src/context/',

@@ -12,7 +12,7 @@
   "author": "Linda Nicole Gonzalez Figueroa",
   "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "vite",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon /index.js",
     "build": "vite build"
@@ -63,6 +63,7 @@
     "@types/babel__template": "^7.4.4",
     "@vitejs/plugin-react": "^5.0.0",
     "nodemon": "^3.1.10",
+    "vite": "^7.1.2",
     "vite-plugin-svgr": "^4.3.0"
   },
   "browserslist": {

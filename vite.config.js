@@ -3,7 +3,7 @@ import svgr from 'vite-plugin-svgr';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: '/',
+  base: './',
   plugins: [react(), svgr(),], // ✅ Aquí agregas el plugin
   resolve: {
     alias: {

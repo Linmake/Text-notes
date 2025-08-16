@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import profileImg from "../../assets/people.png";
+import AdminMenuComponent from "../components/Account/AdminMenu";
 
 const Container = styled.div`
   display: flex;
@@ -37,6 +38,7 @@ const SettingsAccountPage = () => {
         <ProfileContent>
           <LogoImg src={profileImg} />
           Settings Account ✨🎇🔧🔨⚙🛠
+          <AdminMenuComponent/>
         </ProfileContent>
       </ParentContent>
     </Container>

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import profileImg from "../../assets/people.png";
 import { UseData } from "../../context/dataContext";
-import AdminMenuComponent from "../components/Account/AdminMenu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faCog, faFilter, faInbox, faSignOutAlt, faTrophy } from "@fortawesome/free-solid-svg-icons";
 
@@ -547,14 +546,13 @@ const ProfilePage = () => {
               </TitleNote1>
             </Item3ThirtyBanner>
           </ThirtyBanner>
-          <AdminMenuComponent />
+          
         </MainCore>
         <Profile>
           <LogoImg src={profileImg} />
           {name}
           <MessageText>
-            Good Night {(name & name !== "") ? name : "Nicole"}
-
+            Good Night {(name & name !== "") ? name : "User"}
           </MessageText>
           <MessageSecond>
             Continue Your Journey And Archive

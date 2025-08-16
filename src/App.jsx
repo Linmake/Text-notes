@@ -40,7 +40,10 @@ function App() {
     )
   )
   return (
+    <>
     <RouterProvider router={router}/>
+    <h1>HOLa mundo21</h1>
+    </>
   )
 }
 export default App

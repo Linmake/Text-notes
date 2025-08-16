@@ -1940,29 +1940,6 @@ background-color: #cdcdcd;
   color: #202020;
   font-size: 1.5rem;
 `;S.div`
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  background-color: #fcfcfc;
-  align-items: center;
-`;S.div`
-  border: 1px solid #bebebe;
-  width: 90%;
-  height: 90%;
-`;S.div`
-  border-right: 1px solid #bebebe;
-  width: 30%;
-  height: 100%;
-  padding-left: 3%;
-  padding-top: 3%;
-  display: flex;
-  flex-direction: column;
-`;S.img`
-  border: 1px solid #bebebe;
-  border-radius: 55%;
-  width: 40%;
-  box-sizing: border-box;
-`;S.div`
 border: 1px solid grey;
 width: 40%;
 display: flex;
@@ -2007,6 +1984,29 @@ margin-bottom: 2.5rem;
     cursor: pointer;
     color: #1d2936ff;
     font-size: 1.04rem;
+`;S.div`
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fcfcfc;
+  align-items: center;
+`;S.div`
+  border: 1px solid #bebebe;
+  width: 90%;
+  height: 90%;
+`;S.div`
+  border-right: 1px solid #bebebe;
+  width: 30%;
+  height: 100%;
+  padding-left: 3%;
+  padding-top: 3%;
+  display: flex;
+  flex-direction: column;
+`;S.img`
+  border: 1px solid #bebebe;
+  border-radius: 55%;
+  width: 40%;
+  box-sizing: border-box;
 `;S.div`
   display: flex;
   width: 100vw;

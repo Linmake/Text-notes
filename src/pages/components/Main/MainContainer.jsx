@@ -15,7 +15,7 @@ const ContainerInicio = styled.div`
 
 const ContainerTitle = styled.div`
   width: 42%;
-  margin-top: 8%;
+  margin-top: 1%;
   display: flex;
   height: 550px;
   font-family: "rubik";
@@ -27,40 +27,35 @@ const ContainerTitle = styled.div`
 `;
 
 const ButtonFirst = styled.button`
-  background-color: white;
   color: black;
-  width: 11.25rem;
-  height: 3.125rem;
-  marging 2% 2px;
-  font-size: 1.4rem;
-  color: white;
+  width: 192px;
+  height: 40px;
+  font-size: 1.2rem;
+  color: #075C5B;
   letter-spacing: 0;
-  border: 2px solid rgb(84, 200, 255);
+  border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 2rem;
-  background-color: #3ac0ff;
+  margin-top: 3.3rem;
+  background-color: #32E6E2;
   &:hover{
-    background-color:rgb(38, 186, 254);
-    color: white;
-    border: 2px solid rgb(84, 200, 255);
+    // background-color:rgb(38, 186, 254);
   }
   &:active{
-    background-color:rgb(38, 186, 254);
-    color: white;
-    border: 2px solid rgb(84, 200, 255);
+    // background-color:rgb(38, 186, 254);
   }
 `;
 
 const Title = styled.h1`
-  font-size: 3.7rem;
+  font-size: 80px;
+  text-align: center;
   &:hover {
     transition: scale(0.7, 0.7) 1s;
   }
 `;
 
 const Subtitle = styled.h2`
-  margin-top: 2rem;
+  margin-top: 7.2rem;
   font-size: 1.7rem;
 `;
 
@@ -73,9 +68,9 @@ const MainContainer = () => {
   return (
     <ContainerInicio className="container-title">
       <ContainerTitle>
-        <Title className="font text">Able Note</Title>
+        <Title className="font text">Pon tus ideas <br/> en la nube</Title>
         <Subtitle className="text">
-          Herramienta de notas de texto y proyectos
+          Crea cualquier diseño y estructura, desde notas personales hasta mapas con AI, de la forma mas rapida con Lumia Pina.  
         </Subtitle>
         <ButtonFirst type="button" onClick={handlerNavigate}>
           Crear

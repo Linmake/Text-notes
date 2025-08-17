@@ -8,7 +8,7 @@ const Header = styled.nav`
   flex-direction: row;
   width: 100%;
   marging: 0;
-  background-color: white;
+  background-color: #1F252C;
   user-select: none;
   padding: 8px 16px;
   position: fixed;
@@ -25,8 +25,8 @@ const MainHeader = ({mainRoute}) => {
     <>
       <Header className="navbar navbar-expand-lg">
         <NavContainer className="container-fluid">
-          <MainLinks mainRoute={mainRoute}/>
           <Account marginleft={"0"} mainRoute={mainRoute} gap={"1rem"}/>
+          <MainLinks mainRoute={mainRoute}/>
         </NavContainer>
       </Header>
     </>

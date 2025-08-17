@@ -17,7 +17,7 @@ const Toggle = styled.div`
   right: 7.5vw;
   border: 1px solid #d2d2d2;
   border-radius: 0.3rem;
-  @media (min-width: 300px) {
+  @media (min-width: 300px) and (max-width: 550px) {
     width: 130px;
     top: 9vh;
     right: 4vw;

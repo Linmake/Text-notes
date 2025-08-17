@@ -4,6 +4,7 @@ import projectosMenu from '../../assets/projectMenuIcon.webp';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+
 const Article = styled.article`
   width: 320px;
   height: 380px;
@@ -12,13 +13,20 @@ const Article = styled.article`
   background-color: #FFF;
   padding: 1%;
   border-radius: 0.3rem;
-  &:first-child {
-    margin-right: 10%;
-  }
   &:hover {
     cursor: pointer;
     box-shadow: 0px 0px 6px rgba(168, 168, 168, 0.78);
     background-color: rgba(253, 253, 253);
+  }
+    &:active {
+    cursor: pointer;
+    box-shadow: 0px 0px 6px rgba(168, 168, 168, 0.78);
+    background-color: rgba(253, 253, 253);
+  }
+  @media (min-width: 300px) and (max-width: 550px) {
+  width: 200px;
+  height: 250px;
+  padding: 0%;
   }
 `;
 const Section = styled.section`

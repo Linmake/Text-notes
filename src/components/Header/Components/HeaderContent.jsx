@@ -8,6 +8,9 @@ const Header = styled.nav`
   width: 100%;
   border-bottom: 2px solid white;
   user-select: none;
+  @media (min-width: 375px) and (max-width: 430px) {
+  height: 60px;
+  }
 `
 
 export default function HeaderContent() {

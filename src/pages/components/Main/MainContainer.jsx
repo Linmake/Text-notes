@@ -21,13 +21,18 @@ const ContainerTitle = styled.div`
   font-family: "rubik";
   flex-direction: column;
   color: #212121;
-  background-color: darkgrey;
   align-items: center;
   cursor: default;
   user-select: none;
-  @media (min-width: 300px) and (max-width: 550px) {
-  margin-top: 25%;
-  width: 75%;
+  @media (min-width: 375px) and (max-width: 430px) {
+  margin-top: 29%;
+  width: 90%;
+  height: 500px;
+  line-height: 3;
+  }
+  @media (min-width: 300px) and (max-width: 374px) {
+  margin-top: 20%;
+  width: 80%;
   height: 500px;
   }
 `;
@@ -40,16 +45,16 @@ font-weight: 1000;
   transition: scale(0.7, 0.7) 1s;
   }
   @media (min-width: 300px) and (max-width: 550px) {
-    font-size: 44px;
-    text-align: center; 
+    font-size: 40px;
+    text-align: center;
     }
 `;
 
 const Subtitle = styled.h2`
   margin-top: 7.2rem;
-  font-size: 1.7rem;
+  font-size: 1.4rem;
   @media (min-width: 300px) and (max-width: 550px) {
-    margin-top: 3rem;
+    margin-top: 1rem;
     }
     `;
   

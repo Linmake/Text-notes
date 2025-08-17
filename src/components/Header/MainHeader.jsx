@@ -7,6 +7,7 @@ const Header = styled.nav`
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: 73px;
   marging: 0;
   background-color: #1F252C;
   user-select: none;
@@ -14,6 +15,9 @@ const Header = styled.nav`
   position: fixed;
   top: 0;
   z-index: 10000000;
+  @media (min-width: 375px) and (max-width: 430px) {
+    height: 60px;
+  }
 `
 const NavContainer = styled.nav`
   display: flex;

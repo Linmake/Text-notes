@@ -10,15 +10,14 @@ const LinksContent = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   `
   const Links = styled.a`
   display: block;
   box-sizing: border-box;
-  margin-left: 8%;
+  margin-left: 10%;
   color: #6b6b6b;
   font-weight: 400;
-  height: 20px;
   &:hover{
     color: black;
   }

@@ -7,11 +7,15 @@ const LogoImg = styled.img`
   border-radius: 55%;
   width: 100%;
   box-sizing: border-box;
+  &:hover{
+    cursor: pointer;
+  }
+  &:select{
+    cursor: pointer;
+  }
 `;
-
 const ToggleContent = styled.div`
 `
-
 export default function LogoAccount() {
   const ref = useRef(null)
   const [ toggleState, setToggleState ] = useState(false)
@@ -34,6 +38,7 @@ export default function LogoAccount() {
     <LogoImg src={img} 
       onMouseEnter={e => handlerDropDown(e)}
       onClick={e => handlerDropDown(e)}
+      onSelect={e => handlerDropDown(e)}
     />
     {(toggleState) 
     && (

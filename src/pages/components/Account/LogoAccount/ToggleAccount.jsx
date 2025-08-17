@@ -17,29 +17,12 @@ const Toggle = styled.div`
   right: 7.5vw;
   border: 1px solid #d2d2d2;
   border-radius: 0.3rem;
+  @media (min-width: 300px) {
+    width: 130px;
+    top: 9vh;
+    right: 4vw;
+  }
 `;
-
-// const ToggleElement = styled(Link)`
-//   text-align: center;
-//   width: 100%;
-//   padding: 0.2rem;
-//   border-radius: 0.3rem;
-//   z-index: 1000;
-//   &:first-child {
-//     margin-top: 2rem;
-//     font-weight: 600;
-//     font-size: 1.1rem;
-//   }
-//   &:last-child {
-//     margin-bottom: 0.8rem;
-//   }
-//   &:hover {
-//     background-color: rgba(247, 248, 248, 0.69);
-//   }
-//   &:active {
-//     background-color: rgba(247, 248, 248, 0.69);
-//   }
-// `;
 
 const ToggleElement = styled.a`
   text-align: center;

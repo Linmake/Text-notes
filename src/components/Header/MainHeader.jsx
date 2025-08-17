@@ -18,7 +18,6 @@ const Header = styled.nav`
 const NavContainer = styled.nav`
   display: flex;
   align-items: center;
-  gap: 50%;
 `
 
 const MainHeader = ({mainRoute}) => {

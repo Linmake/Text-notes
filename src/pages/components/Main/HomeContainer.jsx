@@ -22,7 +22,6 @@ const ContainerTitle = styled.div`
   font-weight: bold;
   cursor: default;
   user-select: none;
-  
 `
 
 const ButtonFirst = styled.button`

@@ -15,49 +15,63 @@ const ContainerInicio = styled.div`
 
 const ContainerTitle = styled.div`
   width: 42%;
+  height: 550px;
   margin-top: 1%;
   display: flex;
-  height: 550px;
   font-family: "rubik";
   flex-direction: column;
   color: #212121;
+  background-color: darkgrey;
   align-items: center;
   cursor: default;
   user-select: none;
-`;
-
-const ButtonFirst = styled.button`
-  color: black;
-  width: 192px;
-  height: 40px;
-  font-size: 1.2rem;
-  color: #075C5B;
-  letter-spacing: 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 3.3rem;
-  background-color: #32E6E2;
-  &:hover{
-    // background-color:rgb(38, 186, 254);
-  }
-  &:active{
-    // background-color:rgb(38, 186, 254);
+  @media (min-width: 300px) and (max-width: 550px) {
+  margin-top: 25%;
+  width: 75%;
+  height: 500px;
   }
 `;
 
 const Title = styled.h1`
-  font-size: 80px;
-  text-align: center;
-  &:hover {
-    transition: scale(0.7, 0.7) 1s;
+font-size: 80px;
+text-align: center;
+font-weight: 1000;
+&:hover {
+  transition: scale(0.7, 0.7) 1s;
   }
+  @media (min-width: 300px) and (max-width: 550px) {
+    font-size: 44px;
+    text-align: center; 
+    }
 `;
 
 const Subtitle = styled.h2`
   margin-top: 7.2rem;
   font-size: 1.7rem;
-`;
+  @media (min-width: 300px) and (max-width: 550px) {
+    margin-top: 3rem;
+    }
+    `;
+  
+const ButtonFirst = styled.button`
+      color: black;
+      width: 192px;
+      height: 40px;
+      font-size: 1.2rem;
+      color: #075C5B;
+      letter-spacing: 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 3.3rem;
+      background-color: #32E6E2;
+      &:hover{
+        // background-color:rgb(38, 186, 254);
+      }
+      &:active{
+        // background-color:rgb(38, 186, 254);
+      }
+    `;
 
 const MainContainer = () => {
   const navigate = useNavigate();
@@ -68,9 +82,9 @@ const MainContainer = () => {
   return (
     <ContainerInicio className="container-title">
       <ContainerTitle>
-        <Title className="font text">Pon tus ideas <br/> en la nube</Title>
+        <Title className="font text">Inserta tus ideas <br/> en la nube</Title>
         <Subtitle className="text">
-          Crea cualquier diseño y estructura, desde notas personales hasta mapas con AI, de la forma mas rapida con Lumia Pina.  
+          Crea cualquier diseño y estructura, desde notas personales hasta mapas con AI, de la forma mas rapida con Lumia Pina.
         </Subtitle>
         <ButtonFirst type="button" onClick={handlerNavigate}>
           Crear

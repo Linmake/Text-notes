@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 const ContainerInicio= styled.div`
 width: 100%;
 height: 85%;
-background: linear-gradient(90deg, rgba(251,120,80,1) 0%, rgba(242,179,50,1) 100%);
+// background: linear-gradient(90deg, rgba(251,120,80,1) 0%, rgba(242,179,50,1) 100%);
 max-width: 100%;
 padding-top: 8% !important;   
 `

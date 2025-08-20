@@ -19,6 +19,7 @@ const Links = styled.a`
   color: white;
   font-style: none;
   font-weight: 400;
+  text-decoration: none !important;
   &:hover{
     color: black;
   }

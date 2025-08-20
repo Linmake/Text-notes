@@ -1,22 +1,22 @@
 import axios from "axios";
 import styled from "styled-components";
 import { UseData } from "../../../../context/dataContext";
-import { Link } from "react-router-dom";
 
 const Toggle = styled.div`
-  width: 10vw;
-  height: 20vh;
+  width: 8vw;
+  height: 14vh;
+  position: absolute;
+  top: 7vh;
+  left: 0.5vw;
   background-color: rgb(255, 255, 255);
   display: flex;
   padding-bottom: 2.4rem;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  position: absolute;
-  top: 5.7vh;
-  right: 7.5vw;
   border: 1px solid #d2d2d2;
   border-radius: 0.3rem;
+  text-decoration: none !important;
   @media (min-width: 300px) and (max-width: 550px) {
     width: 130px;
     top: 9vh;
@@ -30,6 +30,7 @@ const ToggleElement = styled.a`
   padding: 0.2rem;
   border-radius: 0.3rem;
   z-index: 1000;
+  text-decoration: none !important;
   &:first-child {
     margin-top: 2rem;
     font-weight: 600;

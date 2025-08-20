@@ -22,33 +22,32 @@ const Header = styled.nav`
   
   /* Mobile First (estilo base para móviles) */
   @media (min-width: ${breakpoints.xsm}) {
-    background-color: violet !important;
     height: 50px;
     padding: 0;
   }
 
   media (min-width: ${breakpoints.sm}) {
-    background-color: salmon !important;
+    
     height: 50px;
   }
 
   /* Tablet (≥ 768px) */
   @media (min-width: ${breakpoints.md}) {
-    background-color: lightgreen !important;
+  
   }
 
   /* Desktop (≥ 905px) */
   @media (min-width: ${breakpoints.lg}) {
-    background: lightcoral !important;
+    
     height: 55px;
   }
   
   @media (min-width: ${breakpoints.xl}) {
-    background-color: tomato !important;
+    
   }
 
   @media (min-width: ${breakpoints.xxl}) {
-    background-color: brown !important;
+    
   }
   
   `

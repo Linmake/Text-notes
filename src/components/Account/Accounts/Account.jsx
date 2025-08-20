@@ -9,15 +9,14 @@ const AccountContainer = styled.li`
   display: flex;
   flex-direction: row;
   text-align: center;
-  width: 30%;
+  width: 4%;
+  background-color: darkgrey;
   justify-content: center;
   align-items: center;
-  height: 52%;
   box-sizing: border-box;
   color: #212121;
   margin-left: ${(props) => props.marginleft || '0'};
   gap: ${(props) => props.gap || '0'};
-
 `;
 
 const AccountUnLogContainer = styled.li`

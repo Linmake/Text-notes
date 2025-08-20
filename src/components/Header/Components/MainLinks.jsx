@@ -28,6 +28,10 @@ const ToggleContent = styled.div`
   width: 30px;
   height: 30px;
   background-color: white;
+  display: none;
+  @media (min-width: 375px) and (max-width: 430px) {
+    display: block;
+  }
 `
 
 export default function LinksIndex({ mainRoute }) {

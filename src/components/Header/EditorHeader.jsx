@@ -26,7 +26,7 @@ const Header = styled.nav`
     padding: 0;
   }
 
-  media (min-width: ${breakpoints.sm}) {
+  media (min-width: ${breakpoints.sm}) { 
     
     height: 50px;
   }

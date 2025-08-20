@@ -20,8 +20,6 @@ const Header = styled.nav`
   }
 `
 const NavContainer = styled.nav`
-  display: flex;
-  align-items: center;
 `
 
 const MainHeader = ({mainRoute}) => {

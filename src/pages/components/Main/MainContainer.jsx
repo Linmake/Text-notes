@@ -4,14 +4,15 @@ import "../../../styles/components/main/main.css";
 
 const ContainerInicio = styled.div`
   width: 100%;
-  height: 85%;
+  height: 89%;
   background: linear-gradient(
     to bottom,
     #0f0f11 0%,
     #131722 40%,
-    #1a1f2e 70%,
-    #1f2958 90%,
-    #2194f3 100%
+    #12181F 70%,
+    #12181F 80%,
+    #1A2652 90%,
+    #1A2857 100%
   );
   max-width: 100%;
   padding-top: 8% !important;
@@ -28,9 +29,28 @@ const ContainerInicio = styled.div`
     background-size: 20px 20px;
     pointer-events: none;
     z-index: 0;
+    // background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.14'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }@media (min-width: 375px) and (max-width: 430px) {
+    height: 77.5%;
   }
-  // background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.14'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  @media (min-width: 300px) and (max-width: 550px) {
+    
+    }
   `;
+
+const CarruselContainer = styled.div`
+  height: 350px;
+  width: 100%;
+  background-color: #12181F;
+  position: relative;
+  top: 100%;
+  @media (min-width: 375px) and (max-width: 430px) {
+    height: 220px;
+  }
+  @media (min-width: 300px) and (max-width: 550px) {
+    
+    }
+  `
 
 const ContainerTitle = styled.div`
   width: 42%;
@@ -71,8 +91,8 @@ transition: transform 0.3s ease;
   text-align: center;
   }
   `;
-  
-  const Subtitle = styled.h2`
+
+const Subtitle = styled.h2`
   margin-top: 7.2rem;
   font-size: 1.4rem;
   color: white;
@@ -84,7 +104,7 @@ transition: transform 0.3s ease;
     margin-top: 1rem;
     }
 `;
-  
+
 const ButtonFirst = styled.button`
       color: black;
       width: 192px;
@@ -99,13 +119,24 @@ const ButtonFirst = styled.button`
       text-align: center;
       text-decoration: none;
       font-weight: 600;
+      justify-content: center;
+      align-items: center;
+      line-height: 0;
       &:hover{
         // background-color:rgb(38, 186, 254);
       }
       &:active{
         // background-color:rgb(38, 186, 254);
       }
-    `;
+      @media (min-width: 375px) and (max-width: 430px) {
+        height: 40px;
+        font-size: 1rem;
+        margin-top: 2.3rem !important;
+      }
+      @media (min-width: 300px) and (max-width: 550px) {
+        margin-top: 1rem;
+      }
+`;
 
 const MainContainer = () => {
   const navigate = useNavigate();
@@ -114,17 +145,21 @@ const MainContainer = () => {
     navigate("Projects-menu");
   };
   return (
-    <ContainerInicio className="container-title">
-      <ContainerTitle>
-        <Title className="font text">Inserta tus ideas <br/> en la nube</Title>
-        <Subtitle className="text">
-          Crea cualquier diseño y estructura, desde notas personales hasta mapas con AI, de la forma mas rapida con Lumia Pina.
-        </Subtitle>
-        <ButtonFirst type="button" onClick={handlerNavigate}>
-          Crear
-        </ButtonFirst>
-      </ContainerTitle>
-    </ContainerInicio>
+    <>
+      <ContainerInicio className="container-title">
+        <ContainerTitle>
+          <Title className="font text">Inserta tus ideas <br /> en la nube</Title>
+          <Subtitle className="text">
+            Crea cualquier diseño y estructura, desde notas personales hasta mapas con AI, de la forma mas rapida con Lumia Pina.
+          </Subtitle>
+          <ButtonFirst type="button" onClick={handlerNavigate}>
+            Crear
+          </ButtonFirst>
+        </ContainerTitle>
+      </ContainerInicio>
+      <CarruselContainer>
+      </CarruselContainer>
+    </>
   );
 };
 

@@ -20,6 +20,7 @@ const Header = styled.nav`
   }
 `
 const NavContainer = styled.nav`
+  width: 50%;
 `
 
 const MainHeader = ({mainRoute}) => {

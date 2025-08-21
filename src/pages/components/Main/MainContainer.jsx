@@ -38,19 +38,6 @@ const ContainerInicio = styled.div`
     }
   `;
 
-const CarruselContainer = styled.div`
-  height: 350px;
-  width: 100%;
-  background-color: #12181F;
-  position: relative;
-  top: 100%;
-  @media (min-width: 375px) and (max-width: 430px) {
-    height: 220px;
-  }
-  @media (min-width: 300px) and (max-width: 550px) {
-    
-    }
-  `
 
 const ContainerTitle = styled.div`
   width: 42%;
@@ -65,7 +52,7 @@ const ContainerTitle = styled.div`
   cursor: default;
   user-select: none;
   @media (min-width: 375px) and (max-width: 430px) {
-  margin-top: 28%;
+    margin-top: 28%;
   width: 86%;
   height: 500px;
   line-height: 3;
@@ -75,13 +62,13 @@ const ContainerTitle = styled.div`
   width: 80%;
   height: 500px;
   }
-`;
+  `;
 
 const Title = styled.h1`
-font-size: 80px;
-text-align: center;
-font-weight: 1000;
-transition: transform 0.3s ease;
+  font-size: 80px;
+  text-align: center;
+  font-weight: 1000;
+  transition: transform 0.3s ease;
 &:hover {
   transform: scale(0.95);
 }
@@ -93,16 +80,16 @@ transition: transform 0.3s ease;
   `;
 
 const Subtitle = styled.h2`
-  margin-top: 7.2rem;
-  font-size: 1.4rem;
-  color: white;
-  @media (min-width: 375px) and (max-width: 430px) {
+margin-top: 7.2rem;
+font-size: 1.4rem;
+color: white;
+@media (min-width: 375px) and (max-width: 430px) {
     font-size: 1.3rem;
-
-  }
-  @media (min-width: 300px) and (max-width: 550px) {
-    margin-top: 1rem;
+    
     }
+    @media (min-width: 300px) and (max-width: 550px) {
+      margin-top: 1rem;
+      }
 `;
 
 const ButtonFirst = styled.button`
@@ -124,19 +111,58 @@ const ButtonFirst = styled.button`
       line-height: 0;
       &:hover{
         // background-color:rgb(38, 186, 254);
-      }
-      &:active{
-        // background-color:rgb(38, 186, 254);
-      }
-      @media (min-width: 375px) and (max-width: 430px) {
-        height: 40px;
-        font-size: 1rem;
-        margin-top: 2.3rem !important;
-      }
-      @media (min-width: 300px) and (max-width: 550px) {
-        margin-top: 1rem;
-      }
-`;
+        }
+        &:active{
+          // background-color:rgb(38, 186, 254);
+          }
+          @media (min-width: 375px) and (max-width: 430px) {
+            height: 40px;
+            font-size: 1rem;
+            margin-top: 2.3rem !important;
+            }
+            @media (min-width: 300px) and (max-width: 550px) {
+              margin-top: 1rem;
+              }
+              `;
+
+const CarruselContainer = styled.div`
+  height: 350px;
+  width: 100%;
+  background-color: #12181F;
+  position: relative;
+  top: 100%;
+  @media (min-width: 375px) and (max-width: 430px) {
+    height: 220px;
+  }
+  @media (min-width: 300px) and (max-width: 550px) {
+  }
+`
+
+const ContainerEditor = styled.div`
+  display: flex;
+  width: 900px;
+  height: 470px;
+  background-color: #1F689E;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  top: -290%;
+  left: 25%;
+  border: 1px solid white;
+  border-radius: 1rem;
+  `
+
+const EditorExample = styled.div`
+  display: flex;  
+  width: 870px;
+  height: 440px;
+  z-index: 120;
+  background-color: white;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+`
 
 const MainContainer = () => {
   const navigate = useNavigate();
@@ -158,6 +184,9 @@ const MainContainer = () => {
         </ContainerTitle>
       </ContainerInicio>
       <CarruselContainer>
+        <ContainerEditor>
+          <EditorExample />
+        </ContainerEditor>
       </CarruselContainer>
     </>
   );

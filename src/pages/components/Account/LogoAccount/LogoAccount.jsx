@@ -14,6 +14,7 @@ const LogoImg = styled.img`
     cursor: pointer;
   }
 `;
+
 const ToggleContent = styled.div`
 `
 export default function LogoAccount() {

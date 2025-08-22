@@ -179,7 +179,7 @@ const MainContainer = () => {
             Crea cualquier diseño y estructura, desde notas personales hasta mapas con AI, de la forma mas rapida con Lumia Pina.
           </Subtitle>
           <ButtonFirst type="button" onClick={handlerNavigate}>
-            Crear
+            Sign Up for Free
           </ButtonFirst>
         </ContainerTitle>
       </ContainerInicio>

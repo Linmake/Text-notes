@@ -6,8 +6,11 @@ import styled from "styled-components";
 
 const MenuContainer = styled.div`
   position: absolute;
-  width: 250px;
+  width: 300px;
+  height: 400px;
+  display: flex;
   border-radius: 8px;
+  flex-direction: column;
   background: #3498db;
   color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -23,14 +26,23 @@ const MenuHeader = styled.div`
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   cursor: ${(props) => (props.isDragging ? "grabbing" : "grab")};
+  text-align: center;
+  font-size: 2rem;
 `;
 
 const MenuContent = styled.div`
   padding: 12px;
+  display: flex;
+  justify-content: center:
+  align-items: center;
+  flex-direction: column;
+
 `;
 
 function DraggableMenu() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const [sheets, setSheets] = useState(0)
 
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: "floating-menu",
@@ -52,20 +64,25 @@ function DraggableMenu() {
       }));
     }
   };
-
   return createPortal(
     <MenuContainer
       ref={setNodeRef}
       style={style}
-      {...listeners}
       {...attributes}
       onPointerUp={handleDragEnd}
       onTouchEnd={handleDragEnd}
       isDragging={isDragging}
     >
-      <MenuHeader isDragging={isDragging}>Arrástrame</MenuHeader>
+      <MenuHeader
+        {...listeners}
+        isDragging={isDragging}
+      >
+
+        Values
+      </MenuHeader>
       <MenuContent>
-        <p>Menú flotante con dnd-kit y portal funcionando.</p>
+        <span>Cuartillas</span>
+        <input value={sheets} onChange={e => setSheets(e.target.value)} type="number" />
         <button>Click aquí</button>
       </MenuContent>
     </MenuContainer>,

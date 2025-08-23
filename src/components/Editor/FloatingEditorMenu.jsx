@@ -1,39 +1,50 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { useDraggable } from "@dnd-kit/core";
+import styled from "styled-components";
+
+
+const MenuContainer = styled.div`
+  position: absolute;
+  width: 250px;
+  border-radius: 8px;
+  background: #3498db;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  user-select: none;
+  cursor: ${(props) => (props.isDragging ? "grabbing" : "grab")};
+  touch-action: none;
+`;
+
+const MenuHeader = styled.div`
+  padding: 10px;
+  background: #2980b9;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  cursor: ${(props) => (props.isDragging ? "grabbing" : "grab")};
+`;
+
+const MenuContent = styled.div`
+  padding: 12px;
+`;
 
 function DraggableMenu() {
-  // Estado para la posición guardada
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  // Hook draggable con id
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: "floating-menu",
   });
 
-  // Cuando transform cambia (durante el drag), calculamos la posición real sumando la anterior
-  // Aquí solo mostramos el movimiento relativo:
   const currentX = transform ? transform.x : 0;
   const currentY = transform ? transform.y : 0;
 
-  // Estilo para la posición absoluta sumando la posición guardada + transformación momentánea
   const style = {
-    position: "absolute",
-    top: position.y + currentY + 100, // 100 es tu offset inicial
-    left: position.x + currentX + 100, // 100 es tu offset inicial
-    width: 250,
-    borderRadius: 8,
-    background: "#3498db",
-    color: "white",
-    boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
-    zIndex: 1000,
-    userSelect: "none",
-    cursor: isDragging ? "grabbing" : "grab",
-    touchAction: "none",
+    top: position.y + currentY + 100,
+    left: position.x + currentX + 100,
   };
 
-  // Función para actualizar la posición al terminar de arrastrar
-  const handleDragEnd = (event) => {
+  const handleDragEnd = () => {
     if (transform) {
       setPosition((pos) => ({
         x: pos.x + transform.x,
@@ -43,34 +54,27 @@ function DraggableMenu() {
   };
 
   return createPortal(
-    <div
+    <MenuContainer
       ref={setNodeRef}
       style={style}
       {...listeners}
       {...attributes}
-      onPointerUp={handleDragEnd} // Se dispara al soltar el drag
-      onTouchEnd={handleDragEnd}  // para pantallas táctiles
+      onPointerUp={handleDragEnd}
+      onTouchEnd={handleDragEnd}
+      isDragging={isDragging}
     >
-      <div
-        style={{
-          padding: 10,
-          background: "#2980b9",
-          borderTopLeftRadius: 8,
-          borderTopRightRadius: 8,
-          cursor: isDragging ? "grabbing" : "grab",
-        }}
-      >
-        Arrástrame
-      </div>
-      <div style={{ padding: 12 }}>
+      <MenuHeader isDragging={isDragging}>Arrástrame</MenuHeader>
+      <MenuContent>
         <p>Menú flotante con dnd-kit y portal funcionando.</p>
         <button>Click aquí</button>
-      </div>
-    </div>,
+      </MenuContent>
+    </MenuContainer>,
     document.body
   );
 }
 
-export default function FloatingMenu() {
-  return <DraggableMenu />;
+const FloatingMenu = () => {
+  return <DraggableMenu />
 }
+
+export default FloatingMenu

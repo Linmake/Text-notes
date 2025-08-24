@@ -55,7 +55,7 @@ const ContainerNotFolders = () => {
           You have'nt yet added a folder
         </p>
         <br />
-        <button className="btn-nueva-carpeta" onClick={handlerFolders}>New folder</button>
+        <button className="btn-nueva-carpeta" onClick={handlerFolders} onTouchStart={handlerFolders}>New folder</button>
       </div>
     </Li>
   )

@@ -225,6 +225,7 @@ export const Files = () => {
                   <ButtonEdit
                     title="Edit"
                     onClick={() => handlerEdit(file.Id)}
+                    onTouchStart={() => handlerEdit(file.Id)}
                   >
                     Rename
                   </ButtonEdit>
@@ -234,6 +235,7 @@ export const Files = () => {
                   <ButtonDelete
                     title="Delete"
                     onClick={(e) => handlerDelete(e, file.Id)}
+                    onTouchStart={(e) => handlerDelete(e, file.Id)}
                   >
                     Delete
                   </ButtonDelete>

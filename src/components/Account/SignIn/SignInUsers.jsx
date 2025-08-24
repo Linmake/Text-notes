@@ -183,6 +183,7 @@ const SignInAccount = () => {
         />
         <BttContinue
           onClick={(e) => handlerSubmit(e)}
+          onSelect={(e) => handlerSubmit(e)}
           type="submit"
           id="submitButton"
         >

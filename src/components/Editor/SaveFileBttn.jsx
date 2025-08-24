@@ -87,7 +87,7 @@ const SaveFileBttn = ({ quillRef }) => {
   };
 
   return (
-    <SaveBttn onClick={handlerSave}>
+    <SaveBttn onClick={handlerSave} onTouchStart={handlerSave}>
       <Icon icon={faCloud} />
     </SaveBttn>
   );

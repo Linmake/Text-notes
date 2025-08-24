@@ -6,7 +6,7 @@ import { NoProjectCompTemplate } from "../Templates/NoProjectCompTemplate";
 const NoProjectsContainer = styled.div`
   width: 52%;
   height: 45%;
-  display: flex;
+  display: flex; 
   border: 1px solid #dee0e3;
   box-shadow: 0px 0px 4px #cccc;
   border-radius: 3px;

@@ -62,6 +62,7 @@ useEffect(() => {
     <FileComponent
       className="nav-link text-white file"  
       onClick={(e) => handlerFile(e, file)}
+      onTouchStart={(e) => handlerFile(e, file)}
       onContextMenu={onContextMenu}
     >
       <Icon id={`iconFile-${file.Id}`} icon={faFile} />

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 import { useDraggable } from "@dnd-kit/core";
 import styled from "styled-components";
+import AIINte from "./AI.inte";
 
 
 const MenuContainer = styled.div`
@@ -39,16 +40,6 @@ const MenuContent = styled.div`
   padding: 2rem;
   cursor: auto;
 `;
-
-const BttnSend = styled.button`
-  width: 70%;
-  border-radius: 0.3rem;
-  align-self: center;
-  border: none;
-  background-color: lightgreen;
-  margin-top: 2.2rem;
-  cursor: pointer;
-`
 
 function DraggableMenu() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -88,13 +79,12 @@ function DraggableMenu() {
         {...listeners}
         isDragging={isDragging}
       >
-
         Valores
       </MenuHeader>
       <MenuContent>
         <span>Cuartillas</span>
         <input value={sheets} onChange={e => setSheets(e.target.value)} type="number" />
-        <BttnSend> Resumir </BttnSend>
+        <AIINte/>
       </MenuContent>
     </MenuContainer>,
     document.body

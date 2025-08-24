@@ -12,13 +12,13 @@ import { ProjectsMenuProvider } from "../../context/projectsMenuContext.jsx";
 
 const ContainerProjects = styled.div`
   width: 52%;
+  min-height: 45%;
   display: flex;
   box-shadow: 0px 0px 2px rgb(102, 102, 104);
   border-radius: 5px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: fit-content;
   background-color: #fff;
   padding: 3%;
   padding-top: 2%;
@@ -55,7 +55,7 @@ const ProjectsMenu = () => {
         {projects.length == 0 ? (
           <NoProjects />
         ) : (
-          <ProjectCompTemplate>
+          <ProjectCompTemplate> 
             <MainHeader mainRoute={"http://localhost:3000"} />
             <ContainerProjects>
               <NewProjectTab />

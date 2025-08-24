@@ -16,7 +16,7 @@ const MenuContainer = styled.div`
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   user-select: none;
-  cursor: ${(props) => (props.isDragging ? "grabbing" : "grab")};
+  cursor: auto;
   touch-action: none;
 `;
 
@@ -36,13 +36,24 @@ const MenuContent = styled.div`
   justify-content: center:
   align-items: center;
   flex-direction: column;
-
+  padding: 2rem;
+  cursor: auto;
 `;
+
+const BttnSend = styled.button`
+  width: 70%;
+  border-radius: 0.3rem;
+  align-self: center;
+  border: none;
+  background-color: lightgreen;
+  margin-top: 2.2rem;
+  cursor: pointer;
+`
 
 function DraggableMenu() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const [sheets, setSheets] = useState(0)
+  const [sheets, setSheets] = useState(1)
 
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: "floating-menu",
@@ -78,12 +89,12 @@ function DraggableMenu() {
         isDragging={isDragging}
       >
 
-        Values
+        Valores
       </MenuHeader>
       <MenuContent>
         <span>Cuartillas</span>
         <input value={sheets} onChange={e => setSheets(e.target.value)} type="number" />
-        <button>Click aquí</button>
+        <BttnSend> Resumir </BttnSend>
       </MenuContent>
     </MenuContainer>,
     document.body

@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { EditorFunctionsContext } from "../../context/editorFunctions";
 import { useContext } from "react";
+import { UseData } from "../../context/dataContext";
 
 
 const BttnSend = styled.button`
@@ -14,10 +15,12 @@ const BttnSend = styled.button`
 `
 
 const AIINte = () => {
-
+  
+    const { response, setResponse, resume, setResume } = UseData();
     const { fileCurrent, setSaveFile } = useContext(EditorFunctionsContext);
-    const handlerResume = () => {
-        alert(fileCurrent?.Text)
+    const handlerResume = async() => {
+        const respuesta = await resume
+        alert(respuesta)
     }
 
     return(

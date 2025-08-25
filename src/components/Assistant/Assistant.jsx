@@ -3,17 +3,9 @@ import { genkit } from 'genkit/beta';
 import { createInterface } from 'node:readline/promises';
 import fs from 'fs';
 import * as dotenv from 'dotenv';
+import { UseData } from '../../context/dataContext';
 
-// 🔥 NUEVO: Markdown en terminal
-import { marked } from 'marked';
-import TerminalRenderer from 'marked-terminal';
-marked.setOptions({
-  renderer: new TerminalRenderer() as any,
-});
-
-// ✅ CARGAR VARIABLES DE ENTORNO
 dotenv.config();
-
 // ✅ VERIFICAR API KEY
 if (!process.env.GOOGLE_API_KEY) {
   console.error('❌ ERROR: GOOGLE_API_KEY no está configurada');
@@ -30,17 +22,19 @@ const ai = genkit({
 });
 
 const aiFunction = async () => {
+  const { response, setResponse, resume, setResume } = UseData();
   try {
-    console.log('📁 Cargando archivo de contexto local...');
-
     let context = '';
     const fallbackFiles = ['texto_extraido.txt', 'texto.txt'];
 
     for (const file of fallbackFiles) {
-      if (fs.existsSync(file)) {
+      const fileExisting = fs.existsSync(file) 
+      if ( fileExisting ) {
         console.log(`📂 Archivo encontrado: ${file}`);
         context = fs.readFileSync(file, 'utf-8');
-        break;
+        setResume(context)
+        /*!To do context*/
+        break
       }
     }
 
@@ -73,21 +67,14 @@ Si algo no viene puedes investigar por tu cuenta en otras fuentes y razonar por 
 
     while (true) {
       const userInput = await readline.question('Tú: ');
-
-      if (userInput.toLowerCase() === 'salir') {
-        console.log('👋 ¡Hasta luego!');
-        break;
-      }
-
-      console.log('🤖 Pensando...');
-
       const chat = ai.chat({ system: prompt });
       const result = await chat.send(userInput);
 
       if (result.text) {
         // 🔥 Mostrar con estilo Markdown
-        console.log('\nUNISON:\n');
-        console.log(marked(result.text));
+        // console.log('\nUNISON:\n');
+        // console.log(marked(result.text));
+        setResponse(result.text)
       } else {
         console.log('❌ No se recibió respuesta');
       }
@@ -95,7 +82,7 @@ Si algo no viene puedes investigar por tu cuenta en otras fuentes y razonar por 
 
     readline.close();
 
-  } catch (error: any) {
+  } catch (error) {
     console.error('💥 Error general:', error.message);
   }
 };
@@ -106,5 +93,6 @@ process.on('SIGINT', () => {
   process.exit(0);
 });
 
+export default aiFunction
 //aiFunction();
 

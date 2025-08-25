@@ -8,6 +8,8 @@ export function DataProvider({ children }) {
   const [UserFiles, SetUserFiles] = useState([])
   const [project, setProject] = useState([])
   const [folders, setFolders] = useState([])
+  const [ response, setResponse ] = useState(null)
+  const [ resume, setResume ] = useState(null)
   //***------account-------****
   const [email, setEmail] = useState(null)
   const [pwd, setPwd] = useState([])
@@ -39,7 +41,12 @@ export function DataProvider({ children }) {
        UserFiles,
        SetUserFiles,
        account,
-       setAccount
+       setAccount,
+       response, 
+       setResponse,
+       resume, 
+       setResume
+
   }}>
       {children}
     </DataContext.Provider>

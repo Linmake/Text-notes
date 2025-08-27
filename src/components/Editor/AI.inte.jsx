@@ -29,11 +29,18 @@ const ResponseContainer = styled.div`
   overflow-y: auto;
 `
 
+const ResponseText = styled.p`
+    color: darkgrey;
+    font-size: 1.1rem;
+    font-family: monospace;
+`
+
 const AIINte = () => {
     const { fileCurrent } = useContext(EditorFunctionsContext);
     const [response, setResponse] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+      const {sheets, setSheets} = UseData()
 
     const callAssistantTest = () =>{
         alert(fileCurrent.Text)
@@ -52,7 +59,8 @@ const AIINte = () => {
         try {
             const res = await axios.post("http://localhost:4000/assistant/resume", {
                 text: fileCurrent.Text,
-                sessionId: fileCurrent?.id || 'default-session'
+                sessionId: fileCurrent?.id || 'default-session',
+                sheets: sheets
             });
 
             console.log('Respuesta del servidor:', res.data);
@@ -86,7 +94,7 @@ const AIINte = () => {
             {response && (
                 <ResponseContainer>
                     <strong>Respuesta del AI:</strong>
-                    <p>{response}</p>
+                    <ResponseText>{response}</ResponseText>
                 </ResponseContainer>
             )}
         </div>

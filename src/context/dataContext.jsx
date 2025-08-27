@@ -10,6 +10,7 @@ export function DataProvider({ children }) {
   const [folders, setFolders] = useState([])
   const [ response, setResponse ] = useState(null)
   const [ resume, setResume ] = useState(null)
+  const [ sheets, setSheets ] = useState(null)
   //***------account-------****
   const [email, setEmail] = useState(null)
   const [pwd, setPwd] = useState([])
@@ -45,7 +46,9 @@ export function DataProvider({ children }) {
        response, 
        setResponse,
        resume, 
-       setResume
+       setResume, 
+       sheets, 
+       setSheets
 
   }}>
       {children}

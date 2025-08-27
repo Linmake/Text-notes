@@ -3,13 +3,14 @@ import { createPortal } from "react-dom";
 import { useDraggable } from "@dnd-kit/core";
 import styled from "styled-components";
 import AIINte from "./AI.inte";
+import { UseData } from "../../context/dataContext";
 
 
 const MenuContainer = styled.div`
   position: absolute;
-  width: 300px;
-  height: 400px;
-  display: flex;
+  width: 500px;
+  height: 450px;
+  display: flex; 
   border-radius: 8px;
   flex-direction: column;
   background: #3498db;
@@ -44,7 +45,7 @@ const MenuContent = styled.div`
 function DraggableMenu() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const [sheets, setSheets] = useState(1)
+  const {sheets, setSheets} = UseData()
 
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: "floating-menu",

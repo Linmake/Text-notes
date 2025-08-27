@@ -8,7 +8,7 @@ const conversationHistory = new Map();
 
 export const resumeAssistantController = async (req, res) => {
   try {
-    const { text, sessionId = 'default-session' } = req.body;
+    const { text, sessionId = 'default-session', sheets } = req.body;
     
     console.log('📥 Solicitud recibida:', { sessionId, textLength: text?.length });
 
@@ -37,7 +37,7 @@ export const resumeAssistantController = async (req, res) => {
 ${context}
 Usuario: "${text}"
 
-Proporciona un análisis útil, sugerencias de mejora o respuestas relevantes basándote en el contexto de la conversación. si alguien saluda o es amable tu tambien `;
+Proporciona un análisis útil, sugerencias de mejora o respuestas relevantes basándote en el contexto de la conversación. si alguien saluda o es amable tu tambien y la cantidad exacta de cuartillas del resumen debe de ser ${sheets} y al final menciona la cantidad de cuartillas que devuelves`;
 
     const model = genAI.getGenerativeModel({ 
       model: 'gemini-1.5-flash',

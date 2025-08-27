@@ -7,16 +7,17 @@ import FileRouter from "./Routes/file.routes.js";
 import FolderRouter from "./Routes/folder.routes.js";
 import ProjectRouter from "./Routes/project.routes.js";
 import AccountRouter from "./Routes/account.routes.js";
+import AssitantRouter from "./Routes/assistant.routes.js";
 import cookieParser from "cookie-parser";
 
 // Configuración de dotenv
 
 dotenv.config();
 const expressApp = express();
-connectDB();
+connectDB();  
 
 const server = createServer(expressApp);
-
+ 
 // Middlewares
 
 expressApp.use(cookieParser());
@@ -45,6 +46,7 @@ expressApp.use("/file", FileRouter);
 expressApp.use("/folder", FolderRouter);
 expressApp.use("/project", ProjectRouter);
 expressApp.use("/account", AccountRouter);
+expressApp.use("/assistant", AssitantRouter)
 
 const portUrl = process.env.VITE_API_PORT;
 

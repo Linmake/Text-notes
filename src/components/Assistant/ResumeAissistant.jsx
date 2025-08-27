@@ -17,7 +17,7 @@ const ai = genkit({
   model: googleAI.model('gemini-1.5-flash'),
 });
 
-const aiFunction = async () => {
+const ResumeAissistant = async () => {
   const { response, setResponse, resume, setResume } = UseData();
   try {
     let context = '';
@@ -69,4 +69,4 @@ Si algo no viene puedes investigar por tu cuenta en otras fuentes y razonar por 
   }
 };
 
-export default aiFunction
+export default ResumeAissistant

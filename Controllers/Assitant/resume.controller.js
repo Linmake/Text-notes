@@ -3,66 +3,76 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log('🔍 Verificando API Key:', process.env.GOOGLE_API_KEY ? '✅ Presente' : '❌ Faltante');
-
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || '');
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+const conversationHistory = new Map();
 
 export const resumeAssistantController = async (req, res) => {
-  console.log('📥 Body recibido:', req.body);
-  
   try {
-    const { text } = req.body;
+    const { text, sessionId = 'default-session' } = req.body;
     
-    if (!text) {
-      console.log('❌ Texto no proporcionado en body');
+    console.log('📥 Solicitud recibida:', { sessionId, textLength: text?.length });
+
+    if (!text || text.trim() === '') {
       return res.status(400).json({ 
-        error: 'Se requiere el campo text en el body',
-        receivedBody: req.body // Para debug
+        success: false,
+        error: 'El texto no puede estar vacío' 
       });
     }
 
-    // Verificar que la API key existe
-    if (!process.env.GOOGLE_API_KEY) {
-      console.log('❌ GOOGLE_API_KEY no configurada');
-      return res.status(500).json({ 
-        error: 'Configuración incompleta del servidor' 
-      });
+    // Inicializar historial de conversación
+    if (!conversationHistory.has(sessionId)) {
+      conversationHistory.set(sessionId, []);
     }
+
+    const history = conversationHistory.get(sessionId);
+
+    // Construir contexto con historial
+    const context = history.length > 0 
+      ? `Historial de conversación:\n${history.slice(-6).map(msg => 
+          `${msg.role}: ${msg.text}`
+        ).join('\n')}\n\n`
+      : '';
+       const prompt = `Eres un asistente muy amable.
+
+${context}
+Usuario: "${text}"
+
+Proporciona un análisis útil, sugerencias de mejora o respuestas relevantes basándote en el contexto de la conversación. si alguien saluda o es amable tu tambien `;
 
     const model = genAI.getGenerativeModel({ 
-      model: 'gemini-1.5-flash'
+      model: 'gemini-1.5-flash',
+      generationConfig: {
+        temperature: 0.7,
+        maxOutputTokens: 1500,
+        topP: 0.9,
+      }
     });
 
-    const prompt = `Eres un asistente de la Universidad de Sonora. Responde al siguiente saludo: "${text}"`;
-
-    console.log('🚀 Enviando a Gemini...');
     const result = await model.generateContent(prompt);
-    const response = result.response;
-    
-    console.log('✅ Respuesta de Gemini:', response.text());
-    
-    return res.json({ 
+    const responseText = result.response.text();
+
+    // Actualizar historial
+    history.push({ role: 'user', text: text.substring(0, 500) }); // Limitar longitud
+    history.push({ role: 'assistant', text: responseText.substring(0, 500) });
+
+    // Mantener máximo 10 intercambios
+    if (history.length > 20) {
+      conversationHistory.set(sessionId, history.slice(-20));
+    }
+
+    res.json({ 
       success: true,
-      response: response.text() 
+      response: responseText,
+      sessionId: sessionId
     });
 
   } catch (error) {
-    console.error('💥 ERROR COMPLETO:');
-    console.error('Nombre:', error.name);
-    console.error('Mensaje:', error.message);
-    console.error('Stack:', error.stack);
+    console.error('💥 Error en el servidor:', error.message);
     
-    // Error específico de Google AI
-    if (error.message.includes('API_KEY')) {
-      return res.status(500).json({ 
-        error: 'Error de autenticación con Google AI',
-        details: 'Verifica la API_KEY' 
-      });
-    }
-    
-    return res.status(500).json({ 
-      error: 'Error del servidor',
-      details: process.env.NODE_ENV === 'development' ? error.message : 'Error interno'
+    res.status(500).json({ 
+      success: false,
+      error: 'Error procesando la solicitud',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 };

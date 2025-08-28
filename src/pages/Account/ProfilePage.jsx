@@ -203,68 +203,32 @@ const RightArrow = styled.div`
   height: 40px;
 `
 
-const ThirtyBanner = styled.div`
-  width: 1300px;
+const ProjectsContent = styled.div`
+  max-width: 1300px;
   border-radius: 0.3rem;
-  height: 280px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  
+  height: 620px;
+  align-items: center; 
   background-color: transparent;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 5rem;
+  overflow-y: auto;
 `
 
-const Item1ThirtyBanner = styled.div`
-  width: 420px;
-  height: 260px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  padding: 1rem;
-  // box-shadow: rgba(222, 222, 222, 0.3) 0px 2px 5px 0px, rgba(222, 222, 222, 0.3) 0px 1px 1px 0px;
-  box-shadow: rgba(222, 222, 222, 0.2) 0px 2px 15px 0px, rgba(222, 222, 222, 0.2) 0px 1px 5px 0px;
-`
-
-const Item2ThirtyBanner = styled.div`
-  width: 420px;
-  height: 260px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  padding: 1rem;
-  // box-shadow: rgba(222, 222, 222, 0.3) 0px 2px 5px 0px, rgba(222, 222, 222, 0.3) 0px 1px 1px 0px;
-  box-shadow: rgba(222, 222, 222, 0.2) 0px 2px 15px 0px, rgba(222, 222, 222, 0.2) 0px 1px 5px 0px;
-`
-
-const Item3ThirtyBanner = styled.div`
+const Project = styled.div`
  width: 420px;
+ box-sizing: border-box;
   height: 260px;
   background-color: white;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
   padding: 1rem;
-  // box-shadow: rgba(222, 222, 222, 0.3) 0px 2px 5px 0px, rgba(222, 222, 222, 0.3) 0px 1px 1px 0px;
-  box-shadow: rgba(222, 222, 222, 0.2) 0px 2px 15px 0px, rgba(222, 222, 222, 0.2) 0px 1px 5px 0px;
-`
-
-const Img1ThirtyBann = styled.img`
-  width: 100%;
-  height: 112px;
-  border-radius: 10px;
-  border: 1px solid grey;
-`
-const Img2ThirtyBann = styled.img`
-width: 100%;
-  height: 112px;
-  border-radius: 10px;
-  border: 1px solid grey;
+  flex-wrap: wrap;
+  box-shadow: rgba(222, 222, 222, 0.4) 0px 2px 15px 0px, rgba(222, 222, 222, 0.4) 0px 1px 5px 0px;
 `
 const Img3ThirtyBann = styled.img`
-width: 100%;
+  width: 100%;
   height: 112px;
   border-radius: 10px;
   border: 1px solid grey;
@@ -275,7 +239,6 @@ const TitleNote1 = styled.p`
   font-bold: 500;
   margin-top: 0.5rem;
 `
-
 const Category = styled.div`
   width: 70px;
   height: 1.3rem;
@@ -382,26 +345,8 @@ const ProfilePage = () => {
               </RightArrow>
             </Signs>
           </Display>
-          <ThirtyBanner>
-            <Item1ThirtyBanner>
-              <Img1ThirtyBann src={"#"} />
-              <Category>
-                Note
-              </Category>
-              <TitleNote1>
-                Note Name
-              </TitleNote1>
-            </Item1ThirtyBanner>
-            <Item2ThirtyBanner>
-              <Img2ThirtyBann src={"#"} />
-              <Category>
-                Folder
-              </Category>
-              <TitleNote1>
-                Folder Name
-              </TitleNote1>
-            </Item2ThirtyBanner>
-            <Item3ThirtyBanner>
+          <ProjectsContent>
+            <Project>
               <Img3ThirtyBann src={"#"} />
               <Category>
                 Project
@@ -409,8 +354,62 @@ const ProfilePage = () => {
               <TitleNote1>
                 Proyect Name
               </TitleNote1>
-            </Item3ThirtyBanner>
-          </ThirtyBanner>
+            </Project>
+            <Project>
+              <Img3ThirtyBann src={"#"} />
+              <Category>
+                Project
+              </Category>
+              <TitleNote1>
+                Proyect Name
+              </TitleNote1>
+            </Project>
+            <Project>
+              <Img3ThirtyBann src={"#"} />
+              <Category>
+                Project
+              </Category>
+              <TitleNote1>
+                Proyect Name
+              </TitleNote1>
+            </Project>
+            <Project>
+              <Img3ThirtyBann src={"#"} />
+              <Category>
+                Project
+              </Category>
+              <TitleNote1>
+                Proyect Name
+              </TitleNote1>
+            </Project>
+            <Project>
+              <Img3ThirtyBann src={"#"} />
+              <Category>
+                Project
+              </Category>
+              <TitleNote1>
+                Proyect Name
+              </TitleNote1>
+            </Project>
+            <Project>
+              <Img3ThirtyBann src={"#"} />
+              <Category>
+                Project
+              </Category>
+              <TitleNote1>
+                Proyect Name
+              </TitleNote1>
+            </Project>
+            <Project>
+              <Img3ThirtyBann src={"#"} />
+              <Category>
+                Project
+              </Category>
+              <TitleNote1>
+                Proyect Name
+              </TitleNote1>
+            </Project>
+          </ProjectsContent>
           
         </MainCore>
         <Profile>

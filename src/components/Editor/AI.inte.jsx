@@ -13,6 +13,8 @@ const BttnSend = styled.button`
   margin-top: 2.2rem;
   cursor: pointer;
   padding: 0.5rem;
+  font-weight: 500;
+  font-size: 1.2rem;
   
   &:hover {
     background-color: #75d475;
@@ -82,7 +84,7 @@ const AIINte = () => {
     return (
         <div>
             <BttnSend onClick={e => callAssistant(e)}>
-                {loading ? 'Procesando...' : 'Send to AI'}
+                {loading ? 'Procesando...' : 'Resumir'}
             </BttnSend>
 
             {error && (

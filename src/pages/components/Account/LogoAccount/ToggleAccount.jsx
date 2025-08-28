@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { UseData } from "../../../../context/dataContext";
 
 const Toggle = styled.div`
-  width: 8vw;
+  width: 7vw;
   height: 14vh;
   position: absolute;
   top: 7vh;
-  left: 0.5vw;
+  left: 23vw;
   background-color: rgb(255, 255, 255);
   display: flex;
   padding-bottom: 2.4rem;

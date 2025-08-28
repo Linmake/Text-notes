@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import "../../../styles/components/main/main.css";
+import LumiaLogo from "../../../assets/lumia_pina.png"
 
 const ContainerInicio = styled.div`
   width: 100%;
@@ -30,12 +31,14 @@ const ContainerInicio = styled.div`
     pointer-events: none;
     z-index: 0;
     // background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.14'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }@media (min-width: 375px) and (max-width: 430px) {
-    height: 77.5%;
   }
+    @media (min-width: 375px) and (max-width: 430px) {
+    height: 77.5%;                      
+    }
+  
   @media (min-width: 300px) and (max-width: 550px) {
     
-    }
+  }
   `;
 
 
@@ -164,6 +167,26 @@ const EditorExample = styled.div`
   border-radius: 1rem;
 `
 
+const LogoLumiaPina = styled.div`
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: url("../../../assets/lumia_pina.png");
+` 
+
+const TextSection = styled.div`
+  background-color: #12181F;
+  height: 140px;
+  display: flex;
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  justify-content: center;
+  font-size: 3rem;
+  text-align: center;
+  color: white;
+`
+
 const MainContainer = () => {
   const navigate = useNavigate();
 
@@ -174,6 +197,7 @@ const MainContainer = () => {
     <>
       <ContainerInicio className="container-title">
         <ContainerTitle>
+        <LogoLumiaPina/>
           <Title className="font text">Inserta tus ideas <br /> en la nube</Title>
           <Subtitle className="text">
             Crea cualquier diseño y estructura, desde notas personales hasta mapas con AI, de la forma mas rapida con Lumia Pina.
@@ -187,6 +211,9 @@ const MainContainer = () => {
         <ContainerEditor>
           <EditorExample />
         </ContainerEditor>
+        <TextSection>
+          One Platform
+        </TextSection>
       </CarruselContainer>
     </>
   );

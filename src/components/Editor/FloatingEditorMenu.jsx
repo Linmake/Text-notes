@@ -8,7 +8,7 @@ import { UseData } from "../../context/dataContext";
 
 const MenuContainer = styled.div`
   position: absolute;
-  width: 500px;
+  width: 400px;
   height: 450px;
   display: flex; 
   border-radius: 8px;
@@ -33,14 +33,26 @@ const MenuHeader = styled.div`
 `;
 
 const MenuContent = styled.div`
-  padding: 12px;
   display: flex;
   justify-content: center:
   align-items: center;
   flex-direction: column;
-  padding: 2rem;
+  padding: 2.5rem;
   cursor: auto;
-`;
+  `;
+
+const Input = styled.input`
+  width: 50%;
+  height: 2rem;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  margin-top: 0.5rem;
+`
+
+const Span = styled.span`
+  font-size: 1.5rem;
+`
 
 function DraggableMenu() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -58,7 +70,6 @@ function DraggableMenu() {
     top: position.y + currentY + 100,
     left: position.x + currentX + 100,
   };
-
   const handleDragEnd = () => {
     if (transform) {
       setPosition((pos) => ({
@@ -83,8 +94,8 @@ function DraggableMenu() {
         Valores
       </MenuHeader>
       <MenuContent>
-        <span>Cuartillas</span>
-        <input value={sheets} onChange={e => setSheets(e.target.value)} type="number" />
+        <Span>Cuartillas</Span>
+        <Input value={sheets} onChange={e => setSheets(e.target.value)} type="number" />
         <AIINte/>
       </MenuContent>
     </MenuContainer>,

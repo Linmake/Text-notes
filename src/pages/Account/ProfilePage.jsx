@@ -4,6 +4,10 @@ import { UseData } from "../../context/dataContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faCog, faFilter, faInbox, faSignOutAlt, faTrophy } from "@fortawesome/free-solid-svg-icons";
 import BoardListComponent from "./Components/BoardList";
+import { positionSideContext } from "../../context/SideProv";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import Project from "../../components/ProjectsMenu/Project";
 
 const Container = styled.div`
   display: flex;
@@ -215,43 +219,6 @@ const ProjectsContent = styled.div`
   overflow-y: auto;
 `
 
-const Project = styled.div`
- width: 420px;
- box-sizing: border-box;
-  height: 260px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  padding: 1rem;
-  flex-wrap: wrap;
-  box-shadow: rgba(222, 222, 222, 0.4) 0px 2px 15px 0px, rgba(222, 222, 222, 0.4) 0px 1px 5px 0px;
-`
-const Img3ThirtyBann = styled.img`
-  width: 100%;
-  height: 112px;
-  border-radius: 10px;
-  border: 1px solid grey;
-`
-
-const TitleNote1 = styled.p`
-  font-size: 1.2rem;
-  font-bold: 500;
-  margin-top: 0.5rem;
-`
-const Category = styled.div`
-  width: 70px;
-  height: 1.3rem;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  background-color: #E2D5FF;
-  color: #8C57FF;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 12px;
-`
-
 const SettingSect = styled.div`
   width: 90%;
   height: 20%;
@@ -259,7 +226,6 @@ const SettingSect = styled.div`
   display: flex;
   flex-direction: column;
 `
-
 const SettingsText = styled.p`
   color: #3F3F3F;
   text-align: center;
@@ -289,23 +255,39 @@ const Logout = styled.div`
 
 const ProfilePage = () => {
   const { setName, name } = UseData()
+  const [cookie, setCookie] = useState(null);
+  const { projects, setProjects } = useContext(positionSideContext);
+  const { setData, setProject } = UseData();
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setCookie(document.cookie);
+        const { data } = await axios.get(`http://localhost:4000/project/all`, { withCredentials: true });
+        setProjects(data);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+    fetchProjects();
+  }, [setProjects, setProject, setData]);
   return (
     <Container>
       <ParentContent>
         <Onboard>
-          <BoardListComponent/>
+          <BoardListComponent />
           <SettingSect>
             <SettingsText>
-            SETTINGS
+              SETTINGS
             </SettingsText>
             <SettingContent>
-              <IconSettings icon={faCog}/>
+              <IconSettings icon={faCog} />
               Settings
             </SettingContent>
             <Logout>
-              <IconSettings icon={faSignOutAlt} className={"fa-rotate-180"}/>
+              <IconSettings icon={faSignOutAlt} className={"fa-rotate-180"} />
               Logout
-              </Logout>
+            </Logout>
           </SettingSect>
         </Onboard>
         <MainCore>
@@ -346,71 +328,10 @@ const ProfilePage = () => {
             </Signs>
           </Display>
           <ProjectsContent>
-            <Project>
-              <Img3ThirtyBann src={"#"} />
-              <Category>
-                Project
-              </Category>
-              <TitleNote1>
-                Proyect Name
-              </TitleNote1>
-            </Project>
-            <Project>
-              <Img3ThirtyBann src={"#"} />
-              <Category>
-                Project
-              </Category>
-              <TitleNote1>
-                Proyect Name
-              </TitleNote1>
-            </Project>
-            <Project>
-              <Img3ThirtyBann src={"#"} />
-              <Category>
-                Project
-              </Category>
-              <TitleNote1>
-                Proyect Name
-              </TitleNote1>
-            </Project>
-            <Project>
-              <Img3ThirtyBann src={"#"} />
-              <Category>
-                Project
-              </Category>
-              <TitleNote1>
-                Proyect Name
-              </TitleNote1>
-            </Project>
-            <Project>
-              <Img3ThirtyBann src={"#"} />
-              <Category>
-                Project
-              </Category>
-              <TitleNote1>
-                Proyect Name
-              </TitleNote1>
-            </Project>
-            <Project>
-              <Img3ThirtyBann src={"#"} />
-              <Category>
-                Project
-              </Category>
-              <TitleNote1>
-                Proyect Name
-              </TitleNote1>
-            </Project>
-            <Project>
-              <Img3ThirtyBann src={"#"} />
-              <Category>
-                Project
-              </Category>
-              <TitleNote1>
-                Proyect Name
-              </TitleNote1>
-            </Project>
+            {projects.map((project, index) => (
+                  <Project Title={project.Title} Id={project.Id} key={index} />
+                   ))}
           </ProjectsContent>
-          
         </MainCore>
         <Profile>
           <LogoImg src={profileImg} />
@@ -425,13 +346,13 @@ const ProfilePage = () => {
           </MessageSecond>
           <ContainerIcons>
             <Icons1>
-              <IconsFont icon={faBell}/>
+              <IconsFont icon={faBell} />
             </Icons1>
             <Icons1>
-              <IconsFont icon={faInbox}/>
+              <IconsFont icon={faInbox} />
             </Icons1>
             <Icons1>
-              <IconsFont icon={faTrophy}/>
+              <IconsFont icon={faTrophy} />
             </Icons1>
           </ContainerIcons>
         </Profile>

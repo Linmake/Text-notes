@@ -9,22 +9,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
 const Container = styled.li`
-  border-bottom: 1px solid #c4c7c5;
+
+ width: 420px;
+ box-sizing: border-box;
+  height: 260px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 1rem;
+  flex-wrap: wrap;
+  box-shadow: rgba(222, 222, 222, 0.4) 0px 2px 15px 0px, rgba(222, 222, 222, 0.4) 0px 1px 5px 0px;
+
   font-size: 1.3rem;
   list-style: none;
   font-family: "Poppins", "Lucida Sans", "Lucida Sans Regular";
-  width: 58vw;
-  height: 80px;
-  padding-top: 0.625rem;
-  padding-left: 0.2rem;
   overflow-wrap: break-word;
   text-overflow: ellipsis;
   white-space: nowrap;
-  display: flex;
   align-items: center;
   color: #000;
   gap: 15%;
 `;
+
 const ProjectInput = styled.input`
   width: 65%;
   height: 98%;
@@ -32,6 +39,9 @@ const ProjectInput = styled.input`
   cursor: pointer;
   border-radius: 0.2rem;
   outline: none;
+  font-size: 1.2rem;
+  font-bold: 500;
+  margin-top: 0.5rem;
 `;
 const EditProjectInput = styled.input`
   width: 65%;
@@ -94,6 +104,40 @@ const MenuIcon = styled(FontAwesomeIcon)`
     cursor: pointer;
   }
 `;
+
+const Category = styled.div`
+  width: 70px;
+  height: 1.3rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  background-color: #E2D5FF;
+  color: #8C57FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+`
+
+const ProjectContainer = styled.div`
+ width: 420px;
+ box-sizing: border-box;
+  height: 260px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 1rem;
+  flex-wrap: wrap;
+  box-shadow: rgba(222, 222, 222, 0.4) 0px 2px 15px 0px, rgba(222, 222, 222, 0.4) 0px 1px 5px 0px;
+`
+
+const ImgBann = styled.img`
+  width: 100%;
+  height: 112px;
+  border-radius: 10px;
+  border: 1px solid grey;
+`
+
 /**
  *
  * @param {*} param0
@@ -135,11 +179,11 @@ const Project = ({ Title, Id }) => {
     if (event.keyCode !== 13) return;
     const { status } = await axios.put(
       `http://localhost:4000/project/edit/${Id}`,
-      { Title: newTitle }, {withCredentials: true}
+      { Title: newTitle }, { withCredentials: true }
     );
     if (status !== 200) console.info("project no guardado");
     const projectsList = projects.filter((project) => project.Id !== Id);
-    const editProject = projects.find( project => project.Id == Id )
+    const editProject = projects.find(project => project.Id == Id)
     const indexOrigProject = projects.indexOf(editProject)
     editProject.Title = newTitle
     projectsList.splice(indexOrigProject, 0, editProject)
@@ -153,32 +197,38 @@ const Project = ({ Title, Id }) => {
     setOptsMenu(false)
   }
 
-  useEffect( () => {}, [setEdit, setOptsMenu])
-useEffect(() => {
-  const handlerOutMenu = (event) => {
-    const menu = refMenuContainer.current;
-    if (menu && !menu.contains(event.target)) {
-      setOptsMenu(false);
-    }
-  };
+  useEffect(() => { }, [setEdit, setOptsMenu])
+  useEffect(() => {
+    const handlerOutMenu = (event) => {
+      const menu = refMenuContainer.current;
+      if (menu && !menu.contains(event.target)) {
+        setOptsMenu(false);
+      }
+    };
 
-  document.addEventListener("click", handlerOutMenu, true);
+    document.addEventListener("click", handlerOutMenu, true);
 
-  return () => {
-    document.removeEventListener("click", handlerOutMenu, true);
-  };
-}, [setOptsMenu]);
+    return () => {
+      document.removeEventListener("click", handlerOutMenu, true);
+    };
+  }, [setOptsMenu]);
 
   return (
     <Container>
       {!edit ? (
-        <ProjectInput
-          value={Title}
-          type={"text"}
-          readOnly={true}
-          onClick={(e) => goToProject(Id)}
-          ref={refInput}
-        />
+        <ProjectContainer>
+          <ImgBann src={"#"} />
+          <Category>
+            Project
+          </Category>
+          <ProjectInput
+            value={Title}
+            type={"text"}
+            readOnly={true}
+            onClick={(e) => goToProject(Id)}
+            ref={refInput}
+          />
+        </ProjectContainer>
       ) : (
         <EditProjectInput
           autoFocus
@@ -190,13 +240,13 @@ useEffect(() => {
       )}
       <ContainerOptions>
         <MenuIcon title="Options" icon={faEllipsis} onClick={(e) => handlerOptsMenu(e)} />
-          {(optsMenu)?
+        {(optsMenu) ?
           (
             <ContainerMenu ref={refMenuContainer}>
-              <EditIcon  title="Edit" icon={faPenToSquare} onClick={(e) => handlerEdit(e)}/>
-              <DeleteIcon  title="Delete" icon={faTrashAlt} onClick={(e) => handlerDelete(e)} />
+              <EditIcon title="Edit" icon={faPenToSquare} onClick={(e) => handlerEdit(e)} />
+              <DeleteIcon title="Delete" icon={faTrashAlt} onClick={(e) => handlerDelete(e)} />
             </ContainerMenu>
-          ):(<></>)}
+          ) : (<></>)}
       </ContainerOptions>
     </Container>
   );

@@ -24,10 +24,13 @@ const ContainerProjects = styled.div`
   padding-top: 2%;
   margin-top: 7%;
 `;
+
 const ProjectList = styled.ul`
   margin: 0 !important;
   padding-inline-start: 0 !important;
 `;
+
+
 /*
  *@returns List Projects
  */
@@ -62,7 +65,7 @@ const ProjectsMenu = () => {
               <ProjectList>
                 {projects.map((project, index) => (
                   <Project Title={project.Title} Id={project.Id} key={index} />
-                ))}
+                   ))}
               </ProjectList>
             </ContainerProjects>
           </ProjectCompTemplate>

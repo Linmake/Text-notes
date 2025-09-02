@@ -32,79 +32,80 @@ const Container = styled.li`
   gap: 15%;
 `;
 
-const ProjectInput = styled.input`
-  width: 65%;
-  height: 98%;
-  border: none;
-  cursor: pointer;
-  border-radius: 0.2rem;
-  outline: none;
-  font-size: 1.2rem;
-  font-bold: 500;
-  margin-top: 0.5rem;
-`;
 const EditProjectInput = styled.input`
-  width: 65%;
-  height: 98%;
-  border: none;
-  border-radius: 0.2rem;
-  outline: none;
+width: 65%;
+height: 98%;
+border: none;
+border-radius: 0.2rem;
+outline: none;
 `;
 const ContainerOptions = styled.div`
-  width: 25%;
-  height: 100%;
-  display: flex;
-  align-items: center;
+width: 25%;
+height: 100%;
+display: flex;
+align-items: center;
 `;
 const ContainerMenu = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0.2rem;
-  position: relative;
-  left: 2%;
-  top: -2%;
-  padding: 0.5rem;
-  width: 5.5rem;
-  height: 90%;
-  z-index: 100;
-  background-color: white;
-  border: 1px solid grey;
+display: flex;
+flex-direction: row;
+gap: 0.5rem;
+justify-content: center;
+align-items: center;
+border-radius: 0.2rem;
+position: relative;
+left: 2%;
+top: -2%;
+padding: 0.5rem;
+width: 5.5rem;
+height: 90%;
+z-index: 100;
+border: 1px solid grey;
 `;
 const DeleteIcon = styled(FontAwesomeIcon)`
-  width: 1.5rem;
-  color:rgb(247, 93, 76);
-  &:hover {
-    cursor: pointer;
+width: 1.5rem;
+color:rgb(247, 93, 76);
+&:hover {
+  cursor: pointer;
   }
   &:active {
     cursor: pointer;
-  }
-`;
+    }
+    `;
 const EditIcon = styled(FontAwesomeIcon)`
   width: 1.5rem;
   color:rgb(102, 196, 240);
   &:hover {
     cursor: pointer;
-  }
-  &:active {
-    cursor: pointer;
-  }
-`;
+    }
+    &:active {
+      cursor: pointer;
+      }
+      `;
 const MenuIcon = styled(FontAwesomeIcon)`
-  width: 1.7rem;
-  margin-right: 0.5rem;
-  color:rgb(26, 79, 104);
-  &:hover {
+      width: 1.7rem;
+      margin-right: 0.5rem;
+      color:rgb(26, 79, 104);
+      &:hover {
     cursor: pointer;
-  }
+    }
   &:active {
     cursor: pointer;
-  }
-`;
+    }
+    `;
 
+
+const ProjectContainer = styled.div`
+    width: 420px;
+    box-sizing: border-box;
+    height: 260px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 1rem;
+    
+    box-shadow: rgba(222, 222, 222, 0.4) 0px 2px 15px 0px, rgba(222, 222, 222, 0.4) 0px 1px 5px 0px;
+    `
 const Category = styled.div`
   width: 70px;
   height: 1.3rem;
@@ -116,26 +117,27 @@ const Category = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 12px;
-`
+  justify-content: center !important;
+  `
 
-const ProjectContainer = styled.div`
- width: 420px;
- box-sizing: border-box;
-  height: 260px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  padding: 1rem;
-  flex-wrap: wrap;
-  box-shadow: rgba(222, 222, 222, 0.4) 0px 2px 15px 0px, rgba(222, 222, 222, 0.4) 0px 1px 5px 0px;
-`
+const ProjectInput = styled.input`
+  width: 65%;
+  height: 25%;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  outline: none;
+  font-size: 1.2rem;
+  font-bold: 500;
+  margin-top: 0.5rem;
+`;
 
 const ImgBann = styled.img`
-  width: 100%;
-  height: 112px;
-  border-radius: 10px;
-  border: 1px solid grey;
+width: 100%;
+height: 112px;
+border-radius: 10px;
+border: 1px solid grey;
 `
 
 /**

@@ -21,7 +21,7 @@ function App() {
     createRoutesFromElements(
       <Route path='/' element={<RootLayout/>}>
         <Route index element={<MainPage/>} />
-        <Route exact path='/Projects-menu/' element={<ProjectsMenu />} /*loader={ProjectsLoader}*/ />
+        <Route exact path='/Projects-menu/' element={<ProfilePage />} /*loader={ProjectsLoader}*/ />
         <Route exact path='/Folders/' element={<a />} />
         <Route exact path='/*' element={<NotFound/>} />
       <Route path='/Project/:projectId' element={<TextEditor />}>
